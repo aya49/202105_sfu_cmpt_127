@@ -20,7 +20,7 @@ This course gives a hands-on introduction to programming in C and C++, basics of
 
 - To be taken in parallel with CMPT 125. 
 - This is a lab-only course and attendance in the lab sessions is ***mandatory***. 
-- **This semester, this course is offered online via the Internet. Therefore, students will need access to a computer, the Internet and a browser application. Other computer-related requirements will be discussed during the semester.
+- **This semester, this course is offered online via the Internet.** Therefore, students will need access to a computer, the Internet and a browser application. Other computer-related requirements will be discussed during the semester.
 
 ## Prerequisites
 
