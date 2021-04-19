@@ -24,7 +24,7 @@ This course gives a hands-on introduction to programming in C and C++, basics of
 
 ## Prerequisites
 
-see go.sfu.ca
+CMPT 120 or CMPT 128 or CMPT 130, with a minimum grade of C-. Corequisite: CMPT 125. 
 
 ## Topics
 
