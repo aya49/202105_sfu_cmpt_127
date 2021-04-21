@@ -9,11 +9,21 @@ Welcome to CMPT 127! Make sure you bookmark this page so you always have access 
 
 ## Course logistics
 
+Contacts
 - Instructor: Alice Yue (aya43 at sfu dot ca)
-- Teaching assistants: 
+- Teaching assistants (TA): 
   - D100: Danoosh Chamani (dca124 at sfu dot ca)
+- Helpdesk: (cs dot sfu dot ca)
 
-**IMPORTANT**: Please post all course content and logistics related questions on [Piazza](https://piazza.com/sfu.ca/summer2021/cmpt127/home/)!! Your classmate, the instructor, or a teaching assistant might have already answered the question there :)
+Email policy
+- **IMPORTANT**: Please go to [Piazza](https://piazza.com/sfu.ca/summer2021/cmpt127/home/) for all course content and logistic related questions!! Your classmate, the instructor, or a teaching assistant might have already answered the question there :).
+- To ensure a quick turn around, only use email for:
+  - hardware, SFU network, SFU software related questions: to helpdesk at 
+  - mark related inquiries: to your sections' TA.
+  - administrative issues: to your TA's or the instructor.
+- Include the following information in your email: course (CMPT 127), section (e.g. D100), full name (e.g. Alice Yue), student ID (e.g. aya43), 
+
+Emails will be answered during work hours only.
 
 | Description                                                                                   | Link    |
 |-----------------------------------------------------------------------------------------------|---------|
@@ -21,7 +31,7 @@ Welcome to CMPT 127! Make sure you bookmark this page so you always have access 
 | Exercises and Quizzes submission                                                              | CourSys: [D100](https://coursys.sfu.ca/2021su-cmpt-127-d1/), [D200](https://coursys.sfu.ca/2021su-cmpt-127-d2/), [D300](https://coursys.sfu.ca/2021su-cmpt-127-d3/) |
 | Discussions                                                                                   | [Piazza](https://piazza.com/sfu.ca/summer2021/cmpt127/home/)  |
 | Peer tutoring                                                                                 | [Canvas](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html)  |
-| Announcements                                                                                 | Email   |
+| Announcements will be sent to your @sfu.ca email!                                             | Email (cmpt-127 at sfu.ca)  |
 
 
 ## Lab and office hours
@@ -51,7 +61,7 @@ Students are free to attend labs and office hours of any section.
 
 ### Grading breakdown
 
-Students must pass at least 3 out of the 4 quizzes to pass the course. "Pass" here means 50% or above.
+Students must pass at least 3 out of the 4 quizzes to pass the course; "pass" here means 55% or above.
 
 ### Grading system
 
