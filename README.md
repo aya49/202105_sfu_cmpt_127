@@ -1,60 +1,71 @@
 https://www.markdowntopdf.com/
 
-# CMPT 127 - computing laboratory
+# CMPT 127 - computing laboratory (summer 2021)
 
-## Links
-
-- Course outlines: [CMPT 127](outline.md) ([calendar](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100)), CMPT 125 ([calendar](http://www.sfu.ca/outlines.html?2021/summer/cmpt/125/d100))
-- Zoom: https://sfu.zoom.us/j/7631796740 (use your SFU account to enter automatically)
-
-## People
-
-- Instructor: [Alice Yue](mailto:aya43@sfu.ca)
-- Teaching assistant: [Danoosh Chamani](mailto:dca124@sfu.ca)
+Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100), [D200](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d200), [D300](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d300) ([CMPT 125](http://www.sfu.ca/outlines.html?2021/summer/cmpt/125/d100))
 
 
-## 2021049 
+## Instructor and teaching assistants
 
-MAKE ACCOUNCEMENTS
+Instructor: Alice Yue (aya43 at sfu dot ca)
+Teaching assistants: 
+- D100: Danoosh Chamani (dca124 at sfu dot ca)
 
-125 need to teach:
+**IMPORTANT**: Please post all course content and logistics related questions on [Piazza](https://piazza.com/sfu.ca/summer2021/cmpt127/home/)!! Your classmate, the instructor, or a teaching assistant might have already answered the question there :)
 
-Big O notation,
 
-Linked list
+## Course logistics
 
-don't use lab 4(2D array)/9(game)
+| Description                                                                                   | Link    |
+|:---------------------------------------------------------------------------------------------:|:-------:|
+| Online lab and office hours (use your SFU Zoom account on sfu.zoom.ca to enter automatically); [guide](https://www.sfu.ca/itservices/technical/videoconferencing/zoom/using-zoom/how-to-guides.html) | [Zoom](https://sfu.zoom.us/j/7631796740/)    |
+| Exercises and Quizzes submission                                                              | CourSys: [D100](https://coursys.sfu.ca/2021su-cmpt-127-d1/), [D200](https://coursys.sfu.ca/2021su-cmpt-127-d2/), [D300](https://coursys.sfu.ca/2021su-cmpt-127-d3/) |
+| Discussions                                                                                   | [Piazza](https://piazza.com/sfu.ca/summer2021/cmpt127/home/)  |
+| Peer tutoring                                                                                 | [Canvas](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html)  |
+| Announcements                                                                                 | Email   |
 
-54 lab tasks, grading robots: turned on and of by the backend (sumo runs backend) (turn on thurs before; sended to TA and tutors), then tues 8:30 lab is posted and then have a small talk
 
-4 lab quizzes
+## Lab and office hours
 
-weekly excersices (together with lab tasks??) done to address issues
+| Section | Tuesdays at       | Type         | Instructor/TA | Zoom link |
+|:-------:|:-----------------:|-------------:|:-------------:|:---------:|
+| D100    | 08:30am - 09:20am | Lab          | Alice Yue     | https://sfu.zoom.us/j/7631796740/ |
+| D100    | 09:30am - 10:20am | Office hours | Alice Yue,    ||
+| D100    | 10:30am - 11:20am | Office hours |               ||
+| D200    | 11:30am - 12:20pm | Lab          | Alice Yue     ||
+| D200    | 12:30pm - 01:20pm | Office hours | Alice Yue,    ||
+| D200    | 01:30pm - 02:20pm | Office hours |               ||
+| D300    | 02:30pm - 03:20pm | Lab          | Alice Yue     ||
+| D300    | 03:30pm - 04:20pm | Office hours | Alice Yue,    ||
+| D300    | 04:30pm - 05:20pm | Office hours |               ||
 
-first two labs are customized
+Students are free to attend labs and office hours of any section.
 
-let students know about peer tutoring
+**IMPORTANT** Students must do their quiz during their sections' lab hour; the quizzes will only be open to you for your sections' lab hour.
 
-discussion on microsoft teams (repl.it)
 
-more zoom time from TAs (suggestion??)
+## Grading
 
-coursys quiz
+### Grading breakdown
 
-grading: 
-lab tasks all on internet so decrease? submitted on git repo
+Students must pass at least 3 out of the 4 quizzes to pass the course. "Pass" here means 50% or above.
 
-MUST DO LAB 0
+### Grading system
 
-LAB 0 (use their USERID!!)
+|Grade|Percentage|
+|:-:|:-----:|
+|A+ | 95-100|
+|A  | 90-94 |
+|A- | 85-89 |
+|B+ | 80-84 |
+|B  | 75-79 |
+|B- | 70-74 |
+|C+ | 65-69 |
+|C  | 60-64 |
+|C- | 55-59 |
+|D  | 50-54 |
 
-might need to redo CSIL notes
 
-gradint bots for tasks (1-2 hrs, has a scoreboard don't give student, go into grding robot report), exercises (TA mark, meet and establish requirements, need to answer questions e.g. meet on monday), quizzes
 
-(3 versions of quizzes, 50min)
 
-ban email??
-lab duration??
-lab slides/assignment changes??
-zoom settings??
+
