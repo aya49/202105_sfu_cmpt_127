@@ -8,6 +8,7 @@ Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100
 ## Instructor and teaching assistants
 
 Instructor: Alice Yue (aya43 at sfu dot ca)
+
 Teaching assistants: 
 - D100: Danoosh Chamani (dca124 at sfu dot ca)
 
@@ -17,8 +18,8 @@ Teaching assistants:
 ## Course logistics
 
 | Description                                                                                   | Link    |
-|:---------------------------------------------------------------------------------------------:|:-------:|
-| Online lab and office hours (use your SFU Zoom account on sfu.zoom.ca to enter automatically); [guide](https://www.sfu.ca/itservices/technical/videoconferencing/zoom/using-zoom/how-to-guides.html) | [Zoom](https://sfu.zoom.us/j/7631796740/)    |
+|-----------------------------------------------------------------------------------------------|---------|
+| Online lab and office hours; [guide](https://www.sfu.ca/itservices/technical/videoconferencing/zoom/using-zoom/how-to-guides.html) | [Zoom](https://sfu.zoom.us/j/7631796740/)    |
 | Exercises and Quizzes submission                                                              | CourSys: [D100](https://coursys.sfu.ca/2021su-cmpt-127-d1/), [D200](https://coursys.sfu.ca/2021su-cmpt-127-d2/), [D300](https://coursys.sfu.ca/2021su-cmpt-127-d3/) |
 | Discussions                                                                                   | [Piazza](https://piazza.com/sfu.ca/summer2021/cmpt127/home/)  |
 | Peer tutoring                                                                                 | [Canvas](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html)  |
@@ -27,17 +28,21 @@ Teaching assistants:
 
 ## Lab and office hours
 
-| Section | Tuesdays at       | Type         | Instructor/TA | Zoom link |
-|:-------:|:-----------------:|-------------:|:-------------:|:---------:|
-| D100    | 08:30am - 09:20am | Lab          | Alice Yue     | https://sfu.zoom.us/j/7631796740/ |
-| D100    | 09:30am - 10:20am | Office hours | Alice Yue,    ||
-| D100    | 10:30am - 11:20am | Office hours |               ||
-| D200    | 11:30am - 12:20pm | Lab          | Alice Yue     ||
-| D200    | 12:30pm - 01:20pm | Office hours | Alice Yue,    ||
-| D200    | 01:30pm - 02:20pm | Office hours |               ||
-| D300    | 02:30pm - 03:20pm | Lab          | Alice Yue     ||
-| D300    | 03:30pm - 04:20pm | Office hours | Alice Yue,    ||
-| D300    | 04:30pm - 05:20pm | Office hours |               ||
+All labs and office hours are on **Zoom**: https://sfu.zoom.us/j/7631796740/ (use your SFU Zoom account on sfu.zoom.ca to enter automatically; [guide](https://www.sfu.ca/itservices/technical/videoconferencing/zoom/using-zoom/how-to-guides.html) | [Zoom](https://sfu.zoom.us/j/7631796740/))
+
+| Section | Tuesdays at       | Type         | Instructor/TA |
+|---------|-------------------|--------------|---------------|
+| **D100**| 08:30am - 09:20am | Lab          | Alice Yue     |
+| D100    | 09:30am - 10:20am | Office hours | Alice Yue,    |
+| D100    | 10:30am - 11:20am | Office hours |               |
+|---------|-------------------|--------------|---------------|
+| **D200**| 11:30am - 12:20pm | Lab          | Alice Yue     |
+| D200    | 12:30pm - 01:20pm | Office hours | Alice Yue,    |
+| D200    | 01:30pm - 02:20pm | Office hours |               |
+|---------|-------------------|--------------|---------------|
+| **D300**| 02:30pm - 03:20pm | Lab          | Alice Yue     |
+| D300    | 03:30pm - 04:20pm | Office hours | Alice Yue,    |
+| D300    | 04:30pm - 05:20pm | Office hours |               |
 
 Students are free to attend labs and office hours of any section.
 
@@ -53,7 +58,7 @@ Students must pass at least 3 out of the 4 quizzes to pass the course. "Pass" he
 ### Grading system
 
 |Grade|Percentage|
-|:-:|:-----:|
+|--:|:------|
 |A+ | 95-100|
 |A  | 90-94 |
 |A- | 85-89 |
