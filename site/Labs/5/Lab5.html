@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)http://www.cs.sfu.ca/CourseCentral/125/bbart/1/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta charset="utf-8">
+    <title>CMPT127 Lab 5</title>
+    
+    <!-- Please don't change internal links and refs to absolute paths -->
+    <link rel="stylesheet" href="../css/style.css">
+
+	<!--<link rel="icon" href="../favicon.ico" type="image/x-icon"> NOT FOUND -->
+	<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+    
+    <!-- Code syntax highlighting --> 
+	<!--<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"> NOT FOUND -->
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js">
+	</script>
+	
+	<!-- force printing a line number in every line when prettyprinting -->
+	<style>
+        .prettyprint ol.linenums > li { list-style-type: decimal; }
+    </style>
+
+</head>
+
+<!--
+Minor changes: Anne Lavergne 2017 + 2019
+-->
+
+<body>
+
+<div class="lab">
+<h1>Lab 5: Composite Data Types</h1>
+
+<h4><tt>struct</tt> and <tt>typedef</tt>; malloc() practice</h4>
+
+<div id="floatingCornerLeft">
+<a href="http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA" target="_blank"><img src="../img/balloon0.jpg" height="150"></a>
+</div>
+
+<div id="floatingCornerRight">
+  <a href="http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA" target="_blank"><img src="../img/balloon1.jpg" height="150"></a>
+</div>
+
+<!-- 
+<p class="todo">
+Sections marked in grey are TO-DO and contain notes, incomplete bits, etc. 
+-->
+
+</p><h2>Goals</h2>
+<p>After this lab you will be able to
+
+<ol>
+<li>Create and use structured composite data types with typedef and struct.
+<li>Implement an interface to a data collection using structures.
+<!-- <li>Adapt and re-use previous code to write a non-trivial program.
+-->
+</ol>
+
+
+<h2>Setup</h2>
+<div class="steps">
+<p>In the terminal:
+<ol>
+<li>From your local repo, create and 'git add' the new directory '5', then make '5' your working directory. 
+(Exact commands ommitted - you should know how to do this by now. Refer to earlier labs if necessary.)</li>
+
+<li>Fetch the header file <a href="intarr.h" target="_blank">intarr.h</a>
+containing Lab 5 tasks.
+<!-- <pre>$ wget http://www.cs.sfu.ca/~vaughan/127/intarr.h</pre>-->
+</ol>
+<br>
+</div>
+
+<h1>Guide</h1>
+
+<h2>Structures</h2>
+
+<p>It is often useful to collect multiple data items together into a
+single logical entity: a <b>composite data type</b>. For example, consider the raster images from
+<a href="../3/Lab3.html" target="_blank">Lab 3</a>, each described by a pointer to an array of data, a width
+and height. All three items are required to interpret the encoded
+image. Most languages provide a mechanism to collect such a set into
+an object called a <b>structure</b> or <b>class</b>.  C provides
+the <tt>struct</tt> keyword for this purpose. For example:
+
+<pre class="prettyprint">struct { 
+  uint8_t* pixels;
+  unsigned int cols;
+  unsigned int rows;
+} img;
+</pre>
+
+<p>This declaration creates a new variable called <tt>img</tt>, that
+collects the variables we need for one image.
+
+<p>The components, called <b>fields</b> or <b>members</b>, of the
+structure are accessed using "dot" syntax, so we can initialize our
+image like so:
+
+<pre class="prettyprint">img.cols = 640;
+img.rows = 480;
+img.pixels = malloc( img.cols * img.rows * sizeof(uint8_t));
+</pre>
+
+<p>The structure is implemented in the simple and fast sort of way you
+would expect from C. It is just a chunk of memory with space for all
+its fields. The dot syntax is interpreted at compile time as a number
+of bytes offset from the structure's base address, so these things are
+true:
+
+<pre class="prettyprint">
+sizeof(img) == sizeof(uint8_t*) + sizeof(unsigned int) + sizeof(unsigned int)
+
+&img.pixels == (void*)&img + 0
+&img.cols == (void*)&img + sizeof(uint8_t*)
+&img.rows == (void*)&img + sizeof(uint8_t*) + sizeof(unsigned int)
+
+</pre>
+
+<p><code>(void*)</code> signifies "pointer of unspecified type".</p>
+
+<p>This means that C structures have almost no overhead on CPU or memory
+use at run-time.
+
+<p>An occasion when this is not quite true is that the compiler may
+add some empty space called <b>padding</b> between fields so that each
+field starts at the CPU's favoured memory alignment boundary. Most
+modern CPUs are fastest when accessing memory at 4- or 8-byte
+boundaries. Inserting padding wastes a little bit of memory. Unless
+memory is very tight we usually ignore these details. (Our example
+structure contains an 8-byte pointer (assuming a 64bit OS), and two
+4-byte unsigned integers: all integer multiples of 4 bytes, so it
+contains no padding.)
+
+<p>More information on memory alignment, including
+padding <a href="http://en.wikipedia.org/wiki/Data_structure_alignment" target="_blank">can
+be found here</a>. See <a href="http://www.catb.org/esr/structure-packing/" target="_blank">this article</a> to understand padding and strategies for avoiding it.
+
+<h2>Typedef</h2>
+
+<p>The <tt>struct</tt> keyword as used above creates just one instance
+of a variable. Since we may want to create lots of images, or pass
+pointers to them into functions, we can create a new type based on our
+structure definition using the <tt>typedef</tt> keyword:
+
+<pre class="prettyprint">typedef struct { 
+  uint8_t* pixels;
+  unsigned int cols;
+  unsigned int rows;
+} img_t;
+</pre>
+
+<p>With the <tt>typedef</tt> prefix, instead of declaring a variable,
+we have declared a new <b>type</b> called <tt>img_t</tt>. It is
+conventional to use "_t" as a suffix on defined types. Having defined
+a type, we can create instances of it on the stack as shown below, creating two variables of type <tt>img_t</tt>, and a pointer-to-<tt>img_t</tt>. As the example shows, once <tt>typedef</tt>'d we can use our new type just like we use int, char, etc.
+
+<pre class="prettyprint">typedef struct { 
+  uint8_t* pixels;
+  unsigned int cols;
+  unsigned int rows;
+} img_t;
+
+img_t img1;
+img_t img2;
+img_t* imgptr = &img1;
+</pre>
+
+<h2>Allocating structures on the heap</h2>
+
+<p>Like any other type, space can be allocated for structures on the heap with <tt>malloc()</tt>. The <tt>sizeof()</tt> macro also works as it does for any other type, so the heap-allocation process looks very familiar:
+
+<pre>img_t* imgptr = malloc( sizeof(img_t) );
+</pre>
+
+<p>This is an important mechanism because it allows functions to
+return pointers to newly-created structures. Recall from Lab 3
+that returning pointers to local variables like this:
+
+<pre class="prettyprint linenums">  // ...
+  img_t img;
+  return &img; // OOPS!
+}  
+</pre>
+
+is a serious bug as the stack memory allocated for variable img is freed when the function returns. Returning a pointer to heap memory provided by <tt>malloc()</tt> is safe:
+
+<pre class="prettyprint linenums">  // ...
+  img_t* imgptr = malloc( sizeof(img_t) );
+  if( imgptr == NULL )
+  {
+    printf( "Warning: failed to allocate memory for an image structure\n" ); 
+  }
+
+  return imgptr; // safe to return a pointer provided by malloc()
+}
+</pre> 
+
+
+<h2>Pointer indirection</h2>
+
+<p>There is one more bit of syntax to learn: how to access the fields of a structure through a
+pointer. We have two choices: either "look inside" the pointer using the normal '*' syntax 
+(also known as 'dereferencing' a pointer), followed by the dot syntax to access the field:
+
+<pre>unsigned int width = (*imgptr).cols;</pre>
+
+<p>The parentheses are necessary, since the '.' operator has precedence over the '*' operator.
+
+<p> Alternatively we can use the <b>indirection arrow</b> syntax to "look through" the pointer:
+
+<pre>unsigned int width = imgptr->cols;</pre>
+
+<p>These two are exactly equivalent. The indirection arrow is arguably
+neater and is preferred.
+
+<h2>User-defined types as function arguments</h2>
+
+<p>You may use any defined type for function arguments and return
+values, for example something like this:
+
+<pre class="prettyprint">void draw_image( uint8_t* pixels, 
+                 unsigned int cols, 
+                 unsigned int rows )
+{ ... }
+
+// call the function above
+draw_image( arr, w, h );
+</pre>
+
+<p>Can be considerably simplified by passing in a pointer to a structure describing the image:
+
+<pre class="prettyprint">void draw_image( img_t* img )
+{ ... }
+
+// call the function above
+draw_image( &img1 );
+</pre>
+
+<p>Note that we could pass a structure itself as an argument, as follows:
+
+<pre class="prettyprint">void draw_image( img_t img_copy )
+{ ... }
+
+// call the function above - BAD!!!
+draw_image( img1 );
+</pre>
+
+<p>but since arguments are passed by value in C, the C function <tt>draw_image</tt> would then receive a 
+copy of the actual value of the argument <tt>img1</tt>. <mark>This is not a good idea.</mark> Why? Because,
+if this structure is large (which is probably the case since it represents an image), it will take time
+and memory space to copy it. Also, if the function called (here: <tt>draw_image</tt>) modifies the data in the structure,
+the modifications will not be reflected in the argument (here: <tt>img1</tt>) once the execution flow
+returns to the code that called the function <tt>draw_image</tt>.
+
+<p>Conclusion: Passing a pointer to a structure is the most efficient way of calling a function
+with structures as arguments.</p>
+
+<h2>Shallow-copying entire structs by assignment</h2>
+
+<p>When a structure variable is assigned, as on line 6 below, the structure on the right-hand-side of the assignment is copied byte-for-byte into the variable on the left-hand-side.
+
+<pre class="prettyprint linenums">img_t original;
+original.cols = 32;
+original.rows = 32;
+original.pixels = malloc( originals.cols * original.rows * sizeof(uint8_t) );
+
+img_t duplicate = original;
+
+assert( duplicate.rows == original.rows ); // always true
+assert( duplicate.cols == original.cols ); // always true
+assert( duplicate.pixels == original.pixels ); // always true
+</pre>
+
+<p>Note that in this example, the <tt>original.pixels</tt> and <tt>duplicate.pixels</tt>
+fields have the same value as they both contain the same memory address (the memory address of the array <tt>pixels</tt>).
+ In other words, they point to the <i>same array of
+pixels</i> obtained by return from <tt>malloc()</tt> on line 4: the array is not duplicated, we just have two identical pointers to it. This is known as a <i>shallow
+copy</i>, and  illustrated in the figure below. Be very careful when copying structures that contain pointers, since this may not be the behaviour you want. 
+
+<p><img src="../img/shallow.png" >
+
+<p>Also be aware that if you <tt>free( original.pixels )</tt> any subsequent use of the <tt>duplicate.pixels</tt> pointer is a bug, since the memory it points to has been freed. Having more than one copy of a pointer is called <i>pointer aliasing</i>, and is a notorious source of bugs. If possible, avoid having more than one copy of a pointer.
+
+<h2>Deep copy</h2>
+
+<p>In order to duplicate the whole image including pixel data, we need to malloc() more space on the heap and 
+copy the original pixel data into it. Duplicating all the data referenced by a struct and not just the struct fields themselves is known as a <i>deep copy</i>. Our <tt>img_t</tt> can be deep-copied thus:
+
+<pre class="prettyprint linenums">img_t original;
+original.cols = 32;
+original.rows = 32;
+original.pixels = malloc( originals.cols * original.rows * sizeof(uint8_t) );
+
+img_t duplicate = original; // start with a shallow copy
+
+// allocate a new pixel array to perform a deep copy
+unsigned int numbytes = duplicate.cols * duplicate.rows * sizeof(uint8_t);
+duplicate.pixels = malloc( numbytes );
+
+// and copy numbytes from the original array to the new array
+// (see man memcpy for usage)
+memcpy( duplicate.pixels, original.pixels, numbytes );
+</pre>
+
+<p>After this code runs, <tt>original</tt> and <tt>duplicate</tt> have the same values in their 
+<tt>cols</tt> and <tt>rows</tt> fields, but different pointer values, i.e., different memory addresses,
+in their <tt>pixels</tt> field, as illustrated:
+
+<p><img src="../img/deep.png" >
+
+
+<h2>Arrays of structs</h2>
+<p>Arrays of typedef'd structs work in the same way as any other type:
+
+<pre class="prettyprint">// small array on the stack
+img_t imgarr[100];
+imgarr[43].cols = 640;
+unsigned int width = imgarr[43].cols;
+
+// large array on the heap
+img_t* thousand_images = malloc( 1000 * sizeof(img_t) );
+</pre>
+
+<h2>When to use <tt>typedef struct</tt></h2>
+
+<p>Deciding when to create a new structured type is an important part
+of program design. Your type choices can have effects throughout your
+code. Some rules of thumb:
+
+<p>You should probably use a struct when a set of variables must always
+appear together, and/or are jointly responsible for something, e.g. interpreting an encoding in our
+image example. 
+
+<p>You should probably use typedef when you need to declare more than
+one instance of a structure, and when using a structure for function
+arguments, since the resulting code is easier to read.
+
+
+<h1>Tasks [1:8]</h1>
+<h2>Requirements</h2>
+<div class="req">
+<ol>
+<li><p>Your task is to implement the integer array functions declared and specified in the supplied header file <tt>intarr.h</tt>. 
+       These are introduced in the guided part of the lab.</p></li>
+<li><p>Your implementation of these functions must be entirely contained in a C source file called <tt>intarr.c</tt> (full path inside your repo: <tt>5/intarr.c</tt>).</p></li>
+<li><p><mark>Incrementally develop these functions</mark>. To do so, you need to: 
+	<ol>
+		<li>'Stub' each function: to know how to do this, see 'Lab 5 Incremental Development and Helpful Tips' and 'Lab 5 Demo' posted on our course web site.</li>
+		<li>Create a test driver: a program with a main function from which each of the functions created in <tt>intarr.c</tt> are called (tested).
+            Start by having your testDriver.c calling the functions of Task 1.</li>
+		<li>Compile and execute your intarr.c (with stubs) and your test driver. Note that for this first iteration, 
+            your test driver is calling two functions that have been stubbed (functions without a body).</li>
+		<li>If your code compile, then implement these two functions of Task 1.</li>
+		<li>Compile an execute your test driver. Note that this time, your test driver is testing the functions you have implemented for Task 1. 
+            Are these functions working as expected? Yes? Then submit your <tt>intarr.c</tt> to your Git repo.</li>
+		<li>Repeat the above two steps until all functions have been designed, implemented, tested and submitted to your Git repo. 
+            Don't forget to keep adding appropriate function calls to your test driver.</li>
+	</ol>
+</p></li>
+
+<li><p><mark>Do Task 7 before doing Task 6.</mark></tt>
+
+<li><p>Important: DO NOT add a <tt>main()</tt> function to <tt>intarr.c</tt>. This will prevent the grading robot from linking the file. 
+       The main() function must be in your test driver.</p></li>
+
+<li><p>Important: DO NOT modify <tt>intarr.h</tt>: the server will use the file <b>as supplied to you</b>. 
+       In particular, your function definitions must match the declarations given in <tt>intarr.h</tt>.</p></li>
+
+</ol>
+</div>
+
+<!--
+
+<div class="req">
+
+<h1>Task 6 </h1>
+
+<p>In this task you must implement a non-trivial program. You must
+design the program from scratch. However, in previous labs you have
+written or used most parts you need. This is an exercise in putting
+the pieces together and designing a program yourself. You are free to
+use any of the code we supplied to you. Other code should be all your
+own work.
+
+
+<ol>
+<li><p>Given the filenames of two 8-bit greyscale PNG images, locate
+the second, smaller, image within the first, larger, image. See the diagram in the Guide below.
+
+<li>If the image is found, report the (x,y) coordinate in the first
+image that corresponds to the top-left hand pixel of the second image
+(coordinate (0,0)). Use this code to report:
+  <pre>printf( "Found at (%u,%u).\n", x, y );</pre>
+<li>If the image is not found, use this code to report:
+  <pre>printf( "Not found.\n" );</pre>
+
+
+<li>Your program must compile without errors or warnings with the following command line:
+<pre>gcc -o t6 t6.c png.c -lm -lpng</pre>
+<p>Where <tt>png.c</tt> is supplied for you, and implements loading greyscale PNG images from disk.
+
+<li>Your program must take two image file names as arguments, and run like so:
+<pre>./t6 hadfield.png hadfield_region1.png
+Found at (20,10).</pre>
+<p>(Note that this is not the correct location!)
+
+</ol>
+
+<h3>Submission</h4>
+
+<p>Add and commit a file called <tt>t6.c</tt> that implements your program. Only this file will be tested: any other files you commit will be ignored, but will do no harm. Your program will be linked with the original <tt>png.c</tt> using the command line above. 
+
+
+<hr>
+<p>Test buttons will appear here soon for you to run the server-side tests on demand to get feedback.
+<hr>
+</div>
+
+
+<h3>Guide</h3>
+
+<P>This diagram shows where the top-left hand corner of a template image appears in the larger image:
+
+<p><img src="../img/hadfield_match.png">
+
+<h4>Visualization is great for testing and debugging</h4
+
+<p>You may wish to adapt some source code and the Makefile from Lab 3 to display images for testing and manage your build. Don't forget to remove any
+uncessary stuff before submission, so that the code builds and runs
+exactly per the requirements.
+
+<br>
+<br>
+
+<h1>Task 7</h1>
+
+<ol>
+<li><p>Repeat task 6, only this time you must find the location in the
+first image that <I>best matches</i> the second image, even if no
+location matches exactly.
+
+<li><p>Use
+the <a href="http://en.wikipedia.org/wiki/Residual_sum_of_squares"><b>residual
+sum of squares</b></a> as the difference metric. In our context,
+the <i>residual</i> is the absolute difference between corresponding
+pixel values, so to measure the difference between our target image
+and an image patch in the original image, we sum the square of the
+difference in grey levels at each corresponding pixel. We calculate
+this score for every possible top-left-hand-corner of the target image
+in the original image, and find the minimum.
+
+<li><p>Since we are looking for the minimum difference, there will always
+be a result. In the case that more than one pixel has the same score, report the one with the lowest index = (x + y * cols).
+</ol>
+
+<p>Some example images are provided for testing.
+
+<h3>Submission</h4>
+
+<p>Add and commit a file called "t7.c" that implements your program. Only this file will be tested: any other files you commit will be ignored, but will do no harm. Your program will be linked with the original <tt>png.c</tt> using the command line above. 
+
+<hr>
+<p>Test buttons will appear here soon for you to run the server-side tests on demand to get feedback.
+<hr>
+</div>
+-->
+
+<hr>
+
+<div class="labends">
+Lab 5 complete. <a href="../../">Back to the course web page</a>.
+</div>
+ 
+</body></html>

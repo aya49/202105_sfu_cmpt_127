@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)http://www.cs.sfu.ca/CourseCentral/125/bbart/1/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta charset="utf-8">
+    <title>CMPT127 Lab 8</title>
+
+     <!-- Please don't change internal links and refs to absolute paths -->
+    <link rel="stylesheet" href="../css/style.css">
+	
+	<!--<link rel="icon" href="../favicon.ico" type="image/x-icon"> NOT FOUND -->
+	<link rel="icon" href="../img/favicon.ico" type="image/x-icon"> 
+    
+    <!-- Code syntax highlighting -->
+	<!--<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"> NOT FOUND -->
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>	
+
+    <!-- force printing a line number in every line when prettyprinting -->
+    <style>
+        .prettyprint ol.linenums > li { list-style-type: decimal; }
+    </style>
+</head>
+
+
+<!--
+Minor changes: Anne Lavergne 2017 + 2019
+-->
+
+<body>
+
+
+
+<div class="lab">
+<h1>Lab 8: Memory allocation performance</h1>
+
+<h4>Speed testing; <tt>struct</tt>  practice; high-performance malloc() strategy </h4>
+
+
+<div id="floatingCornerLeft">
+<a href="http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA" target="_blank"><img src="../img/balloon0.jpg" height="150"></a>
+</div>
+
+<div id="floatingCornerRight">
+  <a href="http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA" target="_blank"><img src="../img/balloon1.jpg" height="150"></a>
+</div>
+
+
+</p><h3>Goals</h3>
+<p>After this lab you will be able to
+
+<ol>
+<li>Use an explicit memory allocation strategy for high performance.</li>
+<li>Measure runtime performance with <tt>gettimeofday()</tt>.</li>
+<!--<li>Use <tt>gnuplot</tt> to plot performance as a function of input size.-->
+</ol>
+
+<h3>Setup</h3>
+
+<div class="steps">
+
+<p>In the terminal:
+<ol>
+<li>Move into your local repo (making it your "working directory").</li>
+<li>Download the <a href="8.zip" target="_blank">new material</a> for Lab 8.</li>
+<li>Expand it into your working directory. This will create the directory '8' containing the files you need.
+<li>Add the new directory to your Git repo with 
+<pre>$ git add 8</pre>
+</ol>
+<br>
+</div>
+
+
+<div class ="task">
+<h2>Task 1: Resizing arrays with <tt>realloc()</tt></h2>
+
+<p>The supplied header file <tt>point_array.h</tt> defines the following structures to represent points in 3D space, and an array to contain them, similar to examples you have seen before:
+
+<pre class="prettyprint">
+typedef struct point
+{
+  double x, y, z;    // location in 3D space
+} point_t;
+
+typedef struct 
+{
+  size_t len;        // number of points in the array
+  point_t* points;   // an array of 'len' point_t structs
+} point_array_t;
+</pre>
+
+<p>It also declares four functions for
+manipulating <tt>point_array_t</tt> arrays. Each takes a pointer
+to an array structure as their first argument. Notice the <tt>init</tt> and
+<tt>reset</tt> functions: these do a similar job to the <tt>create</tt> and <tt>destroy</tt>
+functions we have seen before, but with a slightly different
+interface. This style allows us to use structs allocated on the
+stack, which can be useful. <mark>Therefore, <tt>init</tt> must not call <tt>malloc(...)</tt> nor must it call <tt>realloc(...)</tt>
+since the memory for the struct has already been allocated (automatically, on the stack) 
+and the memory allocation call to obtain the memory for the array is done in <tt>append(...)</tt></mark>.</p>
+
+<pre class="prettyprint">
+// Safely initalize an empty array structure.
+void point_array_init( point_array_t* pa );
+
+// Resets the array to be empty, freeing any 
+// memory allocated if necessary.
+void point_array_reset( point_array_t* pa );
+
+// Append a point to the end of an array. 
+// If successful, return 0, else return 1.
+int point_array_append( point_array_t* pa, point_t* p );
+
+// Remove the point at index i from the array, 
+// reducing the number of elements stored in the array 
+// by one. The order of points in the array may change.
+// If successful, return 0, else return 1. 
+int point_array_remove( point_array_t* pa, unsigned int i );
+
+</pre>
+
+<p>Example of use:
+
+<pre class="prettyprint">
+point_array_t A;
+point_array_init( &A );
+
+point_t p;
+p.x = 0.0;
+p.y = 1.0;
+p.z = 2.0;
+
+point_array_append( &A, &p );
+
+// do some work with the array
+// ...
+
+// clean up
+point_array_reset( &A );
+
+</pre>
+
+<p>In graphics-heavy programs like games, we often have arrays of 3D
+points that are very large, perhaps with hundreds of thousands or
+millions of points. For decent performance we need to be able to add
+points to the array very quickly. Notice that the array interface does
+not have a resize function: just an append for adding one point at a
+time. If we use the array resize method we have seen before - copying the old array into a new array that is one slot bigger - this will be very slow.
+
+
+<p>The only memory allocation standard library call we have seen so far
+is <a href="http://pubs.opengroup.org/onlinepubs/009695399/functions/malloc.html" target="_blank"><tt>malloc()</tt></a>, 
+which takes a single argument specifying how
+much memory it should allocate. Now we introduce
+the <a href="http://pubs.opengroup.org/onlinepubs/009695399/functions/realloc.html" target="_blank">
+<tt>realloc()</tt></a> standard library call, which allows us to
+resize our chunk of already allocated memory. Note that we have already been "unofficially" 
+introduced to <tt>realloc()</tt> as it was one of the hints we were given for our Lab 5,
+where we were told that <tt>realloc()</tt> was a good choice of memory allocation function
+to use in the implementation of the <tt>intarr_resize( ... )</tt> function. In Lab 8, we
+get to learn why!
+
+<p>We pass <tt>realloc()</tt> the pointer we obtained from an
+earlier <tt>malloc()</tt> or <tt>realloc()</tt> and a <i>new</i> size,
+and it will <i>reallocate</i> a chunk of memory of the new
+size. If the memory allocation system can find enough space at the existing address, <tt>realloc()</tt> returns the original pointer. 
+If the memory allocation system could only find enough space starting at another  address, it will:
+
+<ol>
+<li>allocate the new chunk
+<li>copy the content of the old chunk into the new chunk
+<li>free the old chunk
+<li>return a pointer to the new chunk
+</ol>
+
+The description from the POSIX standard says:
+
+<blockquote>
+<p><tt>void *realloc(void *ptr, size_t size);</tt>
+
+<p>The realloc() function shall change the size of the memory object pointed to by <tt>ptr</tt> to the size specified by <tt>size</tt>. 
+The contents of the object shall remain unchanged up to the lesser of the new and old sizes. If the new size of the memory object 
+would require movement of the object, the space for the previous instantiation of the object is freed. If the new size is larger, 
+the contents of the newly allocated portion of the object are unspecified. If <tt>size</tt> is 0 and <tt>ptr</tt> is not a null pointer, 
+the object pointed to is freed. If the space cannot be allocated, the object shall remain unchanged.
+
+<p>If <tt>ptr</tt> is a null pointer, <tt>realloc()</tt> shall be equivalent to <tt>malloc()</tt> for the specified size.
+
+<p>Upon successful completion with a size not equal to 0, <tt>realloc()</tt> shall return a pointer to the (possibly moved) allocated space. 
+If <tt>size</tt> is 0, either a null pointer or a unique pointer that can be successfully passed to free() shall be returned. 
+If there is not enough available memory, <tt>realloc()</tt> shall return a null pointer.
+</blockquote>
+
+This is exactly what we need for resizing arrays
+efficiently. <tt>realloc()</tt> will only copy the existing
+array contents to a new chunk of memory when it is forced to.
+
+<p>Notice that reallocation is still O(n) in the size of the array,
+since it may have to copy the array at any or every use. In practice
+it does a very good job of copying only occasionally, and often
+appears to be nearly amortized constant time.
+
+<h3>Unstable remove</h3> 
+
+<p>If you do not need to preserve the order of array elements, you can
+remove elements from arbitrary array indices in constant time.
+Operations that may reorder an array or list are
+called <b>unstable</b> operations. The fast, unstable array remove algorithm is:
+
+<ol>
+<li>Copy the element at the end of the array over the element you wish to remove.
+<li>Decrement the array length by 1.
+</ol>
+
+This needs to be refined to handle empty arrays and other corner cases.
+
+<h3>Requirements</h3>
+<div class="req">
+<ol>
+<li>Add and commit the single file <tt>t1.c</tt> that contains implementations of the four functions declared in <tt>point_array.h</tt>. 
+It may contain other functions too, but remember you are aiming for high performance so you should probably keep things simple.
+<li>Use <tt>realloc()</tt> instead of <tt>malloc()</tt> for high performance.
+<li>Use a constant time unstable remove.
+</ol>
+
+</div>
+
+</div>
+
+<div class ="task">
+<h2>Task 2: Preallocation: approaching constant time</h2>
+
+<p>Reallocation improved things a lot, but we can do quite a lot
+better with a <b>preallocation</b> strategy. The basic idea is to
+allocate more memory than we need right now, to avoid having to
+allocate so often in future.
+
+<p>Remember in Lab 5, the field called <tt>unsigned int len</tt> of the struct <tt>intarr_t</tt> (found in
+<tt>intarr.h</tt>), was used to signify the size of the array <tt>data</tt> (i.e., the size of the allocated memory to this array)
+as well as the number of elements of type <tt>int</tt> stored in this array. The implication of this association was that
+the array <tt>data</tt> was always full.</p>
+<p>In this Lab 8, we shall decouple the size of the allocated memory from the number of elements currently stored in it.
+To do so:
+<ol>
+<li>In the array structure, we shall keep track of the amount of memory allocated in one field (<tt>reserved</tt>), 
+and the number of elements (points) currently stored in the array, in another field (<tt>len</tt>).
+<li>To append an element:
+<ol>
+<li>If the new array is full, we <mark>double the allocated space</mark> (an O(n) operation) to it.
+<li>Then, we copy in the new element to the end of the array and increment the array length (i.e., the number of elements) 
+where both copy and increment are O(1) operations.
+</ol>
+</ol>
+
+
+<h3>An example of amortized constant time</h3>
+<p>Expanding the array by a constant proportion - in this case two - means that inserting n elements 
+takes O(n) time overall (one O(n) operation to do the expansion, plus n * O(1) operations to insert 
+elements into the space). To put it another way, while a single append operation remains O(n) in the worst case (i.e. when a reallocation occurs), 
+this happens only once every n appends. Thus as the number of appends approaches infinity, the cost per append approaches a constant. This is called <i>amortized constant time.</i> A detailed discussion is beyond the scope of this class: see CMPT225: <i>Data Structures and Algorithms</i> for details). But growing memory buffers geometrically is so useful, you should know about it now.
+
+
+<h3>Trade-off</h3>
+<p>The cost of this speed is that up to twice the memory is required, and 1.5 times on average. This is often a reasonable trade off. It is trivial to trim the extra space off if you know you are done appending - just <tt>realloc()</tt> the size you need.
+
+<p>Most real-world resizeable-array implementations use this strategy, though they vary on the constant factor chosen. For example Python's lists grow by 9/8 at a time. Java's ArrayList uses 3/2. The value chosen determines the trade-off between wasted space and the amortized cost of each append.
+
+<p>Your task is to create another version of the point array functions
+that use this amortized constant time preallocation strategy. The <tt>point_array.h</tt> header file already has the extra field in the array structure (we deliberately ommitted this above):
+
+<pre class="prettyprint">
+typedef struct 
+{
+  size_t len;        // number of points in the array
+  size_t reserved;   // amount of memory allocated
+  point_t* points;   // an array of 'len' point_t structs
+} point_array_t;
+</pre>
+
+<p>Reimplement all the array functions to use the <tt>reserved</tt> field as described above. Test your code using the methods described in the lab to show that you 
+have improved performance.
+
+<h3>Requirements</h3>
+<div class="req">
+<ol>
+<li>Add and commit the single file <tt>t2.c</tt> that contains implementations of the four functions declared in <tt>point_array.h</tt>. 
+
+<li>Use the geometric preallocation strategy to get amortized constant time performance.
+<li>Use a constant time unstable remove.
+</ol>
+
+</div>
+
+<hr>
+
+
+<h3>Note: Measuring time</h3>
+
+<p>See the supplied file <tt>demo.c</tt> for examples of the use of the <a href="http://pubs.opengroup.org/onlinepubs/009695399/functions/gettimeofday.html" target="_blank"><tt>gettimeofday()</tt></a> library call, which gives you access to the real-time clock on your computer.
+
+<!--
+<h3>Note: Drawing Graphs</h3>
+
+<p>Most spreadsheet programs will make graphs reasonably well. However, the excellent command-line, scriptable graph program <tt>gnuplot</tt> is usually faster and easier once you have learned how to use it. It is installed in CSIL.
+
+<ul>
+<li><a href="http://www.gnuplot.info/documentation.html" target="_blank">GNUplot docs</a>
+<li><a href="http://www.gnuplot.info/help.html" target="_blank">GNUplot help page</a>.
+<li><a href="http://www.cs.hmc.edu/~vrable/gnuplot/using-gnuplot.html" target="_blank">A good tutorial from HMC</a>
+</ul>
+
+<p>Investing some time into this tool will almost certainly pay off handsomely for any science, math or economics student.
+-->
+</div>
+
+<hr>
+<div class="labends">
+Lab 8 complete. <a href="../../">Back to the course web page</a>.
+</div>
+</body>
+</html>

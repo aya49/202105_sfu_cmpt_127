@@ -1,0 +1,32 @@
+AuthType CAS
+#
+# allow any SFU user while waitlists still processing?
+# require valid-user
+
+# EVERYBODY
+# require user 
+
+# Instructor
+require user vca45
+
+# CMPT 125 Instructor - Fall 2020 -> Igor
+require user vca45
+require user tjd
+require user ishinkar
+
+# Admin
+require cas-attribute member:cmpt-cas-operator
+
+# Debug
+require cas-attribute member:its-all
+
+# COMMENT OUT when maillists flip to next semester
+require cas-attribute member:cmpt-127
+
+# TAs - To update every semester
+require user ssa386
+require user asundarr
+require user callada
+
+# mailing list for peer tutors
+require cas-attribute member:cmpt-peer-tutors

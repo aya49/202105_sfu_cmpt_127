@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta charset="utf-8">
+    <title>CMPT 127 class: Lab 2 | Functions and Arrays</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!--There is a stylesheet here as well: <link rel="stylesheet" href="../style.css">-->
+
+    <!--<link rel="stylesheet" href="../taskcount.css"> NOT FOUND -->
+
+	<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+
+    <!-- Code syntax highlighting -->
+	<!--<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"> NOT FOUND -->
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+	<!-- force printing a line number in every line when prettyprinting -->
+    <style>
+        .prettyprint ol.linenums > li { list-style-type: decimal; }
+    </style>
+
+</head>
+
+<!--
+Minor changes: Anne Lavergne 2019
+-->
+
+
+
+<body>
+
+<div class="lab">
+<h1>Laboratory 2: Functions and Arrays</h1>
+
+<h4>Functions, arrays, C character strings, arguments to main, header files</h4>
+
+<div id="floatingCornerLeft">
+<a href="http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA" target="_blank"><img src="../img/balloon0.jpg" height=150></a>
+</div>
+
+<div id="floatingCornerRight">
+<a href="http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA" target="_blank"><img src="../img/balloon1.jpg" height=150></a>
+</div>
+
+
+<h3>Goals</h3>
+<p>After this lab you will be able to
+<ol>
+<li>Create and use functions</li>
+<li>Create and use statically allocated arrays</li>
+<li>Create and use text strings (null-terminated character arrays)</li>
+<li>Build programs from multiple source files
+<li>Create and use header files containing function declarations
+<li>Use arguments passed to <code>main()</code>
+<li>Compile a program from two source files.
+<li>Test a function for correctness.
+<!-- <li>Use assert statements as a basic quality assurance strategy. -->
+</ol>
+</p>
+
+<h3>Setup</h3>
+<div class="steps">
+<p>In the terminal:</p>
+<ol>
+	<li>Use the <code>cd</code> command to change directory (the <code>ls</code> command to list the content of a directory may be helpful as well) 
+	until you find yourself in your <strong>local repo</strong>. 
+<!--
+	<p>NOT SURE WE NEED THIS: If you need to do a fresh <code>git clone</code> make sure you change directory 
+	into the cloned repository. Make sure you do a <code>git pull</code> 
+	to get all the changes you may have pushed to the gitlab repository from another machine. 
+	If you get into a state where git is complaining about everything you do, 
+	then the easiest way to get back on track is to make a copy of any files 
+	you may have created that you have not pushed yet and the move the existing cloned repo directory 
+	out of the way (or rename it) and do a fresh <code>git clone</code> of your gitlab repository and 
+	start from there. You can copy back any new files you want to add and commit and make sure you push them before you proceed.</p>
+-->
+	</li>
+	<li>Download the <a href="2.zip" target="_blank">new material</a> for Lab 2, stored in a compressed file called <strong>2.zip</strong>.</li>
+	<li>Uncompress this file as follows:
+<pre>
+$ unzip 2.zip
+</pre>
+You should now see a directory called <strong>2</strong>.</li>
+	<li>Once you have uncompressed <strong>2.zip</strong>, you can safely remove this compressed file with the <code>rm</code> command.</li>
+	<li>Add this new directory <strong>2</strong> to your Git repository:
+<pre>
+$ git add 2
+</pre>
+	</li>
+	<!--<li>Remember to <code>git commit -m ...</code> and <code>git push</code> the new directory to your Git repository.</li>-->
+	<li>Change directory into <strong>2</strong>, which will be our working directory for Lab 2.</li>
+</ol>
+	<p><mark>BTW: never <code>git add</code> any executable binary files like <code>a.out</code> to your Git repository.</mark></p>
+</div>
+
+<!--</div>-->
+
+<h3>Tasks</h3>
+
+
+<ol>
+<li><a href="#t_funcs">Min/max</a>
+<li><a href="#t_identical">Identical</a>
+<li><a href="#t_reverse">Reverse</a>
+<li><a href="#t_scrambled">Scrambled</a>
+<li><a href="#t_argv">Contains</a>
+<li><a href="#t_redirect">Count</a>
+<li><a href="#t_censored">CENSORED</a>
+<li><a href="#t_lfreq">Letter frequency</a>
+<li><a href="#t_vgraph">Vertical graph</a>
+<li><a href="#t_inrectangle">InRectangle</a>
+</ol>
+<div class="task" id="t_func1">
+<h2 id="t_funcs">1. Function definitions, declarations and header files</h2>
+
+<h3>Guide</h3>
+
+<p>C is a <a href="http://en.wikipedia.org/wiki/Procedural_programming_language" target="_blank">structured, procedural programming language</a>, that is, it supports the definition of isolated, self-contained blocks of code that can be re-used as components of larger programs. In C and Python these are called <em>functions</em>, but other languages call them <em>procedures, subroutines</em>, or <em>methods</em>.
+
+<p>Given a well-designed function, you can often use it for what it does, and ignore the internal details of how it works. This idea of functional <em>encapsulation</em> makes it feasible for humans to write complex programs by breaking them down into small, more manageable pieces. You have already used several functions provided by the standard library, such as <code>printf</code> and <code>floor</code>, without seeing how they were implemented. One such function is <code>max()</code>, which could be implemented and used as follows:
+
+<pre class="prettyprint linenums">// returns the larger of the two arguments
+int max( int int1, int int2)
+{
+  int larger = int2;
+  if( int1 > int2 )
+  {
+    larger = int1;
+  }
+  return larger;
+}
+
+int main( void )
+{
+  int num1 = 11;
+  int num2 = 12;
+  printf( "The max of our numbers is %d\n", max( num1, num2 );
+  return 0;
+}
+</pre>
+
+<p>
+<p>Reading the first 9 lines of code top-to-bottom, left-to-right, we see:
+<ul>
+<li>Line 1: A comment describing what the following function does. Commenting our code is a
+good programming style to adopt.
+<li>Lines 2-10 are the function definition, as follows:
+	<ul>
+		<li>The result, or <em>return value</em> of running this function is of type <code>int</code>.</li>
+		<li>The name of the function is <code>max</code>.</li>
+		<li>The function takes two integer arguments called <code>int1</code> and <code>int2</code>.</li>
+		<li>The <em>body</em> of the function, i.e. the code that will execute when the function is called, starts at <code>{</code>.</li>
+		<li>In the body of the function, the keyword <code>return</code> evaluates the expression to it's right which becomes the 
+            function's <em>return value</em>, then exits the function. Creating functions with only one <em>return</em> statement 
+           (only one exit point) is a good programming style to adopt.</li>
+        <li>The <em>body</em> of the function ends at the closing <code>}</code>.</li>
+	</ul>
+</ul>
+
+
+<p>Having been <em>defined</em> in lines 2 to 10, function <code>max()</code> is <em>called</em> on line 16.
+The values of integers <code>num1</code> and <code>num2</code> are assigned to <code>int1</code> and <code>int2</code>
+inside <code>max()</code>, the function does its work, and the return value is passed as the second
+argument to <code>printf()</code>.
+
+<p>The syntax for C functions is
+
+<pre class="prettyprint">
+type functionName( type arg_name1 [, type arg_name2, ...] )
+{
+    // code-block function body enclosed by curly braces
+}
+</pre>
+
+<p>Note that <code>main()</code> itself is a normal function. The system calls it to start the program.
+
+<p>The name "function" is a little unfortunate, since these are not the same as mathematical functions. Mathematical functions express relationships, 
+while program functions perform sequences of operations on data. To see the difference, consider the function <code>max()</code> above and the 
+following function <code>output()</code>:
+
+<pre class="prettyprint linenums">
+void output( double val )
+{
+  printf( "the value is %.2f\n", val );
+}
+</pre>
+
+<p>where <code>void</code> is a special type that means "nothing". Since there is nothing to return, we can omit the <code>return</code> statement 
+and the function will finish at the end of the code block.
+
+<p>Clearly <code>output()</code> does not describe a relationship between entities; instead it causes
+useful things to happen. Strictly speaking this is true of the C function <code>max()</code> as well:
+it <em>implements</em> the mathematical function <code>max()</code> by returning the largest of its arguments.
+
+<P>We are stuck with the C convention of calling our procedures "functions". In practice this is not usually a problem. We will return to the 
+differences between "true" functions and C functions later in a discussion of software engineering approaches.
+
+
+
+<h4>Multiple arguments</h4>
+
+<p>As the syntax above indicates, function definitions can specify an arbitrary number of arguments, for example:
+
+<pre class="prettyprint linenums">double volume( double width, double height, double depth )
+{
+  return width*height*depth;
+}
+</pre>
+
+<p>However, C functions can have only a single return value. Other languages such as Lisp and Go support  
+multiple return values, so this asymmetry between the number of arguments and results was a design decision in C. It keeps the syntax simple.
+
+<h4>Functions in functions</h4>
+<p>Since <code>main()</code> is a function, it should be apparent that functions
+can call other functions. In general a function may call any other
+function. One interesting situation is when a function calls itself, a
+process called <em>recursion</em>. Many algorithms are elegantly
+expressed as recursive functions. You may have seen this idea before: proof by induction relies on it.
+
+<h4>Function Declarations</h4>
+Above we looked at three function definitions: <code>max()</code>, <code>output()</code> and <code>volume()</code>. 
+A function can be called in a C source code file below its definition. Why only below? The compiler reads the source 
+file from top to bottom. If it sees a call to function <code>foo()</code>, it doesn't know anything about that function. 
+Did you specify the right number and type of arguments? There's no way to know. The compiler will complain.
+
+<p>When you want to use a function that is not defined in your source file, for example a standard library function, 
+we need some way to tell the compiler the name of the function, its arguments and return type. The implementation of the 
+function will be provided from a library or some other source file.
+
+<p>A function declaration is the same as its definition, but with the function body replaced by a semicolon. 
+Thus for <code>volume()</code> above, a matching declaration is:
+
+<pre class="prettyprint">double volume( double width, double height, double depth );
+</pre>
+
+<h4>Header files</h4>
+Your code almost always begins by including some header files:
+
+<pre class="prettyprint">#include &lt;stdio.h>
+#include &lt;math.h>
+(etc)
+</pre>
+
+<p>Recall that <code>#include</code> copies the contents of the indicated file into the current source file. 
+Specifying the name of the header file <code>&lt;like this></code> forces the compiler to look for the file in 
+the directories where your compiler was installed. To specify file you wrote yourself put the filename in quotes  
+<code>"like this"</code>. For example:
+
+<pre class="prettyprint">#include &lt;stdio.h> // a system-supplied header
+#include "myheader.h" // a header I wrote myself
+</pre>
+
+<p>The quotes version understands paths relative to the current directory, and absolute paths, e.g.:
+
+<pre class="prettyprint">#include "myheader.h" // in the current directory
+#include "include/myheader.h" // in a subdirectory
+#include "../myheader.h" // in the parent directory
+#include "/opt/local/include/myheader.h" // an absolute path
+</pre>
+
+
+<p>
+C header files usually contain mostly function declarations. In the case of the standard library the implementations of these functions were pre-compiled for you into code <em>libraries</em>  and shipped with your compiler to save you time. The required libraries are <em>linked</em> into your program at the last step of compilation. The library containing <code>printf()</code> is used so often it is linked by default. The math library containing <code>floor()</code>,
+etc. is used less often, so we have to request it in in the compile command. It is still used a lot,
+so <a href="http://en.wikipedia.org/wiki/Dennis_Ritchie" target="_blank">the designer</a> gave it the nice short name <code>m</code>.
+
+<pre>$ gcc -o mycode mycode.c -lm </pre>
+
+<p>Header files also provide important constant values, such as the
+special value EOF (usually -1) returned by <code>scanf()</code> when reaching the end of a
+file. Occasionally they also declare global variables.
+
+<p>Now you know how to define and declare functions, and what header files do.
+
+
+<h3>Using multiple source files</h3>
+
+<p>Function declarations and header files are also used when breaking your own code up into multiple source
+ files. For example, in your working directory you have the source files <code>funcs.c</code> containing useful function definitions and <code>main.c</code> containing your main program:
+
+<p>Contents of <code>funcs.c</code>:
+<pre class="prettyprint linenums">// returns the larger of the two arguments
+int max( int int1, int int2 )
+{
+  int larger = int2;
+  if( int1 > int2 )
+  {
+    larger = int1;
+  }
+  return larger;
+}
+
+// returns the smaller of the two arguments
+int min( int int1, int int2 )
+{
+  int smaller = int2;
+  if( int1 &lt; int2 )
+  {
+    smaller = int1;
+  }
+  return smaller;
+}
+</pre>
+
+<p>Contents of <code>main.c</code>:
+<pre class="prettyprint linenums">#include &lt;stdio.h>
+
+int main( void )
+{
+  int num1 = 11;
+  int num2 = 12;
+  printf( "The max of our numbers is %d.\n", max( num1, num2 ));
+  printf( "The min of our numbers is %d.\n", min( num1, num2 ));
+  return 0;
+}
+</pre>
+
+<P>Given multiple source files on its command line, the compiler will attempt to compile them all into one program. Try this now:
+
+<pre class="steps">$ gcc -Wall funcs.c main.c -o fcn</pre>
+
+<p>The <code>-Wall</code> compiler option enables "all warnings". The compiler therefore will be very strict when
+it compiles your code and will warn you about potential problems.
+
+<p>With these files as they are you will get warnings and possibly errors complaining that in <code>main.c</code>,
+ <code>min()</code> and <code>max()</code> are not properly declared. The exact message you get depends on
+ your compiler vendor and version, but in CSIL we get:
+
+<pre class="prettyprint">main.c:7:45: warning: implicit declaration of function 'max' is invalid in C99
+ [-Wimplicit-function-declaration]
+  printf( "The max of our numbers is %d\n", max( num1, num2 ));
+                                            ^
+main.c:8:45: warning: implicit declaration of function 'min' is invalid in C99
+ [-Wimplicit-function-declaration]
+  printf( "The min of our numbers is %d\n", min( num1, num2 ));
+                                            ^
+2 warnings generated.
+</pre>
+
+<p>Note that your code will execute even if it generated some warnings during compilation. However, it is
+good programming practice to investigate the cause(s) of the warnings as they may indicate potential problemsin your code.</p>
+
+<h3>Requirements</h3>
+
+<p>First, check that you completed the Setup section above, so your current working directory is
+ <code>&lt;local repo>/2</code> .
+ The shell command <code>pwd</code> prints the current working directory.</p>
+
+<div class="req">
+<ol class="req">
+
+<li>Create a new file called <code>funcs.h</code> that contains function declarations for all the functions
+ in <code>funcs.c</code>. Remember (as we have seen above) that a function declaration is the same as its definition, 
+ but with the function body replaced by a semicolon. Thus for <code>volume()</code> above, a matching declaration is:
+
+<pre class="prettyprint">double volume( double width, double height, double depth );
+</pre>
+Edit the file <code>main.c</code> to <code>#include</code> the new header file.</li>
+<li>The finished code must compile with this command with no errors or warnings. 
+In this command, the executable file is named <code>fcn</code>:
+<pre>$ gcc main.c funcs.c -o fcn</pre>
+<li>The finished code must output <pre>The max of our numbers is 12.
+The min of our numbers is 11.
+</pre>
+</ol>
+</div>
+
+<h3>Testing and Submitting</h3>
+
+<p>The compiler will produce informative complaints if your declarations are not correct. Read the compiler output very carefully, starting with the top lines.
+
+<div class="steps">
+<p>Submit by adding your header file and committing your changes:
+<pre>$ git add funcs.h
+$ git commit -m "task1 is working"
+$ git push <!--origin master-->
+</pre>
+</div>
+
+</div>
+
+<div class="task" id="t_identical">
+<h2 >2. Arrays</h2>
+
+<h3>Guide</h3>
+
+<p>In C any type can be used to create both simple variables and arrays:
+
+<pre class="prettyprint">int anInt;	     // a single integer
+int intArray[100];   // an array of 100 integers
+
+char aChar;          // a single character
+char charArray[100]; // an array of 100 characters
+</pre>
+
+Array elements are accessed by index, counting from 0:
+
+<pre class="prettyprint">int intArray[100];        // an array of 100 integers
+
+intArray[0] = 99;         // set the first element of intArray to 99
+int int1 = intArray[42];  // get the 43rd element of intArray
+int int2 = intArray[100]; // OOPS! this is the 101st element of a 100-element array
+</pre>
+
+
+<p>C arrays have some important limitations compared to arrays/vectors in other languages:
+<ol>
+<li>All elements of the array are the same type;
+<li>The length of an array is fixed at creation time;
+<li>The value of array elements is not initialized;
+<li>Access to elements is not bounds checked (i.e. lookups are not checked to make sure  (0 <= index < array size)).
+</ol>
+
+<p>These limitations mean that C arrays must be used carefully but are <em>very fast indeed</em>. There is a trivial amount of overhead in accessing data from an array compared to a normal variable. There is also very little cost to creating arrays. For these reasons C programmers use arrays a lot despite the limitations.
+
+<p>Arrays are allocated as contiguous chunk of memory, of size (array-length * sizeof(type)) bytes. The name of the array can be used like a pointer to the first byte of the first element in the array. The memory is automatically freed when the array variable goes out of scope. And that is all there is to implementing arrays in C. It is an incredibly simple and efficient design.
+
+<p>Because the name of an array can be used like a pointer, these things are true:
+<pre class="prettyprint">int intArray[100];
+&amp;intArray[0] == intArray;
+*(intArray+5) == intArray[5];
+*(5+intArray) == intArray[5];
+(5+intArray) == &amp;intArray[5];
+</pre>
+
+<p>Most people find the square-bracket array-indexing syntax easier to read than pointer arithmetic, but they are exactly equivalent to the compiler.
+
+
+<h3>Passing arrays to functions</h3>
+<p>Since array variables can be used like pointers, you can pass them into functions as such. Consider this code:
+
+<pre class="prettyprint linenums">#include &lt;stdlib.h>
+#include &lt;stdio.h>
+
+// return the largest int in the array
+// (pointer syntax)
+int array_max_ptr( int* arr, unsigned int len )
+{
+   int max = arr[0];
+   for( unsigned int i=1; i&lt;len; i++ )
+   {
+      if( arr[i] > max )
+      {
+         max = arr[i];
+      }
+   }
+
+   return max;
+}
+
+// return the largest int in the array
+// (preferred array-specific syntax)
+int array_max_brackets( int arr[], unsigned int len )
+{
+   int max = arr[0];
+   for( unsigned int i = 1; i &lt; len; i++ )
+   {
+      if ( arr[i] > max )
+      {
+         max = arr[i];
+      }
+   }
+
+   return max;
+}
+
+const unsigned int sz = 10;
+
+int main( void )
+{
+   int arr[sz];
+   for( unsigned int i = 0; i &lt; sz; i++ )
+   {
+      arr[i] = random();
+      printf( "arr[%u] == %d\n", i, arr[i] );
+   }
+
+   printf( "Largest was\n %d\n %d\n",
+	   array_max_ptr( arr, sz ),
+	   array_max_brackets( arr, sz ) );
+
+   return 0;
+}
+</pre>
+
+<p>The two versions of the array_max function have different syntax for passing the array, but are otherwise identical. You should almost always use the array-bracket syntax version ( <code>int arr[]</code> ) since it tells the human reader that an array is expected. The compiler doesn't care.
+
+<p>Note that we had to pass the length of the array into both versions. C arrays do not know how long they are.
+
+<p>Notice also that we used an <code>unsigned int</code> for the array length. This is sensible because negative-length arrays can not exist. Since the compiler will ensure that <code>len</code> does not have a negative value, we avoid a whole class of possible bugs. In general we always use the most restrictive type available so that the compiler can help us notice such mistakes.
+
+<p class="step">Read this example carefully and make sure you understand every bit before you move on.
+<!--Discuss it with your partner until you understand every bit before you move on.-->
+
+
+<h3>Requirements</h3>
+<div class="req">
+<ol class="req">
+<li>Create a new file called <code>identical.c</code>, containing a single function that matches this declaration:
+
+<pre>int identical( int arr1[], int arr2[], unsigned int len );</pre>
+<li>Arrays <code>arr1</code> and <code>arr2</code> are both of length <code>len</code>, and contain arbitrary integer values.
+<li>The function <code>identical()</code> should return 1 iff arrays <code>arr1</code> and
+<code>arr2</code> contain the same values in the same order, or 0 otherwise.
+<li><code>len</code> can have any unsigned int value, including 0.
+<li>If <code>len</code> is 0 then <code>identical()</code> should return 1 (since the arrays have the same - empty - contents).
+<li>You must not change the contents of the arrays.
+</ol>
+</div>
+
+
+<p>Examples of arrays for which <code>identical</code> should return 1:
+<ul>
+<li>arr1 = {10,15,20}, arr2 = {10,15,20}
+<li>arr1 = {100}, arr2 = {100}
+<li>arr1 = {5,2,2,3,4,5,5}, arr2 = {5,2,2,3,4,5,5}
+<li>arr1 = {}, arr2 = {} (i.e. len = 0)
+</ul>
+
+<p>Examples of arrays for which <code>identical</code> should return 0:
+<ul>
+<li>arr1 = {1,1}, arr2 = {1,2}
+<li>arr1 = {10,15,20}, arr2 = {10,15,21}
+<li>arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
+</ul>
+</ol>
+
+
+<p>Example of a program that uses your function:
+
+<pre class="prettyprint linenums">#include &lt;stdio.h>
+// declaration of function implemented in identical.c
+int identical( int intArray1[], int intArray2[], unsigned int len );
+
+int main( void )
+{
+   int arr1[3] = {10, 15, 20};
+   int arr2[3] = {10, 20, 15};
+
+   if( identical( arr1, arr2, 3 ) == 1 )
+   { 
+      printf( "arr1 and arr2 are identical\n" );
+   }  else {
+      printf( "arr1 and arr2 are NOT identical\n" );
+   }
+
+   return 0;
+}
+</pre>
+
+<p>Note the curly-brace syntax for initializing arrays. This only
+works when you first declare the array. The items listed between curly
+braces must be constant values.
+
+<h3>Testing and submission</h3>
+
+<P>You should write your own test program (also called <em>test driver</em>) with a <code>main()</code> function, using the example above as a guide.
+
+<p>When your function works, add and commit only the single source file to the repo:
+
+<pre>
+$ git add identical.c
+$ git commit -m "identical is working"
+$ git push <!--origin master-->
+</pre>
+
+
+<div class="task" id="t_reverse">
+
+<h2>3. Reverse</h2>
+
+<h3>Requirements</h3>
+
+<div class="req">
+<ol class="req">
+<li>Create a new file called <code>reverse.c</code>, containing a single function that matches this declaration:
+
+<pre>void reverse( int arr[], unsigned int len );</pre>
+
+<li>Array <code>arr</code> is of length <code>len</code>, and contains arbitrary integer values.
+<li>The function should reverse the contents of the array <em>in-place</em>, so that on returning, the array contains the same values as before, but in the reverse order.
+</ol>
+</div>
+
+<h3>Guide</h3>
+
+Example of a program that uses your function:
+
+<pre class="prettyprint linenums">#include &lt;stdio.h>
+
+// declaration of function implemented in reverse.c
+void reverse( int arr[], unsigned int len );
+
+int main( void )
+{
+  int intArray[] = {11, 12, 13};
+  unsigned int len = 3;
+
+  reverse( intArray, len );
+
+  for( unsigned int i = 0; i &lt; len; i++ )
+  {
+     printf( "%d ", intArray[i] );
+  }
+  printf( "\n" );
+
+  return 0;
+}
+</pre>
+
+<p>This code prints:
+
+<pre>13 12 11
+</pre>
+
+
+<p>Notice that the length of the array <pre>intArray[]</pre> is not specified
+explictly: it is set to the length of the initialization
+list <pre>{11, 12, 13}</pre>i.e. 3.
+
+<h3>Testing and submission</h3>
+
+<P>You should write your own test program with a <code>main()</code> function, using the example above as a guide.
+
+<p>When your function works, add and commit only the single source file to the repo:
+
+<pre>
+$ git add reverse.c
+$ git commit -m "reverse is working"
+$ git push <!--origin master-->
+</pre>
+
+</div>
+
+
+<div class="task" id="t_scrambled">
+<h2 >4. Scrambled</h2>
+
+<p>Here is a programming puzzle that you might find in the real
+world. It requires conditionals, loops and arrays. There is a simple
+<em>O(n)</em> algorithm to solve the problem (i.e. you do not need to sort
+anything).
+
+<h3>Requirements</h3>
+
+<div class="req">
+<ol class="req">
+<li>Create a new file called <code>scrambled.c</code>, containing a single function that matches this declaration:
+
+<pre>int scrambled( unsigned int arr1[], unsigned int arr2[], unsigned int len );</pre>
+<li>Arrays <code>arr1</code> and <code>arr2</code> are both of length <code>len</code>, 
+and contain values in the range [0 .. 99] inclusive, only.
+<li>The function <code>scrambled()</code> should return 1 iff arrays <code>arr1</code> and <code>arr2</code>
+contain the same values in any order, or 0 otherwise.
+<li><code>len</code> can have any unsigned int value, including 0.
+<li>If <code>len</code> is 0 then <code>scrambled()</code> should return 1 (since the arrays have the same - empty - contents).
+<li>You must not change the contents of the arrays.
+<li>Use an algorithm that has run time linear in the array length <code>n</code>. Note that this means you <b>can not sort the arrays</b> since that can not be done in linear time.
+</ol>
+</div>
+
+<p>Examples of arrays for which scrambled should return 1:
+<ul>
+<li>arr1 = {10,15,20}, arr2 = {10,15,20}
+<li>arr1 = {99}, arr2 = {99}
+<li>arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,1}
+<li>arr1 = {}, arr2 = {} (i.e. len = 0)
+<li>arr1 = {2,1,3,4,5}, arr2 = {1,2,4,3,5}
+</ul>
+
+<p>Examples of arrays for which scrambled should return 0:
+<ul>
+<li>arr1 = {1,1}, arr2 = {1,2}
+<li>arr1 = {10,15,20}, arr2 = {10,15,21}
+<li>arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
+</ul>
+</ol>
+
+<p>Example of a program that uses your function:
+
+<pre class="prettyprint linenums">#include &lt;stdio.h>
+// declaration of function implemented in scrambled.c
+int scrambled( unsigned int arr1[], unsigned int arr2[], unsigned int len );
+
+int main( void )
+{
+  unsigned int arr1[3] = {10, 15, 20};
+  unsigned int arr2[3] = {10, 20, 15};
+
+  if( scrambled( arr1, arr2, 3 ) == 1 )
+  {
+     printf( "arr2 is a scrambled version of arr1\n" );
+  } else {
+     printf( "arr2 has different contents to arr1\n" );
+  }
+
+  return 0;
+}
+</pre>
+
+<h3>Hint</h3>
+<p>The number of different values you see is known and quite small.
+
+<h3>Testing and submission</h3>
+
+<p>You should write your own test program with a <code>main()</code> function,
+using the example above as a guide. To reiterate: you must not submit
+a complete program, though you will need to write one to test your
+function yourself. You must submit a single file containing a single
+function.
+
+<p>When your function works, add and commit <b>only the file <code>scrambled.c</code> to the repo</b>:
+<pre>$ git add scrambled.c
+$ git commit -m "scrambled is working"
+$ git push <!--origin master-->
+</pre>
+
+
+<div class="task">
+<h2 id="t_argv">5. Program arguments</h2>
+
+<p>So far you have written programs that read their input from stdin. Another way to get data into a program is with program <em>arguments</em>. For example when using the shell's file copy program <code>cp</code> we type:
+
+<pre>$ cp original copy</pre>
+
+<p><code>cp</code> is not using stdin, so how does it learn about the filenames to read from and copy to? The answer is as arguments to <code>main()</code>. Your program must have a single main function and it can be declared like this if it needs no arguments from the outside world:
+
+<pre class="prettyprint">int main( void )
+{
+...
+}</pre>
+
+or, if it needs arguments, like this:
+
+<pre class="prettyprint">int main( int argc, char* argv[] )
+{
+...
+}</pre>
+
+
+<p>These two arguments work for <em>any</em> possible arguments to your program. This is quite a clever design, and it works by using arrays and pointers.
+
+<p>The arguments are interpreted as follows:
+<ul>
+<li><code>int argc</code> is the number of arguments passed into <code>main</code>, plus one.
+For the <code>cp original copy</code> example, this is 3.</li>
+<li><code>char* argv[]</code> is an array of char pointers. The <code>argv</code> array is <code>argc</code> pointers
+long. The zeroth entry in argv is always the program's own name (what use is this?).
+The subsequent entries are the program arguments in order. For our cp example the contents of the array are:
+
+<pre>argv[0] : "cp"
+argv[1] : "original"
+argv[2] : "copy"
+</pre>
+</li>
+</ul>
+<p> Recall that a C string is a character array containing a special NULL character
+(the character '\0' or value 0) to mark the end of its text: the <em>null terminator</em>.
+Each pointer in the <code>argv</code> array points to the first character in a character array.
+The result for our example can be drawn as follows, if we use arrows to represent pointers:
+
+<p><img src="../img/argv.png">
+
+<p>Thus we can sketch an implementation of <code>cp</code> like this:
+
+<pre class="prettyprint linenums">int main( int argc, char* argv[] )
+{
+  int inputfile = open( argv[1], O_RDONLY ); // open a file for read only
+  int outputfile = open( argv[2], O_RW | O_CREAT );  // create a new file for writing
+
+  while( ... ) // we haven't read everything from inputfile
+  {
+     ... // read bytes from inputfile and write them to outputfile
+  }
+ return 0; // success!
+}
+</pre>
+
+<p>Function <code>open()</code> is called twice: once with <code>argv[1]</code>, the
+name of the file to copy (i.e. "original" in the example). Then <code>open()</code>
+is called again with <code>argv[2]</code>, the name of the destination file to copy
+to (i.e. "copy" in the example).
+
+<!--
+<p>Did you figure out any reason why the program would want to know it's own name via the string in argv[0]? One neat example is the <code>zip</code> data compression utility and its partner <code>unzip</t>. These can be implemented by the same program, if gram sees that it is called 'zip' it compresses, and when it sees that it is called 'unzip' it uncompresses.
+-->
+
+<h4>I want numbers, not text strings</h4>
+
+<P>Since main's arguments are stored as character strings, another step is needed to convert strings that
+represent numbers into number types before you use them. The <code>atoi()</code> and <code>atof()</code>
+ functions provided in the standard library convert strings to integers and floating point values respectively:
+
+<pre class="prettyprint linenums">#include &lt;stdlib.h> // for atoi() and friends
+
+// takes two arguments: an integer followed by a float
+int main( int argc, char* argv[] )
+{
+  if( argc != 3 ) // yes 3! argv[0] is the program name
+  {
+     printf( "I wanted 2 arguments\n" );
+  }
+
+  int anInt = atoi( argv[1] );
+  float aFloat = atof( argv[2] );
+  ...
+}
+</pre>
+
+<p>The program can be run like so and work as expected:
+
+<pre>$ ./a.out 5 3.14</pre>
+
+<t3>Requirements</t3>
+
+<div class="req">
+<ol class="req">
+<li>Write a program called "contains" that takes two text strings as arguments and prints "true" followed by a newline if the second string is entirely contained within the first, or "false" followed by a newline otherwise.
+<li>The strings contain only ASCII characters and may be any length > 0 characters. Strings in <code>argv</code> are always null-terminated.
+</ol>
+</div>
+
+<p>This is an <a href="http://en.wikipedia.org/wiki/Substring" target="_blank">important problem in computer science</a>, with wide applications from searching the internet, to understanding text, to finding DNA matches. It's easy to state and easy to code. It gets interesting when the strings are long and you want to do it very efficiently. For now you can be happy with a simple solution to practice managing <code>argv</code> array and char strings.
+
+<p>Example runs:
+<pre>$ ./contains "I have a really bad feeling about this" "bad feeling"
+true
+$ ./contains "To be or not to be" "That is the question"
+false
+$ ./contains "I am the walrus" "I am the walrus"
+true
+$ ./contains "the walrus" "I am the walrus"
+false
+$ ./contains "kmjnhbvc45&^$bn" "."
+false
+</pre>
+
+<p>Notice that the strings do not have quote characters around them when delivered to your program via <code>argv</code>. The quotes prevent the shell from breaking the strings up into individual words.
+
+<p>You may find the standard library function <code>strlen()</code>
+(along with other string-related functions) useful. Read its manpage.
+
+<p><B>NOTE: pay attention to the requirements, e.g. don't forget the newlines. </b>
+
+
+<h3>Testing and submission</h3>
+
+<p>Save your implementation as the single C source file <code>contains.c</code>, compile it and test it using
+the example runs above and others. When you think your code works, add and commit <code>contains.c</code>, then push your changes as usual.
+
+</div>
+
+<!--
+<div class="homeworkbegins">
+Lab session complete. Homework starts here.
+</div>
+-->
+
+<div class="task">
+<h2 id="t_redirect">6. Redirecting stdin and stdout</h2>
+
+<p class="meta"> From here on, the guide section
+will often include links to other material that can be crucial to
+solving the task. You should practice consulting online references and
+tutorials: this is a significant part of real-world programming. To
+encourage you to practice, we use external links instead of writing everything out in the guide.
+To be absolutely clear: <mark>not everything you need to know is contained in our instructions.
+Therefore, you need to read about the new material discussed in the labs (e.g., C library functions, etc...)
+ using the links and maybe searching online. This is deliberate and not cause for complaint!</mark>
+
+<h3>Guide</h3>
+
+<p>You will find it tedious to type lots of text into your program's stdin. The shell has a powerful tool to help with this: <em>stream redirection</em>. This allows you to route the stdin and stdout for a program away from the console and into a file. For example, if we have a program called <code>hello</code> that prints "Hello world!\n" on stdout, we can do this:
+
+<pre>
+$ ./hello > myfile.txt
+</pre>
+
+This creates a new file <code>myfile.txt</code>. Anything written to stdout in the <code>hello</code> program is written
+ to the file <code>myfile.txt</code>. To confirm this, inspect the contents of the file with <code>cat</code>:
+
+<pre>
+$ cat myfile.txt
+Hello world!
+</pre>
+
+<p>Similarly, we can take the contents of a file, and stream it into the standard input of our program.
+So if we have a program <code>sort</code> that reads lines from stdin, sorts them into lexical order then writes them on stdout, we can do this:
+
+<P>Contents of file <code>beatles.txt</code>:
+<pre>john
+paul
+george
+ringo
+</pre>
+
+<pre>$ sort < beatles.txt
+george
+john
+paul
+ringo
+</pre>
+
+<p>Input and output redirection can be used together:
+
+<pre>$ sort < beatles.txt > sorted.txt
+$ cat sorted.txt
+george
+john
+paul
+ringo
+</pre>
+
+<p>This is a very powerful mechanism that is great for testing with lots of different inputs. It's much more convenient to redirect a file into stdin than to type many lines followed by ctrl-d over and over. Make sure you understand file redirection!
+
+<p>Here is a terse but good introduction to
+<a href="http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html" target="_blank">BASH shell programming</a>,
+ including a section on
+ <a href="http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html" target="_blank">redirection</a>.
+
+<p>Here is an task that will make you glad you know about shell redirection:
+
+<h3>Requirements</h3>
+
+<div class="req">
+<ol class="req">
+<li>Write a C program that counts the number of characters, words and lines read from standard input until EOF is reached.
+<li>Assume the input is <a href="http://en.wikipedia.org/wiki/ASCII" target="_blank">ASCII</a> text of any length.
+<li>Every byte read from stdin counts as a character except EOF.
+<li>Words are defined as contiguous sequences of letters (a through z, A through Z) and the apostrophe ( &#39;, value 39 decimal) separated by any character outside these ranges.
+<li>Lines are defined as contiguous sequences of characters separated by newline characters ('\n').
+<li> Characters beyond the final newline character will not be included in the line count.
+<li>On reaching EOF, use this output command:
+<pre class="prettyprint">printf( "%lu %lu %lu\n", charcount, wordcount, linecount );</pre>
+<p>Where <code>charcount</code>, <code>wordcount</code> and <code>linecount</code> are all of type
+<code>unsigned long int</code>. You may need these large types to handle long documents.
+</ol>
+</div>
+
+<h3>Guide</h3>
+
+<p>You may find the standard library function <code>getchar()</code> useful. Check it out onlin or read its manpage.
+
+<p>There's a handy standard program called <code>wc</code> that does a similar job, but it does not match the requirements exactly (it is a little more clever about word boundaries and will sometimes count fewer words than our simple program). Your program should agree with wc's character and line counts, as the logic for those is the same.
+
+<h4>Escape characters</h4>
+
+<p>This <a href="http://stackoverflow.com/questions/2414478/c-escaping-an-apostrophe-in-a-string" target="_blank">Q&ampA on StackOverflow</a>
+ gives advice on representing the apostrophe character using an <em>escape sequence</em>. StackOverflow is very useful indeed.
+
+<h3>Testing and submission</h3>
+
+<p>Submit your solution as a complete program (i.e. with a <code>main()</code> function) in a C source file
+called <code>count.c</code>.
+
+</div>
+
+</div>
+
+<div class="task">
+
+<h2 id="t_censored">7. CENSORED</h2>
+
+<h3>Requirements</h3>
+
+<div class="req">
+<ol class="req">
+<li>Write a C program called <code>censored.c</code> that takes any number of one-word text string arguments, each less than 128 characters long.
+<li>"Word" is defined as in the previous task. (Tip: Can you reuse some of the code you wrote for Task 6?)
+<li> The program copies text from stdin to stdout, except that any of the words seen in the input are replaced with the word "CENSORED".
+<li>The argument and the input stream are both <a href="http://en.wikipedia.org/wiki/ASCII" target="_blank">ASCII</a>.
+<li>The input to stdin is of any length.
+</ol>
+</div>
+
+<p>Example runs:
+<pre>$ cat poem.txt
+Said Hamlet to Ophelia,
+I'll draw a sketch of thee,
+What kind of pencil shall I use?
+2B or not 2B?
+$ ./censor Ophelia &lt; poem.txt
+Said Hamlet to CENSORED,
+I'll draw a sketch of thee,
+What kind of pencil shall I use?
+2B or not 2B?
+</pre>
+
+<pre>$ cat beatles.txt
+paul
+ringo
+george
+john
+$ ./censor paul ringo john &lt; beatles.txt
+CENSORED
+CENSORED
+george
+CENSORED
+</pre>
+
+
+<h3>Testing and submission</h3>
+
+<p>Submit your solution as a complete program in a C source file called <code>censored.c</code>.
+
+</div>
+
+
+<div class="task">
+
+<h2 id="t_lfreq">8. Letter frequency</h2>
+
+<h3>Requirements</h3>
+<div class="req">
+<ol class="req">
+<li>Write a program that calculates the frequency of letter occurrences in text.
+<li>Read ASCII text from standard input.
+<li>On reaching EOF, print to stdout the normalized frequency of occurrence for each letter a-z that appeared in the input,  one per line, in alphabetical order using the format produced by <pre>printf( "%c %.4f\n", letter, freq);</pre>
+<li>Letters that occur zero times should not appear in the output.
+<li>Characters other than lower and upper case letters should be ignored.
+<li>Lower and upper case instances count as the same letter, e.g. 'a' and 'A' are both reported for the letter 'a' on the output.
+<li>The frequencies reported should sum to approximately 1 (with a little slack for accumulation of <code>printf</code> rounding errors).
+<li>By the way, you cannot implement this function by writing 26 "if" statements (1 for each letter).
+Hint: Each letter has a numerical ASCII value. Can this numerical value be used at all?
+</ol>
+</div>
+
+<h4>Example runs</h4>
+
+Assume you have named your executable <code>lfreq</code>. The first two example runs show the user entering the text manually in the terminal. The third and fourth runs have text piped in from a file (and the middle of the alphabet is omitted from the output for brevity). A text file <code>happy_prince.txt</code> containing a classic story in English is provided for testing.
+
+<pre>$ ./lfreq
+aaab
+a 0.7500
+b 0.2500
+</pre>
+
+<pre>$ ./lfreq
+q
+q 1.0000
+</pre>
+
+<pre>./lfreq &lt; happy_prince.txt
+a 0.0841
+b 0.0140
+c 0.0206
+...
+y 0.0240
+z 0.0002
+</pre>
+
+<pre>$ ./lfreq &lt; "large novel in English.txt"
+a 0.0817
+b 0.0149
+c 0.0278
+...
+y 0.0197
+z 0.0001
+</pre>
+
+
+<h3>Testing and submission</h3>
+
+<p>Submit your solution as a complete program in a C source file called <code>letterfreq.c</code>.
+
+</div>
+
+<div class="task" id="t_vgraph">
+
+<h2>9. Vertical graph</h2>
+
+<P>In Lab 1 we plotted a histogram horizontally. In order to plot a histogram vertically, we need to have finished reading all the input before we start drawing the graph on the output. An array is suitable for this.
+<p>A standard terminal window is 80 character-columns across. If we
+limit the number of columns we can graph to a maximum of 80, we know
+how large an array we need to allocate and this program is simple to
+write.
+
+<h3>Requirements</h3>
+
+<div class="req">
+<ol class="req">
+<li>Read integer values from stdin, separated by one or more spaces or newlines, until reaching EOF.
+<li>The input is guaranteed to be well-formed. (Hum... what does this mean?)
+<li>The input contains no more than 80 values.
+<li>On standard output, render a simple vertical column graph
+representation of the input values, in order left to right, using hash
+'#' characters as shown in the examples below. The number of hashes
+printed in each column should be equal to the corresponding input
+value.
+<li>The area above a completed column should be filled with space
+characters.
+<li>Ignore empty lines. Do not output a column for an empty line.
+<li>The entire graph must end with a newline character.
+</ol>
+</div>
+
+<h3>Guide</h3>
+
+Hint: you may find it helpful to draw your graphs upside down
+(increasing down the screen) first, then change your code to flip the
+output it up the right way.
+
+</p><h3>Examples</h3>
+<ol>
+<li>Input:
+<pre>1 1 3 1</pre>
+Output:
+<pre>  #
+  #
+####
+</pre>
+
+<p>The requirements mean that the graph fills a rectangular area with hashes and spaces, so this example is printed as:
+<pre>
+' ', ' ', '#', ' ', '\n'
+' ', ' ', '#', ' ', '\n'
+'#', '#', '#', '#', '\n'
+</pre>
+
+<p>In particular, notice the spaces before the newlines on the first two lines. They are necessary.
+
+
+<li>Input:
+<pre>3 4 5</pre>
+Output:
+<pre>  #
+ ##
+###
+###
+###
+</pre>
+
+<li>Input:
+<pre>0 3 0 4 5</pre>
+Output:
+<pre>    #
+   ##
+ # ##
+ # ##
+ # ##
+</pre>
+
+<p>Notice the empty columns that correspond to the zeros in the input, including the leading zero.
+
+<li>Input:
+<pre>5
+15
+16
+15
+12
+12
+12
+8
+6
+3
+2
+19
+21
+17
+15
+12
+11
+10
+9
+8
+7
+7
+</pre>
+Output:
+<pre>            #
+            #
+           ##
+           ##
+           ###
+  #        ###
+ ###       ####
+ ###       ####
+ ###       ####
+ ######    #####
+ ######    ######
+ ######    #######
+ ######    ########
+ #######   #########
+ #######   ###########
+ ########  ###########
+#########  ###########
+#########  ###########
+########## ###########
+######################
+######################
+</pre>
+<li>Input:
+<pre>0
+0
+2
+1
+0
+</pre>
+Output:
+<pre>  #
+  ##
+</pre>
+</ol>
+
+
+<h3>Testing and submission</h3>
+
+<p>Submit your solution as a complete program in a C source file called <code>verticalgraph.c</code>.
+
+</div>
+
+
+<div class="task" id="t_inrectangle" >
+
+<h2>10. In Rectangle</h2>
+
+<P>In this task you must write a function that determines whether a point lies inside a rectangle. The point and rectangle are both specified using arrays of floating point values.
+
+<h3>Requirements</h3>
+
+<div class="req">
+<ol class="req">
+<li>Write a function that matches the following declaration:
+
+<pre class="prettyprint">int InRectangle( float pt[2], float rect[4] );
+</pre>
+
+<li>Argument <code>pt[2]</code> defines a point on the plane: <code>pt[0]</code> is the x-coordinate, <code>pt[1]</code> is the y-coordinate.
+<li>Argument <code>rect[4]</code> defines a rectangle on the same plane. <code>rect[0]</code> and <code>rect[1]</code> define the x- and y- cordinates
+respectively of one corner of the rectangle. <code>rect[2]</code> and <code>rect[3]</code> define the opposite corner.
+<li>Coordinates may be any valid floating point value, including negative values.
+<li>The function returns int <code>0</code> (false) for any point that lies outside the rectangle, and <code>1</code> (true) for any other point
+(i.e. points inside and on the boundary of the rectangle).
+</ol>
+
+</div>
+
+<h3>Guide and Testing</h3>
+
+<p>It is very common to represent geometric figures using small, fixed-size arrays like this.
+Note that the size of the arrays are specified in the function declaration. This allows the compiler to check that the function is called with a correctly-sized array.
+
+<p>Since this task calls for a function only, and not a complete program, you need to write a program to
+test your function. The grading robot uses a program that looks something like this:
+
+<pre class="prettyprint linenums">
+// declaration of function to test
+int InRectangle( float pt[2], float rect[4] );
+
+int main( int argc, char* argv[] )
+{
+  // define a rectangle from (1,1) to (2,2)
+  float rect[4] = {1.0, 1.0, 2.0, 2.0 };
+
+  // define a point that is inside the rectangle
+  float p_in[2] = { 1.5, 1.5 };
+
+  // define a point that is outside the rectangle
+  float p_out[2] = {2.5, 0.5};
+
+  // define a point that is on the edge of the rectangle
+  float p_edge[2] = {1.0, 1.0};
+
+  // InRectangle() should return 0 (false) for points that are NOT in
+  // the rectangle, and non-zero (true) for points that are in the
+  // rectangle. Points on the edge are considered *in* the rectangle.
+
+  // test 1
+  if( InRectangle( p_in, rect ) == 0 )
+  {
+    puts( "error: should return true for p_in." );
+    return 1; // indicate error
+  }
+
+  // test 2
+  if( InRectangle( p_out, rect ) != 0 )
+  {
+    puts( "error: should return false for p_out." );
+    return 1; // indicate error
+  }
+
+  // test 3
+  if( InRectangle( p_edge, rect ) == 0 )
+  {
+    puts( "error: should return true for p_edge." );
+    return 1; // indicate error
+  }
+
+  return 0; // all tests passed
+}
+</pre>
+
+<p>The code tests that the function works correctly with these parameters:
+
+<br><center><img src="../img/InRectangle.png"></center>
+
+<p>The actual test used by the grading robot is longer and more comprehensive than this.
+Above, we gave a simplified example for clarity.
+
+<p>Note the syntax for initializing arrays with constant values at compile-time, e.g. line 7. This only works for constant values, unfortunately.
+
+<p>You should <b>always</b> write a test for your functions. Consider an untested function to be incorrect. It helps to assume  the function was written by a complete idiot who has no idea what they are doing, even if the author was you. Then test the function to find out what craziness that daft person implemented.
+
+<p>Once a function passes all the tests you can think of, you might cautiously believe it might be correct. In software engineering, like any quality-focused pursuit, it helps to be skeptical.
+
+<h4>Compiling two files into one program</h4>
+
+<p>Since the file you submit must not contain a <code>main()</code> function
+ (see Submission section below), it is convenient to make a test program from two source files:
+ one containing the <code>InRectangle()</code> function, and one with <code>main()</code>. You can start out with the code above, and extend it to be a more thorough test.
+
+<p>Recall from above that you can compile a single program from multiple source files by simply listing the sources on the compiler command line:
+
+<pre>$ gcc -o test inrect.c main.c
+</pre>
+
+<p>
+
+<h3>Submission</h3>
+
+<p>Submit your solution as a C source file called <code>inrect.c</code>.
+The file must not contain a <code>main()</code> function, even though you wrote one for testing.
+The grading robot will compile your file along with it's own <code>main()</code>. Since there can only be one <code>main()</code>, if you provide a second, the compilation will fail.
+
+</div>
+
+<!--
+
+<p>Here are some sample C programs for you to examine. They are each self-contained programs that each solve a simple task. You can read
+and understand how these programs solve their respective tasks. They are also examples of C syntax that you might find useful.
+Try it with the examples provided to see what they do and how they do it.</p>
+
+<h4>cat</h4>
+<script src="https://gist.github.com/anoopsarkar/4203d2148e984fabe988cb670b53c3b1.js"></script>
+
+<h4>copy</h4>
+<script src="https://gist.github.com/anoopsarkar/f0bffca16bc2bf6cba76904e6a5b487d.js"></script>
+
+<h4>echo</h4>
+<script src="https://gist.github.com/anoopsarkar/5025f2882e0fd1e40c957ccfc10602eb.js"></script>
+
+<h4>Find duplicates</h4>
+<script src="https://gist.github.com/anoopsarkar/a376620f04daea6a1815e176ee49108a.js"></script>
+
+--> 
+<div class="labends">
+Lab 2 completed. <a href="../../">Back to the course web page</a>.
+</div>
+
+</body></html>
+
+

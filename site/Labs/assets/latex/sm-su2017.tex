@@ -1,0 +1,313 @@
+
+\documentclass[11pt]{article}
+\usepackage{txfonts}
+\usepackage{graphicx}
+\usepackage{mygb4e}
+\usepackage{solution}
+
+\hidesolutions
+\setlength\oddsidemargin{0.01in}
+\setlength\topmargin{-1in}
+\setlength\textwidth{6.9in}
+\setlength\textheight{9.5in} 
+
+\newcommand{\nl}{\mbox{$\langle cr \rangle$}}
+
+\raggedright
+
+% Set some text inside an fbox the full width of the line, with the frame
+% sticking out into the margin.
+\long\def\framepar#1{\par\noindent\hbox to \textwidth {\hskip-\fboxsep
+\fbox{\parbox{\the\textwidth}{#1}}}}
+
+\begin{document}
+
+\begin{center}
+{\Large\bf Sample Midterm: CMPT 127 Summer 2017}\\
+This material is \copyright Anoop Sarkar 2017. \\
+Only students registered for this course are allowed to download and use this material. \\
+Use of this material for ``tutoring'' is prohibited.
+\end{center}
+
+\noindent{\large\bf Setup}
+
+\begin{itemize}\addtolength{\itemsep}{-0.3\baselineskip}
+
+\item Check that you have a working copy of your gitlab repository.
+If not, clone your gitlab repository for this course. It should be
+\texttt{CMPT127-1174-username} where \texttt{username} is your SFU
+username.
+
+\item Before you do anything new in your repository first pull any
+changes to the local repository from the gitlab server by typing
+in \texttt{git pull} in your terminal window.
+
+\item \textbf{Create a directory called \texttt{sm} in your repository
+(which stands for \textit{sample midterm}).  All the files you write
+must be inside this directory.}
+
+\item For each file you add below you must make sure you \texttt{git
+add file}, then \texttt{git commit -m "commit message"} and finally
+do a \texttt{git push} to send the files to the gitlab server.
+Before you leave your terminal make sure you do a \texttt{git
+status} to make sure you have committed and pushed your midterm
+answers.
+
+\item You are allowed to look at your own lab programming assignments
+and the system man pages. Nothing else.
+
+\end{itemize}
+
+
+\begin{exe}
+
+\ex \textbf{Task 1: Read and print}
+
+\begin{itemize}\addtolength{\itemsep}{-0.3\baselineskip}
+
+\item Write a C program called \texttt{t1.c} with the following requirements.
+
+\item The program should take two command line arguments (using \texttt{argv}): 
+the first argument (called \texttt{number}) is a floating point number and the 
+second argument (called \texttt{count}) is an
+unsigned integer. For example if you compiled your program to a binary \texttt{t1}
+then it should be run as follows:
+
+\footnotesize
+\begin{verbatim}
+cc -Wall -o t1 t1.c -lm
+./t1 5.3 10
+\end{verbatim}
+\normalsize
+
+\item The first floating point number (called \texttt{number}) should be 
+converted into a \texttt{double} type by using \texttt{atof()}. 
+Then it should be rounded to an integer using the \texttt{round()} 
+function. The program should then print out the integer conversion of 
+the first argument and print the second argument using the following
+format:
+
+\footnotesize
+\smallskip
+\begin{minipage}{2in}
+\begin{verbatim}
+./t1 5.3 10
+n=5 count=10
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{2in}
+\begin{verbatim}
+./t1 1.9 15
+n=2 count=15
+\end{verbatim}
+\end{minipage}
+
+\bigskip
+\normalsize
+
+\item There should be no extra spaces in the output and end with a newline.
+
+\end{itemize}
+
+\ex \textbf{Task 2: Print bars}
+
+\begin{itemize}\addtolength{\itemsep}{-0.3\baselineskip}
+
+\item Write a C program called \texttt{t2.c} with the following requirements.
+
+\item The program should take two command line arguments (using \texttt{argv}): 
+the first argument (\texttt{number}) is a floating point number and
+the second argument (\texttt{count}) is an unsigned integer. This
+part is identical to \texttt{t1.c}.
+
+\item Convert the first argument (\texttt{number}) into an unsigned
+integer. Let us call this integer \texttt{n}.
+
+\item On each line of the output, print out a sequence of \texttt{n}
+\texttt{\#} characters followed by a newline.  The number of lines
+to print is specified by the second argument \texttt{count} given
+to the program. e.g.
+
+\footnotesize
+\smallskip
+\begin{minipage}{2in}
+\begin{verbatim}
+cc -Wall -o t2 t2.c -lm
+./t2 1.9 3
+##
+##
+##
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{2in}
+\begin{verbatim}
+./t2 8.1 4
+########
+########
+########
+########
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{2in}
+\begin{verbatim}
+./t2 4 1
+####
+\end{verbatim}
+\end{minipage}
+
+\end{itemize}
+\normalsize
+
+\ex \textbf{Task 3: Print a hailstone sequence}
+
+\begin{itemize}\addtolength{\itemsep}{-0.3\baselineskip}
+
+\item Write a C program called \texttt{t3.c} with the following
+requirements.
+
+\item The program should take two command line arguments (using
+\texttt{argv}): the first argument (\texttt{number}) is a floating
+point number and the second argument (\texttt{count}) is an unsigned
+integer. This part is identical to \texttt{t1.c}.
+
+\item Convert the first argument (\texttt{number}) into an unsigned
+integer. Let us call this integer \texttt{n}.
+
+\item On each line of the output, print out a sequence of \texttt{\#}
+characters. The first line contains \texttt{n} \texttt{\#} characters.
+
+\item Each subsequent line should have a sequence of \texttt{\#}
+characters equal to the output of the following formula:
+
+\begin{itemize}
+\item If \texttt{n} is even, divide it by 2 to give \texttt{n = n/2}.
+\item If \texttt{n} is odd, multiply it by 3 and add 1 to give \texttt{n = 3*n+1}
+\end{itemize}
+
+\item A number is even if the number mod 2 (\texttt{\%} is the mod operator) gives zero.
+
+\item Continue printing a sequence of \texttt{n} \texttt{\#} characters
+using the new value of \texttt{n} computed using the above formula.
+
+\item The program stops printing when the number of lines is equal
+to the second argument \texttt{count} given to the program. e.g.
+
+\footnotesize
+\smallskip
+\begin{minipage}{1.6in}
+\begin{verbatim}
+cc -Wall -o t3 t3.c -lm
+./t3 5 5
+#####
+################
+########
+####
+##
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{1.3in}
+\begin{verbatim}
+./t3 5 12
+#####
+################
+########
+####
+##
+#
+####
+##
+#
+####
+##
+#
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{2in}
+\begin{verbatim}
+./t3 11 6
+###########
+##################################
+#################
+####################################################
+##########################
+#############
+\end{verbatim}
+\end{minipage}
+
+\normalsize
+
+\end{itemize}
+
+\ex \textbf{Task 4: Print a hailstone sequence (part two)}
+
+\begin{itemize}\addtolength{\itemsep}{-0.3\baselineskip}
+
+\item Write a C program called \texttt{t4.c} with the following
+requirements.
+
+\item The program should take two command line arguments (using
+\texttt{argv}): the first argument (\texttt{number}) is a floating
+point number and the second argument (\texttt{count}) is an unsigned
+integer. The program should print out a sequence of \texttt{\#} characters
+on each line followed by a newline based on the equation provided
+in Task 3. So far this task is identical to \texttt{t3.c}.
+
+\item The difference in this task is that you should stop printing
+the sequence of \texttt{\#} characters when you observe the sequence
+$4, 2, 1$. If you reach \texttt{count} lines before you observe
+$4, 2, 1$ then you should print only \texttt{count} lines. e.g. 
+
+\footnotesize
+\smallskip
+\begin{minipage}{1.6in}
+\begin{verbatim}
+cc -Wall -o t4 t4.c -lm
+./t4 5 2
+#####
+################
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{1.3in}
+\begin{verbatim}
+ ./t4 5 1000
+#####
+################
+########
+####
+##
+#
+\end{verbatim}
+\end{minipage}
+\begin{minipage}{2in}
+\begin{verbatim}
+./t4 11 1000
+###########
+##################################
+#################
+####################################################
+##########################
+#############
+########################################
+####################
+##########
+#####
+################
+########
+####
+##
+#
+\end{verbatim}
+\end{minipage}
+\bigskip
+\normalsize
+
+\item Also try \texttt{./t4 27 1000}. It should print 112 lines of
+output. Verify that the last three lines have $4, 2$ and $1$ \texttt{\#}
+characters respectively.
+
+\end{itemize}
+
+
+\end{exe}
+\end{document}
+

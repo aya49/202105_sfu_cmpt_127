@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+	
+    <title>CMPT 127 class: Lab | Template</title>
+
+    <!-- CSS -->
+    <link href="../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../dist/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link href="../assets/css/syntax.css" rel="stylesheet">
+    <link href="../assets/css/127-class.css" rel="stylesheet">   
+    <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"> -->
+    <link href="../dist/css/font-awesome.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	 
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+    <script src="../dist/js/jquery.min.js"></script>
+
+    <!-- MathJax -->
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <!--
+    <script type="text/javascript"
+      src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/javascript"
+      src="../dist/js/MathJax.js">
+    </script>
+    -->
+	
+	<!-- Code syntax highlighting --> 
+	<!--<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"> NOT FOUND -->
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	
+	<!-- force printing a line number in every line when prettyprinting -->
+    <style>
+        .prettyprint ol.linenums > li { list-style-type: decimal; }
+    </style>
+	
+  </head>
+  
+  <body>
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <!-- Docs master nav -->
+<!--
+    <header class="navbar navbar-fixed-top navbar-default" role="banner">
+      <div class="container">
+        <div class="row">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <ul class="nav navbar-nav">
+            <li id="main_page"><a href="index.html" class="navbar-brand">CMPT 127</a></li>
+          </ul>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            <li id="syllabus"><a href="syllabus.html">Syllabus</a></li>
+            <li id="labs">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Labs <span class="caret"></span></a>
+              <ol class="dropdown-menu">
+                <li><a href="lab0.cgi">0. Setup</a></li>
+                <li><a href="lab1.cgi">1. Getting Started in C</a></li>
+                <li><a href="lab2.html">2. Functions and Arrays</a></li>
+                <li><a href="lab3.html">3. Dynamic Memory Allocation</a></li>
+                <li><a href="lab4.html">4. Practice</a></li>
+                <li><a href="lab5.html">5. Composite Data Types</a></li>
+                <li><a href="lab6.html">6. File I/O</a></li>
+                <li><a href="lab7.html">7. Testing and Lists</a></li>
+                <li><a href="lab8.html">8. Memory allocation performance</a></li>
+                <li><a href="lab9.html">9. Event-driven interactive programs</a></li>
+                <li><a href="lab10.html">10. C++</a></li>
+              </ol>
+            </li>
+            <li id="leaderboard"><a href="results/progress.html" target="_blank">Leaderboard</a></li>
+            <li id="results"><a href="results.cgi">Results</a></li>
+            <li id="help"><a href="help.html">Help!</a></li>
+            <li id="faq"><a href="faq.html">FAQ</a></li>
+          </ul>
+        </nav>
+      </div>
+      </div>
+    </header>
+-->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2 hidden-sm hidden-xs">
+          <a href="https://en.wikipedia.org/wiki/The_C_Programming_Language"> 
+          <img src="../assets/img/krbook.jpg" class="img-responsive img-rounded" alt=""/>
+          </a> 
+          <span class="text-muted"><em><p>C was created by <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie" target="_blank">Dennis Ritchie</a>. 
+		  <a href="https://en.wikipedia.org/wiki/Brian_Kernighan">Brian Kernighan</a> 
+		  wrote the first C tutorial. The first edition of this book written by them (called K&amp;R for short) was published in 1978.</p></em></span>
+        </div>
+        <div class="col-sm-10">
+		
+          
+<h2>Lab 1: Getting Started in C</h2>
+
+<hr />
+
+<div class="alert alert-success" role="alert">
+<p>Compiling, input/output, types, loops and using version control</p>
+
+</div>
+
+
+
+<h3 id="goals">Goals</h3>
+
+<p>After this lab you will be able to</p>
+
+<ol>
+  <li>Follow the instructions for subsequent labs.</li>
+</ol>
+
+<h3 id="reading-material">Reading material</h3>
+
+<ul>
+  <li><a href="http://www.sfu.ca/computing/about/support/csil.html" target="_blank">CS Undergrad Labs (CSIL) Information</a></li>
+</ul>
+
+<style type="text/css">
+    .bs-example{
+        margin: 20px;
+    }
+</style>
+
+<div class="bs-example">
+    <div class="panel-group" id="accordion">
+        <div class="panel-body control-accordion">
+        <!-- <p class="pull-right"><a href="#" class="expandAll"><span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span></a> <a href="#" class="collapseAll"><span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span></a></p> -->
+        <p class="pull-right"><a href="#" class="expandAll">Expand</a> | <a href="#" class="collapseAll">Collapse</a></p>
+        </div>
+        
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#intro">Introduction</a>
+                    </h4>
+                </div>
+                <div id="intro" class="panel-collapse collapse">
+                      
+                        <div class="panel panel-body">
+
+                         </div>                                         
+                </div>
+            </div>
+        
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#setup">Setup</a>
+                    </h4>
+                </div>
+                <div id="setup" class="panel-collapse collapse">
+                      
+                        <div class="panel panel-body">
+
+                        </div>
+                          
+                          
+                </div>
+                      
+                      
+            </div>
+
+        
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#task1">Task 1: Compiling and Hello World!</a>
+                    </h4>
+                </div>
+                <div id="task1" class="panel-collapse collapse">
+                      
+                      
+                        <div class="panel panel-body">
+                        
+                            
+                                <br><h4>Introduction</h4>
+
+                                <div class="panel panel-primary">
+                                  <div class="panel-heading">
+                                    <h4 class="panel-title">Requirements</h4>
+                                  </div>
+                                  <div class="panel-body">
+                                    <p>Write a C program <code class="highlighter-rouge">t1.c</code> that writes the string <code class="highlighter-rouge">Hello
+World!</code> to standard output.</p>
+
+                                  </div>
+                                </div>
+                                
+                                  <p>
+                                  <div class="alert alert-danger" role="alert">
+                                    <p>The requirements section is very important. It describes
+what your submission must do to pass the automated
+tests. It is marked clearly so you can’t miss it.</p>
+
+                                  </div>
+                                  </p>
+                        
+                            
+                                <br><h4>Submit your code to evaluation</h4>
+                                
+                        </div>
+                      
+                </div>
+            </div>
+        
+        <div class="panel-body control-accordion">
+        <p class="pull-right"><a href="#" class="expandAll">Expand</a> | <a href="#" class="collapseAll">Collapse</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+   $('.collapseAll').click(function(){
+       $('.panel-collapse.in')
+        .collapse('hide');
+    });
+    $('.expandAll').click(function(){
+    $('.panel-collapse:not(".in")')
+        .collapse('show');
+    });
+ 
+
+});
+</script>
+
+        </div>  <!-- matches <div class="col-sm-10"> -->
+      </div> <!-- matched <div class="row">-->
+
+      <footer class="text-center text-muted">
+        <hr/>
+        Last updated May 20, 2019.<br/>
+		All the course material was designed, developed and initially taught by <a href="https://rtv.github.io/" target="_blank">Prof. Richard Vaughan</a>. <br/>
+		Some of the material was changed for this offering so any errors introduced are due to the current instructor.</br>
+        Web page design adapted from <a href="https://github.com/mt-class/jhu" target="_blank">this github repo <i class="fa fa-github-alt"></i></a> by 
+		<a href="https://github.com/mjpost" target="_blank">Matt Post</a> and <a href="https://github.com/alopez" target="_blank">Adam Lopez</a>.<br/>
+        <br/><br/>
+      </footer>
+    </div> <!-- matched <div class="container">-->
+	
+
+    <!-- Page content of course! -->
+    <!-- JS and analytics only. -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./../dist/js/bootstrap.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#labs").addClass("active");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,180 @@
+
+body {
+margin-left: auto;
+margin-right: auto;
+width: 70%;
+% font-family: sans-serif;
+font: 11pt Helvetica, Arial, sans-serif;
+}
+
+h2 {
+font-size: 120%;
+background: #eee;
+font-weight:normal;
+}
+
+h1 {
+font-weight:normal;
+}
+
+
+.wide {
+width: 92%;
+}
+
+.shout {
+  border: 2px solid red;
+}
+
+
+div.task {
+border-top: solid 2px #333; 
+}
+
+div.lab {
+    border-bottom: solid 3px #333;
+}
+
+li.L0, li.L1, li.L2, li.L3, li.L4, li.L5, li.L6, li.L7, li.L8, li.L9 {
+ list-style-type: decimal; 
+}
+
+pre.prettyprint { 
+padding: 1em;
+}
+
+.small {
+    font-size: 80%;
+}
+
+.Pass,.Fail,.None {
+    border: 1px solid #ccc;
+}
+
+.nolinespace {
+    #background: yellow;
+    vertical-align:top;
+    line-height:0.8em;
+}
+
+.Pass {
+    background: #AFA;
+}
+
+.Fail {
+    background: #FAA;
+}
+
+.None {
+    
+}
+
+
+.percentage {
+  font-weight: bold;
+}
+
+
+.revno {
+  color: #888;
+ font-size: 75%;
+}
+
+.progress tr {
+ #background: #0FF;
+ line-height: 1.5em;
+  #border: 1px solid red;
+}
+
+.progress td {
+ text-align: center;
+}
+
+.progress th {
+ # background: #0FF;
+ # text-align: center;
+ # border: 1px solid black;
+}
+
+
+.progress {
+  width:100%;
+  font-size:75%;
+}
+.progress-space tr
+{
+ background: #0FF;
+ line-height: 3em;
+}
+
+.testbutton {
+background-color: #F33;
+}
+
+.req {
+background-color: #FCC;
+
+}
+
+.homeworkbegins {
+    background: #F00;
+    padding: 1em;
+    border-top: 2px solid black;
+}
+
+.labends {
+    background: #ccF;
+    padding: 1em;
+    border-top: 2px solid black;
+}
+
+
+#floatingCornerLeft {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    height: 250px;
+    padding: 0.5em;
+}
+
+#floatingCornerRight {
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 0px;
+    height: 250px;
+    padding: 0.5em;
+}
+
+.steps {
+background-color: #EEF;
+border-left: solid 4px #000;
+border-right: solid 4px #000;
+padding-left: 1em;
+padding-right: 1.5em;
+}
+
+.meta {
+background-color: #AFA;
+font-style: italic;
+}
+
+
+.spaced-table {
+    border: 1px solid black;
+    padding: 0.2em;
+    text-align:center;
+}
+
+
+.todo {
+font-family: courier;
+font-style: italic;
+background-color: #CCC;
+}
+
+
+TABLE.boxed {border-collapse: collapse;} TABLE.boxed TH {background:#E0E0E0; border:1px solid black;} TABLE.boxed TD {border:1px solid black}
+
+table.wikitable{margin:1em 0;background-color:#f9f9f9;border:1px #aaa solid;border-collapse:collapse;color:black}table.wikitable > tr > th,table.wikitable > tr > td,table.wikitable > * > tr > th,table.wikitable > * > tr > td{border:1px #aaa solid;padding:0.2em}table.wikitable > tr > th,table.wikitable > * > tr > th{background-color:#f2f2f2;text-align:center}table.wikitable > caption{font-weight:bold}

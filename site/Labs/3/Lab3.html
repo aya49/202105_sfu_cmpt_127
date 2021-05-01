@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta charset="utf-8">
+    <title>CMPT 127 class: Lab 3 | Dynamic Memory Allocation</title>
+	
+    <link rel="stylesheet" href="../css/style.css">
+    <!--There is a stylesheet here as well: <link rel="stylesheet" href="../../style.css">-->
+	
+    <!--<link rel="stylesheet" href="../../taskcount.css"> NOT FOUND -->
+	
+	<!--<link rel="icon" href="../favicon.ico" type="image/x-icon"> NOT FOUND -->
+	<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+	
+    <!-- Code syntax highlighting --> 
+	<!--<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"> NOT FOUND -->
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js">
+	</script>
+	
+	<!-- force printing a line number in every line when prettyprinting -->
+	<style>
+        .prettyprint ol.linenums > li { list-style-type: decimal; }
+    </style>
+
+</head>
+
+<!--
+Minor changes: Anne Lavergne 2019
+-->
+
+<body>
+
+
+<div class="lab">
+<h1>Lab 3 : Dynamic Memory Allocation</h1>
+
+<h4>stack and heap, malloc() and free(), representing images</h4>
+
+<div id="floatingCornerLeft">
+<a href="http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA" target="_blank"><img src="../img/balloon0.jpg" height="150"></a>
+</div>
+
+<div id="floatingCornerRight">
+  <a href="http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA" target="_blank"><img src="../img/balloon1.jpg" height="150"></a>
+</div>
+
+<!-- 
+<p class="todo">
+Sections marked in grey are TO-DO and contain notes, incomplete bits, etc. 
+-->
+
+<h2>Goals</h2>
+<p>After this lab you will be able to</p>
+
+<ol>
+	<li>State the difference between heap and stack memory allocation.</li>
+	<li>For any variable declaration, determine whether it will be allocated on the stack or the heap and why.</li>
+	<li>Use malloc() and free() to manage heap memory.</li>
+	<li>Use fixed-size integer types.</li>
+	<li>Interpret integer arrays as images and operate on them.</li>
+	<li>Write nested loops.</li>
+</ol>
+
+<h2>Setup</h2>
+
+<div class="steps">
+
+<!-- <p>Note that these instructions have changed form slightly from the previous labs. As always, 
+follow them carefully to make sure your files end up in the right place.</p> -->
+
+<p>In the terminal:</p>
+<ol>
+	<li>Use the <code>cd</code> command to change directory (the <code>ls</code> command to list the content of a directory may be helpful as well) 
+	until you find yourself in your <strong>local repo</strong>.</li>
+<!--
+<li><p><code>cd</code> to the root of your working directory, i.e., to the folder called "CMPT-127-1191-&lt;your username&gt;".
+<li><p><mark>If you have created a second local repo on your laptop or home computer and the last time 
+you pushed a file onto your GitLab repo was from this home local repo</mark>, make sure you use the following commands:</mark>
+<pre>$git fetch
+$git status
+$git pull 
+</pre>
+<p>before you start working on your CSIL local repo. These commands will ensure that your CSIL local repo has 
+the latest files you pushed on your GitLab repo.-->
+
+	<li>Download the <a href="3.zip" target="_blank">new material</a> for Lab 3, stored in a compressed file called <strong>3.zip</strong>.</li>
+	<li>Uncompress this file as follows:
+<pre>
+$ unzip 3.zip
+</pre>
+You should now see a directory called <strong>3</strong>.</li>
+	<li>Once you have uncompressed <strong>3.zip</strong>, you can safely remove this compressed file with the <code>rm</code> command.</li>
+	<li>Add this new directory <strong>3</strong> to your Git repository:
+<pre>
+$ git add 3
+</pre>
+	</li>
+	<!--<li>Remember to <code>git commit -m ...</code> and <code>git push</code> the new directory to your Git repository.</li>-->
+	<li>Change directory into <strong>3</strong>, which will be our working directory for Lab 3.</li>
+</ol>
+</div>
+
+
+<h2>Demo Programs</h2>
+
+
+<p>In this lab, we will create, view and manipulate images using arrays as described below. 
+Some of the code we have just downloaded make use of a windowing system (GUI) available on Linux called 
+<a href="https://en.wikipedia.org/wiki/X_Window_System" target="_blank">X11</a> in order
+to display these images on the screen.</p> 
+<!--but Mac users must install <a href="http://xquartz.macosforge.org/" target="_blank">XQuartz</a>.-->
+
+<p>Let's build two simple demonstration programs to illustrate how such images can be displayed on the screen.</p>
+To do so, we run a program called <tt>make</tt> at the command line. The <a href="http://www.gnu.org/software/make/manual/make.html" target="_blank"><tt>make</tt></a>
+program compiles many program files into an executable. It also automatically determines which, of the many programs, 
+need to be recompiled, and issues the appropriate commands to recompile them. 
+A description of how to build the program is provided in a <i>Makefile</i>. <tt>make</tt> is the standard tool for managing builds in the UNIX
+world. All IDEs such as Visual Studio, XCode and Eclipse have
+either <tt>make</tt> or a make-like tool under the hood. We will look
+at <tt>make</tt> in more detail later; for now we just run it with the supplied Makefile.
+
+<div class="steps">
+<h4>Demo Program <tt>text</tt></h4>
+<ol>
+<li>
+<p>Run <tt>make</tt> in the current directory. The relatively complex compile command <tt>make</tt> runs is echoed on the screen:
+
+<pre>$ make
+<!--gcc -std=c99 -g -Wall -O3 -I/usr/X11/include -o test test.c imgops.c draw.c png.c -lm -lpng -L/usr/X11/lib -lX11-->
+gcc -std=c99 -g -Wall -O3 `pkg-config --cflags x11` -o test test.c imgops.c draw.c png.c -lm -lpng `pkg-config --libs x11` 
+</pre>
+
+<p>If successful, the executable <tt>test</tt> will be built. If the build fails, look at the file <tt>Makefile</tt> to see some options for fixing it.
+
+<li><p>Run the program <tt>test</tt>:
+
+<pre>$ ./test</pre>
+
+<p>You should see a new window appearing with a completely black image. Click the mouse in the window to let the program continue and exit.
+
+<p>Now run the demonstration program again, this time with a PNG image filename as an argument:
+
+<pre>$ ./test hadfield.png</pre>
+
+<p>This time the window should contain an image of a moustachioed astronaut. Again, click the mouse in the window to let the program continue and exit.
+
+<li><p>Read the program text of <tt>test.c</tt> that contains the
+program's <tt>main()</tt>. You don't need to understand the code in <tt>png.c</tt> or <tt>draw.c</tt>: 
+just realize that the program in <tt>test.c</tt> is calling functions from these files to load an image 
+from a file, and draw it in a window. As you might expect, <tt>test.c</tt> hash-includes header files <tt>png.h</tt> and <tt>draw.h</tt> which contain declarations of the functions defined in the corresponding 
+C source files. If in doubt about this, look at the contents of the headers and C files in your editor.
+</ol>
+
+</div>
+
+<div class="steps">
+<h4>Demo Program <tt>fractal</tt></h4>
+
+<ol>
+<li><p>A second example is also provided: a program that draws a Mandelbrot Set fractal. You can build it with this command:
+
+<pre>$ make fractal
+</pre>
+</p></li>
+
+<li><p>and run it like this:
+
+<pre>./fractal
+</pre>
+</p></li>
+
+<li><p>Read the implementation in <tt>fractal.c</tt> to see how  memory is allocated to store an image, how it is interpreted as a two-dimensional array, 
+and how the pixel colors are set by changing values stored in the array. The guide below explains this in detail.</p></li>
+
+<p>There is no task associated with this fractal program. It is just a simple example to study.
+</ol>
+</div>
+
+<!--
+<h3>Examples</h3>
+<p><a href="examples.html">Examples of function usage and correct output can be found on this page</a>
+-->
+
+</div>
+
+
+<h1>Guide</h1>
+
+<h2>Raster Images</h2>
+
+<p>In computer graphics, images are usually represented as arrays of <tt>pixels</tt> (picture elements). Each pixel describes the color of a single point in the 
+image. For grey-level images - regular people call them "black and white" images - a range of 256 shades of grey, smoothly varying from 0 (black) to 255 (white)
+ is enough to produce good-looking results. 
+
+
+<p>We can conveniently and compactly represent a grey-level image as a one-dimensional array of unsigned chars of size (image_width * image_height). 
+To interpret the array as a two dimensional image, we assume that each row of pixels is stored consecutively in the array. 
+By convention, image coordinates have the origin in the top left, and y values increase downwards. We map image coordinates (x,y) to array indices thus:
+
+<pre> index = x + y * image_width</pre>
+
+<P>The pixel indices of an image of width = 5, height = 4 are therefore:
+
+<p><img src="../img/Lab3/imagecoord.png">
+
+<p>A corresponding array declaration could be:
+
+<pre  class="prettyprint">
+unsigned int width = 5;
+unsigned int height = 4;
+unsigned char img[ width * height ];
+</pre>
+
+<p>or, using the manual memory allocation described in detail below:
+
+<pre  class="prettyprint">
+unsigned int width = 5;
+unsigned int height = 4;
+unsigned char* img = malloc( width * height * sizeof(unsigned char) );
+</pre>
+
+
+
+<p>Images represented this way are known as <i>raster</i> images, from the latin <i>rastrum</i> (a rake) from the days when images were drawn on the screen of a CRT monitor by steering an electron beam in the same line-by-line pattern. They are also called <i>bitmaps</i> from the days when each pixel was only a single bit representing black and white.
+
+<p>For speed, C does not initialize the values of array elements for you. If you want an all-black image, you must set the pixels to zero:
+  
+<pre  class="prettyprint">
+for( unsigned int i = 0; i &lt; width*height; i++ )
+  img[i] = 0;	      
+</pre>
+
+<p>It can be faster to set all the pixels at once using the standard library function <tt>memset()</tt> instead:
+
+<pre  class="prettyprint">
+  memset( img, 0, width * height * sizeof(img[0]) );
+</pre>
+
+<p>See the <tt>memset()</tt> manpage for details.
+
+<h2>Standard fixed-size integer types</h2>
+
+<p>Since the <tt>sizeof(int)</tt> varies with machine architecture, it is often useful to specify the size of your integer variables exactly. Then your code will use predictable variable sizes no matter which machine you run it on. The header file <tt>stdint.h</tt> defines a set of sized integer variable types for you, including:
+
+<pre> int32_t   (32 bit signed int)
+uint32_t   (32 bit unsigned int)
+ int64_t   (64 bit signed int)
+uint64_t   (64 bit unsigned int)
+  int8_t   (8 bit signed int)
+ uint8_t   (8 bit unsigned int)
+</pre>
+
+<p>In this lab we will use <tt>uint8_t</tt> in place of its exact equivalent <tt>unsigned char</tt> for brevity. (It is C convention that the suffix <tt>_t</tt> denotes a type. <!--More on types next week.-->)
+
+
+<h2>Reminder/primer: Computer architecture memory layout</h2>
+
+<p>The memory layout for a process varies a bit by CPU architecture and OS, but the scheme used by Linux on X86 is pretty typical, and shown below. The program's text (compiled code) and static data exist in low memory, the function call stack in high memory, growing downwards, and the "heap" storage space in between. Ignore the "memory mapping segment" for now. 
+
+<p><img src="../img/Lab3/linuxmemory.png">
+
+<p>[Image reproduced from an <a href="http://duartes.org/gustavo/blog/post/anatomy-of-a-program-in-memory" target="_blank">
+excellent online description</a> of the memory layout of Linux by Gustavo Duarte.]
+
+
+<h2>Storage for "automatic" variables</h2>
+
+<p>In C terminology, a function's local variables are called "automatic variables" because the storage for them is allocated automatically when the function is called. Similarly, when the function returns, all that storage is automatically freed.  C implements this very efficiently by allocating all the space for local  variables in the stack frame for the function. When the function returns, the stack pointer returns to its previous value, thus "freeing" all the local variables at small and near-constant cost.
+
+<p>Consider this code, that contains a common and nasty C bug:
+
+<pre class="prettyprint linenums">#include &lt;stdio.h>
+
+char* get_name( void )
+{
+  printf( "Please enter your name: " );
+
+  // should be enough space for a name
+  char line[1024];
+  
+  // reads at most 1023 chars from stdin, up to first newline, 
+  // EOF or error.
+  if( fgets( line, 1024, stdin ) == 0 ) // we ALWAYS check for I/O errors
+  {
+    perror( "failed to read a name" );
+    exit(1); 
+  }
+  
+  return line; 
+}	
+
+int main( void )
+{
+  char* name = get_name();
+
+  printf( "Your name is %s\n", name );
+
+  return 0;
+}	       
+</pre>
+
+<p>The image below shows a sketch of the function call stack for a run of this program up to and including line 23. When the program begins (1), the frame for <tt>main()</tt> is on the stack, and its local variables use stack memory for storage. The "stack pointer" keeps track of the current "top" of the stack (growing downwards). 
+
+<p><img src="../img/Lab3/stackframes.png">
+
+<p>When <tt>get_name()</tt> returns (2)--(3), the stack pointer is simply replaced to the end of calling function <tt>main()</tt>'s stack frame. The space used by <tt>get_name()</tt> will be reused by the next function call. 
+
+<p>This mechanism explains:
+<ol><li> why you must declare all your variables in C: the compiler has to decide how large a function's stack frame needs to be before the function runs;
+<li>another reason why C programs can be very fast: memory allocation, and particularly deallocation, are very cheap for automatic variables.
+</ol>
+
+
+<div class="steps">
+<h4>Find the bug!</h4>
+<p>Test your understanding so far: can you find the bug in <tt>get_name()</tt>?
+</div>
+
+<h2>Returning a pointer to an address in the stack frame!!!</h2>
+
+<p>The problem is the pointer returned by <tt>get_name()</tt> points to data inside that function's stack frame. When the function returns, that pointer is no longer valid. This sketch illustrates what happens:
+
+<p><img src="../img/Lab3/stackframes2.png">
+
+<p>At (2) the return value of <tt>get_name()</tt> is determined to be the address of the <tt>line</tt> character string. At (3) <tt>main()</tt>'s name variable is set to the return value of <tt>get_name()</tt> and that function's stack frame is popped from the stack and thus forgotten. At (4) <tt>name</tt> points into the forgotten stack frame. This is a nasty bug, since the correct data <i>might</i> still be there! At (5) the function call to <tt>printf()</tt> was entitled to overwrite the old data. There's a good chance that <tt>name</tt> now points to garbage. 
+
+<p>This kind of bug is one of the main reasons people complain about C. The code looks like it should work: the intent is clear; it compiles; 
+it might even work in testing. Yet details of the implementation mean that the code is fatally bugged. This is undoubtedly a bad thing. 
+The fact that it may work in testing is particularly awful.
+
+<p>The good news is that modern compilers will generate a helpful warning if you return a pointer to memory allocated for an automatic variable. 
+<mark>Read your warnings. Better still, always use <tt>-Wall</tt> and fix all warnings in your builds, every time.</mark></p>
+
+<p><mark>Bottom line: never return a pointer that points to an address in the stack frame.</mark></p>
+
+<div class="steps">
+<h4>Try it yourself</h4>
+
+<p>One of the source files you have downloaded for this lab, namely <a href="get_name.c" target="_blank">get_name.c</a>, contains the
+program above and demonstrates.</p>
+
+<!--
+<p>One of the source files you have downloaded for this lab, namely <a href="get_name.c" target="_blank">get_name.c</a>, provides an extended version of the 
+program above, that demonstrates the corruption of <tt>name</tt> by overwriting it on the stack.</p>
+-->
+
+<ol>
+<li><p>Open this file in your text editor and have a read through it.</p></li>
+<li><p>Then compile it as follows:
+
+<pre>$ gcc -Wall get_name.c -o gn</pre>
+</p></li>
+
+<li><p>Read the warnings produced by the compiler and see if the compiler has spotted the bug.</p></li>
+<li><p>Try to run the program and confirm that it breaks as anticipated.</p></li>
+
+<!--<p>You may be surprised to see that we have to work quite hard to corrupt the array on the
+stack. Satisfy yourself that you understand what is going on before moving on.</p>-->
+
+</div>
+
+
+<h2>First Solution: Allocate in caller</h2>
+
+<p>There are two different approaches to fixing this problem. The simpler and faster solution - and thus the best one when you can use it - is to have the calling function allocate the array and pass in a pointer to it, like so:
+
+
+<pre class="prettyprint linenums">#include &lt;stdio.h>
+#include &lt;stdlib.h>
+
+void get_name( char line[], int maxlen )
+{
+  printf( "Please enter your name: " );
+
+  // reads at most maxlen-1 chars from stdin, up to first newline, 
+  // EOF or error.
+  if( fgets( line, maxlen, stdin ) == 0 ) // we ALWAYS check for I/O errors
+  {
+    perror( "failed to read a name" );
+    exit(1);
+  }
+}	
+<!--
+void stuff()
+{
+  // store some random values in my stack frame
+  int stuff[1000];
+  
+  for( int i=0; i&lt;1000; i++ )
+    stuff[i] = rand();
+}
+-->
+int main( void )
+{
+  char name[1024];
+  get_name( name, 1024 );
+
+  // we don't need to be lucky this time
+  printf( "Your name is %s", name );
+
+<!--
+  stuff();
+
+  // we still don't need to be lucky
+  printf( "Your name is %s", name );
+-->
+  return 0;
+}	       
+</pre>
+
+<p>This time <tt>get_name()</tt> receives a pointer to array <tt>name</tt> which is stored inside <tt>main()</tt>'s stack frame. Since this is guaranteed to exist longer than the call to <tt>get_name()</tt> this will work correctly.
+
+<div class="steps">
+<h4>Try it yourself</h4>
+
+<p>One of the source files you have downloaded for this lab, namely <a href="get_name_parent.c" target="_blank">get_name_parent.c</a>,
+contains the code above.</p>
+
+<ol>
+<li><p>Open this file in your text editor and have a read through it.</p></li>
+<li><p>Then compile it as follows, enabling all warnings to verify that the program builds without complaining about "function returns address of local variable":
+
+<pre>$ gcc -Wall get_name_parent.c -o gnp</pre>
+</p></li>
+
+<li><p>Run the program and confirm that it works correctly.</p></li>
+
+<p>Satisfy yourself that you understand it before moving on.</p>
+
+</div>
+
+<h2>Second solution: Explicit memory allocation</h2>
+
+<p>The above method requires you to know how large an array your function call will need at most, and to allocate that much memory in advance. It is quite possible that you just don't know how much data to expect. Also, if the amount of data you expect is usually very small, but <i>could</i> be very large, it would be wasteful to always allocate a huge array just in case.
+
+<p>In these cases, we must allocate memory explicitly, using the
+system call <tt>malloc()</tt>. This allocates memory on the heap, and
+returns a pointer to it. The allocation will persist until explicitly
+de-allocated by a call to <tt>free()</tt>. Because the allocation is
+on the heap, it is available to any function that knows its
+address, regardless of the current state of the stack.
+
+<P>Here is a simple example, omitting error checking for clarity:
+
+<pre class="prettyprint">
+// choose a random array length
+int len = rand();
+
+// allocate memory for an array of len ints
+int* array = malloc( len * sizeof(int) );
+
+// array is now a pointer to an array of len integers on the heap
+// OR zero (null pointer) if the allocation failed
+
+// ...
+// (use the array)
+// ...
+
+// I am definitely finished with the array
+free( array );
+
+// make sure to cause a segmentation fault (segfault) if I use 
+// it again by mistake
+array = NULL; // or array = 0;
+</pre>
+
+<p>The argument to <tt>malloc()</tt> is a size in bytes, so we almost
+always use sizeof(some_type) as a multiplier. It returns a special type:
+a <tt>void*</tt> (pronounced "void pointer"). By default C allows a void
+pointer to be assigned to any other kind of pointer without having to
+be converted explicity. All pointers are just memory addresses, after all.
+
+<div class="steps">
+<h4>A more realistic example</h4>
+<p>Maybe you are not convinced that this could ever be useful.
+
+<p>One of the source files you have downloaded for this lab, namely <a href="randomrandom.c" target="_blank">randomrandom.c</a>,
+contains a semi-realistic example with error checking included.</p>
+
+<ol>
+<li><p>Open this file in your text editor and have a read through it.</p></li>
+<li><p>Then compile it as follows:
+
+<pre>$ gcc -Wall randomrandom.c -o rr</pre>
+</p></li>
+
+<li><p>Run the program and confirm that it works as expected.</p></li>
+
+<p>Make sure you understand the code completely before you move on.</p>
+
+</div>
+
+<h2>Limited stack size</h2>
+
+There is one more reason to use <tt>malloc()</tt>: the size of the
+stack is very limited. The exact size depends on your OS, CPU
+architecture, and current configuration, but is generally a few MB at
+most, and can be as small as a few KB on embedded systems. The stack
+has to be limited in size to avoid it growing into the heap and
+corrupting both segments (called "smashing the stack"). You should allocate
+large things on the heap with <tt>malloc()</tt> instead. If the heap
+is out of space, <tt>malloc()</tt> tells you so and you can either
+cope with it gracefully or quit your program. Automatic variables on
+the stack do not give you this opportunity. 
+
+<p>Once again, it is a downside of C that you must think about things like this. As usual, it's the price you pay for speed and control.
+
+<h4>How large is too large for the stack?</h4>
+
+<P>The answer is system-dependent, but anything over a few KB should probably go on the heap.
+
+<h2>Say that again?</h2>
+
+If you'd like to read similar material on memory management, presented differently, 
+<a href="https://gribblelab.org/CBootCamp/7_Memory_Stack_vs_Heap.html" target="_blank">here is a good write-up by Paul Gribble</a>.
+
+
+<h1>Requirements</h1>
+
+<div class="req">
+<p>The task structure in this lab is different to your previous labs.</p>
+<ol>
+<li><p>Your job, in this lab, is to finish the implementation of several function definitions in the
+supplied file <tt>imgops.c</tt>. The grading robot will exercise
+these functions to see if they meet the requirements (specifications).</p></li>
+
+<li><p>Read the documentation in <tt>imgops.c</tt> or in <tt>imgops.h</tt>. This documentation
+describes what each function does and the requirements you must satisfy when implementation each function.
+</p></li>
+<li><p>Implement and compile a task at a time.</p></li>
+<li><p>To test the function(s) of a task, extend the program in <tt>test.c</tt> so that it calls each of your 
+function(s) 
+and displays the resulting image in its own window. 
+<p>How to do this will be demonstrated at the beginning of the lab session. 
+<p>Writing tests is part of the work of a programmer, so get used to testing as you go.</p></li>
+<li><p>Once you have implemented, compiled and tested a task in <tt>imgops.c</tt>, 
+you can add, commit and push this file to your Git repo and move on to the next task.</p></li>
+<p>The grading robot will grade the pushed file, reporting on the task you have implemented and will
+mark the other yet-to-be implemented tasks as unsuccessful (red boxes). Repeat the above steps until 
+all your tasks have successfully been tested (green boxes).
+</ol>
+<P>Important: DO NOT add a <tt>main()</tt> function in <tt>imgops.c</tt>. 
+Keep it in <tt>test.c</tt>. This is because the grading robot has its own test driver program with a 
+<tt>main()</tt> function. An extra <tt>main()</tt> will prevent the grading robot's test program 
+from compiling.</p>
+
+<p>Also important: DO NOT make your <tt>imgops.c</tt> code rely on any other files. 
+For testing, the grading robot copies only your <tt>imgops.c</tt> and will not bring any of your 
+other files along.</p>
+
+</div>
+<hr>
+
+<div class="labends">
+Lab 3 completed. <a href="../../">Back to the course web page</a>.
+</div>
+
+</body>
+</html>
