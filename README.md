@@ -9,20 +9,20 @@ Welcome to CMPT 127! Make sure you bookmark this page so you always have access 
 ## Important links
 - Lab hour Zoom link: [link](https://sfu.zoom.us/j/7631796740/)
 - Canvas discussion board: [link]()***
-- Office hours: [link](#office_hours)***
+- Office hours: [link](#office-hours)
 - Peer tutoring session: [link](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html)
 
 
 ## Got questions?
 
-Please contact the appropriate people to get timely help (see detailed contact information in [course logistics](#course_logistics)***):
+Please contact the appropriate people to get timely help (see detailed contact information in [course logistics](#course-logistics)):
 
 | Inquiry                                               | Contact                                                                    |
 |-------------------------------------------------------|----------------------------------------------------------------------------|
-| Course content related questions                      | [Canvas discussion board]()*** (fastest!), [peer tutoring sessions](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (highly recommend for 1-on-1 help!), [office hours](#office_hours)*** [lab hours](#office_hours)***, [lab hours](#lab_hours)***  |
+| Course content related questions                      | [Canvas discussion board]()*** (fastest!), [peer tutoring sessions](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (highly recommend for 1-on-1 help!), [office hours](#office-hours) [lab hours](#office-hours), [lab hours](#lab-hours)  |
 | Hardware, SFU network, SFU software related questions | CS helpdesk: email [helpdesk at sfu dot ca]                                |
-| Questions about marking, 1-on-1 help with course      | Contact the TA who marked your assignment/quiz (will be announced) via their [email](#contacts)***, (#office_hours)***, or [lab hours](#lab_hours)*** |
-| Course administration issues                          | Contact the instructor via [email](#contacts)*** or [lab hours](#office_hours)***                  |
+| Questions about marking, 1-on-1 help with course      | Contact the TA who marked your assignment/quiz (will be announced) via their [email](#course-logistics), [office hours](#office-hours), or [lab hours](#lab-hours) |
+| Course administration issues                          | Contact the instructor via [email](#course-logistics) or [lab hours](#office-hours)                 |
 
 ## Course logistics
 
@@ -65,7 +65,7 @@ All lab hours are on **Zoom**: [link](https://sfu.zoom.us/j/7631796740/) (use yo
 | D300    | 04:30pm - 05:20pm | Lab hour            |               |
 
 Students are free to attend labs and office hours of any section.
-- Lab hours: this is a time for students to do the weekly assignments and ask questions. Everyone will be in the "main room", questions will be asked in chat; if you wish to have a **short** 1-on-1, we will go into a breakout room.
+- Lab hours: this is a time for students to do the weekly assignments and ask questions. Everyone will be in the "main room", questions will be asked in chat; if you wish to have a short 1-on-1, we will go into a breakout room.
 - Office hours: this is a time for students to ask TA's questions.
 
 ### Office hours***
