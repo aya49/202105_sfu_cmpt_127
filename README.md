@@ -1,4 +1,4 @@
-# CMPT 127 - computing laboratory (summer 2021) course outline
+# CMPT 127 - computing laboratory (summer 2021)
 
 Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100), [D200](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d200), [D300](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d300) ([CMPT 125](http://www.sfu.ca/outlines.html?2021/summer/cmpt/125/d100))
 
@@ -83,15 +83,16 @@ Students are free to attend labs and office hours of any section.
 ### Grading breakdown
 
 ```
-  50% = 10 weekly assignments x  5% each
-+ 50% =  5 biweekly quizzes   x 10% each
+  50% = 8 weekly assignments x  6.25% each
++ 50% = 5 biweekly quizzes   x 10%    each
   ----
 = 100%
 ```
 
 **Assignments**: 
-- 12 assignments will be given, only the top 10 scoring assignments will be counted. 
 - Each assignment contains several tasks.
+- An optional bonus assignment will be given at the end; only your top 8 scoring assignments will be counted towards your grade.
+- Some assignment will have bonus tasks for bonus marks; but remember that assignments will still account for a maximum of 50% of your grade.
 
 **Quizzes**: 
 - All quizzes are take-home. They will be open for 24 hours on Canvas to accomodate students in different time zones; all students must complete the quiz within the desginated 24 hours. 
