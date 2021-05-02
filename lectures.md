@@ -42,6 +42,8 @@ week 03 2021-05-25
 - 01.2 task 1.9 summary
 - 01.3 gitlab
 - 01.4 academic dishonesty
+- LAB 01
+  - task 1:
 
 week 04 2021-06-01
 - introduction to C continued + muttability?
