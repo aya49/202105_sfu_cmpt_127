@@ -1,6 +1,20 @@
 14 weeks
 
-mention time it takes to complete labs
+- mention time it takes to complete labs
+- keywords in C/C++
+- commenting and documentation
+- style and documentation: http://www.edparrish.net/common/cppdoc.html
+- * pointer to memory
+- * int  var = 20; int  *ip; ip = &var;
+- C++
+  - use std::string name("Hall"); OR std::string name; name = "Hall"; OR std::cin >> name;
+  - sprint/scanf > cout/cin
+  - multidimensional arrays
+  - Dynamic memory (maloc and free) (new and delete in C++); all new must end with delete or else run out of memory (memory leak if errored! won't delete)
+- divide and conquer! software engineering
+- garbage collected C/C++
+- repl.it use sfu id! SAVE YOUR WORK LOCALLY, it'll be gone.
+
 
 week 01 2021-05-11
 - 00.1 remote login vpn? outside of canada? else won't do tasks
@@ -15,6 +29,7 @@ week 03 2021-05-25
 - introduction to C vs C++
   - compiled language > object code (remove comments, > assembler code .c > binary code .o > link binary code to other binary codes)
   - C is strongly typed (all variables have type defining how they are stored in memory and how they are represented in code: sizeof())
+  - C vs C++ printf vs std::cout (latter handles type)
     - [intprintf(constchar*format,...)] printf("ascii: %d, character: %c")
   - variables store addresses of a space in memory that holds other variables?
     - inti= 0; printf("Address of iis %p\n",&i); # &i is the address
@@ -78,36 +93,71 @@ week 07 2021-06-22
 - lab quiz 2
 
 week 08 2021-06-29
-- composite data types: combine multiple data types
+- composite data types: combine multiple data types; can be used in arrays
+  - struct {<type> field1; ...} <compositeType>;
+  - typedef struct {uint8_t* pixels; unsigned int cols; unsigned int rows;} img_t; img_t myImg;
+  - access fields (variables in ct): myImg.cols = 400; myImg.rows = 300;  myImg.pixels = malloc(sizeof(uint8_t)*400*300);
+  - access fields if composite variable is a pointer: img_t* myImgPtr = malloc(sizeof(img_t)); (*myImgPtr).cols = 400; myImgPtr -> rows = 300; myImgPtr -> pixels = malloc(sizeof(uint8_t)*400*300); printf("Number of columns: %d\n", (*myImgPtr).cols);
+  - take care when assigning its value to another value, especially with pointer fields (SEE EXAMPLE)
 - shallow vs deep copy
+  - shallow: copy composite type as is, ok for most primitive types (have own copies); not ok for pointers (both have same address)
+  - deep: copy non-pointer primitive values the same way BUT makes new memory space for each pointer (new copy of values are created if it's a pointer)
+- composite data type free-ing: must free memory allocated to its fields first:
+  - img_t* myImgPtr= malloc(sizeof(img_t));myImg-> cols = 400;myImg-> rows = 300;myImg-> pixels = malloc(sizeof(uint8_t)*400*300);//done using myImgPtr; free(myImg-> pixels); //free fields first; myImg-> pixels = NULL; //a good habit to have; free(myImgPtr); //free the variable last; myImgPtr= NULL; //a good habit to have
+- sort: insertion sort, bubble sort, quick sort, merge sort, ..., for task 4 (insert or bubble might be easier)
 - 05.1: reminder to push code, 
-  - task 5, 7, 6
+  - task 5; array manipulation functions (download zip) incremental development; stubs (place holder for code not written yet --- toby will teach unit test)
+  - task 7, 6; stack: push and pop
 
 week 09 2021-07-06
+- file i/o (except text and image files in lab 2 and 3)
+  - XDR: external data representation stores data (en/decode write/read data types; formats content types)
+  - stored as files identified by a relative/absolute path
+  - "file pointer" ("read/write position") to keep track of where in file is accessing
+  - modes: read, write
+  - open (new file, creates file), write (store and move on from data), read (get and move beyond), close (stop accessing and tell os it's free), seek (move file pointer without write/read)
+  - e.g. #include<stdlib.h> SEE EXAMPLES
 - 06.1: is a function return valid? open/create, close, write to, read from files
-  - task 1,2,5
+  - task 1 (req: call fwrite for len, 1 call to fwrite for whole array), 2 (req: call fwrite for each number in arrray i na for loop), 5: two ways to read/write composite data type; finish lab 5 first
+  - fscanf: http://www.cplusplus.com/reference/cstdio/fscanf/?kw=fscanf
+  - multi-source file model
 
 week 10 2021-07-13
+- linked lists, fast insert deletes (arrays, stacks for pair checking LIFO, queue for scheduling FIFO)
+  - head and tail element storage (typedef struct list {element_t* head; element_t* tail;} list_t;) + nodes (typedef struct element {int value; struct element* next;} element_t;) = value of a datum and memory address of next node (scttered in heap memory, no need contnuous)
+  - SEE IMAGES + time complexity (compare to arrays, both O(n) except indexing)
+    - start empty (head and tail are null) > first node points to null, both head and tail > second node
+    - search: traverse whole list (while not tail)
+    - delete: change pointers first
+  - double linked list (prev and next)
 - 07.1: find bugs
   - task 1-5
+    - test cases: no need to test for list == NULL; test each possible return value (empty, 1 element, 2 element, +); test if data rep is changed correctly
+    - hint: make a pointer variable ot the same type to occupy memory and then free it.
 
 week 11 2021-07-20
 - lab quiz 3
 
 week 12 2021-07-27
+- malloc vs realloc ( returns same address realloc(ptr, newLength*sizeof(int)), if itcan't allocate new size, puts somewhere else, copy content over, free original space, return address of new space, if no new space return NULL);; please please please use: https://stackoverflow.com/questions/3482941/how-do-you-realloc-in-c
+- assert() vs free(ptr); ptr = NULL;
 - 08.1: memory allocation strategies (2) (len=no. points in array, reserved=allocated memory for array; when are they different)
-  - task 1-4
-- 08.2: memory allocation strategies (3) how long it takes to append to array with these 3
-  - Big O amortization
+  - task 1-4: demo.c t0.c -o t0 ...
+    - difference with lab 7: list_create allocates new memory for  list, lab 8 point_array_init(point_array_t*) doesn't because array already exist in memory
+- 08.2: memory allocation strategies (3) how long it takes to append to array with these 3 (new array, copy over; realloc and add 1; realloc and double size)
+  - unstable (order changes) remove: copy element at array end over removed element + reduce array length by 1
+  - Big O amortization: 
+
 
 week 13 2021-08-03
 - 10.1: C++ class -- in week 7?
-- project presentation: if doing 125
+- C vs C++, history, file name convention, struct vs class (public vs private), object = class instance (CMPT 213 more on oop), use class::object, consturctors and desturctors
+- lab 09
 
 
 
 
-Dynamic memory (maloc and free) (new and delete in C++)
+
 
 
 week 14 2021-08-10

@@ -1,9 +1,0 @@
-Redirect from
-'https://cas.sfu.ca/cas/login?service=https://www.cs.sfu.ca/CourseCentral/127/alavergn/Labs/dist/fonts/fontawesome-webfont.woff?v=4.0.3'
-to
-'https://www.cs.sfu.ca/CourseCentral/127/alavergn/Labs/dist/fonts/fontawesome-webfont.woff?v=4.0.3&ticket=ST-50433-bpaHL5NlKMqfJEBwLyHuYJJzP8gssoapp1'
-has been blocked by CORS policy:
-No 'Access-Control-Allow-Origin' header is present on the requested resource.
-Origin 'https://www2.cs.sfu.ca' is therefore not allowed access.
-
-Lab0.html:1 Redirect from 'https://cas.sfu.ca/cas/login?service=https://www.cs.sfu.ca/CourseCentral/127/alavergn/Labs/dist/fonts/fontawesome-webfont.ttf?v=4.0.3' to 'https://www.cs.sfu.ca/CourseCentral/127/alavergn/Labs/dist/fonts/fontawesome-webfont.ttf?v=4.0.3&ticket=ST-40872-eonS9fjQIA-cDMp7DdPLKlqcE30ssoapp1' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'https://www2.cs.sfu.ca' is therefore not allowed access.
