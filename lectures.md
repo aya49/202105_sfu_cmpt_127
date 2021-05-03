@@ -2,18 +2,13 @@
 
 - mention time it takes to complete labs
 - keywords in C/C++
-- commenting and documentation
-- style and documentation: http://www.edparrish.net/common/cppdoc.html
-- * pointer to memory
-- * int  var = 20; int  *ip; ip = &var;
-- C++
-  - use std::string name("Hall"); OR std::string name; name = "Hall"; OR std::cin >> name;
-  - sprint/scanf > cout/cin
-  - multidimensional arrays
-  - Dynamic memory (maloc and free) (new and delete in C++); all new must end with delete or else run out of memory (memory leak if errored! won't delete)
-- divide and conquer! software engineering
 - garbage collected C/C++
+- Dynamic memory (maloc and free) (new and delete in C++); all new must end with delete or else run out of memory (memory leak if errored! won't delete)
+
 - repl.it use sfu id! SAVE YOUR WORK LOCALLY, it'll be gone.
+- documentation generator for cpp: doxygen
+  - divide and conquer! software engineering
+  - style and documentation: http://www.edparrish.net/common/cppdoc.html
 
 
 week 01 2021-05-11
@@ -43,7 +38,16 @@ week 03 2021-05-25
 - 01.3 gitlab
 - 01.4 academic dishonesty
 - LAB 01
-  - task 1:
+  - set up: linux/git
+  - task 1: compiling hello world ADD lab 2 task 6 (output to file)
+  - task 2: C, variable data types and storage size; output storage size in bits
+  - task 3: input/print and pointers
+    - ADD C++ - sprint/scanf > cout/cin
+  - task 4: if/else
+  - task 5: loops
+  - task 6: loop over scanf; statistics
+  - task 7: horizontal graph; loop, in/output
+  - task 8/9: pyramid projection; no need for 2/3rd number...
 
 week 04 2021-06-01
 - introduction to C continued + muttability?
@@ -65,13 +69,18 @@ week 04 2021-06-01
   - algorithm analysis: O(n)
   - arithmetic:+-*/ for numbers (e.g. int(5), long(10), float, double), % for integers (10%2 = 0; 10%3 = 1; 3%10=3)
 - 02.1 weekly workflow: lecture, lab task, repo
-- 02.2 tips: 
-  - task 1: split code into many files
-  - (task 3: swap array elements)
-  - task 5: contains; look up C library string.h
-  - task 6: create a function
-  - task 8: don't do 26 if statements, one for each letter
-  - task 10: two points of a rectangle
+- 02.2 tips: ADD directory, path, relative...
+  - task 1: header files (system supplied <>, my ""), functions, split code into many files ---THEY ALREADY KNOW MAKEFILE
+  - (task 2: arrays; pass to function) ADD about pointers * and &
+    - * pointer to memory
+    - * int  var = 20; int  *ip; ip = &var;
+  - (task 3: swap array elements) ADD pointers in functions have void output because edit actual value!
+  - task 5: arguments; contains; look up C library string.h; ADD 
+    - use std::string name("Hall"); OR std::string name; name = "Hall"; OR std::cin >> name;
+    - multidimensional arrays
+  - (task 6: redirect stdin and stdout to a file; create a function)
+  - task 8: letter frequency; don't do 26 if statements, one for each letter
+  - task 10: does a point lie in a rectange? two points of a rectangle
 - lab quiz 1 (about)
 
 week 05 2021-06-08
@@ -81,11 +90,11 @@ week 05 2021-06-08
   - new (calls constructor of a class) & delete (calls destructor of a class) in cpp vs malloc() & free() --- classes just learned
     - both allocate the memory dynamically in heap
     - keyword vs function
-- 03.1: read lab 3 guide; 
+- 03.1: read lab 3 guide; download zip file (already done); no tasks
   - task 3: memory management, raster/bitmap image representation
   - task 6: other image functions
-  - task 7: normalize
-  - task 8: answer given
+  - task 7: normalize??
+  - task 8: answer given??
 - challenge yourself
 
 week 06 2021-06-15
@@ -111,7 +120,7 @@ week 08 2021-06-29
   - task 5; array manipulation functions (download zip) incremental development; stubs (place holder for code not written yet --- toby will teach unit test)
   - task 7, 6; stack: push and pop
 
-week 09 2021-07-06
+week 09 2021-07-06 SHORT
 - file i/o (except text and image files in lab 2 and 3)
   - XDR: external data representation stores data (en/decode write/read data types; formats content types)
   - stored as files identified by a relative/absolute path
@@ -120,9 +129,10 @@ week 09 2021-07-06
   - open (new file, creates file), write (store and move on from data), read (get and move beyond), close (stop accessing and tell os it's free), seek (move file pointer without write/read)
   - e.g. #include<stdlib.h> SEE EXAMPLES
 - 06.1: is a function return valid? open/create, close, write to, read from files
-  - task 1 (req: call fwrite for len, 1 call to fwrite for whole array), 2 (req: call fwrite for each number in arrray i na for loop), 5: two ways to read/write composite data type; finish lab 5 first
-  - fscanf: http://www.cplusplus.com/reference/cstdio/fscanf/?kw=fscanf
-  - multi-source file model
+  - task 1: int array into binary file (req: call fwrite for len, 1 call to fwrite for whole array), 2 (req: call fwrite for each number in arrray i na for loop), 5: two ways to read/write composite data type; finish lab 5 first
+    - fscanf: http://www.cplusplus.com/reference/cstdio/fscanf/?kw=fscanf
+    - multi-source file model
+  - (task 2: array into json)
 
 week 10 2021-07-13
 - linked lists, fast insert deletes (arrays, stacks for pair checking LIFO, queue for scheduling FIFO)
@@ -132,10 +142,12 @@ week 10 2021-07-13
     - search: traverse whole list (while not tail)
     - delete: change pointers first
   - double linked list (prev and next)
-- 07.1: find bugs
-  - task 1-5
+- 07.1: write tests, linked list operations, list sorting
+  - (task 1-5)
     - test cases: no need to test for list == NULL; test each possible return value (empty, 1 element, 2 element, +); test if data rep is changed correctly
     - hint: make a pointer variable ot the same type to occupy memory and then free it.
+  - task 6: correctly implement list functions
+  - task 7: sort list
 
 week 11 2021-07-20
 - lab quiz 3
@@ -144,18 +156,23 @@ week 12 2021-07-27
 - malloc vs realloc ( returns same address realloc(ptr, newLength*sizeof(int)), if itcan't allocate new size, puts somewhere else, copy content over, free original space, return address of new space, if no new space return NULL);; please please please use: https://stackoverflow.com/questions/3482941/how-do-you-realloc-in-c
 - assert() vs free(ptr); ptr = NULL;
 - 08.1: memory allocation strategies (2) (len=no. points in array, reserved=allocated memory for array; when are they different)
-  - task 1-4: demo.c t0.c -o t0 ...
+  - task 1: demo.c t0.c -o t0 ...
     - difference with lab 7: list_create allocates new memory for  list, lab 8 point_array_init(point_array_t*) doesn't because array already exist in memory
+    - unstable (order changes) remove: copy element at array end over removed element + reduce array length by 
 - 08.2: memory allocation strategies (3) how long it takes to append to array with these 3 (new array, copy over; realloc and add 1; realloc and double size)
-  - unstable (order changes) remove: copy element at array end over removed element + reduce array length by 1
+  - task 2: resize array
+  - ADD measure times
   - Big O amortization: 
 
 
 week 13 2021-08-03
 - 10.1: C++ class -- in week 7?
 - C vs C++, history, file name convention, struct vs class (public vs private), object = class instance (CMPT 213 more on oop), use class::object, consturctors and desturctors
-- lab 09
-
+- lab 09: based on images in lab 5!! and malloc in lab 3
+  - C++ classes (vs structs): de/constructor, 2D arrays, refactor code
+  - task 1: write image file in cpp
+  - task 2: extend 1 with save and load (lab 6)
+  - (task 3: alternate implementation with 2D arrays)
 
 
 
@@ -165,7 +182,6 @@ week 13 2021-08-03
 week 14 2021-08-10
 - lab quiz 4
 
-- 
 
 
 add problem pseudocode
