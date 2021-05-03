@@ -105,7 +105,7 @@ week 07 2021-06-22
 
 week 08 2021-06-29
 - composite data types: combine multiple data types; can be used in arrays
-  - struct {<type> field1; ...} <compositeType>;
+  - struct {<type> field1; ...} <compositeType>; ADD -- vs class (private by default and has methods)
   - typedef struct {uint8_t* pixels; unsigned int cols; unsigned int rows;} img_t; img_t myImg;
   - access fields (variables in ct): myImg.cols = 400; myImg.rows = 300;  myImg.pixels = malloc(sizeof(uint8_t)*400*300);
   - access fields if composite variable is a pointer: img_t* myImgPtr = malloc(sizeof(img_t)); (*myImgPtr).cols = 400; myImgPtr -> rows = 300; myImgPtr -> pixels = malloc(sizeof(uint8_t)*400*300); printf("Number of columns: %d\n", (*myImgPtr).cols);
