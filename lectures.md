@@ -1,15 +1,20 @@
 14 weeks
 
-- mention time it takes to complete labs
-- keywords in C/C++
+- wait and get students to ask questions
+- keywords in C/C++, semi colon, brackets, syntax
 - garbage collected C/C++
-- Dynamic memory (maloc and free) (new and delete in C++); all new must end with delete or else run out of memory (memory leak if errored! won't delete)
+- mention time it takes to complete labs
 
-- repl.it use sfu id! SAVE YOUR WORK LOCALLY, it'll be gone.
+- Dynamic memory (maloc and free) (new and delete in C++); explain in detail? all new must end with delete or else run out of memory (memory leak if errored! won't delete)
+
+- repl.it use sfu id! SAVE YOUR WORK LOCALLY, it'll be gone. if you don't do it in teams, it will be public :) tell them answer is out there
 - documentation generator for cpp: doxygen
   - divide and conquer! software engineering
   - style and documentation: http://www.edparrish.net/common/cppdoc.html
 
+- examples in class try themselves with variations
+- makefile for each assignment
+- for amortaion: how many lines certain lines are executed for sorting; explain the idea
 
 week 01 2021-05-11
 - 00.1 remote login vpn? outside of canada? else won't do tasks
