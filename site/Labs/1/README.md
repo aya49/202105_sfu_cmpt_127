@@ -1,8 +1,28 @@
-# Lab 01: Getting Started in C
+---
+title: "Lab 01: Getting started in C"
+author: "Alice Yue"
+date: '2021-05-18'
+output:
+  html_document:
+    theme: paper
+    highlight: zenburn
+    number_sections: true
+    toc: true
+    toc_depth: 2
+    toc_float: 
+      collapsed: true
+      smooth_scroll: true
+    df_print: paged
+    # keep_md: true
+  # md_document:
+  #   variant: markdown_github
+---
 
-Compiling, input/output, data types, and loops
+# Lab 01: Getting started in C
 
-[![](../assets/img/krbook.jpg)](https://en.wikipedia.org/wiki/The_C_Programming_Language)
+Compiling, input/output, data types, and loops.
+
+[//]: # ( [![](../assets/img/krbook.jpg)](https://en.wikipedia.org/wiki/The_C_Programming_Language) )
 
 C was created by [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie). [Brian Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan) wrote the first C tutorial. The first edition of this book written by them (called K&R for short) was published in 1978.
 
