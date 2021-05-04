@@ -1,30 +1,8 @@
----
-title: "Lab 01: Getting started in C"
-author: "Alice Yue"
-date: '2021-05-18'
-output:
-  html_document:
-    theme: paper
-    highlight: zenburn
-    number_sections: true
-    toc: true
-    toc_depth: 2
-    toc_float: 
-      collapsed: true
-      smooth_scroll: true
-    df_print: paged
-    # keep_md: true
-  # md_document:
-  #   variant: markdown_github
----
-
 # Lab 01: Getting started in C
 
-Compiling, input/output, data types, and loops.
+Open assignment 1 on repl.it: ***
 
-[//]: # ( [![](../assets/img/krbook.jpg)](https://en.wikipedia.org/wiki/The_C_Programming_Language) )
-
-C was created by [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie). [Brian Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan) wrote the first C tutorial. The first edition of this book written by them (called K&R for short) was published in 1978.
+Open today's lab lecture: 
 
 
 ## Goals
@@ -44,237 +22,134 @@ After this lab you will be able to
 
 ## [Introduction](#intro)
 
-In this course you will complete a lab every week. Each lab contains several tasks, i.e., small assignments that are submitted individually.
+You will complete lab tasks and exercises, and submit them as a part of your assignment; to be done individually.
 
-[//]: # (Each lab task is automatically graded by a grading robot which downloads your code from your GitLab code repository (Git repo), then compiles and runs your code with several test cases. A test case comprises of an _input_ and a corresponding _expected result_. The grading robot checks that the output your code produces (_actual results_) matches the expected result for each test case and posts these results in a report to this link: `https://www2.cs.sfu.ca/CourseCentral/127/common/results/$USER`, which you can open in your web browser. Make sure you read and understand these reports, correct any bugs reported, recompile and retest your program (task), then push your task again onto your Git repo.)
+In this course you will learn to code in C.
 
-[//]: # (Before you attempt this lab, you must successfully complete Lab 0, in which you set up your Git Lab code repository (Git repo) and set up the auto grading system by allowing the grading robots to access your code on your Git repo.)
+[//]: # ( [![](../assets/img/krbook.jpg)](https://en.wikipedia.org/wiki/The_C_Programming_Language) )
 
-## [Setup](#setup)
+C was created by [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie). [Brian Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan) wrote the first C tutorial. The first edition of this book written by them (called K&R for short) was published in 1978.
 
+### [Setup](#setup)
 
 
 *** repl.it + canvas
 
 
-    
+### C program syntax
 
-#### [Task 1: Compiling and Hello World!](#task1)
+The following C or C++ program prints a greeting to the [standard output (stdout)](http://www.linfo.org/standard_output.html), a text stream that your command-line-based program (shell) uses to output text to the screen (or other places we will see later).
 
-  
+```C
+// author: <YOUR SFU USER ID HERE>
+// date: 2021-05-18
+// input: void
+// output: void
+// description: prints a greeting to standard output.
 
-#### Introduction
-
-In this task you will 
-1. write a very simple C program, 
-2. compile it, 
-3. run it, and 
-4. read its output.
-
-This series of activities: compile/run/check output against expected output, is called "testing".
-
-Why compile code? Languages like Python are run inside an _interpreter_, a program that reads source code and executes it as it goes along. In contrast, C code is _compiled_ into programs (executable files) that run directly on the computer. The compiler does not run the program, instead it transforms it into runnable machine code. Compiled programs do not have the overhead of the interpreter when they run, so in theory they could run faster and use less memory, at the cost of the extra compilation step. Another advantage of a compiler over an interpreter is that once the compiler has created an executable file, this file can be executed over and over without having to be recompiled (compile once, execute many times).
-
-Why C? The speed and small memory footprint of well-written C is the key to its popularity, along with the availability of a C compiler for almost every computer you can find, including small embedded devices. C also has good support for the low level operations needed to interact with hardware, while being tolerably easy for humans to read and write. C is a _lingua franca_ for application, systems and embedded programmers.
-
-Much of the software you use every day is written in C or a descendant language and this has been true for many years. To get an idea of C's popularity, have a look at the language populatiry index from [Tiobe](https://www.tiobe.com/tiobe-index//) and from [SourceForge](http://lang-index.sourceforge.net/). A popular alternative to C is Java, which has a C++-like syntax but simplified memory management. Learning Java is easy if you know C++.
-
-What follows is a simple but complete run-through of the workflow you will use to complete most of the lab tasks in this course. Don't be concerned if you find this task or this lab trivial, the tasks will become more challenging soon enough.
-
-#### Requirements
-
-Write a C program `t1.c` that writes the string `Hello World!` to standard output.
-
-The requirements section is very important. It describes what your submission must do to pass the automated tests (the grading robot). It is marked clearly so you can't miss it.
-
-  
-
-#### Guide
-
-The following C or C++ program prints a greeting to the standard output. Standard output, often abbreviated stdout is the name of a text stream that your command-line-based program uses to output text to the screen (or other places we will see later). You don't absolutely need to read it just now, but for reference [a thorough definition of standard output](http://www.linfo.org/standard_output.html) is given at [LINFO](http://www.linfo.org/), a great source of Linux information.
-
-```{C}
 #include <stdio.h>
 
-int main( void )
-{
-   printf( "Hello World\\n" );
-   return 0;
+int main(void) {
+  printf("Hello World\n");
+  return 0;
 }
 ```
 
-Let's examine the program line by line. Our goal is to use the C function `printf` to compose a chunk of text and send it to standard output (stdout). As we saw when we used the shell we can send the stdout to another program or to a file easily. Before we use `printf`, we need to tell the compiler where to find it so we import a declaration of its name and the arguments it accepts. This is provided with your compiler installation in the file `stdio.h`. The compiler is set up so that it knows where to look for it. It's often in `/usr/include`.
+C syntax
 
-Line 1 copies the contents of `stdio.h` directly into the program code. Below the `#include` line we can call any functions declared in the included file, including `printf`.
+- `//` starts a line of comments; comments are text not processed by the computer and are there for documentation purposes only.
+- `#include <stdio.h>` copies the contents of `stdio.h` directly into the program code. Below the `#include` line we can call any functions declared in the included file, including `printf`. Before we use `printf`, we need to tell the compiler where to find it so we import a declaration of its name and the arguments it accepts. This is provided with your compiler installation in the file `stdio.h`. The compiler is set up so that it knows where to look for it. It's often in the `/usr/include` directory on Linux.
+- `int main(void)` defines a function called `main` that returns an integer (`int`) and takes no arguments (`void`). C programs always start running at the `main` function. It's a bit more complicated in C++, but in both languages every program contains exactly one `main`, which is called by the operating system when the program starts. If you forget to define `main`, the compiler will report an error because it does not know where to start the program execution. The body of the function is contained within curly braces `{ ... }`. Unlike Python, the C compiler ignores indentation and newlines completely: they are only used to lay out the code for humans to read. Spaces, tabs and newlines do nothing except separate the tokens - the linguistic atoms - of the language.
+- `printf` is a C function from `stdio.h` that composes a chunk of text and sends it to standard output (stdout). As in many other languages, C strings are a sequence of characters contained within double-quote characters `"like this"`. We will come back to the details of C strings later. 
+- `\n` is an **escape sequence** that represents the newline character. This is different from a `print` statement in Python that automatically ends the line for you: the C function `printf` does not. To have a newline in output, we have to represent it with this special escape sequence.
+- Statements end with a semicolon `;`. This is different from Python which uses newlines to end statements.
+- `return 0;` causes the `main` function to return the integer value `0` (zero) as the result of the function. Back on `int main(void)`, we promised that the main function would return an integer, and the compiler would warn us if we forgot to do so. Since this is the `main` function, the caller is the command shell which invoked (ran) the program, which receives the value zero as the program's result. C programs always return an integer, and programmers conventionally use this value to indicate that the program was successful by returning zero, or a non-zero error code if something went wrong. We return zero to indicate that we detected no problems.
 
-Line 3 defines a function called `main` that returns an integer (`int`) and takes no arguments (`void`). C programs always start running at the `main` function. It's a bit more complicated in C++, but in both languages every program contains exactly one `main`, which is called by the operating system when the program starts. If you forget to define `main`, the compiler will report an error because it does not know where to start the program execution. The body of the function follows from line 5 to line 6, contained within curly braces `{ ... }`. Unlike Python, the C compiler ignores indentation and newlines completely: they are only used to lay out the code for humans to read. Spaces, tabs and newlines do nothing except separate the tokens - the linguistic atoms - of the language.
 
-Line 5 uses `printf` to write a text string to stdout. As in many other languages, C strings are a sequence of characters contained within double-quote characters `"like this"`. We will come back to the details of C strings later. The string `"Hello World\n"` ends with a two-character **escape sequence** `\n` that represents the newline character. This is different from a `print` statement in Python that automatically ends the line for you: the C function `printf` does not. To have a newline in output, we have to represent it with this special escape sequence.
+### Compiling the C program
 
-Line 5 is our first statement, a block of code that does some work. Statements end with a semicolon `;`. This is different from Python which uses newlines to end statements.
-
-Line 6 causes the `main` function to return the integer value `0` (zero) as the result of the function. Back on line 3 we promised that the main function would return an integer, and the compiler would warn us if we forgot to do so. Since this is the `main` function, the caller is the command shell which invoked (ran) the program, which receives the value zero as the program's result. C programs always return an integer, and programmers conventionally use this value to indicate that the program was successful by returning zero, or a non-zero error code if something went wrong. We return zero to indicate that we detected no problems.
-
-The guide section helps you through the process of meeting the requirements. Some tasks will have a long and detailed guide section, others will have only a brief note.
-
-  
-
-#### Compiling the program
+Go to your **shell**.
 
 Follow these steps to compile and test your program. Remember, "test your program" means: run it, read its output and make sure they match the expected output.
 
-1.  Make sure you are in your lab working copy directory `1` by following the steps from the Setup section.
-2.  Open a text editor. subl or gedit is installed for you in CSIL, easily available on all Linux systems, runs in a window and uses the well-known Windows keybindings. Of course, you can use any other text editor you like.
+1.  Type in the code from the box above into a new file and save it as `t1.c`. C files conventionally have a .c suffix.
+2.  Compile the source code file `t1.c` to create a binary executable file that can be run from the shell:
+
+```bash
+gcc t1.c
+``` 
     
-3.  Type in the code from the box above into a new file and save it as `t1.c`. C files conventionally have a .c suffix.
+3.  If the program compiled correctly, the compiler created a new file in the current directory called `a.out` containing your executable program. Instead if you get error messages read them carefully, top to bottom and edit the code to fix the first reported error, then compile again. Once all looks well, run your program using its name like so:
+
+```bash
+./a.out
+``` 
     
-4.  Compile the source code file to create a binary file that can be run from the shell
-    
-        gcc t1.c
-        
-    
-5.  If the program compiled correctly, the compiler created a new file in the current directory called `a.out` containing your executable program. Instead if you get error messages read them carefully, top to bottom and edit the code to fix the first reported error, then compile again. Once all looks well, run your program using its name like so:
-    
-        ./a.out
-        
-    
-    (where "./" means "this directory"). You should see the expected output on your console:
-    
-        Hello World
-        
-    
-6.  Specify a more descriptive name for your program than the default `a.out` with the compiler output name option `-o`:
-    
-        gcc -o hello t1.c
-        ./hello
-        Hello World
-        
+(where "./" means "this directory"). You should see the expected output on your console:
+
+```bash
+Hello World
+```
+
+4.  Specify a more descriptive name for your program than the default `a.out` with the compiler output name option `-o`:
+
+```bash
+gcc -o t1.o t1.c
+./t1.o
+Hello World
+```
     
 7.  You now have a working program written in C and built with your bare hands using only the command line. Not bad.
-    
 
-  
+For more details on compiling code, [click here](compiler)
 
-#### Testing and debugging
 
-Testing is extremely important, and beginners often underestimate how much time and effort is required for good testing. In this case the test is easy and can be done by a human directly. Does the output text match exactly the required text?
+## FOR ALL ASSIGNMENTS: Designing, Testing, and debugging programs
 
-Standard practice in software engineering, and for these labs, is to test the output of all your programs using automated scripts called **test drivers** (also referred to as unit tests). A test test is a very powerful tool for figuring out if your program works properly. It is much easier to write a nearly-correct program than a really-correct program. A good test driver will test to see if your requirements are met by trying a variety of test cases and checking for the expected output (expected results). Writing and using test drivers can significantly help with the quality of your software. You should write test drivers to make sure your code is correct before submission in all but the most trivial programs.
+All programs you will design can be seen as a black box that have 
+- some **input** (e.g. no input `void`), 
+- some **output** (e.g. integer output `0`), and 
+- some **behaviour** (e.g. print out a greeting `Hello World`).
 
-The grading robots uses test drivers (unit tests) for all your tasks. After submission, the grading robots run automatically. If you pass all the tests, you have successfully completed the task.
+Always think about what your program does in terms of input, output, behaviour!
 
-Do **not** ask the instructor/TAs what is in a particular test driver of the grading robots! Write your own test drivers instead to examine why you are failing the task. Your job is to solve the task, not to simply pass all the test cases.
+Testing is extremely important, and beginners often underestimate how much time and effort is required for good testing. In this case the test is easy and can be done by a human directly. Does the output text match exactly the required text? Will be discussed 
+
+**Test drivers** are automated scripts (also referred to as unit tests) that test to see if your program requirements are met by trying a variety of test cases and checking for the expected output (expected results). You should write test drivers to make sure your code is correct before submission in all but the most trivial programs.
+
+
+### [Assignment 1, task 1: Compiling and Hello World!](#task1)
+
+**REQUIREMENT**: Write a C program `t1.c` that writes the string `Hello World!`, `My name is <your name>.`, and `Nice to meat you!` in 3 separate lines to standard output
+
+HINT: copy the `printf("Hello World\n")` line two more times and fill it in with your desired text.
+
+```C
+// author: <YOUR SFU USER ID HERE>
+// date: 2021-05-18
+// input: void
+// output: void
+// description: prints a greeting to standard output.
+
+#include <stdio.h>
+
+int main(void) {
+  printf("Hello World\n");
+  printf("My name is Alice\n");
+  return 0;
+}
+```
+
+BEFORE YOU SUBMIT: test and debug your code!
 
 1.  Fix the error in code in `t1.c` by adding the missing exclamation point.
 2.  Compile and run it, and verify that it now produces the correct output (expected result).
-3.  Now your program meets the Requirements and you are ready to submit it.
-
+3.  Now your program meets the requirements and you are ready to submit it.
   
 
-#### Submit your code to evaluation
 
-First, add your new source code file to the Git repo, commit the current state of all added files, then push all local changes to the remote server.
 
-    git add t1.c
-    git commit -m "t1 works, so I'm submitting it"
-    git push
-    
-
-**Do not add the `a.out` file or the `hello` file to your Git repo.**
-
-  
-
-#### Checking your results
-
-You can check your results on your results page once the grading robot has executed. Refer to the **Check the automated grading server** section in Lab 0 for the link to the report web site the grading robots built for you.
-
-In this class the grading robots execute every hour. This frequency has two purposes:
-
-1.  It means you need to test your programs yourself, and not rely on the grading robots for your compile-test-debug cycle. Remember, testing is a critical skill in itself.
-2.  It simulates the experience of contributing to a very large piece of software, where full-scale builds and tests can take hours or days.
-
-#### [What does a compiler do?](#compiler)
-
-Invoking the compiler `gcc` on the source code file `t1.c` did the following things:
-
-*   First the _C preprocessor_ runs. It scans the file manipulating its text; mainly removing comments and newlines and _expanding macros_. C _Macros_ are preprocessor instructions beginning with a hash symbol `#`. The preprocessor replaces each macro with the results of the macro, which is always text. `#include` is a macro which causes the entire line it sits on to be replaced by the contents of the named file. Following the preprocessor run, we now have an intermediate C file that contains no comments or macros.
-*   Next the _C compiler_ program runs and translates the C source code into assembler code that is specific to your CPU type. To see that this is so, let's ask the compiler to stop after this stage and take a look at the assembly generated for our program:
-    
-        gcc -S t1.c
-        
-    
-    This produces a file called `t1.s` which you can view using `less t1.s` that contains the assembly output. Let's look at the assembly output for our hello world program.
-    
-    	.file	"t1.c"
-    	.text
-    	.section	.rodata
-    .LC0:
-    	.string	"Hello World!"
-    	.text
-    	.globl	main
-    	.type	main, @function
-    main:
-    .LFB0:
-    	.cfi\_startproc
-    	pushq	%rbp
-    	.cfi\_def\_cfa\_offset 16
-    	.cfi\_offset 6, -16
-    	movq	%rsp, %rbp
-    	.cfi\_def\_cfa\_register 6
-    	leaq	.LC0(%rip), %rdi
-    	call	puts@PLT
-    	movl	$0, %eax
-    	popq	%rbp
-    	.cfi\_def\_cfa 7, 8
-    	ret
-    	.cfi\_endproc
-    .LFE0:
-    	.size	main, .-main
-    	.ident	"GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0"
-    	.section	.note.GNU-stack,"",@progbits
-    
-    Looking at this assembly, you can see why C and other high level languages were invented. They are a lot easier for humans to read and write. C and C++ have proven themselves to be at a sweet spot between human usuability and the efficiency of their code at run-time.
-    
-    At this point we still have a text representation of our program, now in a different language. The computer can not run it yet.
-    
-*   The next step is to translate the assembly representation into the binary format that the computer can read directly. This is now a sequence of numbers, each representing either a datum value, a memory address, or an actual CPU operation to perform (_opcode_). This is no longer readable by most humans, but it is a direct translation of the assembly so you can translate back and forth if needed.
-    
-    The program is now a chunk of binary data called an _object_, and the compiler writes it to a file in called an _object file_, which ends with `.o`, so `t1.c` creates `t1.o`. If multiple source files were compiled, each gets its own object file.
-    
-    To see this happening, we can ask the compiler to stop at the object stage:
-    
-        gcc -c t1.c
-        
-    
-    The working directory will contain the file `t1.o`. Opening this in an editor, you will see a lot of unreadable stuff, with some familiar bits here and there, such as the string _Hello World_ which is stored in the object as data. You'll also see the function names `main` and `printf` which are kept around in human-readable form in case we want to debug the program as it runs.
-    
-*   The final stage is to _link_ together all the object files, along with any code libraries they referenced, to create the complete executable program. Code libraries are just collections of `.o` object files all smooshed together with an index at the start. (Object files are often small and numerous, so collecting them simplifies distribution).
-    
-    Invoking the compiler with our object file will do the link:
-    
-        gcc -o t1 t1.o
-        
-    
-    This will create a new executable called `t1` in the current directory. Done.
-    
-
-Now you have seen a typical C compiler process from start to finish. In practice you will almost always let the compiler do the whole thing at once for you. It deletes the intermediate files when it's finished with them, so you won't even see them unless you look hard.
-
-#### [Workflow](#workflow)
-
-The first task is complete. The remaining tasks have the same workflow.
-
-1.  Read the introduction (Step 1 - Problem Statement and Requirements).
-2.  Carefully read the Requirements (Step 1 - Problem Statement and Requirements).
-3.  Read the Guide to help you get started (Learning moment).
-4.  Think, and maybe repeat the prior steps (Step 2 - Design).
-5.  Implement some code (Step 3 - Implementation).
-6.  Test, and repeat last step until your code passes the test (Step 4 - Compilation and Testing).
-7.  Commit changes to your local repo.
-8.  Push your committed local changes to your Gitlab repo.
-9.  Look at the results from the grading robot (after some delay) on your **results** web page.
-
-#### [Task 2: Native types and printf](#task2)
+### [Assignment 1, task 2: Native types and printf](#task2)
 
   
 
@@ -448,9 +323,9 @@ IEEE 754
 
 7.2 (24 bits)
 
-±37
+Â±37
 
-±38 (8 bits)
+Â±38 (8 bits)
 
 `double`
 
@@ -458,9 +333,9 @@ IEEE 754
 
 15.9 (53 bits)
 
-±37
+Â±37
 
-±307 (11 bits)
+Â±307 (11 bits)
 
 `long double`
 
@@ -468,9 +343,9 @@ IEEE 754
 
 34.0 (113 bits)
 
-±37
+Â±37
 
-±4931 (15 bits)
+Â±4931 (15 bits)
 
 There are also _pointer_ types for each one of these. We will discuss pointers later.
 
@@ -1602,7 +1477,76 @@ Output
     ########################################
     
 
-## Reading material
+## Extra material
+
+### [What does a compiler do?](#compiler)
+
+Invoking the compiler `gcc` on the source code file `t1.c` did the following things:
+
+- First the _C preprocessor_ runs. It scans the file manipulating its text; mainly removing comments and newlines and _expanding macros_. C _Macros_ are preprocessor instructions beginning with a hash symbol `#`. The preprocessor replaces each macro with the results of the macro, which is always text. `#include` is a macro which causes the entire line it sits on to be replaced by the contents of the named file. Following the preprocessor run, we now have an intermediate C file that contains no comments or macros.
+- Next the _C compiler_ program runs and translates the C source code into assembler code that is specific to your CPU type. To see that this is so, let's ask the compiler to stop after this stage and take a look at the assembly generated for our program:
+
+```bash
+gcc -S t1.c
+```        
+    
+- This produces a file called `t1.s` which you can view using `less t1.s` that contains the assembly output. Let's look at the assembly output for our hello world program.
+
+```C
+    	.file	"t1.c"
+    	.text
+    	.section	.rodata
+    .LC0:
+    	.string	"Hello World!"
+    	.text
+    	.globl	main
+    	.type	main, @function
+    main:
+    .LFB0:
+    	.cfi\_startproc
+    	pushq	%rbp
+    	.cfi\_def\_cfa\_offset 16
+    	.cfi\_offset 6, -16
+    	movq	%rsp, %rbp
+    	.cfi\_def\_cfa\_register 6
+    	leaq	.LC0(%rip), %rdi
+    	call	puts@PLT
+    	movl	$0, %eax
+    	popq	%rbp
+    	.cfi\_def\_cfa 7, 8
+    	ret
+    	.cfi\_endproc
+    .LFE0:
+    	.size	main, .-main
+    	.ident	"GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0"
+    	.section	.note.GNU-stack,"",@progbits
+```
+
+- Looking at this assembly, you can see why C and other high level languages were invented. They are a lot easier for humans to read and write. C and C++ have proven themselves to be at a sweet spot between human usuability and the efficiency of their code at run-time. At this point we still have a text representation of our program, now in a different language. The computer can not run it yet.
+
+- The next step is to translate the assembly representation into the binary format that the computer can read directly. This is now a sequence of numbers, each representing either a datum value, a memory address, or an actual CPU operation to perform (_opcode_). This is no longer readable by most humans, but it is a direct translation of the assembly so you can translate back and forth if needed.
+    
+- The program is now a chunk of binary data called an _object_, and the compiler writes it to a file in called an _object file_, which ends with `.o`, so `t1.c` creates `t1.o`. If multiple source files were compiled, each gets its own object file.
+    
+- To see this happening, we can ask the compiler to stop at the object stage:
+
+```bash
+gcc -c t1.c
+```
+    
+- The working directory will contain the file `t1.o`. Opening this in an editor, you will see a lot of unreadable stuff, with some familiar bits here and there, such as the string _Hello World_ which is stored in the object as data. You'll also see the function names `main` and `printf` which are kept around in human-readable form in case we want to debug the program as it runs.
+    
+- The final stage is to _link_ together all the object files, along with any code libraries they referenced, to create the complete executable program. Code libraries are just collections of `.o` object files all smooshed together with an index at the start. (Object files are often small and numerous, so collecting them simplifies distribution).
+    
+- Invoking the compiler with our object file will do the link to create a new executable called `t1` in the current directory:
+
+```bash
+gcc -o t1 t1.o
+```
+
+Now you have seen a typical C compiler process from start to finish. In practice you will almost always let the compiler do the whole thing at once for you. It deletes the intermediate files when it's finished with them, so you won't even see them unless you look hard.
+
+## Good reads
 
 *   [Beginners guide to using the Linux terminal](http://linuxcommand.org)
 *   [A concise introduction to C by Nick Parlante of Stanford](http://cslibrary.stanford.edu/101/EssentialC.pdf). See also [their nice library of related topics](http://cslibrary.stanford.edu).
