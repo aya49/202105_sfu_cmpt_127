@@ -13,7 +13,7 @@ After this lab you will be able to
 
 1.  Follow the instructions for subsequent labs.
 2.  Compile and run a C program from the command line in Linux.
-3.  Submit code for evaluation using a version control system.
+3.  Submit code for evaluation on `Repl.it`.
 4.  Create and use variables of the native types and obtain their addresses.
 5.  Perform basic input and output on the console.
 6.  Link to the standard math library
@@ -21,66 +21,22 @@ After this lab you will be able to
 8.  Write conditionals using the `if` syntax.
 9.  Obtain the evaluation results through the version control system.
 
-## Reading material
-
-*   [CS Undergrad Labs (CSIL) Information](http://www.sfu.ca/computing/about/support/csil.html)
-*   [Beginners guide to using the Linux terminal](http://linuxcommand.org)
-*   [A concise introduction to C by Nick Parlante of Stanford](http://cslibrary.stanford.edu/101/EssentialC.pdf). See also [their nice library of related topics](http://cslibrary.stanford.edu).
-
-.bs-example{ margin: 20px; }
-
-[Expand](#) | [Collapse](#)
 
 ## [Introduction](#intro)
 
-In this course you will complete a lab every week. Each lab contains several tasks, i.e., small assignments that are submitted individually. Each lab task is automatically graded by a grading robot which downloads your code from your GitLab code repository (Git repo), then compiles and runs your code with several test cases. A test case comprises of an _input_ and a corresponding _expected result_. The grading robot checks that the output your code produces (_actual results_) matches the expected result for each test case and posts these results in a report to this link: `https://www2.cs.sfu.ca/CourseCentral/127/common/results/$USER`, which you can open in your web browser. Make sure you read and understand these reports, correct any bugs reported, recompile and retest your program (task), then push your task again onto your Git repo.
+In this course you will complete a lab every week. Each lab contains several tasks, i.e., small assignments that are submitted individually.
 
-Before you attempt this lab, you must successfully complete Lab 0, in which you set up your Git Lab code repository (Git repo) and set up the auto grading system by allowing the grading robots to access your code on your Git repo.
+[//]: # (Each lab task is automatically graded by a grading robot which downloads your code from your GitLab code repository (Git repo), then compiles and runs your code with several test cases. A test case comprises of an _input_ and a corresponding _expected result_. The grading robot checks that the output your code produces (_actual results_) matches the expected result for each test case and posts these results in a report to this link: `https://www2.cs.sfu.ca/CourseCentral/127/common/results/$USER`, which you can open in your web browser. Make sure you read and understand these reports, correct any bugs reported, recompile and retest your program (task), then push your task again onto your Git repo.)
+
+[//]: # (Before you attempt this lab, you must successfully complete Lab 0, in which you set up your Git Lab code repository (Git repo) and set up the auto grading system by allowing the grading robots to access your code on your Git repo.)
 
 ## [Setup](#setup)
 
-The following instructions will get you set up for this lab. But first, let's explain some of the layout of our CMPT 127 labs.
 
-Whenever you see a red section that looks like this, you should follow its instructions carefully. Don't move on until you have completed them. Seek help if necessary.
 
-When commands are given, they are shown in a code block as illustrated below
-```{bash}
-ls
-```    
+*** repl.it + canvas
 
-You should type out the command `ls` in the command shell and press the `return` key. You may copy and paste the command but always read the instructions above and below the command to check if you need to modify it.
 
-OK! Let's start setting up for Lab 1.
-
-1.  First, remember, from Lab 0, that your local repo is called `cmpt127-$SEMESTER-$USER` and it is located in the following directories (or folders): `sfuhome/cmpt-127/cmpt127-$SEMESTER-$USER`. Make your local repo directory your current working directory using the `cd` command.
-    
-    This step must always be the first step you do when you start a new lab.
-    
-    If you do not have a local repo, you first need to do Lab 0 before moving onto Lab 1.
-    
-    You can check whether you have moved into your current working directory by using the `pwd` command (_print working directory_).
-    
-2.  Create a new directory for this lab, called `1`
-    
-        mkdir 1
-        
-    
-3.  Add the new directory to Git, so it will become a permanent part of your repository:
-    
-        git add 1
-        
-    
-4.  Change directory into `1`
-    
-        cd 1
-        
-    
-5.  Check that your current working directory is now `1` using `pwd`. The instructions in the rest of this Lab 1 below assume this is true.
-    
-        pwd
-        
-    
-6.  You're ready to continue with the lab.
     
 
 #### [Task 1: Compiling and Hello World!](#task1)
@@ -89,9 +45,13 @@ OK! Let's start setting up for Lab 1.
 
 #### Introduction
 
-In this task you will write a very simple C program, compile it, run it, and read its output. Does your program produce the expected output? If yes, then your program has solved the problem stated in Task 1. If no, then your program has not solved the problem stated in Task 1 and you need to fix it, recompile it, run it and read its output again. Does it now produce the expected output?
+In this task you will 
+1. write a very simple C program, 
+2. compile it, 
+3. run it, and 
+4. read its output.
 
-This series of activities: compile/run/check output against expected output, is called "testing" (Step 4 of the software development process). Only when you have successfully tested your program, i.e., your program solves the task, can you git add/commit and push your program to your Git repo.
+This series of activities: compile/run/check output against expected output, is called "testing".
 
 Why compile code? Languages like Python are run inside an _interpreter_, a program that reads source code and executes it as it goes along. In contrast, C code is _compiled_ into programs (executable files) that run directly on the computer. The compiler does not run the program, instead it transforms it into runnable machine code. Compiled programs do not have the overhead of the interpreter when they run, so in theory they could run faster and use less memory, at the cost of the extra compilation step. Another advantage of a compiler over an interpreter is that once the compiler has created an executable file, this file can be executed over and over without having to be recompiled (compile once, execute many times).
 
@@ -113,6 +73,7 @@ The requirements section is very important. It describes what your submission mu
 
 The following C or C++ program prints a greeting to the standard output. Standard output, often abbreviated stdout is the name of a text stream that your command-line-based program uses to output text to the screen (or other places we will see later). You don't absolutely need to read it just now, but for reference [a thorough definition of standard output](http://www.linfo.org/standard_output.html) is given at [LINFO](http://www.linfo.org/), a great source of Linux information.
 
+```{C}
 #include <stdio.h>
 
 int main( void )
@@ -120,6 +81,7 @@ int main( void )
    printf( "Hello World\\n" );
    return 0;
 }
+```
 
 Let's examine the program line by line. Our goal is to use the C function `printf` to compose a chunk of text and send it to standard output (stdout). As we saw when we used the shell we can send the stdout to another program or to a file easily. Before we use `printf`, we need to tell the compiler where to find it so we import a declaration of its name and the arguments it accepts. This is provided with your compiler installation in the file `stdio.h`. The compiler is set up so that it knows where to look for it. It's often in `/usr/include`.
 
@@ -1620,17 +1582,14 @@ Output
     ########################################
     
 
-[Expand](#) | [Collapse](#)
+## Reading material
 
-$(document).ready(function(){ $('.collapseAll').click(function(){ $('.panel-collapse.in') .collapse('hide'); }); $('.expandAll').click(function(){ $('.panel-collapse:not(".in")') .collapse('show'); }); });
+*   [Beginners guide to using the Linux terminal](http://linuxcommand.org)
+*   [A concise introduction to C by Nick Parlante of Stanford](http://cslibrary.stanford.edu/101/EssentialC.pdf). See also [their nice library of related topics](http://cslibrary.stanford.edu).
 
-* * *
 
-Last updated May 25, 2020.  
-All the course material was designed, developed and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/).  
-Some of the material was changed for this offering so any errors introduced are due to the current instructor.  
-Web page design adapted from [this github repo](https://github.com/mt-class/jhu) by [Matt Post](https://github.com/mjpost) and [Adam Lopez](https://github.com/alopez).  
-  
-  
+## Credit
 
-$(document).ready(function(){ $("#labs").addClass("active"); });
+Last updated 2021-05 by Alice Yue.  
+
+Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn and Victor Cheung.

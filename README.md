@@ -8,6 +8,7 @@ Welcome to CMPT 127! Make sure you bookmark this page so you always have access 
 
 ## Important links
 - Lab hour Zoom link: [link](https://sfu.zoom.us/j/7631796740/)
+- Assignment & quiz code submission: https://replit.com/team/202105cmpt127 ([join here](https://replit.com/teams/join/mhmqbadajgyutaazwvqcwmnfmmvvfdkk-202105cmpt127) with your SFU email)
 - Canvas discussion board: [link]()***
 - Office hours: [link](#office-hours)
 - Peer tutoring session: [link](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html)
