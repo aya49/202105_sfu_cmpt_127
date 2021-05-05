@@ -1,12 +1,13 @@
 # Lab 01: Getting started in C
 
-Open assignment 01 on repl.it: https://replit.com/@202105cmpt127/lab01
+Open lab 01 on repl.it: https://replit.com/@202105cmpt127/lab01
 
 Open today's lab guide lecture slides:
 - [Course outline]()
 - [Setting up repl.it](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing)
 - [Introduction to C; C syntax; C workflow and compiling a C program](https://docs.google.com/presentation/d/1zwLTZjPFa8Ff4Eq3Qk9nTL72QQyCl22rLGIVo0gGdvs/edit?usp=sharing)
-- Variables; conditions and loops
+- [Variables](https://docs.google.com/presentation/d/190OipgViJdy5Lr_GlBDHxRkRSY8iP_xixe3slwoyx58/edit?usp=sharing)
+- [Conditions and loops](https://docs.google.com/presentation/d/1dBXA2Lsim2lFisvjnfkTylcQ2rqIEl9g1VZ0JA44pRY/edit?usp=sharing)
 
 Your to-do's:
 - Review "Guide"s.
@@ -131,7 +132,7 @@ int main(void) {
 </div>
 </details>
 
-## Assignment 01, task 01
+## Task 01
 
 **REQUIREMENT**: Write a C program `t1.c` that writes `Hello World!`, `My name is <your name>.`, and `Nice to meat you!` in 3 separate lines to standard output.
 
@@ -149,10 +150,11 @@ Variables are the basic building blocks of C.
 ## Guide
 
 There are 4 things that define a variable: 
-1. a **variable name**, a human readable name you give to the variable, 
-2. a **value**, the value assigned to the variable (this is what functions take as input),
-3. a **data type** of the value assigned to the variable (the computer determines how much space in memory to allocate to your variable based on the type of data value it will store), and 
-4. a **pointer** or an address indicating where in memory the variable's value is stored (we get this by prepending a `&` to the variable).
+1. a **data type** of the value assigned to the variable (the computer determines how much space in memory to allocate to your variable based on the type of data value it will store), and 
+2. a **pointer** or an address indicating where in memory the variable's value is stored (we get this by prepending a `&` to the variable).
+3. a **variable name**, a human readable name you give to the variable, 
+4. a **value**, the value assigned to the variable (this is what functions take as input),
+
 
 A variable in C is created by the `=` operator:
 
@@ -201,11 +203,10 @@ Integer and floating point types represent numbers exactly over a limited range 
 
 ```C
 int i = 0; // integer
-float pi = 3.14159; // floating point number
 char c = '+'; // character
-char coursename[] = "CMPT 127"; // string = array of characters
+float pi = 3.14159; // floating point number
 
-printf( "Here: %d %.2f %c %s \n", i, pi, c, coursename);
+printf( "Here: %d %.2f %c \n", i, pi, c);
 ```
 Output:
 ```
@@ -218,8 +219,8 @@ here: 0 3.14 + CMPT 127
 #### Arithmetic expressions
 
 ```C
-int a=2;
-int b=10;
+int a = 2;
+int b = 10;
 
 // a
 // a+b // addition
@@ -330,7 +331,7 @@ The code outputs the values and pointers of variables `i`, `j`, and `k`; the val
 
 
 
-## Assignment 01, task 02
+## Task 02
 
 **REQUIREMENT**:
 1.  Write a new C program in the file `t2.c`.
@@ -557,7 +558,7 @@ for (int i=0; i<1000; i++) {
 
 
 
-## Assignment 01, task 03
+## Task 03
 
 **REQUIREMENT**
 
