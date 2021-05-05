@@ -20,13 +20,11 @@ After this lab you will be able to
 9.  Obtain the evaluation results through the version control system.
 
 
-## [Introduction](#intro)
+## [Introduction](#intro): basic C syntax and compilation workflow
 
 You will complete lab tasks and exercises, and submit them as a part of your assignment; to be done individually.
 
 In this course you will learn to code in C.
-
-[//]: # ( [![](../assets/img/krbook.jpg)](https://en.wikipedia.org/wiki/The_C_Programming_Language) )
 
 C was created by [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie). [Brian Kernighan](https://en.wikipedia.org/wiki/Brian_Kernighan) wrote the first C tutorial. The first edition of this book written by them (called K&R for short) was published in 1978.
 
@@ -118,17 +116,15 @@ Testing is extremely important, and beginners often underestimate how much time 
 **Test drivers** are automated scripts (also referred to as unit tests) that test to see if your program requirements are met by trying a variety of test cases and checking for the expected output (expected results). You should write test drivers to make sure your code is correct before submission in all but the most trivial programs.
 
 
-### [Assignment 1, task 1: Compiling and Hello World!](#task1)
+### [Assignment 1, task 1](#task1)
 
-**REQUIREMENT**: Write a C program `t1.c` that writes the string `Hello World!`, `My name is <your name>.`, and `Nice to meat you!` in 3 separate lines to standard output
-
-HINT: copy the `printf("Hello World\n")` line two more times and fill it in with your desired text.
+HINT: Try this before you start, what does it output?
 
 ```C
 // author: <YOUR SFU USER ID HERE>
 // date: 2021-05-18
 // input: void
-// output: void
+// output: int
 // description: prints a greeting to standard output.
 
 #include <stdio.h>
@@ -140,800 +136,385 @@ int main(void) {
 }
 ```
 
-BEFORE YOU SUBMIT: test and debug your code!
+REQUIREMENT: Write a C program `t1.c` that writes the string `Hello World!`, `My name is <your name>.`, and `Nice to meat you!` in 3 separate lines to standard output.
 
+REMEMBER: always write comments!!
+
+BEFORE YOU SUBMIT: test and debug your code!
 1.  Fix the error in code in `t1.c` by adding the missing exclamation point.
 2.  Compile and run it, and verify that it now produces the correct output (expected result).
 3.  Now your program meets the requirements and you are ready to submit it.
-  
-
-
-
-### [Assignment 1, task 2: Native types and printf](#task2)
 
   
 
-#### Introduction
+## Variables
 
-C is a _strongly typed_ language. That is, all variables have a _type_ that identifies the kind of data they store. Types include integers, floating point numbers, and characters. Every variable has a _value_ which is the data it stores. A variable's type is specified at its creation.
+A variable is made up of 3 things: 
+- a **variable name**, a name given to the variable by you, 
+- a **value**, the value assigned to the variable (this is what functions take as argument by default!!), and 
+- a **pointer** or an address indicating where in memory the variable's value is stored (we get this by prepending a `&` to the variable).
 
-The value of a variable can change, but its type can not. Thus C is a _statically typed_ language. This is fundamentally different to Python, where variables could contain different things during their lifetime.
+A variable in C is created by the `=` operator:
 
-The advantages usually claimed for strong, static typing are
+```C
+int i = 0;
+```
 
-1.  Explicit statement of intent. You tell the compiler and people reading the code what kind of data you are manipulating.
-2.  Error prevention at compile time. If you violate your stated intent, the compiler lets you know right away.
+`int` (data type) `i` (variable name) `=` operator that initializes the variable and assigns it a `0` value; `i`'s pointer can be accessed with `&i`.
 
-  
+### Value types and printf
 
-#### Variables and output
+C is a _strongly typed_ language. This means:
+- all variables have a static _type_ that identifies the kind of data they store; a variable's type cannot change.
+- every variable has a _value_ which is the data it stores; a variable's value may change
 
-Let's look at a C program that creates some variables and prints them.
+Advantages to being _strongly typed_:
+- Explicit statement of intent. You tell the compiler and people reading the code what kind of data you are manipulating.
+- Error prevention at compile time. If you violate your stated intent, the compiler lets you know right away.
 
-1.  #include <stdio.h>
+C has several native (i.e. predefined) variable types. They differ by the kind of value they store and by the range of possible values. Here are the most commonly used variable types in C:
 
-3.  int main( void )
-4.  {
-5.   int i \= 0;
-6.   float pi \= 3.14159;
-7.   char c \= '+';
+**floating-point types**
 
-9.   // this is a comment
-10.   printf( "Here: %d %f %c\\n", i, pi, c );
+| Type specifiers | Precision (decimal digits) | Exponent range |
+| --------------- | -------------------------- | ---------------|
+| `float`         | 6                          | ±38 (8 bits)    |
+| `double`        | 10                         | ±307 (11 bits)  |
 
-12.   return 0;
-13.  }
+**integer types**
 
+| Type specifier   | Minimum value   | Maximum value |
+| ---------------  | --------------- | ------------- |
+| `char`           | \-127           | 127           |
+| `int`            | \-32,767        | 32,767        |
+
+A **characters** `char` uses 7 bits (bits = either 0 or 1) so it can represent 2^7 or 128 possible values. Hence, each character is represented by a unique set of numbers, see [ASCII](https://en.wikipedia.org/wiki/ASCII).
+
+A **string** in C is an array of characters (or an array of characters) terminated by a zero value.
+
+Integer and floating point types represent numbers exactly over a limited range and approximately based on the number of bits respectively. [A complete list of the native types is available at Wikipedia](http://en.wikipedia.org/wiki/C_syntax#Primitive_data_types).
+
+```C
+char coursename[] = "CMPT 127"; // 'C', 'M', 'P', 'T', ' ', '1', '2', '7', '\0'
+coursename[0] = 'C'
+```
+
+#### `printf`
+
+`printf` allows you to print all the native variable types. Using `printf` is similar to using the `%` idiom in Python's `print` function. `printf` is less flexible about its input than Python's `print`, but you can do a lot with it. For floating point numbers, you can specifiy the precision at which the number is printed by adding `.2` with `2` being the number of decimal points ot print to `%f` \> `%.2f`.
+
+
+```
+int i = 0; // integer
+float pi = 3.14159; // floating point number
+char c = '+'; // character
+char coursename[] = "CMPT 127"; // string = array of characters
+
+printf( "Here: %d %.2f %c %s \n", i, pi, c, coursename);
+```
 Which produces this on stdout
 
-    here: 0 3.141590 +
-    
+```bash
+here: 0 3.14 + CMPT 127
+```
 
-We initialize the variables to a value with the `=` operator. C does not require that variables be initialized, but it's a good practice so we will always do so.
+#### Arithmetic expressions
 
-Line 9 is a comment. As in most languages, comments are notes for human readers only, and are ignored by the compiler. Comments come in two styles
+An expression in C is a sequence of variables, operators and function calls. The following are valid simple expressions.
 
-    /* The  multi-line comment style: everything between the 
-       slash-star and star-slash is ignored */
-    // The single-line comment style: the remainder of the line is ignored.
-    
-
-Line 10 calls `printf` which allows you to print all the native variable types. Using `printf` is similar to using the `%` idiom in Python's `print` function. `printf` is less flexible about its input than Python's `print`, but you can do a lot with it.
-
-The first argument to the `printf` function is a `"format string"`. This is a template that specifies the text to output, including specifiers: codes that begin with `%` that are to be replaced by text representing the values of subsequent arguments to printf. In the example, the format string is `here: %d %f %c\n`. This tells printf that the next three arguments will be an integer decimal (%d), a floating point decimal (%f) and a character (%c). The compiler will check that you supplied the correct number and type of arguments.
-
-Notice that the floating point number was printed with a zero on the end that did not appear in the source code. This is because printf prints the value of a float to a default precision. This can be set explicitly by stating how many digits you want after the decimal point, e.g
-
-    float pi = 3.14159
-    printf( "%.2f\n", pi );
-    
-
-Which prints
-
-    3.14
-    
-
-Above we said that printf is expecting a sequence of variables after the format string. In fact, any expression can be used. An expression in C is a sequence of variables, operators and function calls. The following are valid simple expressions
-
-    a
-    a+b
-    a*(b+c)
-    a*sqrt(b)
-    
-
-In the last line above, we are calling a function `sqrt` as part of the expression to get the square root of the number `b`.
+```C
+a
+a+b // addition
+a*(b+c) // multiplication
+a*sqrt(b) // square root
+a/b
+```
 
 The result of any given expression is always a value with a type. This means that an expression can be used anywhere a value is expected, such as following the format string in a call to printf. For example, the following is valid
 
-    int a=2;
-    int b=10;
+```C
+int a=2;
+int b=10;
      
-    printf( "the product of a and b equals %d\n", a*b );
-    
+printf( "the product of a and b equals %d\n", a*b );
+```
 
-That's the basics of text output in C.
+### Pointers
 
-  
+The **pointer** of a variable is the address to where things are stored in memory. Each byte of memory has a unique numeric address, numbered from 0 to the size of the space. For example, if your memory is 4GB, it has around 2^64 or 4.3 billion bytes. Every address contains a single value from 0 to 2^8 (255).
 
-#### Types and storage size
+REMINDER: a bit is a 0 or 1, a byte is 8 bits.
 
-C has several native (i.e. predefined) variable types. They differ by the kind of value they store and by the range of possible values.
+When you declare a variable, e.g. `char c = 42;`, the compiler chooses an unused address to contain it, e.g.`4`, then writes the initial value `42` into the memory at that address i.e. `c`'s
+- variable name is `c`,
+- value is `42`, and
+- pointer address is `4`.
 
-Here are the most commonly used:
+If your value is larger than 2^8, the compiler allocates a sequence of addresses and gives the variable the lowest-numbered address of this sequence.
 
-NOTE: Notice that the caption in the integer table below says _minimum width_. This is because the C standard says only that integers must be at least this size. They can be larger, and your compiler will use the sizes that are most efficient for your machine. Task 2 is to write a program to find out the sizes of all these data types on the machine that runs it. The sizes your Task 2 will display will most likely be different than the figures displayed in the table below.
+Python and many other 'high level' languages have different storage models and you rarely have to think about them. That's part of what 'high level' means. C allows/requires you to think about data storage more directly. Many languages, e.g., Java, do not allow you to use pointers, and have _references_ instead. These are implemented internally as pointers, with an extra little safety net limiting how you use them. C has only pointers, for simplicity. C++ has both pointers and references.
 
-**Standard integer types**
 
-Type specifier
-
-Minimum width (bits)
-
-Minimum value
-
-Maximum value
-
-`char`
-
-8
-
-\-127
-
-127
-
-`unsigned char`
-
-8
-
-0
-
-255
-
-`int`
-
-16
-
-\-32,767
-
-32,767
-
-`unsigned int`
-
-16
-
-0
-
-65,535
-
-`long`
-
-32
-
-\-2,147,483,647
-
-2,147,483,647
-
-`unsigned long`
-
-32
-
-0
-
-4,294,967,295
-
-**Floating-point types**
-
-Type specifiers
-
-Precision (decimal digits)
-
-Exponent range
-
-Minimum
-
-IEEE 754
-
-Minimum
-
-IEEE 754
-
-`float`
-
-6
-
-7.2 (24 bits)
-
-±37
-
-±38 (8 bits)
-
-`double`
-
-10
-
-15.9 (53 bits)
-
-±37
-
-±307 (11 bits)
-
-`long double`
-
-10
-
-34.0 (113 bits)
-
-±37
-
-±4931 (15 bits)
-
-There are also _pointer_ types for each one of these. We will discuss pointers later.
-
-[A complete list of the native types is available at Wikipedia](http://en.wikipedia.org/wiki/C_syntax#Primitive_data_types).
-
-Why have all these types? The most important distinction is between integer and floating point types, which represent numbers differently. Integer types represent integer values exactly, but over a limited range, with the range determined by the number of bits. Floating point types represent real-number values approximately, with the precision of the approximation determined by the number of bits.
-
-We could manage with one type for each of integer and floating point, but C was designed with compactness and efficiency in mind. Thus C allows (indeed, requires) the programmer to specify the storage space versus range/precision trade-off for each variable. This design decision was perhaps easier to justify in 1971 than today, but memory is still precious on your smartphone, and even more so on a microwave oven and on the robots currently on Mars.
-
-  
-
-#### Characters and Strings
-
-A character in C is written using a single quote character, e.g. `char x = 'a';` assigns the value of the character `a` to the variable `x` of type `char` (or character for short). The type `char` uses 7 bits so it can represent 2^7 or 128 possible values. To see these values in more details use the command
-
-    man ascii
-    
-
-and look at the decimal set which shows the different characters used in C. This representation is called [ASCII](https://en.wikipedia.org/wiki/ASCII). As you can see from the ascii table, each character is simply a number that is printed out as a particular letter of the alphabet. The ascii table also includes unprintable characters (usually called control characters). The visible letters of the English alphabet and punctuation have values between 32 (the space character) and 126 (`~`). Special symbols like the newline character (`'\n'`) also have ascii values, for instance the newline is the number 10. Lowercase letters of the English alphabet also have decimal values starting from 97 (`a`) until 122 (`z`). So `char x = 97;` is exactly the same as `char x = 'a';`. Either definition of `x` can be printed as the English letter by using `printf("%c", x);`.
-
-A string in C is a sequence of characters (or an array of characters) terminated by a zero value. By default C will zero terminate a string.
-
-    char coursename[] = "CMPT 127";
-    
-
-Each element of the array `coursename` is a character, e.g. `coursename[0] = 'C'`.
-
-#### Requirements
-
-1.  Write a new C program in a file called `t2.c`
-2.  Write a program that outputs the storage size **in bits** of each type from the tables above on standard output.
-3.  The sizes should be listed in the order they appear in the preceding tables.
-4.  Output values should be contained on single line, each separated by a single ' ' (space) character.
-5.  The line should end with a newline.
-6.  Example output:
-    
-        8 8 16 16 32 32 32 64 128
-        
-    
-7.  Note that the exact values printed will probably be different - very likely larger - on your machine. The values in the example output was taken from a vintage 1980s computer.
-
-  
-
-#### Guide
-
-C provides a `sizeof` [operator](http://en.cppreference.com/w/c/language/sizeof) that tells you the storage size of any type in bytes. For example:
-
-    printf( "%lu\n", sizeof(int) );
-    
-
-Results in
-
-    4
-    
-
-on my machine. Note this is larger than the minimum 2 bytes required by the standard. This is because the architecture of my machine handles data in 4-byte chunks more efficiently than 2-byte chunks.
-
-The `printf` format string contained the `%lu` format specifier, which prints a unsigned long integer type. I chose this format because on my 64-bit machine `sizeof` outputs an unsigned long (storage size can only be positive). If you are using a 32-bit operating system, you might need to use "%u" instead of "%lu". The compiler will complain if you have the wrong format.
-
-`sizeof` also accepts a variable name for its argument. It figures out the type automatically
-
-    unsigned int a=73;
-    printf( "%u %lu\n", a, sizeof(a) );
-    
-
-Results in
-
-    73 4
-    
-
-Note that the requirements ask for the value in bits and not bytes. There are usually 8 bits in a byte. The number of bits in a byte on your machine is defined in the file `limits.h` in the variable `CHAR_BIT`
-
-#include <stdio.h>
-#include <limits.h>
-
-int main( void ) 
-{
-  printf("number of bits in a byte: %d\\n", CHAR\_BIT);
-}
-
-Do not be tempted to just print the example output. Your code might be tested on a very weird machine.
-
-As reminder, here's an example of building and running your new program
-
-    gcc -o sz t2.c
-    ./sz
-    8 8 32 32 64 64 32 64 128
-    
-
-  
-
-#### Testing your program
-
-Once you believe your program meets the requirements (i.e., you have compiled and tested your code successfully and your program is now solving the problem stated in the task), you are now ready to submit your program (task) to your Git repo. Remember, you won't get feedback from the grading robot for a while, so think about how you might test your program before submission to maximize the chances of it being correct. For example, you might find out which CPU your machine has and look up what its native sizes are.
-
-  
-
-#### Submission
-
-Submit your solution by checking it into Git as before
-
-    git add t2.c
-    git commit -m "t2 submission"
-    git push
-    
-
-  
-
-#### Last thing!
-
-There are two data types that have not yet been discussed in this lab: `signed short` (which is more commonly referred to as `short`), and `unsigned short`.
-
-Take a moment to investigate them on the Internet. What is the size (in bits and bytes) of these two data types? What are the minimum and the maximum values we can store in a variable of type `short` and of type `unsigned short`?
-
-#### [Task 3: Input and pointers](#task3)
-
-  
-
-#### Introduction
+### Reading user input with `scanf`
 
 Now let's look at a C program that inputs an integer from the user and echoes it back
 
-1.  #include <stdio.h>
+```C
+#include <stdio.h>
 
-3.  int main( void )
-4.  {
-5.   int i \= 0;
+int main(void) {
+  int i = 0; // 0 is just a placeholder value
 
-7.   printf("Enter an integer: ");
+  printf("Enter an integer: ");
 
-9.   scanf( "%d", &i );
-10.   printf( "Your integer was: %d\\n", i );
+  scanf( "%d", &i ); // scanf(<"type of input">, <the memory address, i.e. pointer, where scanf should put the input value into>)
+  printf( "Your integer was: %d\\n", i );
 
-12.   return 0;
-13.  }
+  return 0;
+}
+```
 
-There are two new things on line 9. The function `scanf` is roughly the inverse of `printf`, reading text from _standard input_, a text stream directly analogous to standard output but in the other direction. Text from the shell is delivered to a program's standard input (`stdin` for short) and is queued there until the program chooses to read it. The shell program and the computer's operating system work together to make this happen. We will see later that this simple scheme can be very powerful.
+- `scanf` is roughly the inverse of `printf`; it reads text from _standard input_ `stdin` and assigns it to a variable.
+  - argument 1 type string e.g. `%d`: this is the format string argument that tells `scanf` that it should interpret the user input as a decimal integer. Whitespace is ignored.
+  - argument 2 address in memory where it will store user input e.g. `&i`: arguments to functions are _passed by value_ (recall, `printf` has always printed the _value_ of our variables); however, if we give `scanf` `i`, it will see `0` which isn't an address in memory! So we prepend `i` with a `&` to get `i`'s pointer, the address in memory where we are currently storing `0`, and tell `scanf` to replace this value of `i` with the user input.
 
-The arguments to `scanf` is a format string, similar to that of `printf`, which is a template to be matched against the input. The format string specifiers (starting `%`) indicate that the text in this place in the input string should be interpreted as a specific type, and stored in the variable indicated by the next argument. A variable of a suitable type must be supplied following the format string, and they are used in order.
+If we do omit the `&` before the argument `i` we get an error message.
+```C
+int i = 0;
+scanf( "%d", i ); // ERROR!
+```
 
-The format string argument to scanf `%d` says we should interpret the entire line as a decimal integer. Whitespace around the number is ignored.
 
-Since `scanf` is expecting a decimal integer, we have to supply a variable in which to store the value. We created an integer for this purpose on line 5. So what is the purpose of the ampersand `&` before the argument `i` on line 9?
+### Assignment 1, task 2: scan and print
 
+HINT: try this program before you start, what does it output?
+
+```C
+// author: <YOUR SFU USER ID HERE>
+// date: 2021-05-18
+// input: void
+// output: int
+// description: takes user input from console and prints a message.
+
+#include <stdio.h>
+
+int main(void) {
+  float i = 0.0;
+  float j = 1.0;
+  float k = 2.0;
   
-
-#### Pass by value
-
-A fundamental feature of C is that arguments to functions are _passed by value_. Inside the called function, we see only the value of the arguments we were called with. If we do omit the `&` before the argument `i` we get an error message.
-
-    int i = 0;
-    scanf( "%d", i ); // ERROR!
-    
-
-Then `scanf` sees the format string as its first argument, and the value zero as its second argument. This is no use to `scanf`! It needs to store the value it has extracted from the input string somewhere. We wanted to tell `scanf` about the variable `i`, not the value of variable `i`. How do we get around this apparent limitation?
-
+  printf("give me an integer: \n");
+  scanf("%f", &i);
   
-
-#### Pointers
-
-The answer is a very important concept in C, the _pointer_. The pointer allows us to represent where things are stored in memory. This is a simple idea, but pointers are often considered tricky.
-
-Computer Architecture reminder: The computer makes memory available to your program as a simple _address space_, with each byte of memory having a unique numeric address, numbered from 0 to the size of the space. This is determined by your machine type, but is typically 2^32 (4GB or around 4.3 billion bytes) or 2^64 (a _very_ large number). Every address contains a single value from 0 to 2^8 (255). The address space can be visualized as a stack of mailboxes, numbered from zero, each containing a number.
-
-![Mailboxes](../assets/img/mailboxes.jpg)
-
-This point is crucial: each mailbox _has an address_, for example 114 in the picture. And that mailbox _contains a value_. If you open the door of mailbox 114 and you see a note with "93" written on it, we say the value 93 is stored at address 114.
-
-If you have used a spreadsheet, you are familiar with this idea. The address of a cell is its coordinate (e.g., C2), and the value of the cell is the number it contains. The memory space of a C program is like a spreadsheet with only one column.
-
-Consider this sketch of our program's one-column address space:
-
-     Address   Value
-     2^n          0
-       .          .
-       .          .
-       7          0
-       6          0
-       5          0
-       4         42
-       3          0
-       2          0
-       1          0
-       0          0
-    
-
-The address space is listed on the left - the stack of uniquely numbered memory slots, and the value contained in each listed on the right. The value in memory address 4 is 42. Conversely, the _address of_ that byte with value 42 is 4.
-
-Now we can see how variables are actually implemented in C. When you declare a variable, e.g., `char c=42;`, the compiler chooses a currently unused address to contain it, say address 4, then writes the initial value 42 into the memory at that address. Every time the program refers to the value of c, this means the value stored at address 4.
-
-Often you need to manipulate values larger than 2^8. To support this the compiler allocates a sequence of addresses with enough space to store a value of the variable's type. The lowest-numbered address is the _address of_ the variable. The _int_ type is used to store integers. It is often 32 bits long and thus need 4-bytes of address space. In our example, the compiler has decided that integer `i` will be stored in the 4 bytes starting at address 4. The value of 42 for `i` fits in the first byte, but we might increase it later such that addresses 5, 6 and 7 would have non-zero values too.
-
-     Address   Value
-     2^n          0
-       .          .
-       .          .
-       7          0                  |   byte 3 
-       6          0                  |   byte 2
-       5          0                  |   byte 1
-       4         42     <---- int i -    byte 0 
-       3          0
-       2          0
-       1          0
-       0          0
-    
-
-After compilation, your integer variable originally called `i` or `highscore` or `answer_to_everything` just becomes "the value of the 4 bytes starting at address 4 representing an integer". Variable names are just for humans and the compiler.
-
-**It's important to remember this simple model of data storage in C: the computer uses both (i) an _address_ to locate the start of sequence of bytes; (ii) a _type_ to understand how long the sequence is and how to interpret it.**
-
-Python and many other 'high level' languages have different storage models and you rarely have to think about them. That's part of what 'high level' means. C allows/requires you to think about data storage more directly.
-
+  printf("the value of i is %.2f, its pointer points to address in memory %p\n", i, &i);
+  printf("the value of j is %.1f, its pointer points to address in memory %p\n", j, &j);
+  printf("the value of k is %.0f, its pointer points to address in memory %p\n", k, &k);
   
+  return 0;
+}
+```
 
-#### Pointers solve the pass by value problem
+1.  Write a new C program in the file `t2.c`.
+2.  Write a program to `scanf` two integer values from standard input, then `printf` their sum.
+3.  Remember to consider negative numbers (which are also valid integers).
+4.  Be careful about whitespace at the start or end of each line in your output.
+5.  Remember to prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter an integer: "`, and let the user know what the output is by printing a message, e.g. `"Here is the sum: "`.
 
-At this point you may have figured out the purpose of the ampersand operator `&`. It means "address of" the variable to its right. We can fix the fragment above using this operator:
 
-    int i = 0;
-    scanf( "%d", &i ); // fixed using &
-    
 
-Now `scanf` receives the format string followed by the _address of_ variable `i`. If `i` has the address 68, then `scanf` receives the value 68. It now knows where to store the integer it reads from standard input. A value that represents a memory address is called a _pointer_, since it _points to_ where its target is stored.
 
-Remember: pointers allow programs to represent and manipulate memory addresses. This is a very powerful tool. We have seen how it solves the apparent limitation of the pass-by-value mechanism. We will come back to pointers later.
 
-Many languages, e.g., Java, do not allow you to use pointers, and have _references_ instead. These are implemented internally as pointers, with an extra little safety net limiting how you use them. C has only pointers, for simplicity. C++ has both pointers and references.
 
-Now you know how to pass a pointer into `scanf`, we are ready for the task at hand.
 
-#### Requirements
+## Conditions: if/else
 
-1.  Write a new C program in the file `t3.c`.
-2.  Write a program to read a floating point value from standard input, then output
-    1.  The largest integer smaller than or equal to this value;
-    2.  The nearest integer to this value, with halfway values rounded away from zero;
-    3.  The smallest integer larger than or equal to this value
-3.  The output integers should be separated by a space character and followed by a newline character.
-4.  The output values should not have any trailing zeros: e.g. `2` not `2.0`.
-5.  Sample input: `3.1415`
-6.  Corresponding output: `3 3 4`
-7.  Remember to consider negative numbers (which are also valid integers).
-8.  Be careful about whitespace at the start or end of each line in your output.
-9.  Remember that the sample code above was for you to run, the computer does not need to be prompted for input so do **not** use any `"Enter an integer:"` or `"Enter a floating point number:"` prompts in your code.
+Humans often use decision trees to determine the right course of action. Decision trees can be framed as an if/else statement. For example, if it is raining outside, I will wear a rain coat, else I won't.
 
-  
+To embed decision making and condition handling in software, we use the `if`/`else` statements
 
-#### Guide
+C's basic conditional is `if` and it has the form:
 
-The format string syntax for `scanf` is very nearly the same as for `printf`. The format specifier for floating point numbers is `%f`.
-
-C comes with the _standard library_, which contains many useful basic functions, including `printf` and `scanf`, and many mathematical functions. These functions and their documentation _man pages_ are available on almost all platforms, via the _man_ program we used briefly above.
-
-For example, you can look up your local man page for `scanf` like so:
-
-    man scanf
-    
-
-The (very detailed) man page for scanf and related functions lists all the format strings it understands. You only need "%f" for this task.
-
-Press the `q` key to exit the man page viewer.
-
-Notice that the required header(s) are listed at the top of the man page for each function. The exact headers needed varies slightly by system, so check your local man pages.
-
-The man page system is widely available and usually very detailed. The main problem with it is that you need to know the name of what you're looking for. Happily, all the web pages are online and indexed by the web search engines. Double check your local man pages after looking online, due to the minor differences between platforms.
-
-Three functions will be helpful for this task: `floor`, `ceil` and `round`.
-
-These and most other math functions require the `math.h` header:
-
-    #include <math.h>
-    
-
-Note that these functions return values of type **double** and not **int**. Thus you need the appropriate `printf` format string if you print their results directly. You can **coerce** a double value into an int value by asking C to convert it for you. For example, the following code converts a double value and prints it as an int value.
-
-    #include <stdio.h>
-     
-    int main( void )
-    {
-      double i = 3.14159;
-      printf( "%d\n", (int)i);
-      return 0;
-    }
-    
-
-If you remove the `(int)` from the `printf` call, the compiler will give you some warnings about trying to print a double value as an int. In this case, you can safely ignore those warnings or add in the `(int)` type cast to get rid of the warnings.
-
-To see what each function does, check the system manual page like so:
-
-    man floor
-    man round
-    man ceil
-    
-
-Again, press the `q` key to exit the man page viewer.
-
-  
-
-#### Linking a library
-
-The functions declared in `math.h` are not built-in to C. They are optional extras that are available as standard in most installations. The core of C is very small, and it comes with a _standard library_ of extras, including these math functions. To use them you have to `#include` the `math.h` file, and then _link_ the math library into your program, which adds the code for the math functions you use into your program. This is done explicitly in the compile command like so
-
-    gcc -o t3 t3.c -lm
-    
-
-The `-lm` suffix means link (`-l`) the math library (`m`). C tools are terse like that. The link command comes after the name of the source file(s), so that the compiler knows which functions are needed from the library.
-
-  
-
-#### Testing your program
-
-Once you believe your program meets the requirements you are ready to submit.
-
-  
-
-#### Submission
-
-Submit your solution by adding, committing and pushing to your Git repository as before:
-
-    git add t3.c
-    git commit -m "t3 submission"
-    git push
-    
-
-#### [Task 4: Conditions with if and else, return values](#task4)
-
-  
-
-#### Introduction
-
-The previous task produced a very fragile program. What if the user typed in something than could not be interpreted as a floating point number? Try it and see what happens. Does it make sense?
-
-We have reached a very important point. Assuming your code perfectly meets the requirements above, you can say it is correct. But "correct" is defined by reference to the requirements. This code is not robust when the user is free to type in arbitrary things into standard input. We can improve the requirements by specifying what the program should do in the case of failures. It is important to see that correct code may not be reliable in the real world, and that the task of specifying requirements is a large part of the work of programming.
-
-To write robust software that does the right thing even when used roughly, we first need to extend the requirements to specify what to do when things go wrong. Then in the code we test things as we go along, using _conditionals_: keywords that change the program's behaviour depending on the value of a statement at the time it is executed. C's basic conditional is `if` and it has the form:
-
-    if( statement )
-    {
-        /* this block is executed if and only if _statement_ evaluates to true (non zero) */
-    } 
-    
-
-or
-
-    if( statement ) {
-        /* this block is executed if and only if _statement_ evaluates to true (non zero) */
-    } 
+```C
+if (<statement>) {
+    // this block is executed if and only if <statement> evaluates to true (non zero)
+} 
+```
     
 
 For example:
 
-    if( s > highscore ) {
-        highscore = s;
-    }
-    
+```C
+int s = 96;
+int highscore = 95;
 
-An optional `else` block can be added that will run only if the condition is false. Thus you can choose between two courses of action, for example:
+if (s > highscore) {
+    highscore = s;
+    printf( "Congratulations on a new high score!\n" );
+}
+```
 
-    if( s > highscore ) {
-        highscore = s;
-        printf( "Congratulations on a new high score!\n" );
-    } else {
-        printf( "Bad luck. Try again\n" );
-    }
-    
+An optional `else if` and `else` block can be added that will run only if the condition is false. Thus you can choose between two courses of action, for example:
 
-  
+```C
+int s = 96;
+int highscore = 95;
 
-#### Code blocks and indentation
+if (s > highscore) {
+    highscore = s;
+    printf( "Congratulations on a new high score!\n" );
+} else if (s == highscore) {
+    printf("Ok!\n");
+} else {
+    printf( "Bad luck. Try again\n" );
+}
+```
 
-The block of code after a conditional is contained in curly braces `{ ... }`. In Python block structure is indicated by indentation, but in C and many other languages, indentation is not significant, and is only there for the comfort of the human reader. This is still _very_ important, so you should follow the conventional indentation style used here and stick to it.
+### Infix operators
 
-  
+`>` and `==` are examples of _infix_ comparison operators and can be put between variables to evaluate their relationship with each other.
 
-#### Return values
+These comparisons are statements that give our `if`/`else if`/`else` statements a _Boolean_ value: true (non-0), false (0)
 
-Functions often return values to the caller. For example, `scanf` returns an integer that indicates the number of successfully assigned variables, possibly 0 if none were assigned.
-
-We capture the return value using the _assignment operator_ \=. We used this already in variable declarations to indicate an initial value (this is always a good idea, since C does not usually initialize variables for you).
-
-Assignment examples:
-
-    int a = 0; // ensures a does not have a random initial value
-    a = 5;   // change the value of an already-declared variable
-    
-    a = scanf( "%d", &b ); // if b is set successfully, a will be set to 1. If not, a will be 0.
-    
-
-You should almost always check the return value (or other error-reporting mechanism) for any function call that could possibly go wrong or weird. This is a key basic strategy in [Defensive Programming](http://en.wikipedia.org/wiki/Defensive_programming) which aims to protect against [Finagle's law](http://en.wikipedia.org/wiki/Finagle%27s_Law).
-
-#### Requirements
-
-1.  Copy your solution for Task 3 `t3.c` to a new file `t4.c`.
-2.  The input is guaranteed to contain at least one non-whitespace character.
-3.  If the input is well-formed, i.e., can be parsed to a number, the program should behave identically to Task 3. All the requirements of Task 3 still apply except the file name.
-4.  If the input is not well formed, the program should print a helpful error message that contains the value returned by `scanf` so that the programmer can compare this number with the `scanf` documentation to figure out what went wrong. (If this program was aimed at end-users, we might design this differently).
-5.  The error message should be in the form: `"scanf error: (%d)\n"` with the `scanf` return value between the parentheses.
-6.  Sample input: `3.1415`
-7.  Corresponding output: `3 3 4`
-8.  Sample input: `sausage`
-9.  Corresponding output: `scanf error: (0)`
-10.  Be careful about the spaces, for instance, the space between the `:` and `(` in the error string.
-
-  
-
-#### Guide
-
-You should test the return value of `scanf` to decide whether a floating point value was detected in the input.
-
-Here's the list of _infix_ comparison operators. When placed between two expressions (hence the term "infix"), these result in a value of false (zero) or true (usually 1, but any non-zero value evaluates true when used in a logical expression).
-
-name
-
-syntax
-
-equal to
-
-\==
-
-not equal to
-
-!=
-
-less than
-
-<
-
-greater than
-
-\>
-
-less than or equal to
-
-<=
-
-greater than or equal to
-
-\>=
-
-  
+| name                     | syntax |
+| ------------------------ | ------ |
+| equal to                 | \==    |
+| not equal to             | !=     |
+| less than                | <      |
+| greater than             | \>     |
+| less than or equal to    | <=     |
+| greater than or equal to | \>=    |
+| not                      | !      |
 
 Notice the _equal to_ operator "==" is distinct from the assignment operator "=" . Mixing these up is a common bug for C beginners. Double-check every time you intend to use "==".
 
-  
 
-#### Testing and Submission
+## Loops
 
-Test, test, test again, then submit as usual.
-
-Testing and submission instructions will be omitted from now on, unless there is something special about the particular task. Unless otherwise specified, submit a source file called `tX.c` where X is the task number.
-
-#### [Task 5: Loops](#task5)
+Remember that task 2 only works with two numbers. Let's extend it to handle any numer of inputs. For this we need to repeat part of our program to deal with each value that comes. We need a _conditional loop_. C has only two options: while and for.
 
   
 
-#### Introduction
-
-Now our number-rounding program can detect input scanning errors, but it still only works for one number. Let's extend it to handle any number of inputs. For this we need to repeat part of our program to deal with each value that comes. We need a _conditional loop_. C has only two options: while and for.
-
-  
-
-#### While loops
+### While loops
 
 The while keyword has the following form:
 
-    while( condition )
-    {
-        // this block executes repeatedly as long as condition evaluates to true
-    }
-    
+```C
+while (<condition>) {
+    // this block executes repeatedly as long as condition evaluates to true
+}
+ ```   
 
-or
 
-    while( condition ) {
-        // this block executes repeatedly as long as condition evaluates to true
-    }
-    
+For example this code
 
-For example this code:
+```
+int i\=0; 
+while (i < 6) { 
+    printf( "%d ", i ); 
+    i++; // ++ is an increment operator that is a shorthand for i = i + 1
+    // i-- is a decrement operator that is a shorthand for i = i - 1
+}
+printf( "\\n" );
+```
 
-int i\=0; while( i < 6 ) { printf( "%d ", i ); i++; } printf( "\\n" );
+and (almost) equivalently
+
+```C
+int i=0; 
+while (!(i == 6)) { 
+    printf( "%d ", i ); 
+    i++; 
+} 
+printf( "\\n" );
+```
 
 produces the output
 
-    0 1 2 3 4 5
-    
+```bash
+0 1 2 3 4 5
+```
 
 The repeating block of code is contained in curly braces `{ ... }` the same as with the conditional structure we saw earlier.
 
-Note the use of the _increment operator_ ++ which adds one to its argument. i++ is a shortcut for i=i+1. This, along with the _decrement operator_ - are frequently used. Now you know how C++ got its name.
+Note that if the while condition is false on the first evaluation, the body of the loop is never executed; to ensure that at least one execution of the loop is done, we can alternatively use `do`/`while`:
 
-The condition can be inverted with the logical _not operator_ !, so the following does the same:
-
-int i\=0; while( ! (i \== 6) ) { printf( "%d ", i ); i++; } printf( "\\n" );
-
-It is important to note that if the while condition is false on the first evaluation, the body of the loop is never executed. Think of it like an if statement that repeats until it is false. Occasionally it is useful to have the body of the loop run at least once before testing the condition, so there is an alternate form: the do-while, like so:
-
-    do 
-    {
-        // this block executes at least once, 
-        // then repeats as long as
-        // condition evaluates true
-    } while( condition );
+do  {
+    // this block executes at least once, 
+    // then repeats as long as
+    // condition evaluates true
+} while (<condition>);
     
+For example this code
 
-or
-
-    do {
-        // this block executes at least once, 
-        // then repeats as long as
-        // condition evaluates true
-    } while( condition );
-    
-
-For example this code:
-
-int i\=0; do { i \= getNextValueFromDatabase(); } while( i <= 1000 )
+int i=0; 
+do { 
+    i = getNextValueFromDatabase(); 
+} while (i <= 1000)
 
 will get at least one value from the database, and will repeat this until it fetches a number bigger than 1000.
 
-This is a dangerous example, since if all the values in the database are less than 1000, this program will happily run forever. This could be a nasty bug since your test database is probably different from those of your customers. You should be looking out for problems like this whenever you write a loop. To produce high quality code, you need to be always thinking, "What could possibly go wrong here?"
+DANGER: if all the values in the database are less than 1000, this program will happily run forever D:!
 
-  
 
-#### For loops
+### For loops
 
 The pattern above, where we initialize a variable, test its value, then perform a loop that changes the value, is so frequently used that it has a special syntax: the _for loop_, which has the form
 
-    for( initialize; condition; modify )
-    {
-        // this code runs until condition evaluates to false 
-    }
+for(initialize; condition; modify) {
+    // this code runs until condition evaluates to false 
+}
     
-
-or
-
-    for( initialize; condition; modify ) {
-        // this code runs until condition evaluates to false 
-    }
-    
-
 Any valid C expression can be used in each of the three for() components, separated by semicolons. But they are usually quite simple. For example:
-
-for( i\=0; i<6; i++ ) { printf( "%d ", i ); } printf( "\\n" );
-
+```C
+for (i=0; i<6; i++) { 
+    printf( "%d ", i );
+} 
+printf( "\\n" );
+```
 is functionally identical to our first while example.
 
 Every for loop has an equivalent while, and _vice versa_, so choose whichever is neatest for the loop at hand.
 
-  
 
-#### Break
+### Break
 
 You can break out of a loop body with the break; statement. For example, this code:
+```C
+#include <stdio.h>
+#include <stdlib.h>
 
-for(  i\=0; i<1000; i++ ) { if( random() % 100 \== 0 ) // random() is defined in stdlib.h break; printf( "%d ", i++ ); // prints the value and \*then\* increments it }
-
+for (i=0; i<1000; i++) { 
+    if (random() % 100 == 0) { // random() is defined in stdlib.h 
+        break; 
+    }
+    printf("%d ", i++); // prints the value and THEN increments it
+}
+```
 will print integers in sequence from 0, but has a 1% chance of leaving the loop every time around. The function random() returns a random integer and the % operator is the integer modulus operator, so the code will print consecutive numbers up to 999 or until random() returns a multiple of 100, whichever comes sooner.
 
   
 
-#### Continue
+### Continue
 
 You can jump to the beginning of a loop body with the continue; statement. For example, this code:
-
-for( i\=0; i<1000; i++ ) { if( random() % 100 \== 0 ) continue; printf( "%d ", i++ ); // prints the value and \*then\* increments it }
-
+```C
+for (i=0; i<1000; i++) {
+    if (random() % 100 == 0) {
+        continue;
+    }
+    printf( "%d ", i++ ); // prints the value and THEN increments it 
+}
+```
 will print integers of increasing value, but every loop iteration has has a 1% chance of jumping to the beginning of the loop without printing. Thus this code will continue to loop until it reaches 1000, but might skip a few numbers.
 
-Challenge! Can you write your programs without using _break_ or _continue_?
 
-That is all there is to loops in C.
+### Assignment 1, task 3
+
+Can you write your programs without using _break_ or _continue_?
 
   
 
-#### EOF: the end of the file
 
-The standard input stream to your program behaves as if it was a file. One of the most powerful ideas behind the design of the UNIX operating system and environment is that ["everything is a file"](http://en.wikipedia.org/wiki/Everything_is_a_file). Since stdin behaves like a file, it can have an "end".
-
-The shell program connects your typed input to your program's stdin. We can break this connection by typing the special character sequence `Ctrl-d`, that is press-and-hold the control key, then press 'd', then release the control key. The shell receives this command, sends a special "End-of-file" or **EOF** indicator to the connected stdin, and then closes the connection.
-
-Inside the running program, the EOF indicator is detected by input functions such as `scanf`. `scanf` will return an integer with a special value to indicate EOF. This is often -1, but the actual value depends on your system. The standard library defines the symbol "EOF" which has the correct value for your system. You can use it like so:
-
-int i\=0; int result \= scanf( "%d", &i ); if( result \== EOF ) // note double-equals for comparison! { printf( "End of file detected\\n" ); }
-
-By definition, once an EOF is seen in an input stream, any subsequent read will also return EOF.
-
-We can use the combination of conditional loops and EOF indicator to make the rounding program work for an arbitrary number of input values.
 
 #### Requirements
 
@@ -1545,6 +1126,80 @@ gcc -o t1 t1.o
 ```
 
 Now you have seen a typical C compiler process from start to finish. In practice you will almost always let the compiler do the whole thing at once for you. It deletes the intermediate files when it's finished with them, so you won't even see them unless you look hard.
+
+### Note on variable size
+
+C provides a `sizeof` [operator](http://en.cppreference.com/w/c/language/sizeof) that tells you the storage size of any type in bytes. For example:
+```C
+printf( "%lu\n", sizeof(int) );
+```
+
+Results in
+```C
+4
+```    
+
+on my machine. Note this is larger than the minimum 2 bytes required by the standard. This is because the architecture of my machine handles data in 4-byte chunks more efficiently than 2-byte chunks.
+
+The `printf` format string contained the `%lu` format specifier, which prints a unsigned long integer type. I chose this format because on my 64-bit machine `sizeof` outputs an unsigned long (storage size can only be positive). If you are using a 32-bit operating system, you might need to use "%u" instead of "%lu". The compiler will complain if you have the wrong format.
+
+`sizeof` also accepts a variable name for its argument. It figures out the type automatically
+```C
+unsigned int a=73;
+printf( "%u %lu\n", a, sizeof(a) );
+```
+
+Results in
+```C
+73 4
+```
+
+Note, there are usually 8 bits in a byte. The number of bits in a byte on your machine is defined in the file `limits.h` in the variable `CHAR_BIT`
+
+```C
+#include <stdio.h>
+#include <limits.h>
+
+int main(void) {
+  printf("number of bits in a byte: %d\\n", CHAR\_BIT);
+}
+```
+Do not be tempted to just print the example output. Your code might be tested on a very weird machine.
+
+As reminder, here's an example of building and running your new program
+
+```C
+gcc -o sz t2.c
+./sz
+8 8 32 32 64 64 32 64 128
+```  
+
+### Additional arithmetic functions
+You can access for arthimetic functions by including the `math.h` file and its function in the header:
+
+```
+#include <stdio.h>
+#include <math.h>
+```
+
+`math.h` includes functions such as `floor`, `ceil`, and `round` that return the floor, ceiling, and rounded integer of a given value.
+
+##E EOF: the end of the file
+
+One of the most powerful ideas behind the design of the UNIX operating system and environment is that ["everything is a file"](http://en.wikipedia.org/wiki/Everything_is_a_file). Since stdin behaves like a file, it can have an "end". The shell program connects your typed input to your program's stdin. We can break this connection by typing the special character sequence `Ctrl-d`, The shell receives this command, sends a special "End-of-file" or **EOF** indicator to the connected stdin, and then closes the connection.
+
+Inside the running program, the EOF indicator is detected by input functions such as `scanf`. `scanf` will return an integer with a special value to indicate EOF. This is often -1, but the actual value depends on your system. The standard library defines the symbol "EOF" which has the correct value for your system. You can use it like so:
+```C
+int i=0; 
+int result = scanf("%d", &i); 
+if (result == EOF) { // note double-equals for comparison! 
+    printf( "End of file detected\\n" ); 
+}
+```
+By definition, once an EOF is seen in an input stream, any subsequent read will also return EOF.
+
+We can use the combination of conditional loops and EOF indicator to make the rounding program work for an arbitrary number of input values.
+
 
 ## Good reads
 
