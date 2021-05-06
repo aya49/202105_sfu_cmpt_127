@@ -5,17 +5,17 @@ Open lab 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects 
 **Your to-do's**:
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
-  - Course outline ([slides]())
-  - Setting up repl.it ([slides](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing))
-  - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing)): introduction to C; C syntax, workflow, and compiling
-  - [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/190OipgViJdy5Lr_GlBDHxRkRSY8iP_xixe3slwoyx58/edit?usp=sharing)): variables
-  - [Guide 03](#guide-2) ([slides](https://docs.google.com/presentation/d/1dBXA2Lsim2lFisvjnfkTylcQ2rqIEl9g1VZ0JA44pRY/edit?usp=sharing)): conditions and loops
+- Course outline ([slides]())
+- Setting up repl.it ([slides](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing))
+- [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing)): introduction to C; C syntax, workflow, and compiling
+- [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/190OipgViJdy5Lr_GlBDHxRkRSY8iP_xixe3slwoyx58/edit?usp=sharing)): variables
+- [Guide 03](#guide-2) ([slides](https://docs.google.com/presentation/d/1dBXA2Lsim2lFisvjnfkTylcQ2rqIEl9g1VZ0JA44pRY/edit?usp=sharing)): conditions and loops
 
 Try "Practice" problems on repl.it; these will NOT be graded.
-  - [Practice 01](#practice-01)
-  - [Practice 02](#practice-02)
-  - [Practice 03](#practice-03)
-  - [Practice 04](#practice-04)
+- [Practice 01](#practice-01)
+- [Practice 02](#practice-02)
+- [Practice 03](#practice-03)
+- [Practice 04](#practice-04)
 
 Do [Assignment 01](../../assignments/01).
 
@@ -40,8 +40,8 @@ In this course you will learn to code in C. C was created by [Dennis Ritchie](ht
 #include <stdio.h>
 
 int main(void) {
-  printf("Hello World\n");
-  return 0;
+    printf("Hello World\n");
+    return 0;
 }
 ```
 
@@ -60,32 +60,32 @@ This C or C++ program prints a greeting to the [standard output (stdout)](http:/
 
 Go to your **shell**, this is where you replay commands to your machine.
 
-1.  Compile the source code file `t1.c` to create a binary executable file that can be run from the shell:
+1. Compile the source code file `t1.c` to create a binary executable file that can be run from the shell:
 
 ```
 gcc t1.c
 ``` 
-  
-2.  If the program compiled correctly, the compiler created a new file in the current directory called `a.out` containing your executable program. Instead if you get error messages read them carefully, top to bottom and edit the code to fix the first reported error, then compile again. Once all looks well, run your program using its name like so:
+    
+2. If the program compiled correctly, the compiler created a new file in the current directory called `a.out` containing your executable program. Instead if you get error messages read them carefully, top to bottom and edit the code to fix the first reported error, then compile again. Once all looks well, run your program using its name like so:
 
 ```
 ./a.out
 ``` 
-  
+    
 (where "./" means "this directory"). You should see the expected output on your console:
 
 ```
 Hello World
 ```
 
-3.  Specify a more descriptive name for your program than the default `a.out` with the compiler output name option `-o`:
+3. Specify a more descriptive name for your program than the default `a.out` with the compiler output name option `-o`:
 
 ```
 gcc t1.c -o t1.o
 ./t1.o
 Hello World
 ```
-  
+    
 You now have a working program written in C and built with your bare hands using only the command line. Not bad.
 
 
@@ -126,9 +126,9 @@ How are you?
 #include <stdio.h>
 
 int main(void) {
-  printf("Hello World\n");
-  printf("How are you?\n");
-  return 0;
+    printf("Hello World\n");
+    printf("How are you?\n");
+    return 0;
 }
 ```
 
@@ -136,7 +136,7 @@ int main(void) {
 </details>
 
 
-  
+    
 
 # Variables
 
@@ -180,15 +180,15 @@ C has several native (i.e. predefined) variable types. They differ by the kind o
 
 | Type specifiers | Precision (decimal digits) | Exponent range |
 | --------------- | -------------------------- | ---------------|
-| `float`         | 6                          | ±38 (8 bits)    |
-| `double`        | 10                         | ±307 (11 bits)  |
+| `float`         | 6                          | ±38 (8 bits)   |
+| `double`        | 10                         | ±307 (11 bits) |
 
 **integer types**
 
-| Type specifier   | Minimum value   | Maximum value |
-| ---------------  | --------------- | ------------- |
-| `char`           | \-127           | 127           |
-| `int`            | \-32,767        | 32,767        |
+| Type specifier  | Minimum value   | Maximum value |
+| --------------- | --------------- | ------------- |
+| `char`          | \-127           | 127           |
+| `int`           | \-32,767        | 32,767        |
 
 A **characters** `char` uses 7 bits (bits = either 0 or 1) so it can represent 2^7 or 128 possible values. Hence, each character is represented by a unique set of numbers, see [ASCII](https://en.wikipedia.org/wiki/ASCII).
 
@@ -264,20 +264,20 @@ Now let's look at a C program that reads user inputs as an integer and echoes it
 #include <stdio.h>
 
 int main(void) {
-  int i = 0; // 0 is just a placeholder value
+    int i = 0; // 0 is just a placeholder value
 
-  printf("Enter an integer: ");
+    printf("Enter an integer: ");
 
-  scanf("%d", &i); // scanf(<"type of input">, <the memory address, i.e. pointer, where scanf should put the input value into>)
-  printf("Your integer was: %d\n", i);
+    scanf("%d", &i); // scanf(<"type of input">, <the memory address, i.e. pointer, where scanf should put the input value into>)
+    printf("Your integer was: %d\n", i);
 
-  return 0;
+    return 0;
 }
 ```
 
 - `scanf` is roughly the inverse of `printf`; it reads text from _standard input_ `stdin` and assigns it to a variable.
-  - argument 1 type string e.g. `%d`: this is the format string argument that tells `scanf` that it should interpret the user input as a decimal integer. Whitespace is ignored.
-  - argument 2 address in memory where it will store user input e.g. `&i`: arguments to functions are _passed by value_ (recall, `printf` has always printed the _value_ of our variables); however, if we give `scanf` `i`, it will see `0` which isn't an address in memory! So we prepend `i` with a `&` to get `i`'s pointer, the address in memory where we are currently storing `0`, and tell `scanf` to replace this value of `i` with the user input.
+    - argument 1 type string e.g. `%d`: this is the format string argument that tells `scanf` that it should interpret the user input as a decimal integer. Whitespace is ignored.
+    - argument 2 address in memory where it will store user input e.g. `&i`: arguments to functions are _passed by value_ (recall, `printf` has always printed the _value_ of our variables); however, if we give `scanf` `i`, it will see `0` which isn't an address in memory! So we prepend `i` with a `&` to get `i`'s pointer, the address in memory where we are currently storing `0`, and tell `scanf` to replace this value of `i` with the user input.
 
 ## Practice 02
 
@@ -306,21 +306,21 @@ scanf("%d", i); // ERROR!
 #include <stdio.h>
 
 int main(void) {
-  // ADD COMMENT HERE
-  float i = 0.0;
-  float j = 1.0;
-  float k = 2.0;
-  
-  // ADD COMMENT HERE
-  printf("give me an integer: \n");
-  scanf("%f", &i);
-  
-  // ADD COMMENT HERE
-  printf("the value of i is %.2f, its pointer points to address in memory %p\n", i, &i);
-  printf("the value of j is %.1f, its pointer points to address in memory %p\n", j, &j);
-  printf("the value of k is %.0f, its pointer points to address in memory %p\n", k, &k);
-  
-  return 0;
+    // ADD COMMENT HERE
+    float i = 0.0;
+    float j = 1.0;
+    float k = 2.0;
+    
+    // ADD COMMENT HERE
+    printf("give me an integer: \n");
+    scanf("%f", &i);
+    
+    // ADD COMMENT HERE
+    printf("the value of i is %.2f, its pointer points to address in memory %p\n", i, &i);
+    printf("the value of j is %.1f, its pointer points to address in memory %p\n", j, &j);
+    printf("the value of k is %.0f, its pointer points to address in memory %p\n", k, &k);
+    
+    return 0;
 }
 ```
 
@@ -352,10 +352,10 @@ C's basic conditional is `if` and it has the form:
 
 ```C
 if (<statement>) {
-  // this block is executed if and only if <statement> evaluates to true (non zero)
+    // this block is executed if and only if <statement> evaluates to true (non zero)
 } 
 ```
-  
+    
 For example:
 
 ```C
@@ -363,8 +363,8 @@ int s = 96;
 int highscore = 95;
 
 if (s > highscore) {
-  highscore = s;
-  printf( "Congratulations on a new high score!\n" );
+    highscore = s;
+    printf( "Congratulations on a new high score!\n" );
 }
 ```
 
@@ -375,12 +375,12 @@ int s = 96;
 int highscore = 95;
 
 if (s > highscore) {
-  highscore = s;
-  printf( "Congratulations on a new high score!\n" );
+    highscore = s;
+    printf( "Congratulations on a new high score!\n" );
 } else if (s == highscore) {
-  printf("Ok!\n");
+    printf("Ok!\n");
 } else {
-  printf( "Bad luck. Try again\n" );
+    printf( "Bad luck. Try again\n" );
 }
 ```
 
@@ -390,15 +390,15 @@ if (s > highscore) {
 
 These comparisons are statements that give our `if`/`else if`/`else` statements a _Boolean_ value: true (non-0), false (0)
 
-| name                     | syntax |
-| ------------------------ | ------ |
-| equal to                 | \==    |
-| not equal to             | !=     |
-| less than                | <      |
-| greater than             | \>     |
-| less than or equal to    | <=     |
-| greater than or equal to | \>=    |
-| not                      | !      |
+| name                     | syntax     |
+| ------------------------ | ---------- |
+| equal to                 | \==        |
+| not equal to             | !=         |
+| less than                | <          |
+| greater than             | \>         |
+| less than or equal to    | <=         |
+| greater than or equal to | \>=        |
+| not                      | !          |
 
 Notice the _equal to_ operator "==" is distinct from the assignment operator "=" . Mixing these up is a common bug for C beginners. Double-check every time you intend to use "==".
 
@@ -407,7 +407,7 @@ Notice the _equal to_ operator "==" is distinct from the assignment operator "="
 
 Let's extend `scanf` to handle any numer of inputs. For this we need to repeat part of our program to deal with each value that comes. We need a _conditional loop_. C has only two options: while and for.
 
-  
+    
 
 #### `while` loops
 
@@ -415,9 +415,9 @@ The while keyword has the following form:
 
 ```C
 while (<condition>) {
-  // this block executes repeatedly as long as condition evaluates to true
+    // this block executes repeatedly as long as condition evaluates to true
 }
- ```   
+ ```     
 
 
 For example this code
@@ -426,9 +426,9 @@ For example this code
 int i = 0;
 
 while (i < 6) { 
-  printf( "%d ", i ); 
-  i++; // ++ is an increment operator that is a shorthand for i = i + 1
-  // i-- is a decrement operator that is a shorthand for i = i - 1
+    printf( "%d ", i ); 
+    i++; // ++ is an increment operator that is a shorthand for i = i + 1
+    // i-- is a decrement operator that is a shorthand for i = i - 1
 }
 
 printf( "\n" );
@@ -439,8 +439,8 @@ and (almost) equivalently
 ```C
 int i = 0; 
 while (!(i == 6)) { 
-  printf( "%d ", i ); 
-  i++; 
+    printf( "%d ", i ); 
+    i++; 
 } 
 printf( "\n" );
 ```
@@ -458,10 +458,10 @@ The repeating block of code is contained in curly braces `{ ... }` the same as w
 If the while condition is false on the first evaluation, the body of the loop is never executed; to ensure that at least one execution of the loop is done, we can alternatively use `do`/`while`:
 
 ```C
-do  {
-  // this block executes at least once, 
-  // then repeats as long as
-  // condition evaluates true
+do    {
+    // this block executes at least once, 
+    // then repeats as long as
+    // condition evaluates true
 } while (<condition>);
 ```
 
@@ -470,7 +470,7 @@ For example this code
 ```C
 int i = 0; 
 do { 
-  i++;
+    i++;
 } while (i <= 1000);
 ```
 
@@ -484,14 +484,14 @@ The pattern above, where we initialize a variable, test its value, then perform 
 
 ```C
 for(<initialize>; <condition>; <modify>) {
-  // this code runs until condition evaluates to false 
+    // this code runs until condition evaluates to false 
 }
 ```
-    
+        
 Any valid C expression can be used in each of the three for() components, separated by semicolons. But they are usually quite simple. For example:
 ```C
 for (int i=0; i<6; i++) { 
-  printf("%d ", i);
+    printf("%d ", i);
 } 
 printf("\n");
 ```
@@ -504,10 +504,10 @@ Every for loop has an equivalent while, and _vice versa_, so choose whichever is
 
 ```C
 for (int i=0; i<105; i++) { 
-  if (i == 100) {
-    break;
-  }
-  printf("%d ", i++); // prints the value and THEN increments it
+    if (i == 100) {
+        break;
+    }
+    printf("%d ", i++); // prints the value and THEN increments it
 }
 ```
 
@@ -516,10 +516,10 @@ You can break out of a loop body with the break; statement. For example, the cod
 
 ```C
 for (int i=0; i<105; i++) {
-  if (i == 100) {
-    continue;
-  }
-  printf("%d ", i++); // prints the value and THEN increments it 
+    if (i == 100) {
+        continue;
+    }
+    printf("%d ", i++); // prints the value and THEN increments it 
 }
 ```
 
@@ -542,15 +542,15 @@ You can jump to the beginning of a loop body with the continue; statement. For e
 #include <stdio.h>
 
 int main(void) {
-  // for integers between 0 and 104
-  for (int i=0; i<105; i++) {
-    // if the integer is not 100, print it!
-    if (i != 100) {
-      printf("%d ", i++); // prints the value and THEN increments it 
+    // for integers between 0 and 104
+    for (int i=0; i<105; i++) {
+        // if the integer is not 100, print it!
+        if (i != 100) {
+            printf("%d ", i++); // prints the value and THEN increments it 
+        }
     }
-  }
-  
-  return 0;
+    
+    return 0;
 }
 ```
 
@@ -566,10 +566,10 @@ int main(void) {
 ## Practice 04
 
 **REQUIREMENTS**:
-1.  Save your program to the file `p4.c`.
-2.  Read an arbitrary number of positive integer values separated by a space using `scanf`. You may assume that the inputs are well-formed.
-4.  On standard output, render a simple graph representation of the input values, in order, using hash `#` characters as shown in the examples below. The number of hashes printed should be equal to the input value.
-5.  Your program should output exactly one line per input value.
+1. Save your program to the file `p4.c`.
+2. Read an arbitrary number of positive integer values separated by a space using `scanf`. You may assume that the inputs are well-formed.
+4. On standard output, render a simple graph representation of the input values, in order, using hash `#` characters as shown in the examples below. The number of hashes printed should be equal to the input value.
+5. Your program should output exactly one line per input value.
 
 **HINT**: did you know that if `scanf`is looking for a series of integers separated by a space as input? You can directly input `1 3 5 6`, press enter, and `scanf` will help you loop through each integer. Try it out!
 
@@ -577,17 +577,17 @@ int main(void) {
 #include <stdio.h>
 
 int main(void) {
-  // initialize while loop variable
-  int j = 0;
-  
-  // promt for input
-  printf("Enter integers separated by space and press enter:\n");
-  
-  // while the user does not end i.e. ctrl-d; print loop variable
-  while (scanf("%d", &j) == 1) { // remember, 1 means true, 0 means false! True here meaning that scanf is still reading user inputs :)
-    printf("%d", j);
-  }
-  return 0;
+    // initialize while loop variable
+    int j = 0;
+    
+    // promt for input
+    printf("Enter integers separated by space and press enter:\n");
+    
+    // while the user does not end i.e. ctrl-d; print loop variable
+    while (scanf("%d", &j) == 1) { // remember, 1 means true, 0 means false! True here meaning that scanf is still reading user inputs :)
+        printf("%d", j);
+    }
+    return 0;
 }
 ```
 
@@ -596,12 +596,8 @@ int main(void) {
 **Example**: sample `scanf` user input and `printf` output.
 
 ```
-Enter a series of numbers, enter 0 when you're done:
-5
-3
-3
-7
-1
+Enter integers separated by space and press enter:
+5 3 3 7 1
 
 Output:
 #####
@@ -619,15 +615,15 @@ Output:
 #include <stdio.h>
 
 int main(void) {
-  int j = 0;
-  printf("Enter integers separated by space and press enter:\n");
-  while (scanf("%d", &j) == 1) { // remember, 1 means true, 0 means false! True here meaning that scanf is still reading user inputs :)
-    for (int i=0; i<j; i++) {
-      printf("#");
+    int j = 0;
+    printf("Enter integers separated by space and press enter:\n");
+    while (scanf("%d", &j) == 1) { // remember, 1 means true, 0 means false! True here meaning that scanf is still reading user inputs :)
+        for (int i=0; i<j; i++) {
+            printf("#");
+        }
+        printf("\n");
     }
-    printf("\n");
-  }
-  return 0;
+    return 0;
 }
 ```
 
@@ -635,6 +631,19 @@ int main(void) {
 </details>
 
 
+# C vs C++
+
+C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analagous to each other in C and C++.
+
+|                  | C                                                 | C++                                                                           |
+|------------------|---------------------------------------------------|-------------------------------------------------------------------------------|
+| Function/keyword | printf                                            | std::cout                                                                     |
+| Example          | ```C int i = 1; printf("This is the number 1: %d", i);``` | ```int i = 1; std::cout << "This is the number 1: " << i;```                       |
+|                  |                                                   |                                                                               |
+| Function/keyword | scanf                                             | std::cin                                                                      |
+| Example          | ```int i = 1; scanf("%d%", &i);```                      | ```int i = 1; std::cin >> i;```                                                     |
+|                  |                                                   |                                                                               |
+| Comments         | Data types are explicit.                          | Handles all data types without needing to state them. Always use this in C++. |
 
 # Extra info, for your enjoyment
 
@@ -647,56 +656,56 @@ Invoking the compiler `gcc` on the source code file `t1.c` did the following thi
 
 ```
 gcc -S t1.c
-```        
-    
+```                
+        
 - This produces a file called `t1.s` which you can view using `less t1.s` that contains the assembly output. Let's look at the assembly output for our hello world program.
 
 ```C
-  	.file	"t1.c"
-  	.text
-  	.section	.rodata
-  .LC0:
-  	.string	"Hello World!"
-  	.text
-  	.globl	main
-  	.type	main, @function
-  main:
-  .LFB0:
-  	.cfi\_startproc
-  	pushq	%rbp
-  	.cfi\_def\_cfa\_offset 16
-  	.cfi\_offset 6, -16
-  	movq	%rsp, %rbp
-  	.cfi\_def\_cfa\_register 6
-  	leaq	.LC0(%rip), %rdi
-  	call	puts@PLT
-  	movl	$0, %eax
-  	popq	%rbp
-  	.cfi\_def\_cfa 7, 8
-  	ret
-  	.cfi\_endproc
-  .LFE0:
-  	.size	main, .-main
-  	.ident	"GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0"
-  	.section	.note.GNU-stack,"",@progbits
+    	.file	"t1.c"
+    	.text
+    	.section	.rodata
+    .LC0:
+    	.string	"Hello World!"
+    	.text
+    	.globl	main
+    	.type	main, @function
+    main:
+    .LFB0:
+    	.cfi\_startproc
+    	pushq	%rbp
+    	.cfi\_def\_cfa\_offset 16
+    	.cfi\_offset 6, -16
+    	movq	%rsp, %rbp
+    	.cfi\_def\_cfa\_register 6
+    	leaq	.LC0(%rip), %rdi
+    	call	puts@PLT
+    	movl	$0, %eax
+    	popq	%rbp
+    	.cfi\_def\_cfa 7, 8
+    	ret
+    	.cfi\_endproc
+    .LFE0:
+    	.size	main, .-main
+    	.ident	"GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0"
+    	.section	.note.GNU-stack,"",@progbits
 ```
 
 - Looking at this assembly, you can see why C and other high level languages were invented. They are a lot easier for humans to read and write. C and C++ have proven themselves to be at a sweet spot between human usuability and the efficiency of their code at run-time. At this point we still have a text representation of our program, now in a different language. The computer can not run it yet.
 
 - The next step is to translate the assembly representation into the binary format that the computer can read directly. This is now a sequence of numbers, each representing either a datum value, a memory address, or an actual CPU operation to perform (_opcode_). This is no longer readable by most humans, but it is a direct translation of the assembly so you can translate back and forth if needed.
-  
+    
 - The program is now a chunk of binary data called an _object_, and the compiler writes it to a file in called an _object file_, which ends with `.o`, so `t1.c` creates `t1.o`. If multiple source files were compiled, each gets its own object file.
-  
+    
 - To see this happening, we can ask the compiler to stop at the object stage:
 
 ```
 gcc -c t1.c
 ```
-    
+        
 - The working directory will contain the file `t1.o`. Opening this in an editor, you will see a lot of unreadable stuff, with some familiar bits here and there, such as the string _Hello World_ which is stored in the object as data. You'll also see the function names `main` and `printf` which are kept around in human-readable form in case we want to debug the program as it runs.
-    
+        
 - The final stage is to _link_ together all the object files, along with any code libraries they referenced, to create the complete executable program. Code libraries are just collections of `.o` object files all smooshed together with an index at the start. (Object files are often small and numerous, so collecting them simplifies distribution).
-    
+        
 - Invoking the compiler with our object file will do the link to create a new executable called `t1` in the current directory:
 
 ```
@@ -715,7 +724,7 @@ printf( "%lu\n", sizeof(int) );
 Results in
 ```
 4
-```    
+```        
 
 on my machine. Note this is larger than the minimum 2 bytes required by the standard. This is because the architecture of my machine handles data in 4-byte chunks more efficiently than 2-byte chunks.
 
@@ -739,7 +748,7 @@ Note, there are usually 8 bits in a byte. The number of bits in a byte on your m
 #include <limits.h>
 
 int main(void) {
-  printf("number of bits in a byte: %d\n", CHAR_BIT);
+    printf("number of bits in a byte: %d\n", CHAR_BIT);
 }
 ```
 Do not be tempted to just print the example output. Your code might be tested on a very weird machine.
@@ -750,7 +759,7 @@ As reminder, here's an example of building and running your new program
 gcc -o sz t2.c
 ./sz
 8 8 32 32 64 64 32 64 128
-```  
+```    
 
 ## Additional arithmetic functions
 
@@ -772,7 +781,7 @@ Inside the running program, the EOF indicator is detected by input functions suc
 int i=0; 
 int result = scanf("%d", &i); 
 if (result == EOF) { // note double-equals for comparison! 
-    printf( "End of file detected\n" ); 
+        printf( "End of file detected\n" ); 
 }
 ```
 By definition, once an EOF is seen in an input stream, any subsequent read will also return EOF.
@@ -782,12 +791,12 @@ We can use the combination of conditional loops and EOF indicator to make the ro
 
 ## Good reads
 
-*   [Beginners guide to using the Linux terminal](http://linuxcommand.org)
-*   [A concise introduction to C by W3school](https://www.w3schools.in/c-tutorial/intro/).
+*     [Beginners guide to using the Linux terminal](http://linuxcommand.org)
+*     [A concise introduction to C by W3school](https://www.w3schools.in/c-tutorial/intro/).
 
 
 # Credit
 
-Last updated 2021-05 by Alice Yue.  
+Last updated 2021-05 by Alice Yue. 
 
 Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn and Victor Cheung.
