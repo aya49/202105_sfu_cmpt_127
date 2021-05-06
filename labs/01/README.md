@@ -14,7 +14,7 @@ Your to-do's:
   - [Practice 02](#practice-02)
   - [Practice 03](#practice-03)
   - [Practice 04](#practice-04)
-- Do [Assignment 01](../../assignmsnts/0).
+- Do [Assignment 01](../../assignmsnts/01).
 
 Always remember, the internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
 
