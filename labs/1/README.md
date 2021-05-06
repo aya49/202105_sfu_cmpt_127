@@ -14,7 +14,7 @@ Your to-do's:
   - [Practice 02](#practice-02)
   - [Practice 03](#practice-03)
   - [Practice 04](#practice-04)
-- Do and submit "Task"s on repl.it; these WILL be graded.
+- Assignment 01: do the "Task"s on repl.it and submit them before the due date; these WILL be graded (you can resubmit it as many times as you want before the deadline).
   - [Task 01](#task-01)
   - [Task 02](#task-02)
   - [Task 03](#task-03)
