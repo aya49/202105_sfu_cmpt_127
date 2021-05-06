@@ -2,11 +2,11 @@
 
 Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100), [D200](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d200), [D300](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d300) ([CMPT 125](http://www.sfu.ca/outlines.html?2021/summer/cmpt/125/d100))
 
-## Announcements
+# Announcements
 
 Welcome to CMPT 127! Make sure you bookmark this page so you always have access to the logistic links below :)
 
-## Important links
+# Important links
 - Lab hour Zoom link: [link](https://sfu.zoom.us/j/7631796740/)
 - Assignment & quiz code submission: https://replit.com/team/202105cmpt127 ([join here](https://replit.com/teams/join/mhmqbadajgyutaazwvqcwmnfmmvvfdkk-202105cmpt127) with your SFU email)
 - Canvas discussion board: [link]()***
@@ -14,7 +14,7 @@ Welcome to CMPT 127! Make sure you bookmark this page so you always have access 
 - Peer tutoring session: [link](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html)
 
 
-## Got questions?
+# Got questions?
 
 Please contact the appropriate people to get timely help (see detailed contact information in [course logistics](#course-logistics)):
 
@@ -25,13 +25,13 @@ Please contact the appropriate people to get timely help (see detailed contact i
 | Questions about marking, 1-on-1 help with course      | Contact the TA who marked your assignment/quiz (will be announced) via their [email](#course-logistics), [office hours](#office-hours), or [lab hours](#lab-hours) |
 | Course administration issues                          | Contact the instructor via [email](#course-logistics) or [lab hours](#office-hours)                 |
 
-## Course logistics
+# Course logistics
 
-Contacts
-- Instructor: Alice Yue (aya43 at sfu dot ca)
+Contacts (emails on Canvas)
+- Instructor: Alice Yue
 - Teaching assistants (TA): 
-  - D100: Danoosh Chamani (dca124 at sfu dot ca)
-- Helpdesk: (cs dot sfu dot ca)
+  - D100: Danoosh Chamani
+- Helpdesk
 
 Email policy
 - **IMPORTANT**: Please go to [Piazza](https://piazza.com/sfu.ca/summer2021/cmpt127/home/) for all course content and logistic related questions!! Your classmate, the instructor, or a teaching assistant might have already answered the question there :).
@@ -47,7 +47,7 @@ Emails will be answered during work hours only.
 | Announcements will be sent to your @sfu.ca email| mail list [cmpt-127 at sfu.ca] + [Canvas]()*** |
 
 
-### Lab hours
+## Lab hours
 
 All lab hours are on **Zoom**: [link](https://sfu.zoom.us/j/7631796740/) (use your SFU Zoom account on sfu.zoom.ca to enter automatically; [guide](https://www.sfu.ca/itservices/technical/videoconferencing/zoom/using-zoom/how-to-guides.html))
 
@@ -69,19 +69,15 @@ Students are free to attend labs and office hours of any section.
 - Lab hours: this is a time for students to do the weekly assignments and ask questions. Everyone will be in the "main room", questions will be asked in chat; if you wish to have a short 1-on-1, we will go into a breakout room.
 - Office hours: this is a time for students to ask TA's questions.
 
-### Office hours***
+## Office hours***
 
 
-## Assignments
-
-### Format & rubric
-
-### Submission
+# Schedule
 
 
-## Grading
+# Grading
 
-### Grading breakdown
+## Grading breakdown
 
 ```
   50% = 8 weekly assignments x  6.25% each
@@ -102,7 +98,7 @@ Students are free to attend labs and office hours of any section.
 No late assignments or quizzes will be accepted unless a substantial and valid reason is given --- but remember, we only take your top 10 scoring assignments!
 
 
-### Grading system
+## Grading system
 
 |Grade|Percentage|
 |-----|----------|
@@ -118,7 +114,7 @@ No late assignments or quizzes will be accepted unless a substantial and valid r
 |D    | 50-54    |
 
 
-## Academic Honesty
+# Academic Honesty
 
 See [student services: academic integrity](https://www.sfu.ca/students/academicintegrity.html) for details.
 
@@ -126,6 +122,6 @@ See [student services: academic integrity](https://www.sfu.ca/students/academici
 
 **Citation**: if you plan to use code not provided to you in class, please cite it (e.g. link it!). Not only is this an academic honesty requirement, citing also helps you understand what you did when you need to use your code again in the future.
 
+The internet is your friend, we encourage you to search up solutions for whatever problems you may be having. We almost never code from scratch, we almost always have a reference; so please do use the examples in class and search up your questions online!
+
 We all feel anxious learning something new at first. Believe in your self, and always remember, practice makes perfect :)
-
-

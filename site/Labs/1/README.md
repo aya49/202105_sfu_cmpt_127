@@ -1,22 +1,26 @@
-# Lab 01: Getting started in C
+# Lab 01: Introduction to C
 
 Open lab 01 on repl.it: https://replit.com/@202105cmpt127/lab01
 
-Open today's lab guide lecture slides:
-- [Course outline]()
-- [Setting up repl.it](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing)
-- [Introduction to C; C syntax; C workflow and compiling a C program](https://docs.google.com/presentation/d/1zwLTZjPFa8Ff4Eq3Qk9nTL72QQyCl22rLGIVo0gGdvs/edit?usp=sharing)
-- [Variables](https://docs.google.com/presentation/d/190OipgViJdy5Lr_GlBDHxRkRSY8iP_xixe3slwoyx58/edit?usp=sharing)
-- [Conditions and loops](https://docs.google.com/presentation/d/1dBXA2Lsim2lFisvjnfkTylcQ2rqIEl9g1VZ0JA44pRY/edit?usp=sharing)
-
 Your to-do's:
-- Review "Guide"s.
-- Try "Practice problem"s on repl.it; these will NOT be graded.
+- Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
+  - Course outline ([slides]())
+  - Setting up repl.it ([slides](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing))
+  - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing)): introduction to C; C syntax, workflow, and compiling
+  - [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/190OipgViJdy5Lr_GlBDHxRkRSY8iP_xixe3slwoyx58/edit?usp=sharing)): variables
+  - [Guide 03](#guide-2) ([slides](https://docs.google.com/presentation/d/1dBXA2Lsim2lFisvjnfkTylcQ2rqIEl9g1VZ0JA44pRY/edit?usp=sharing)): conditions and loops
+- Try "Practice" problems on repl.it; these will NOT be graded.
+  - [Practice 01](#practice-01)
+  - [Practice 02](#practice-02)
+  - [Practice 03](#practice-03)
+  - [Practice 04](#practice-04)
 - Do and submit "Task"s on repl.it; these WILL be graded.
+  - [Task 01](#task-01)
+  - [Task 02](#task-02)
+  - [Task 03](#task-03)
+  - [Task 04](#task-04)
 
-Today's topics:
-
-
+Always remember, the internet is your friend :)! Getting into the habit of searching for solutions online will help you greatly in the future.
 
 # Introduction: basic C syntax and compile workflow
 
@@ -98,7 +102,7 @@ Always think about what your program does in terms of input, output, behaviour!
 Testing is extremely important, and beginners often underestimate how much time and effort is required for good testing. In this case the test is easy and can be done by a human directly. Does the output text match exactly the required text? You will learn more about unit testing in CMPT 125.
 
 
-## Practice problem 01
+## Practice 01
 
 **REQUIREMENT**:
 - Write a C program `p1.c`.
@@ -275,7 +279,7 @@ int main(void) {
   - argument 1 type string e.g. `%d`: this is the format string argument that tells `scanf` that it should interpret the user input as a decimal integer. Whitespace is ignored.
   - argument 2 address in memory where it will store user input e.g. `&i`: arguments to functions are _passed by value_ (recall, `printf` has always printed the _value_ of our variables); however, if we give `scanf` `i`, it will see `0` which isn't an address in memory! So we prepend `i` with a `&` to get `i`'s pointer, the address in memory where we are currently storing `0`, and tell `scanf` to replace this value of `i` with the user input.
 
-## Practice problem 02
+## Practice 02
 
 **REQUIREMENT**:
 - Use C program `p2.1.c` to verify your answer.
@@ -535,7 +539,7 @@ You can jump to the beginning of a loop body with the continue; statement. For e
 
 
 
-## Practice problem 03
+## Practice 03
 
 **REQUIREMENT**
 - Write a C program `p3.c`.
@@ -582,7 +586,7 @@ The product of your values are:
 
 # A bit more practice with `scanf` (READ HINTS!)
 
-## Practice problem 04
+## Practice 04
 
 **REQUIREMENTS**:
 1.  Save your program to the file `p4.c`.
@@ -746,7 +750,7 @@ gcc -o t1 t1.o
 
 Now you have seen a typical C compiler process from start to finish. In practice you will almost always let the compiler do the whole thing at once for you. It deletes the intermediate files when it's finished with them, so you won't even see them unless you look hard.
 
-### Note on variable size
+## Note on variable size
 
 C provides a `sizeof` [operator](http://en.cppreference.com/w/c/language/sizeof) that tells you the storage size of any type in bytes. For example:
 ```C
@@ -803,7 +807,7 @@ You can access for arthimetic functions by including the `math.h` file and its f
 
 `math.h` includes functions such as `floor`, `ceil`, and `round` that return the floor, ceiling, and rounded integer of a given value.
 
-##E EOF: the end of the file
+## EOF: the end of the file
 
 One of the most powerful ideas behind the design of the UNIX operating system and environment is that ["everything is a file"](http://en.wikipedia.org/wiki/Everything_is_a_file). Since stdin behaves like a file, it can have an "end". The shell program connects your typed input to your program's stdin. We can break this connection by typing the special character sequence `Ctrl-d`, The shell receives this command, sends a special "End-of-file" or **EOF** indicator to the connected stdin, and then closes the connection.
 
@@ -823,10 +827,10 @@ We can use the combination of conditional loops and EOF indicator to make the ro
 ## Good reads
 
 *   [Beginners guide to using the Linux terminal](http://linuxcommand.org)
-*   [A concise introduction to C by Nick Parlante of Stanford](http://cslibrary.stanford.edu/101/EssentialC.pdf). See also [their nice library of related topics](http://cslibrary.stanford.edu).
+*   [A concise introduction to C by W3school](https://www.w3schools.in/c-tutorial/intro/).
 
 
-## Credit
+# Credit
 
 Last updated 2021-05 by Alice Yue.  
 
