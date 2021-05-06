@@ -4,8 +4,7 @@ Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100
 
 # Announcements
 
-Welcome to CMPT 127! Make sure you bookmark this page so you always have access to the logistic links below :)
-
+Welcome to CMPT 127! Make sure you bookmark this page.
 # Important links
 - Lab hour Zoom link: [link](https://sfu.zoom.us/j/7631796740/)
 - Assignment & quiz code submission: https://replit.com/team/202105cmpt127 ([join here](https://replit.com/teams/join/mhmqbadajgyutaazwvqcwmnfmmvvfdkk-202105cmpt127) with your SFU email)
