@@ -635,15 +635,15 @@ int main(void) {
 
 C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analagous to each other in C and C++.
 
-|                  | C                                                 | C++                                                                           |
-|------------------|---------------------------------------------------|-------------------------------------------------------------------------------|
-| Function/keyword | `printf`                                          | `std::cout`                                                                   |
-| Example          |`int i = 1; printf("This is the number 1: %d", i);`| `int i = 1; std::cout << "This is the number 1: " << i;`                      |
-|                  |                                                   |                                                                               |
-| Function/keyword | `scanf`                                           | `std::cin`                                                                    |
-| Example          | `int i = 1; scanf("%d%", &i);`                    | `int i = 1; std::cin >> i;`                                                   |
-|                  |                                                   |                                                                               |
-| Comments         | Data types are explicit.                          | Handles all data types without needing to state them. Always use this in C++. |
+|                  | C                                      | C++                                                                           |
+|------------------|----------------------------------------|-------------------------------------------------------------------------------|
+| Function/keyword | `printf`                               | `std::cout`                                                                   |
+| Example          |`printf("This is the number 1: %d", i);`| `std::cout << "This is the number 1: " << i;`                                 |
+|                  |                                        |                                                                               |
+| Function/keyword | `scanf`                                | `std::cin`                                                                    |
+| Example          | `scanf("%d%", &i);`                    | `std::cin >> i;`                                                              |
+|                  |                                        |                                                                               |
+| Comments         | Data types are explicit.               | Handles all data types without needing to state them. Always use this in C++. |
 
 # Extra info, for your enjoyment
 
