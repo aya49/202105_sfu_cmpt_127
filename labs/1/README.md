@@ -203,7 +203,7 @@ A **characters** `char` uses 7 bits (bits = either 0 or 1) so it can represent 2
 
 Integer and floating point types represent numbers exactly over a limited range and approximately based on the number of bits respectively. [A complete list of the native types is available at Wikipedia](http://en.wikipedia.org/wiki/C_syntax#Primitive_data_types).
 
-#### `printf`
+**`scanf`**
 
 ```C
 int i = 0; // integer
@@ -220,7 +220,7 @@ here: 0 3.14 + CMPT 127
 `printf` allows you to print all the native variable types. Using `printf` is similar to using the `%` idiom in Python's `print` function. `printf` is less flexible about its input than Python's `print`, but you can do a lot with it. For floating point numbers, you can specifiy the precision at which the number is printed by adding `.2` with `2` being the number of decimal points ot print to `%f` \> `%.2f`.
 
 
-#### Arithmetic expressions
+**Arithmetic expressions**
 
 ```C
 int a = 2;
@@ -254,9 +254,6 @@ When you declare a variable, e.g. `char c = 42;`, the compiler chooses an unused
 If your value is larger than 2^8, the compiler allocates a sequence of addresses and gives the variable the lowest-numbered address of this sequence.
 
 Python and many other 'high level' languages have different storage models and you rarely have to think about them. That's part of what 'high level' means. C allows/requires you to think about data storage more directly. Many languages, e.g., Java, do not allow you to use pointers, and have _references_ instead. These are implemented internally as pointers, with an extra little safety net limiting how you use them. C has only pointers, for simplicity. C++ has both pointers and references.
-
-
-#### `scanf`
 
 Now let's look at a C program that reads user inputs as an integer and echoes it back.
 
@@ -432,12 +429,14 @@ while (<condition>) {
 For example this code
 
 ```
-int i = 0; 
+int i = 0;
+
 while (i < 6) { 
   printf( "%d ", i ); 
   i++; // ++ is an increment operator that is a shorthand for i = i + 1
   // i-- is a decrement operator that is a shorthand for i = i - 1
 }
+
 printf( "\n" );
 ```
 
@@ -477,13 +476,12 @@ For example this code
 ```C
 int i = 0; 
 do { 
-  i = getNextValueFromDatabase(); 
-} while (i <= 1000)
+  i++;
+} while (i <= 1000);
 ```
 
-will get at least one value from the database, and will repeat this until it fetches a number bigger than 1000.
 
-DANGER: if all the values in the database are less than 1000, this program will happily run forever D:!
+DANGER: if `i` never becomes equal or greater than `1000`, this program will happily run forever D:!
 
 
 #### `for` loops
@@ -511,11 +509,8 @@ Every for loop has an equivalent while, and _vice versa_, so choose whichever is
 #### `break` and `continue`
 
 ```C
-#include <stdio.h>
-#include <stdlib.h>
-
-for (int i=0; i<1000; i++) { 
-  if (random() % 100 == 0) { // random() is defined in stdlib.h 
+for (int i=0; i<105; i++) { 
+  if (i == 100) {
     break;
   }
   printf("%d ", i++); // prints the value and THEN increments it
@@ -526,8 +521,8 @@ You can break out of a loop body with the break; statement. For example, the cod
 
 
 ```C
-for (int i=0; i<1000; i++) {
-  if (random() % 100 == 0) {
+for (int i=0; i<105; i++) {
+  if (i == 100) {
     continue;
   }
   printf("%d ", i++); // prints the value and THEN increments it 
@@ -550,8 +545,8 @@ You can jump to the beginning of a loop body with the continue; statement. For e
 <div style="margin-left: 25px;">
 
 ```C
-for (int i=0; i<1000; i++) {
-  if (random() % 100 != 0) {
+for (int i=0; i<105; i++) {
+  if (i != 100) {
     printf("%d ", i++); // prints the value and THEN increments it 
   }
 }
@@ -797,7 +792,8 @@ gcc -o sz t2.c
 8 8 32 32 64 64 32 64 128
 ```  
 
-### Additional arithmetic functions
+## Additional arithmetic functions
+
 You can access for arthimetic functions by including the `math.h` file and its function in the header:
 
 ```
