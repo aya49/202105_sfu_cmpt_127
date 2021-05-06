@@ -637,11 +637,11 @@ C is a subset of C++; all C functions/keywords/code will work with a C++ compile
 
 |                  | C                                                 | C++                                                                           |
 |------------------|---------------------------------------------------|-------------------------------------------------------------------------------|
-| Function/keyword | printf                                            | std::cout                                                                     |
-| Example          | ```C int i = 1; printf("This is the number 1: %d", i);``` | ```int i = 1; std::cout << "This is the number 1: " << i;```                       |
+| Function/keyword | `printf`                                          | `std::cout`                                                                   |
+| Example          |`int i = 1; printf("This is the number 1: %d", i);`| `int i = 1; std::cout << "This is the number 1: " << i;`                      |
 |                  |                                                   |                                                                               |
-| Function/keyword | scanf                                             | std::cin                                                                      |
-| Example          | ```int i = 1; scanf("%d%", &i);```                      | ```int i = 1; std::cin >> i;```                                                     |
+| Function/keyword | `scanf`                                           | `std::cin`                                                                    |
+| Example          | `int i = 1; scanf("%d%", &i);`                    | `int i = 1; std::cin >> i;`                                                   |
 |                  |                                                   |                                                                               |
 | Comments         | Data types are explicit.                          | Handles all data types without needing to state them. Always use this in C++. |
 
