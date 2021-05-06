@@ -1,6 +1,6 @@
 # Lab 01: Introduction to C
 
-Open lab 01 on repl.it: https://replit.com/@202105cmpt127/lab01
+Open lab 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 01_lab
 
 Your to-do's:
 - Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
@@ -14,13 +14,9 @@ Your to-do's:
   - [Practice 02](#practice-02)
   - [Practice 03](#practice-03)
   - [Practice 04](#practice-04)
-- Assignment 01: do the "Task"s on repl.it and submit them before the due date; these WILL be graded (you can resubmit it as many times as you want before the deadline).
-  - [Task 01](#task-01)
-  - [Task 02](#task-02)
-  - [Task 03](#task-03)
-  - [Task 04](#task-04)
+- Do [Assignment 01](../../assignmsnts/0).
 
-Always remember, the internet is your friend :)! Getting into the habit of searching for solutions online will help you greatly in the future.
+Always remember, the internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
 
 # Introduction: basic C syntax and compile workflow
 
@@ -118,7 +114,7 @@ How are you?
 <div style="margin-left: 25px;">
 
 ```C
-// author: <YOUR SFU USER ID HERE>
+// author: <First name, last name; YOUR SFU USER ID HERE>
 // date: 2021-05-18
 // input: void
 // output: int
@@ -136,14 +132,6 @@ int main(void) {
 </div>
 </details>
 
-## Task 01
-
-**REQUIREMENT**: Write a C program `t1.c` that writes `Hello World!`, `My name is <your name>.`, and `Nice to meat you!` in 3 separate lines to standard output.
-
-**REMEMINDER**: write comments!! Test and debug your code!
-- Fix the error in code in `t1.c` by adding the missing exclamation point.
-- Compile and run it, and verify that it now produces the correct output (expected result).
-- Now your program meets the requirements and you are ready to submit it.
 
   
 
@@ -173,7 +161,7 @@ int i = 0;
 - You can access `i`'s pointer with `&i`.
 
 
-### Value data types, `printf`, and arithmetic expressions
+### Value data types, `sizeof`, `printf`, and arithmetic expressions
 
 C is a _strongly typed_ language. This means:
 - all variables have a static _type_ that identifies the kind of data they store; a variable's type cannot change.
@@ -202,6 +190,18 @@ C has several native (i.e. predefined) variable types. They differ by the kind o
 A **characters** `char` uses 7 bits (bits = either 0 or 1) so it can represent 2^7 or 128 possible values. Hence, each character is represented by a unique set of numbers, see [ASCII](https://en.wikipedia.org/wiki/ASCII).
 
 Integer and floating point types represent numbers exactly over a limited range and approximately based on the number of bits respectively. [A complete list of the native types is available at Wikipedia](http://en.wikipedia.org/wiki/C_syntax#Primitive_data_types).
+
+**`sizeof`**
+
+C provides a `sizeof` [operator](http://en.cppreference.com/w/c/language/sizeof) that tells you the storage size of any type in **bytes**. For example:
+```C
+printf( "%lu\n", sizeof(int) );
+```
+
+Results in
+```C
+4
+```
 
 **`scanf`**
 
@@ -332,16 +332,7 @@ The code outputs the values and pointers of variables `i`, `j`, and `k`; the val
 
 
 
-## Task 02
 
-**REQUIREMENT**:
-1.  Write a new C program in the file `t2.c`.
-2.  Write a program to `scanf` two integer values from standard input, then `printf` their sum.
-
-**REMINDER**:
-- Your program should handle negative numbers (which are also valid integers).
-- Be careful about whitespace at the start or end of each line in your output.
-- Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter an integer: "`, and let the user know what the output is by printing a message, e.g. `"Here is the sum: "`.
 
 
 
@@ -411,7 +402,7 @@ Notice the _equal to_ operator "==" is distinct from the assignment operator "="
 
 ### Loops
 
-Remember that task 2 only works with two numbers. Let's extend it to handle any numer of inputs. For this we need to repeat part of our program to deal with each value that comes. We need a _conditional loop_. C has only two options: while and for.
+Let's extend `scanf` to handle any numer of inputs. For this we need to repeat part of our program to deal with each value that comes. We need a _conditional loop_. C has only two options: while and for.
 
   
 
@@ -545,10 +536,18 @@ You can jump to the beginning of a loop body with the continue; statement. For e
 <div style="margin-left: 25px;">
 
 ```C
-for (int i=0; i<105; i++) {
-  if (i != 100) {
-    printf("%d ", i++); // prints the value and THEN increments it 
+#include <stdio.h>
+
+int main(void) {
+  // for integers between 0 and 104
+  for (int i=0; i<105; i++) {
+    // if the integer is not 100, print it!
+    if (i != 100) {
+      printf("%d ", i++); // prints the value and THEN increments it 
+    }
   }
+  
+  return 0;
 }
 ```
 
@@ -557,26 +556,6 @@ for (int i=0; i<105; i++) {
 
 
 
-## Task 03
-
-**REQUIREMENT**
-
-1.  Save your program to the file `t3.c`.
-2.  Write a program to read any number of floating point values from standard input, separated by newlines; stopping only when the user inputs 0. Assume that the input is guaranteed to be well-formed and contain at least one valid floating point value.
-3.  After the user finishes inputting values, your program will print the product of all the inputs (hint: use the multiplication operator `*`).
-4.  The printed output should only have 2 decimal places.
-5.  If no floating point value can be parsed (i.e. a blank line was read) there should be no output. To put it another way: blank lines should be ignored.
-
-**Example**: sample input and output:
-```
-Provide floats separated by enter (line):
-3.2
--1.6
-9.5
-0
-The product of your values are:
-
-```
 
 
 # A bit more practice with `scanf` (READ HINTS!)
@@ -589,14 +568,19 @@ The product of your values are:
 4.  On standard output, render a simple graph representation of the input values, in order, using hash `#` characters as shown in the examples below. The number of hashes printed should be equal to the input value.
 5.  Your program should output exactly one line per input value.
 
-**HINT**: did you know that if `scanf`is looking for a series of integers as input, you can directly input `1 3 5 6`, press enter, and `scanf` will help you loop through each integer? Try it out!
+**HINT**: did you know that if `scanf`is looking for a series of integers separated by a space as input? You can directly input `1 3 5 6`, press enter, and `scanf` will help you loop through each integer. Try it out!
 
 ```C
 #include <stdio.h>
 
 int main(void) {
+  // initialize while loop variable
   int j = 0;
+  
+  // promt for input
   printf("Enter integers separated by space and press enter:\n");
+  
+  // while the user does not end i.e. ctrl-d; print loop variable
   while (scanf("%d", &j) == 1) { // remember, 1 means true, 0 means false! True here meaning that scanf is still reading user inputs :)
     printf("%d", j);
   }
@@ -647,34 +631,7 @@ int main(void) {
 </div>
 </details>
 
-## Task 04
 
-**REQUIREMENT**:
-1.  Save your program to the file `t4.c`.
-2.  Read a user input line containing  positive integer values. This integer will be the width and height of a reversed right triangle. You can assume that the values are separated by one or more spaces, the input is guaranteed to be well-formed, and all values will be in the range \[1,...,50\].
-4.  On standard output, draw the outline of the right triangle `#` character and fill the triangle using the `.` character.
-
-**EXAMPLE**: sample user input `scanf` and `printf` output.
-
-You'll need to use a fixed-width font in your terminal for these shapes to look right in your output. (If the examples below don't look symmetrical in your browser, check that your `pre` font is fixed-width.)
-
-```
-Enter an integer:
-6
-     #
-    ##
-   #.#
-  #..#
- #...#
-######
-
-2
- #
-##
-
-1
-#
-```
 
 # Extra info, for your enjoyment
 
@@ -753,7 +710,7 @@ printf( "%lu\n", sizeof(int) );
 ```
 
 Results in
-```C
+```
 4
 ```    
 
@@ -768,7 +725,7 @@ printf( "%u %lu\n", a, sizeof(a) );
 ```
 
 Results in
-```C
+```
 73 4
 ```
 
@@ -786,7 +743,7 @@ Do not be tempted to just print the example output. Your code might be tested on
 
 As reminder, here's an example of building and running your new program
 
-```C
+```
 gcc -o sz t2.c
 ./sz
 8 8 32 32 64 64 32 64 128
@@ -796,7 +753,7 @@ gcc -o sz t2.c
 
 You can access for arthimetic functions by including the `math.h` file and its function in the header:
 
-```
+```C
 #include <stdio.h>
 #include <math.h>
 ```
