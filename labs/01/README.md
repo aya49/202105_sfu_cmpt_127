@@ -561,7 +561,7 @@ int main(void) {
 
 
 
-# A bit more practice with `scanf` (READ HINTS!)
+# More practice with `scanf` (READ HINTS!)
 
 ## Practice 04
 
