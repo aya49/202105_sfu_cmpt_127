@@ -9,7 +9,7 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 - [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/190OipgViJdy5Lr_GlBDHxRkRSY8iP_xixe3slwoyx58/edit?usp=sharing)): variables
 - [Guide 03](#guide-2) ([slides](https://docs.google.com/presentation/d/1dBXA2Lsim2lFisvjnfkTylcQ2rqIEl9g1VZ0JA44pRY/edit?usp=sharing)): conditions and loops
 
-Try "Practice" problems on repl.it; these will NOT be graded.
+Try "Practice" problems on repl.it; these will NOT be graded. Note that the **SOLUTION** given for practice problems is just one of many possible **SOLUTION**s, better ones may exist ;)
 - [Practice 01](#practice-01)
 - [Practice 02](#practice-02)
 - [Practice 03](#practice-03)
@@ -61,13 +61,13 @@ Go to your **shell**, this is where you replay commands to your machine.
 1. Compile the source code file `t1.c` to create a binary executable file that can be run from the shell:
 
 ```
-gcc t1.c
+$ gcc t1.c
 ``` 
     
 2. If the program compiled correctly, the compiler created a new file in the current directory called `a.out` containing your executable program. Instead if you get error messages read them carefully, top to bottom and edit the code to fix the first reported error, then compile again. Once all looks well, run your program using its name like so:
 
 ```
-./a.out
+$ ./a.out
 ``` 
     
 (where "./" means "this directory"). You should see the expected output on your console:
@@ -79,8 +79,8 @@ Hello World
 3. Specify a more descriptive name for your program than the default `a.out` with the compiler output name option `-o`:
 
 ```
-gcc t1.c -o t1.o
-./t1.o
+$ gcc t1.c -o t1.o
+$ ./t1.o
 Hello World
 ```
     
@@ -101,9 +101,7 @@ Testing is extremely important, and beginners often underestimate how much time 
 
 ## Practice 01
 
-**REQUIREMENT**:
-- Write a C program `p1.c`.
-- Can you modify the example code in [C syntax](#c-syntax) to get the following output?
+**REQUIREMENT**: Write a C program `p1.c`; can you modify the example code in [C syntax](#c-syntax) to get the following output?
 
 ```
 Hello world
@@ -111,7 +109,7 @@ How are you?
 ```
 
 <details>
-<summary style="margin-left: 25px;">Solution</summary>
+<summary style="margin-left: 25px;">**SOLUTION**</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -164,11 +162,11 @@ int i = 0;
 
 ### Value data types, `sizeof`, `printf`, and arithmetic expressions
 
-C is a _strongly typed_ language. This means:
-- all variables have a static _type_ that identifies the kind of data they store; a variable's type cannot change.
-- every variable has a _value_ which is the data it stores; a variable's value may change
+C is a **strongly typed** language. This means:
+- all variables have a static **type** that identifies the kind of data they store; a variable's type cannot change.
+- every variable has a **value** which is the data it stores; a variable's value may change
 
-Advantages to being _strongly typed_:
+Advantages to being **strongly typed**:
 - Explicit statement of intent. You tell the compiler and people reading the code what kind of data you are manipulating.
 - Error prevention at compile time. If you violate your stated intent, the compiler lets you know right away.
 
@@ -258,7 +256,7 @@ When you declare a variable, e.g. `char c = 42;`, the compiler chooses an unused
 
 If your value is larger than 2^8, the compiler allocates a sequence of addresses and gives the variable the lowest-numbered address of this sequence.
 
-Python and many other 'high level' languages have different storage models and you rarely have to think about them. That's part of what 'high level' means. C allows/requires you to think about data storage more directly. Many languages, e.g., Java, do not allow you to use pointers, and have _references_ instead. These are implemented internally as pointers, with an extra little safety net limiting how you use them. C has only pointers, for simplicity. C++ has both pointers and references.
+Python and many other 'high level' languages have different storage models and you rarely have to think about them. That's part of what 'high level' means. C allows/requires you to think about data storage more directly. Many languages, e.g., Java, do not allow you to use pointers, and have references instead. These are implemented internally as pointers, with an extra little safety net limiting how you use them. C has only pointers, for simplicity. C++ has both pointers and references.
 
 Now let's look at a C program that reads user inputs as an integer and echoes it back.
 
@@ -277,9 +275,9 @@ int main(void) {
 }
 ```
 
-`scanf` is roughly the inverse of `printf`; it reads text from _standard input_ `stdin` and assigns it to a variable.
+`scanf` is roughly the inverse of `printf`; it reads text from **standard input** `stdin` and assigns it to a variable.
 - argument 1 type string e.g. `%d`: this is the format string argument that tells `scanf` that it should interpret the user input as a decimal integer. Whitespace is ignored.
-- argument 2 address in memory where it will store user input e.g. `&i`: arguments to functions are _passed by value_ (recall, `printf` has always printed the _value_ of our variables); however, if we give `scanf` `i`, it will see `0` which isn't an address in memory! So we prepend `i` with a `&` to get `i`'s pointer, the address in memory where we are currently storing `0`, and tell `scanf` to replace this value of `i` with the user input.
+- argument 2 address in memory where it will store user input e.g. `&i`: arguments to functions are **passed by value** (recall, `printf` has always printed the **value** of our variables); however, if we give `scanf` `i`, it will see `0` which isn't an address in memory! So we prepend `i` with a `&` to get `i`'s pointer, the address in memory where we are currently storing `0`, and tell `scanf` to replace this value of `i` with the user input.
 
 **Syntax rules: value vs pointer**:
 
@@ -291,12 +289,10 @@ int main(void) {
 
 ## Practice 02
 
-**REQUIREMENT**:
-- Use C program `p2.1.c` to verify your answer.
-- What happens if we remove the `&` from `&i`? Why do you think that happens?
+**REQUIREMENT**: Answer the following question. What happens if we remove the `&` from `&i`? Why do you think that happens? Use C program `p2.1.c` to verify your answer.
 
 <details>
-<summary style="margin-left: 25px;">Solution</summary>
+<summary style="margin-left: 25px;">**SOLUTION**</summary>
 <div style="margin-left: 25px;">
 
 If we do omit the `&` before the argument `i` we get an error message because `scanf` is expecting a pointer not a value.
@@ -335,7 +331,7 @@ int main(void) {
 ```
 
 <details>
-<summary style="margin-left: 25px;">Solution</summary>
+<summary style="margin-left: 25px;">**SOLUTION**</summary>
 <div style="margin-left: 25px;">
 
 The code outputs the values and pointers of variables `i`, `j`, and `k`; the value of `i` was replaced by the user input because we gave the pointer of `i` to `scanf`. It went to the pointer address we provided and replaced what was at that address, `i`'s value `0.0`, with the user input.
@@ -396,9 +392,9 @@ if (s > highscore) {
 
 ### Infix operators
 
-`>` and `==` are examples of _infix_ comparison operators and can be put between variables to evaluate their relationship with each other.
+`>` and `==` are examples of **infix** comparison operators and can be put between variables to evaluate their relationship with each other.
 
-These comparisons are statements that give our `if`/`else if`/`else` statements a _Boolean_ value: true (non-0), false (0)
+These comparisons are statements that give our `if`/`else if`/`else` statements a **Boolean** value: true (non-0), false (0)
 
 | name                     | syntax     |
 | ------------------------ | ---------- |
@@ -410,12 +406,12 @@ These comparisons are statements that give our `if`/`else if`/`else` statements 
 | greater than or equal to | \>=        |
 | not                      | !          |
 
-Notice the _equal to_ operator "==" is distinct from the assignment operator "=" . Mixing these up is a common bug for C beginners. Double-check every time you intend to use "==".
+Notice the **equal to** operator "==" is distinct from the assignment operator "=" . Mixing these up is a common bug for C beginners. Double-check every time you intend to use "==".
 
 
 ### Loops
 
-Let's extend `scanf` to handle any numer of inputs. For this we need to repeat part of our program to deal with each value that comes. We need a _conditional loop_. C has only two options: while and for.
+Let's extend `scanf` to handle any numer of inputs. For this we need to repeat part of our program to deal with each value that comes. We need a **conditional loop**. C has only two options: while and for.
 
     
 
@@ -490,7 +486,7 @@ DANGER: if `i` never becomes equal or greater than `1000`, this program will hap
 
 #### `for` loops
 
-The pattern above, where we initialize a variable, test its value, then perform a loop that changes the value, is so frequently used that it has a special syntax: the _for loop_, which has the form
+The pattern above, where we initialize a variable, test its value, then perform a loop that changes the value, is so frequently used that it has a special syntax: the **for loop**, which has the form
 
 ```C
 for(<initialize>; <condition>; <modify>) {
@@ -540,12 +536,10 @@ You can jump to the beginning of a loop body with the continue; statement. For e
 
 ## Practice 03
 
-**REQUIREMENT**
-- Write a C program `p3.c`.
-- Re-write the previous example without using `continue`.
+**REQUIREMENT**: Write a C program `p3.c`. Re-write the previous example without using `continue`.
 
 <details>
-<summary style="margin-left: 25px;">Solution</summary>
+<summary style="margin-left: 25px;">**SOLUTION**</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -571,15 +565,14 @@ int main(void) {
 
 
 
-# More practice with `scanf` (READ HINTS!)
+# Putting it all together: more practice with `scanf` (READ HINTS!)
 
 ## Practice 04
 
-**REQUIREMENTS**:
-1. Save your program to the file `p4.c`.
-2. Read an arbitrary number of positive integer values separated by a space using `scanf`. You may assume that the inputs are well-formed.
-4. On standard output, render a simple graph representation of the input values, in order, using hash `#` characters as shown in the examples below. The number of hashes printed should be equal to the input value.
-5. Your program should output exactly one line per input value.
+**REQUIREMENT**: Save your program to the file `p4.c`. Read an arbitrary number of positive integer values separated by a space using `scanf`. On standard output, render a simple graph representation of the input values, in order, using hash `#` characters as shown in the examples below.
+- You may assume that the inputs are well-formed.
+- The number of hashes printed should be equal to the input value.
+- Your program should output exactly one line per input value.
 
 **HINT**: did you know that if `scanf`is looking for a series of integers separated by a space as input? You can directly input `1 3 5 6`, press enter, and `scanf` will help you loop through each integer. Try it out!
 
@@ -603,7 +596,9 @@ int main(void) {
 
 `scanf` keeps going until you press `ctrl-d`, so press `ctrl-d` to stop the program.
 
-**EXAMPLE**: sample `scanf` user input and `printf` output.
+**EXAMPLE**: 
+
+Example `scanf` user input and `printf` output:
 
 ```
 Enter integers separated by space and press enter:
@@ -618,7 +613,7 @@ Output:
 ```
 
 <details>
-<summary style="margin-left: 25px;">Solution</summary>
+<summary style="margin-left: 25px;">**SOLUTION**</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -661,11 +656,11 @@ C is a subset of C++; all C functions/keywords/code will work with a C++ compile
 
 Invoking the compiler `gcc` on the source code file `t1.c` did the following things:
 
-- First the _C preprocessor_ runs. It scans the file manipulating its text; mainly removing comments and newlines and _expanding macros_. C _Macros_ are preprocessor instructions beginning with a hash symbol `#`. The preprocessor replaces each macro with the results of the macro, which is always text. `#include` is a macro which causes the entire line it sits on to be replaced by the contents of the named file. Following the preprocessor run, we now have an intermediate C file that contains no comments or macros.
-- Next the _C compiler_ program runs and translates the C source code into assembler code that is specific to your CPU type. To see that this is so, let's ask the compiler to stop after this stage and take a look at the assembly generated for our program:
+- First the **C preprocessor** runs. It scans the file manipulating its text; mainly removing comments and newlines and **expanding macros**. C **Macros** are preprocessor instructions beginning with a hash symbol `#`. The preprocessor replaces each macro with the results of the macro, which is always text. `#include` is a macro which causes the entire line it sits on to be replaced by the contents of the named file. Following the preprocessor run, we now have an intermediate C file that contains no comments or macros.
+- Next the **C compiler** program runs and translates the C source code into assembler code that is specific to your CPU type. To see that this is so, let's ask the compiler to stop after this stage and take a look at the assembly generated for our program:
 
 ```
-gcc -S t1.c
+$ gcc -S t1.c
 ```                
         
 - This produces a file called `t1.s` which you can view using `less t1.s` that contains the assembly output. Let's look at the assembly output for our hello world program.
@@ -681,19 +676,19 @@ gcc -S t1.c
     	.type	main, @function
     main:
     .LFB0:
-    	.cfi\_startproc
+    	.cfi_startproc
     	pushq	%rbp
-    	.cfi\_def\_cfa\_offset 16
-    	.cfi\_offset 6, -16
+    	.cfi_def_cfa_offset 16
+    	.cfi_offset 6, -16
     	movq	%rsp, %rbp
-    	.cfi\_def\_cfa\_register 6
+    	.cfi_def_cfa_register 6
     	leaq	.LC0(%rip), %rdi
     	call	puts@PLT
     	movl	$0, %eax
     	popq	%rbp
-    	.cfi\_def\_cfa 7, 8
+    	.cfi_def_cfa 7, 8
     	ret
-    	.cfi\_endproc
+    	.cfi_endproc
     .LFE0:
     	.size	main, .-main
     	.ident	"GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0"
@@ -702,24 +697,24 @@ gcc -S t1.c
 
 - Looking at this assembly, you can see why C and other high level languages were invented. They are a lot easier for humans to read and write. C and C++ have proven themselves to be at a sweet spot between human usuability and the efficiency of their code at run-time. At this point we still have a text representation of our program, now in a different language. The computer can not run it yet.
 
-- The next step is to translate the assembly representation into the binary format that the computer can read directly. This is now a sequence of numbers, each representing either a datum value, a memory address, or an actual CPU operation to perform (_opcode_). This is no longer readable by most humans, but it is a direct translation of the assembly so you can translate back and forth if needed.
+- The next step is to translate the assembly representation into the binary format that the computer can read directly. This is now a sequence of numbers, each representing either a datum value, a memory address, or an actual CPU operation to perform (**opcode**). This is no longer readable by most humans, but it is a direct translation of the assembly so you can translate back and forth if needed.
     
-- The program is now a chunk of binary data called an _object_, and the compiler writes it to a file in called an _object file_, which ends with `.o`, so `t1.c` creates `t1.o`. If multiple source files were compiled, each gets its own object file.
+- The program is now a chunk of binary data called an **object**, and the compiler writes it to a file in called an **object file**, which ends with `.o`, so `t1.c` creates `t1.o`. If multiple source files were compiled, each gets its own object file.
     
 - To see this happening, we can ask the compiler to stop at the object stage:
 
 ```
-gcc -c t1.c
+$ gcc -c t1.c
 ```
         
-- The working directory will contain the file `t1.o`. Opening this in an editor, you will see a lot of unreadable stuff, with some familiar bits here and there, such as the string _Hello World_ which is stored in the object as data. You'll also see the function names `main` and `printf` which are kept around in human-readable form in case we want to debug the program as it runs.
+- The working directory will contain the file `t1.o`. Opening this in an editor, you will see a lot of unreadable stuff, with some familiar bits here and there, such as the string "Hello World" which is stored in the object as data. You'll also see the function names `main` and `printf` which are kept around in human-readable form in case we want to debug the program as it runs.
         
-- The final stage is to _link_ together all the object files, along with any code libraries they referenced, to create the complete executable program. Code libraries are just collections of `.o` object files all smooshed together with an index at the start. (Object files are often small and numerous, so collecting them simplifies distribution).
+- The final stage is to **link** together all the object files, along with any code libraries they referenced, to create the complete executable program. Code libraries are just collections of `.o` object files all smooshed together with an index at the start. (Object files are often small and numerous, so collecting them simplifies distribution).
         
 - Invoking the compiler with our object file will do the link to create a new executable called `t1` in the current directory:
 
 ```
-gcc -o t1 t1.o
+$ gcc -o t1 t1.o
 ```
 
 Now you have seen a typical C compiler process from start to finish. In practice you will almost always let the compiler do the whole thing at once for you. It deletes the intermediate files when it's finished with them, so you won't even see them unless you look hard.
@@ -766,8 +761,8 @@ Do not be tempted to just print the example output. Your code might be tested on
 As reminder, here's an example of building and running your new program
 
 ```
-gcc -o sz t2.c
-./sz
+$ gcc -o sz t2.c
+$ ./sz
 8 8 32 32 64 64 32 64 128
 ```    
 
@@ -801,12 +796,12 @@ We can use the combination of conditional loops and EOF indicator to make the ro
 
 ## Good reads
 
-*     [Beginners guide to using the Linux terminal](http://linuxcommand.org)
-*     [A concise introduction to C by W3school](https://www.w3schools.in/c-tutorial/intro/).
+- [Beginners guide to using the Linux terminal](http://linuxcommand.org)
+- [A concise introduction to C by W3school](https://www.w3schools.in/c-tutorial/intro/).
 
 
 # Credit
 
 Last updated 2021-05 by Alice Yue. 
 
-Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn and Victor Cheung.
+Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn, Victor Cheung, and others.

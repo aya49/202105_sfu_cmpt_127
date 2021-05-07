@@ -16,7 +16,7 @@ Open assignment 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Pr
 
 ## Task 01
 
-**REQUIREMENT**: Write a C program `t1.c` that writes `Hello World!`, `My name is <your name>.`, and `Nice to meat you!` in 3 separate lines to standard output.
+**REQUIREMENT**: Save your program to `t1.c` that writes `Hello World!`, `My name is <your name>.`, and `Nice to meat you!` in 3 separate lines to standard output.
 
 **REMEMINDER**: 
 - write comments!! Test and debug your code!
@@ -27,9 +27,7 @@ Open assignment 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Pr
 
 ## Task 02
 
-**REQUIREMENT**:
-1.  Write a new C program in the file `t2.c`.
-2.  Write a program to `scanf` two integer values from standard input separated by a space, then `printf` their sum.
+**REQUIREMENT**: Save your program in the file `t2.c`. Write a program to `scanf` two integer values from standard input separated by a space, then `printf` their sum.
 
 **REMINDER**:
 - write comments!! Test and debug your code!
@@ -39,13 +37,10 @@ Open assignment 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Pr
 
 ## Task 03
 
-**REQUIREMENT**
-
-1.  Save your program to the file `t3.c`.
-2.  Write a program to read any number of floating point values from standard input, separated by a space. Assume that the input is guaranteed to be well-formed and contain at least one valid floating point value.
-3.  After the user finishes inputting values, your program will print the product of all the inputs (hint: use the multiplication operator `*`).
-4.  The printed output should only have 2 decimal places.
-5.  If no floating point value can be parsed (i.e. a blank line was read) there should be no output. To put it another way: blank lines should be ignored.
+**REQUIREMENT**: Save your program to the file `t3.c`. Write a program to read any number of floating point values from standard input, separated by a space. After the user finishes inputting values, your program will print the product of all the inputs (hint: use the multiplication operator `*`).
+- Assume that the input is guaranteed to be well-formed and contain at least one valid floating point value.
+- The printed output should only have 2 decimal places.
+- If no floating point value can be parsed (i.e. a blank line was read) there should be no output. To put it another way: blank lines should be ignored.
 
 **REMINDER**:
 - write comments!! Test and debug your code!
@@ -66,10 +61,8 @@ The product of your values are:
 
 ## Task 04
 
-**REQUIREMENT**:
-1.  Save your program to the file `t4.c`.
-2.  Read a user input line containing a positive integer value. This integer will be the width and height of a reversed right triangle. You can assume that the values are separated by one or more spaces, the input is guaranteed to be well-formed, and all values will be in the range \[1,...,50\].
-4.  On standard output, draw the outline of the right triangle `#` character and fill the triangle using the `.` character.
+**REQUIREMENT**: Save your program to the file `t4.c`. Write a program to ead a user input line containing a positive integer value. This integer will be the width and height of a reversed right triangle. On standard output, draw the outline of the right triangle `#` character and fill the triangle using the `.` character.
+- You can assume that the values are separated by one or more spaces, the input is guaranteed to be well-formed, and all values will be in the range \[1,...,50\].
 
 **EXAMPLE**: sample user input `scanf` and `printf` output.
 

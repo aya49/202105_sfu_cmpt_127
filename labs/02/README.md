@@ -13,14 +13,16 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 7. Compile a program from two source files.
 8. Test a function for correctness.
 
-Try "Practice" problems on repl.it; these will NOT be graded.
+Try "Practice" problems on repl.it; these will NOT be graded. Note that the **SOLUTION** given for practice problems is just one of many possible **SOLUTION**s, better ones may exist ;)
+
+Note: from here on, the guide section will often include links to other material that can be crucial to solving the task. You should practice consulting online references and tutorials: this is a significant part of real-world programming. To encourage you to practice, we use external links instead of writing everything out in the guide. To be absolutely clear: **not everything you need to know is contained in our instructions. Therefore, you need to read about the new material discussed in the labs (e.g., C library functions, etc...) using the links and maybe searching online. This is deliberate and great practice!**
 
 
 # Function definitions, declarations, and header files
 
 ## Guide
 
-**Functions** (not to be confused with functions in mathematics): C is a [structured, procedural programming language](http://en.wikipedia.org/wiki/Procedural_programming_language). This means that C supports functions: isolated, self-contained blocks of code that can be re-used as components of larger programs. Other languages may call functions _procedures, subroutines_, or _methods_.
+**Functions** (not to be confused with functions in mathematics): C is a [structured, procedural programming language](http://en.wikipedia.org/wiki/Procedural_programming_language). This means that C supports functions: isolated, self-contained blocks of code that can be re-used as components of larger programs. Other languages may call functions **procedures, subroutines**, or **methods**.
 
 **Encapsulation** is a trait of well-designed functions where you can often use it for what it does, and ignore the internal details of how it works. This makes it feasible for humans to write complex programs by breaking them down into small, more manageable pieces.
 
@@ -65,14 +67,14 @@ int main(void) {
 ```
 
 Let's read our `max` function top-to-bottom, left-to-right: `int max(int int1, int int2)`:
-- `int` is the _return value_ of running this function is of type `int`. If the return type is `void`, we can omit the `return` statement, The function will finish at the end of the code block and return nothing.
+- `int` is the **return value** of running this function is of type `int`. If the return type is `void`, we can omit the `return` statement, The function will finish at the end of the code block and return nothing.
 - `max` is the name of the function.
 - arguments `int1` and `int2` are what the function takes as input; in this case, the input is two integer arguments called `int1` and `int2`; function definitions can specify an **arbitrary number of arguments**.
-- The _body_ of the function, i.e. the code that will execute when the function is called, is written between `{...}`.
-- `return` ..., or the value of the expression to the right of keyword `return` is the function's _return value_, or what the function outputs. Functions can only have **one return value**.
+- The **body** of the function, i.e. the code that will execute when the function is called, is written between `{...}`.
+- `return` ..., or the value of the expression to the right of keyword `return` is the function's **return value**, or what the function outputs. Functions can only have **one return value**.
 
 In `int main(void)`,
-- Calling a function: the function `max` is _called_ (like this: `max(num1, num2)`) in `printf`.
+- Calling a function: the function `max` is **called** (like this: `max(num1, num2)`) in `printf`.
     - Input: the values of integers `num1` and `num2` are assigned to `int1` and `int2` inside `max()`.
     - Output: `max` does its work and the return value is passed as the second argument to `printf()`.
 
@@ -89,7 +91,7 @@ For example, in your working directory you have the source files `p1funcs.c`, co
 As it is now, the compiler will attempt to compile all files into one program... which is not great; you will get warnings and possibly errors complaining that in `p1.c`, `min()` and `max()` are not properly declared. Try it:
 
 ```
-gcc p1funcs.c p1.c -o p1.o -Wall
+$ gcc p1funcs.c p1.c -o p1.o -Wall
 ```
 
 (the `-Wall` compiler option enables "all warnings" i.e. the compiler will warn you about potential problems)
@@ -104,9 +106,9 @@ int max(int int1, int int2);
 ```
 2. `#include` a copy of the the contents of the source file into your program `p1.c`. The contents of these source files are linked to your program at the last step of compilation.
     - `<>`: specifying the name of the header file `<like this>` forces the compiler to look for the file in the directories where your compiler was installed; the impelmentations of the functions in these files are implementations of these functions were pre-compiled for you into code to save your time.
-        - These functions were pre-compiled for you into code _libraries_ and shipped with your compiler to save you time. The required libraries are _linked_ into your program at the last step of compilation. 
+        - These functions were pre-compiled for you into code **libraries** and shipped with your compiler to save you time. The required libraries are **linked** into your program at the last step of compilation. 
         - The library `<stdio.h>` containing `printf()` is used so often it is linked by default (so you actually didn't need to add the line `#include <stdio.h>`).
-    - "": specifying the name of the header file `"like this"` copies the contents of a file you wrote. This quoted version understands paths relative to the current directory, and absolute paths (paths starting from root):
+    - `""`: specifying the name of the header file `"like this"` copies the contents of a file you wrote. This quoted version understands paths relative to the current directory, and absolute paths (paths starting from root):
 
 Examples of `#include` statements:
 
@@ -129,21 +131,18 @@ In addition to functions, header files can also declare global variables or prov
 - **Functions**: encapsulate a piece of code (e.g. `int max(int int1, int int2) {...}`).
 - If you have lots of functions, it's good practice to put your functions into separate files (e.g. `p1funcs.c`). To use these files together with your program (e.g. `p1.c`), you need to:
     1. Create **header files** associated with your function files; header files have the same file name as your function file but with a `.h` file extension (e.g. `p1funcs.h`). In your header files, put in the **function declarations** for the functions in the associated function files (e.g. `int max(int int1, int int2);`).
-    3. `#include` your header file in your program (e.g. `#include "p1funcs.h"`).
+    2. `#include` your header file in your program (e.g. `#include "p1funcs.h"`).
 
 
 
 ## Practice problem 01
 
-**REQUIREMENT**:
-- Create a file called `p1funcs.h` that contains function declarations for all the functions in `p1funcs.c`.
+**REQUIREMENT**: Create a file called `p1funcs.h` that contains function declarations for all the functions in `p1funcs.c`.
 - Edit the file `p1.c` to `#include` the new header file.
 - The finished code must compile with this command with no errors or warnings:
 ```
-gcc p1.c p1funcs.c -o p1.o -Wall
-```
-- The executable `p1.o` must output:
-```
+$ gcc p1.c p1funcs.c -o p1.o -Wall
+$ ./p1.o
 The max of our numbers is 12.
 The min of our numbers is 11.
 ```
@@ -151,7 +150,7 @@ The min of our numbers is 11.
 **REMEMBER**: header files contain function declarations, these are the same as a function definition except the braces and everything in the braces are replaced by a `;`.
 
 <details>
-<summary style="margin-left: 25px;">Solution</summary>
+<summary style="margin-left: 25px;">**SOLUTION**</summary>
 <div style="margin-left: 25px;">
 
 File: `p1funcs.h`
@@ -334,7 +333,7 @@ Note that your array values do not go out of scope (is not removed) once you fin
 ## Practice problem 02
 
 **REQUIREMENT**: Create a new file called `p2identical.c`, containing a single function `identical` that return 1 iff arrays `arr1` and `arr2` contain the same values in the same order, or 0 otherwise. The `identical` function has the following declaration:
-```
+```C
 int identical(int arr1[], int arr2[], unsigned int len) {...}
 ```
     - Arrays `arr1` and `arr2` are both of length `len`, and contain arbitrary integer values.
@@ -384,7 +383,7 @@ int main(void) {
 ```
 
 <details>
-<summary style="margin-left: 25px;">Solution</summary>
+<summary style="margin-left: 25px;">**SOLUTION**</summary>
 <div style="margin-left: 25px;">
 
 File: `p2identical.c`
@@ -405,15 +404,16 @@ int identical(int arr1[], int arr2[], unsigned int len) {
 </div>
 </details>
 
-## Practice problem 02.5: challenge yourself!
+## Practice problem 02.1: challenge yourself!
 
-**REQUIREMENT**: 
-- Can you modify your `identical` function such that it returns `1` if the contents of the two arrays are exactly the same regardless of the order?
-- Define another function called `scrambled` in your `p2identical.c` file, add its declaration into the `p2identical.h` file, and add a line in in your program `p1.c` that calls your `scrambled` function.
+**REQUIREMENT**: Can you modify your `identical` function such that it returns `1` if the contents of the two arrays are exactly the same regardless of the order?
+- Define another function called `scrambled` in your `p2identical.c` file
+- Add `scrambled`'s declaration into the `p2identical.h` file, and add a line in in your program `p1.c` that calls your `scrambled` function.
 
 **HINT**:
 - You can assume that the values in `arr1` and `arr2` are between `0` and `100`.
 - You can initialize a length `101` array where the value of all of its elements are initialized to zero:
+
 ```C
 int arr[101] = {0};
 ```
@@ -437,7 +437,7 @@ arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
 ```
 
 <details>
-<summary style="margin-left: 25px;">Solution</summary>
+<summary style="margin-left: 25px;">**SOLUTION**</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -472,12 +472,14 @@ int scrambled(unsigned int arr1[], unsigned int arr2[], unsigned int len) {
 </details>
 
 
-# Program arguments
+# Program arguments and C strings
+
+## Guide
 
 So far you have written programs that read their input from stdin using `scanf`. Another way to get data into a program is with program arguments. For example when we compile our progrmas, we use:
 
 ```
-gcc main.c
+$ gcc main.c
 ```
 
 `gcc` is not using stdin, so how does it know the files to compile? Well we give it the file `main.c` as a program argument. 
@@ -501,28 +503,24 @@ These two arguments, `argc` and `argv`, work for all possible arguments to your 
 argv[0] : "gcc"
 argv[1] : "main.c"
 ```
-    - Recall that a C string is a character array containing a special NULL character (the character '\0' or value 0) to mark the end of its text: the _null terminator_. Each pointer in the `argv` array points to the first character in a character array. The result for our example can be drawn as follows, if we use arrows to represent pointers:
+**C string**: a string in C is just a character array containing a special NULL character (a null terminator: '\0' or value 0) to mark the end of its text. Each pointer in the `argv` array points to the first character in a character array: `argv` is an array of arrays!
 
-![](../img/argv.png)
-
-Thus we can sketch an implementation of `cp` like this:
+We can sketch an implementation of `gcc` like this:
 
 ```C
 int main(int argc, char* argv[]) {
-    int inputfile = open(argv[1], O_RDONLY); // open a file for read only
-    int outputfile = open(argv[2], O_RW | O_CREAT);    // create a new file for writing
+    int filename = open(argv[1], O_RDONLY); // open the file for read only
+    int outputfile = open("a.out", O_RW | O_CREAT); // create a new executable file for writing
 
-    while(...) // we haven't read everything from inputfile
-    {
-         ... // read bytes from inputfile and write them to outputfile
+    while (...) { // we haven't read everything from inputfile
+        ... // read bytes from inputfile, translate to executable, and write them to outputfile
     }
- return 0; // success!
+    return 0; // success!
 }
 ```
 
-Function `open()` is called twice: once with `argv[1]`, the name of the file to copy (i.e. "original" in the example). Then `open()` is called again with `argv[2]`, the name of the destination file to copy to (i.e. "copy" in the example).
 
-#### I want numbers, not text strings
+### I want numbers, not text C strings
 
 Since main's arguments are stored as character strings, another step is needed to convert strings that represent numbers into number types before you use them. The `atoi()` and `atof()` functions provided in the standard library convert strings to integers and floating point values respectively:
 
@@ -531,37 +529,40 @@ Since main's arguments are stored as character strings, another step is needed t
 
 // takes two arguments: an integer followed by a float
 int main(int argc, char* argv[]) {
-    if(argc != 3) // yes 3! argv[0] is the program name
-    {
-         printf("I wanted 2 arguments\n");
+    if(argc != 3) { // argv[0] is the program name
+        printf("I wanted 2 arguments\n");
     }
 
-    int anInt = atoi(argv[1]);
-    float aFloat = atof(argv[2]);
-    ...
+    int i_int = atoi(argv[1]); // converts a string into an "i" integer
+    float j_float = atof(argv[2]); // converts a string into a "f" float
+    // ...
 }
 ```
 
 The program can be run like so and work as expected:
 
 ```
-$ ./a.out 5 3.14```
+$ ./a.out 5 3.14
+```
 
-<t3>Requirements</t3>
+## Practice problem 03
 
-<div class="req">
+For this practice, we'll go over how to implement a "substring" function in C.
 
-1. Write a program called "contains" that takes two text strings as arguments and prints "true" followed by a newline if the second string is entirely contained within the first, or "false" followed by a newline otherwise.
-2. The strings contain only ASCII characters and may be any length > 0 characters. Strings in `argv` are always null-terminated.
+**REQUIREMENT**: Write a C program called `p3contains.c` that takes two text strings as arguments (length > 0 characters) and prints "true" followed by a newline if the second string is entirely contained within the first, or "false" followed by a newline otherwise.
+- Recall that you can name your executable file with `-o` e.g. `gcc main.c -o contains` and run it by `./contains`.
+- You can assume your strings are of length at least 1.
 
-</div>
+This is an [important problem in computer science](http://en.wikipedia.org/wiki/Substring), with wide applications from searching the internet, to understanding text, to finding DNA matches. It's easy to state and easy to code. It gets interesting when the strings are long and you want to do it very efficiently. For now you can be happy with a simple **SOLUTION** to practice managing `argv` array and char strings.
 
-This is an [important problem in computer science](http://en.wikipedia.org/wiki/Substring), with wide applications from searching the internet, to understanding text, to finding DNA matches. It's easy to state and easy to code. It gets interesting when the strings are long and you want to do it very efficiently. For now you can be happy with a simple solution to practice managing `argv` array and char strings.
+**HINT**: you can find useful string functions like `strlen()` (length of a C string) in the header you imported, `#include <stdio.h>`, by looking up its [manual/documentation](https://www.tutorialspoint.com/c_standard_library/stdio_h.htm) online!
+
+**EXAMPLE**
 
 Example runs:
 
 ```
-$ ./contains "I have a really bad feeling about this" "bad feeling"
+$ ./p3contains.o "I have a really bad feeling about this" "bad feeling"
 true
 $ ./contains "To be or not to be" "That is the question"
 false
@@ -575,40 +576,82 @@ false
 
 Notice that the strings do not have quote characters around them when delivered to your program via `argv`. The quotes prevent the shell from breaking the strings up into individual words.
 
-You may find the standard library function `strlen()` (along with other string-related functions) useful. Read its manpage.
+<details>
+<summary style="margin-left: 25px;">**SOLUTION**</summary>
+<div style="margin-left: 25px;">
 
-**NOTE: pay attention to the requirements, e.g. don't forget the newlines.**
+```C
+#include <stdio.h>
+#include <string.h> // strlen
 
-### Testing and submission
+void contains(char* str1, char* str2) {
+    int len1 = strlen(str1);
+    int len2 = strlen(str2);
 
-Save your implementation as the single C source file `contains.c`, compile it and test it using the example runs above and others. When you think your code works, add and commit `contains.c`, then push your changes as usual.
+    if (len1 < len2) {
+        printf("false\n");
+    }
+
+    int res = 1;
+    for (int i=0; i<=len1-len2; i++) {
+        for (int j=i; j<i+len2; j++) {
+            res = 1;
+            if (str1[j] != str2[j-i]) {
+                res = 0;
+                break;
+            }
+        }
+        if (res==1) {
+            printf("true\n");
+            break;
+        }
+    }
+
+    if (res!=1) {
+        printf("false\n");
+    }
+}
+
+
+int main(int argc, char* argv[]) {
+    contains(argv[1], argv[2]);
+    return 0;
+}
+```
+
+Note: `#import <string.h>` contains function `strstr()` that solves the substring problem. The algorithm implemented in `strstr()` is not the most efficient, there are algorithms with better asymptotic runtimes; can you find more efficient implementations of a **SOLUTION** to the substring problem? 
+
+You will learn the terms **algorithm** and **asymptotic runtime** in CMPT 125, come back to this after you've mastered them and read the note again ;)
+
+Response to note: Theoretically there are more efficient implementations, but usually, if a function already exists, we would use it, unless someone makes a better one. 
 
 </div>
+</details>
 
-<div class="task">
+# Stream redirection: redirecting stdin and stdout (`scanf` and `printf`)
 
-## 6. Redirecting stdin and stdout
+## Guide
 
-From here on, the guide section will often include links to other material that can be crucial to solving the task. You should practice consulting online references and tutorials: this is a significant part of real-world programming. To encourage you to practice, we use external links instead of writing everything out in the guide. To be absolutely clear: <mark>not everything you need to know is contained in our instructions. Therefore, you need to read about the new material discussed in the labs (e.g., C library functions, etc...) using the links and maybe searching online. This is deliberate and not cause for complaint!</mark>
+You will find it tedious to type lots of text into your program's stdin. The shell has a powerful tool to help with this: **stream redirection**. 
 
-### Guide
+**stream redirection** allows you to route the stdin and stdout for a program away from the console and into a file. 
 
-You will find it tedious to type lots of text into your program's stdin. The shell has a powerful tool to help with this: _stream redirection_. This allows you to route the stdin and stdout for a program away from the console and into a file. For example, if we have a program called `hello` that prints "Hello world!\n" on stdout, we can do this:
-
-```
-$ ./hello > myfile.txt
-```
-
-This creates a new file `myfile.txt`. Anything written to stdout in the `hello` program is written to the file `myfile.txt`. To confirm this, inspect the contents of the file with `cat`:
+**stream redirection**; stdout: If we have a program called `p4hello.o` (`gcc p4hello.c p4hello.o`) that prints "Hello world!\n" on stdout, we can redirect this output to `p1.txt`:
 
 ```
-$ cat myfile.txt
+$ ./p4hello.o > p1.txt
+```
+
+To confirm this, inspect the contents of the file with `cat`:
+
+```
+$ cat t1.txt
 Hello world!
 ```
 
-Similarly, we can take the contents of a file, and stream it into the standard input of our program. So if we have a program `sort` that reads lines from stdin, sorts them into lexical order then writes them on stdout, we can do this:
+**stream redirection**; stdin: Similarly, we can take the contents of a file, and stream it into the standard input of our program. So if we have a program `sort` that reads lines from stdin, sorts them into lexical order then writes them on stdout, we can do this:
 
-Contents of file `beatles.txt`:
+Contents of file `p4beatles.txt`:
 
 ```
 john
@@ -618,17 +661,17 @@ ringo
 ```
 
 ```
-$ sort < beatles.txt
+$ ./sort < p4beatles.txt
 george
 john
 paul
 ringo
 ```
 
-Input and output redirection can be used together:
+**stream redirection**; stdin and stdout: Input and output redirection can be used together:
 
 ```
-$ sort < beatles.txt > sorted.txt
+$ ./sort < p4beatles.txt > sorted.txt
 $ cat sorted.txt
 george
 john
@@ -636,141 +679,103 @@ paul
 ringo
 ```
 
-This is a very powerful mechanism that is great for testing with lots of different inputs. It's much more convenient to redirect a file into stdin than to type many lines followed by ctrl-d over and over. Make sure you understand file redirection!
+This is a very powerful mechanism that is great for testing with lots of different inputs. It's much more convenient to redirect a file into stdin than to type many lines followed by `ctrl-d` over and over. Make sure you understand file redirection!
 
 Here is a terse but good introduction to [BASH shell programming](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html), including a section on [redirection](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html).
 
-Here is an task that will make you glad you know about shell redirection:
 
-### Requirements
+## Practice problem 04.1
 
-<div class="req">
+**REQUIREMENT**: add comments on file `p4.1.c` explaining what each line(s) is doing; do you understand the rationale behind these lines?
 
-1. Write a C program that counts the number of characters, words and lines read from standard input until EOF is reached.
-2. Assume the input is [ASCII](http://en.wikipedia.org/wiki/ASCII) text of any length.
-3. Every byte read from stdin counts as a character except EOF.
-4. Words are defined as contiguous sequences of letters (a through z, A through Z) and the apostrophe (', value 39 decimal) separated by any character outside these ranges.
-5. Lines are defined as contiguous sequences of characters separated by newline characters ('\n').
-6. Characters beyond the final newline character will not be included in the line count.
-7. On reaching EOF, use this output command:
+Here is a program that would have been very tedious to run without stream redirection. `p4.1.c` counts the number of characters, words and lines read from standard input until `ctrl-d` (`EOF`, if interested, see extra materials in [lab 01](../01/README.md#EOF-the-end-of-the-file)).
+- Every byte read from stdin counts as a character.
+- Words are defined as contiguous sequences of letters (a through z, A through Z) and the apostrophe (', value 39 decimal) separated by any character outside these ranges.
+- Lines are defined as contiguous sequences of characters separated by newline characters ('\n').
+- Characters beyond the final newline character will not be included in the line count.
 
-        ```C
-printf("%lu %lu %lu\n", charcount, wordcount, linecount);```
 
-        Where `charcount`, `wordcount` and `linecount` are all of type `unsigned long int`. You may need these large types to handle long documents.
+There are new functions `getchar()` and `isalpha` here which we haven't seen before. Check it out online or read its manual. There's a handy standard program called `wc` that does a similar job as `getchar()`, but it does not match the requirements exactly (it is a little more clever about word boundaries and will sometimes count fewer words than our simple program).
 
-</div>
+**Escape characters**: This [Q&A on StackOverflow](http://stackoverflow.com/questions/2414478/c-escaping-an-apostrophe-in-a-string) gives advice on representing the apostrophe character using an **escape sequence**. StackOverflow is very useful indeed.
 
-### Guide
 
-You may find the standard library function `getchar()` useful. Check it out onlin or read its manpage.
 
-There's a handy standard program called `wc` that does a similar job, but it does not match the requirements exactly (it is a little more clever about word boundaries and will sometimes count fewer words than our simple program). Your program should agree with wc's character and line counts, as the logic for those is the same.
+```C
+#include <stdio.h> // getchar, EOF constant
+#include <ctype.h> // isalpha
 
-#### Escape characters
+// main() is the same as main(int argc, char* argv[])
+// main(int argc, char* argv[]) is used so much that it was made the default!
+int main() {
+    // unsigned long int is a data type, search it up!
+    unsigned long int charcount = 0;
+    unsigned long int wordcount = 0; 
+    unsigned long int linecount = 0;
+    unsigned long int space = 0;
 
-This [Q&A on StackOverflow](http://stackoverflow.com/questions/2414478/c-escaping-an-apostrophe-in-a-string) gives advice on representing the apostrophe character using an _escape sequence_. StackOverflow is very useful indeed.
+    // COMMENT HERE
+    char last = getchar(); // getchar reads a character from stream, kind of like scanf
+    
+    // while not the end of file / ctrl-d
+    while (last != EOF) { 
+        // COMMENT HERE
+        charcount++;
 
-### Testing and submission
+        // COMMENT HERE
+        char current = getchar();
 
-Submit your solution as a complete program (i.e. with a `main()` function) in a C source file called `count.c`.
+        // COMMENT HERE
+        if (!isalpha(last) && isalpha(current)) { 
+            wordcount++;
+        }
 
-</div>
+        // COMMENT HERE
+        if (current == '\n') {
+            linecount++;
+        }
+        last = current;
+    }
+    printf("%lu %lu %lu\n", charcount, wordcount, linecount);
 
-</div>
-
-<div class="task">
-
-## 7. CENSORED
-
-### Requirements
-
-<div class="req">
-
-1. Write a C program called `censored.c` that takes any number of one-word text string arguments, each less than 128 characters long.
-2. "Word" is defined as in the previous task. (Tip: Can you reuse some of the code you wrote for Task 6?)
-3. The program copies text from stdin to stdout, except that any of the words seen in the input are replaced with the word "CENSORED".
-4. The argument and the input stream are both [ASCII](http://en.wikipedia.org/wiki/ASCII).
-5. The input to stdin is of any length.
-
-</div>
-
-Example runs:
-
-```
-$ cat poem.txt
-Said Hamlet to Ophelia,
-I'll draw a sketch of thee,
-What kind of pencil shall I use?
-2B or not 2B?
-$ ./censor Ophelia < poem.txt
-Said Hamlet to CENSORED,
-I'll draw a sketch of thee,
-What kind of pencil shall I use?
-2B or not 2B?
+    return 0;
+}
 ```
 
-```
-$ cat beatles.txt
-paul
-ringo
-george
-john
-$ ./censor paul ringo john < beatles.txt
-CENSORED
-CENSORED
-george
-CENSORED
+**SOLUTION**? I'm sure you can do this one on your own ( \*u\*)b
+
+## Practice problem 04.2
+
+**REQUIREMENT**: Write a program `p4.2.c`. `p4.2.c` should read ASCII text from stdin, count the occurence frequency of each letter in the input, and print the normalized frequencies for each letter a-z to stdout upon reaching EOF (end of file / `ctrl-d` in shell). The results should be printed as one letter per line, in alphabetical order using the format produced by:
+
+```C
+printf("%c %.4f\n", letter, freq);
 ```
 
-### Testing and submission
+- Letters that occur zero times should not appear in the output.
+- Characters other than lower and upper case letters should be ignored.
+- Lower and upper case instances count as the same letter, e.g. 'a' and 'A' are both reported for the letter 'a' on the output.
+- The frequencies reported should sum to approximately 1 (with a little slack for accumulation of `printf` rounding errors).
+- By the way, you cannot implement this function by writing 26 "if" statements (1 for each letter). Hint: Each letter has a numerical [ASCII](https://en.wikipedia.org/wiki/ASCII) value. Can this numerical value be used at all?
 
-Submit your solution as a complete program in a C source file called `censored.c`.
 
-</div>
-
-<div class="task">
-
-## 8. Letter frequency
-
-### Requirements
-
-<div class="req">
-
-1. Write a program that calculates the frequency of letter occurrences in text.
-2. Read ASCII text from standard input.
-3. On reaching EOF, print to stdout the normalized frequency of occurrence for each letter a-z that appeared in the input, one per line, in alphabetical order using the format produced by
-
-        ```
-printf("%c %.4f\n", letter, freq);```
-
-4. Letters that occur zero times should not appear in the output.
-5. Characters other than lower and upper case letters should be ignored.
-6. Lower and upper case instances count as the same letter, e.g. 'a' and 'A' are both reported for the letter 'a' on the output.
-7. The frequencies reported should sum to approximately 1 (with a little slack for accumulation of `printf` rounding errors).
-8. By the way, you cannot implement this function by writing 26 "if" statements (1 for each letter). Hint: Each letter has a numerical ASCII value. Can this numerical value be used at all?
-
-</div>
-
-#### Example runs
-
-Assume you have named your executable `lfreq`. The first two example runs show the user entering the text manually in the terminal. The third and fourth runs have text piped in from a file (and the middle of the alphabet is omitted from the output for brevity). A text file `happy_prince.txt` containing a classic story in English is provided for testing.
+**EXAMPLE**: Assume you have named your executable `p4.2.o`. The first two example runs show the user entering the text manually in the terminal. The third and fourth runs have text piped in from a file (and the middle of the alphabet is omitted from the output for brevity). A text file `happy_prince.txt` containing a classic story in English is provided for testing.
 
 ```
-$ ./lfreq
+$ ./p4.2.o
 aaab
 a 0.7500
 b 0.2500
 ```
 
 ```
-$ ./lfreq
+$ ./p4.2.o
 q
 q 1.0000
 ```
 
 ```
-./lfreq < happy_prince.txt
+./p4.2.o < p4.2prince.txt
 a 0.0841
 b 0.0140
 c 0.0206
@@ -779,286 +784,45 @@ y 0.0240
 z 0.0002
 ```
 
-```
-$ ./lfreq < "large novel in English.txt"
-a 0.0817
-b 0.0149
-c 0.0278
-...
-y 0.0197
-z 0.0001
-```
-
-### Testing and submission
-
-Submit your solution as a complete program in a C source file called `letterfreq.c`.
-
-</div>
-
-<div class="task" id="t_vgraph">
-
-## 9. Vertical graph
-
-In Lab 1 we plotted a histogram horizontally. In order to plot a histogram vertically, we need to have finished reading all the input before we start drawing the graph on the output. An array is suitable for this.
-
-A standard terminal window is 80 character-columns across. If we limit the number of columns we can graph to a maximum of 80, we know how large an array we need to allocate and this program is simple to write.
-
-### Requirements
-
-<div class="req">
-
-1. Read integer values from stdin, separated by one or more spaces or newlines, until reaching EOF.
-2. The input is guaranteed to be well-formed. (Hum... what does this mean?)
-3. The input contains no more than 80 values.
-4. On standard output, render a simple vertical column graph representation of the input values, in order left to right, using hash '#' characters as shown in the examples below. The number of hashes printed in each column should be equal to the corresponding input value.
-5. The area above a completed column should be filled with space characters.
-6. Ignore empty lines. Do not output a column for an empty line.
-7. The entire graph must end with a newline character.
-
-</div>
-
-### Guide
-
-Hint: you may find it helpful to draw your graphs upside down (increasing down the screen) first, then change your code to flip the output it up the right way.
-
-### Examples
-
-1. Input:
-
-        ```
-1 1 3 1```
-
-        Output:
-
-        ```
-    #
-            #
-        ####
-        ```
-
-        The requirements mean that the graph fills a rectangular area with hashes and spaces, so this example is printed as:
-
-        ```
-' ', ' ', '#', ' ', '\n'
-        ' ', ' ', '#', ' ', '\n'
-        '#', '#', '#', '#', '\n'
-        ```
-
-        In particular, notice the spaces before the newlines on the first two lines. They are necessary.
-
-2. Input:
-
-        ```
-3 4 5```
-
-        Output:
-
-        ```
-    #
-         ##
-        ###
-        ###
-        ###
-        ```
-
-3. Input:
-
-        ```
-0 3 0 4 5```
-
-        Output:
-
-        ```
-        #
-             ##
-         # ##
-         # ##
-         # ##
-        ```
-
-        Notice the empty columns that correspond to the zeros in the input, including the leading zero.
-
-4. Input:
-
-        ```
-5
-        15
-        16
-        15
-        12
-        12
-        12
-        8
-        6
-        3
-        2
-        19
-        21
-        17
-        15
-        12
-        11
-        10
-        9
-        8
-        7
-        7
-        ```
-
-        Output:
-
-        ```
-                        #
-                                #
-                             ##
-                             ##
-                             ###
-            #                ###
-         ###             ####
-         ###             ####
-         ###             ####
-         ######        #####
-         ######        ######
-         ######        #######
-         ######        ########
-         #######     #########
-         #######     ###########
-         ########    ###########
-        #########    ###########
-        #########    ###########
-        ########## ###########
-        ######################
-        ######################
-        ```
-
-5. Input:
-
-        ```
-0
-        0
-        2
-        1
-        0
-        ```
-
-        Output:
-
-        ```
-    #
-            ##
-        ```
-
-### Testing and submission
-
-Submit your solution as a complete program in a C source file called `verticalgraph.c`.
-
-</div>
-
-<div class="task" id="t_inrectangle">
-
-## 10. In Rectangle
-
-In this task you must write a function that determines whether a point lies inside a rectangle. The point and rectangle are both specified using arrays of floating point values.
-
-### Requirements
-
-<div class="req">
-
-1. Write a function that matches the following declaration:
-
-        ```C
-int InRectangle(float pt[2], float rect[4]);
-        ```
-
-2. Argument `pt[2]` defines a point on the plane: `pt[0]` is the x-coordinate, `pt[1]` is the y-coordinate.
-3. Argument `rect[4]` defines a rectangle on the same plane. `rect[0]` and `rect[1]` define the x- and y- cordinates respectively of one corner of the rectangle. `rect[2]` and `rect[3]` define the opposite corner.
-4. Coordinates may be any valid floating point value, including negative values.
-5. The function returns int `0` (false) for any point that lies outside the rectangle, and `1` (true) for any other point (i.e. points inside and on the boundary of the rectangle).
-
-</div>
-
-### Guide and Testing
-
-It is very common to represent geometric figures using small, fixed-size arrays like this. Note that the size of the arrays are specified in the function declaration. This allows the compiler to check that the function is called with a correctly-sized array.
-
-Since this task calls for a function only, and not a complete program, you need to write a program to test your function. The grading robot uses a program that looks something like this:
+<details>
+<summary style="margin-left: 25px;">**SOLUTION**</summary>
+<div style="margin-left: 25px;">
 
 ```C
-// declaration of function to test
-int InRectangle(float pt[2], float rect[4]);
+#include <stdio.h> // getchar, EOF constant
+#include <ctype.h> // isalpha
 
-int main(int argc, char* argv[]) {
-    // define a rectangle from (1,1) to (2,2)
-    float rect[4] = {1.0, 1.0, 2.0, 2.0 };
+int main() {
+    float letters[26] = {0};
+    int count = 0;
+    char c = getchar();
 
-    // define a point that is inside the rectangle
-    float p_in[2] = { 1.5, 1.5 };
-
-    // define a point that is outside the rectangle
-    float p_out[2] = {2.5, 0.5};
-
-    // define a point that is on the edge of the rectangle
-    float p_edge[2] = {1.0, 1.0};
-
-    // InRectangle() should return 0 (false) for points that are NOT in
-    // the rectangle, and non-zero (true) for points that are in the
-    // rectangle. Points on the edge are considered *in* the rectangle.
-
-    // test 1
-    if(InRectangle(p_in, rect) == 0)
-    {
-        puts("error: should return true for p_in.");
-        return 1; // indicate error
+    while (c!= EOF) {
+        if (isalpha(c)) {
+            count++;
+            if (c >= 'A' && c <= 'Z') {
+                c += 32;
+            }
+            c -= 'a';
+            letters[c]++;
+        }
+        c = getchar();
     }
-
-    // test 2
-    if(InRectangle(p_out, rect) != 0)
-    {
-        puts("error: should return false for p_out.");
-        return 1; // indicate error
+    for (int i = 0; i < sizeof(letters)/4; i++) {
+        if (letters[i] != 0) {
+            printf("%c %.4f\n", 'a'+i, letters[i]/count);
+        }
     }
-
-    // test 3
-    if(InRectangle(p_edge, rect) == 0)
-    {
-        puts("error: should return true for p_edge.");
-        return 1; // indicate error
-    }
-
-    return 0; // all tests passed
+    return 0;
 }
 ```
 
-The code tests that the function works correctly with these parameters:    
-
-<center>![](../img/InRectangle.png)</center>
-
-The actual test used by the grading robot is longer and more comprehensive than this. Above, we gave a simplified example for clarity.
-
-Note the syntax for initializing arrays with constant values at compile-time, e.g. line 7. This only works for constant values, unfortunately.
-
-You should **always** write a test for your functions. Consider an untested function to be incorrect. It helps to assume the function was written by a complete idiot who has no idea what they are doing, even if the author was you. Then test the function to find out what craziness that daft person implemented.
-
-Once a function passes all the tests you can think of, you might cautiously believe it might be correct. In software engineering, like any quality-focused pursuit, it helps to be skeptical.
-
-#### Compiling two files into one program
-
-Since the file you submit must not contain a `main()` function (see Submission section below), it is convenient to make a test program from two source files: one containing the `InRectangle()` function, and one with `main()`. You can start out with the code above, and extend it to be a more thorough test.
-
-Recall from above that you can compile a single program from multiple source files by simply listing the sources on the compiler command line:
-
-```
-$ gcc -o test inrect.c main.c
-```
-
-### Submission
-
-Submit your solution as a C source file called `inrect.c`. The file must not contain a `main()` function, even though you wrote one for testing. The grading robot will compile your file along with it's own `main()`. Since there can only be one `main()`, if you provide a second, the compilation will fail.
-
 </div>
+</details>
 
-<div class="labends">Lab 2 completed. [Back to the course web page](../../).</div>
 
-</div>
+# Credit
 
-</div>
+Last updated 2021-05 by Alice Yue. 
+
+Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn, Victor Cheung, and others.
