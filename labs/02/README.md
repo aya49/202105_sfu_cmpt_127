@@ -13,7 +13,7 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 7. Compile a program from two source files.
 8. Test a function for correctness.
 
-Try "Practice" problems on repl.it; these will NOT be graded. Note that the **SOLUTION** given for practice problems is just one of many possible **SOLUTION**s, better ones may exist ;)
+Try "Practice" problems on repl.it; these will NOT be graded. Note that the SOLUTION given for practice problems is just one of many possible SOLUTIONs, better ones may exist ;)
 
 Note: from here on, the guide section will often include links to other material that can be crucial to solving the task. You should practice consulting online references and tutorials: this is a significant part of real-world programming. To encourage you to practice, we use external links instead of writing everything out in the guide. To be absolutely clear: **not everything you need to know is contained in our instructions. Therefore, you need to read about the new material discussed in the labs (e.g., C library functions, etc...) using the links and maybe searching online. This is deliberate and great practice!**
 
@@ -150,7 +150,7 @@ The min of our numbers is 11.
 **REMEMBER**: header files contain function declarations, these are the same as a function definition except the braces and everything in the braces are replaced by a `;`.
 
 <details>
-<summary style="margin-left: 25px;">**SOLUTION**</summary>
+<summary style="margin-left: 25px;">SOLUTION</summary>
 <div style="margin-left: 25px;">
 
 File: `p1funcs.h`
@@ -383,7 +383,7 @@ int main(void) {
 ```
 
 <details>
-<summary style="margin-left: 25px;">**SOLUTION**</summary>
+<summary style="margin-left: 25px;">SOLUTION</summary>
 <div style="margin-left: 25px;">
 
 File: `p2identical.c`
@@ -437,7 +437,7 @@ arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
 ```
 
 <details>
-<summary style="margin-left: 25px;">**SOLUTION**</summary>
+<summary style="margin-left: 25px;">SOLUTION</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -553,7 +553,7 @@ For this practice, we'll go over how to implement a "substring" function in C.
 - Recall that you can name your executable file with `-o` e.g. `gcc main.c -o contains` and run it by `./contains`.
 - You can assume your strings are of length at least 1.
 
-This is an [important problem in computer science](http://en.wikipedia.org/wiki/Substring), with wide applications from searching the internet, to understanding text, to finding DNA matches. It's easy to state and easy to code. It gets interesting when the strings are long and you want to do it very efficiently. For now you can be happy with a simple **SOLUTION** to practice managing `argv` array and char strings.
+This is an [important problem in computer science](http://en.wikipedia.org/wiki/Substring), with wide applications from searching the internet, to understanding text, to finding DNA matches. It's easy to state and easy to code. It gets interesting when the strings are long and you want to do it very efficiently. For now you can be happy with a simple SOLUTION to practice managing `argv` array and char strings.
 
 **HINT**: you can find useful string functions like `strlen()` (length of a C string) in the header you imported, `#include <stdio.h>`, by looking up its [manual/documentation](https://www.tutorialspoint.com/c_standard_library/stdio_h.htm) online!
 
@@ -577,7 +577,7 @@ false
 Notice that the strings do not have quote characters around them when delivered to your program via `argv`. The quotes prevent the shell from breaking the strings up into individual words.
 
 <details>
-<summary style="margin-left: 25px;">**SOLUTION**</summary>
+<summary style="margin-left: 25px;">SOLUTION</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -619,7 +619,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-Note: `#import <string.h>` contains function `strstr()` that solves the substring problem. The algorithm implemented in `strstr()` is not the most efficient, there are algorithms with better asymptotic runtimes; can you find more efficient implementations of a **SOLUTION** to the substring problem? 
+Note: `#import <string.h>` contains function `strstr()` that solves the substring problem. The algorithm implemented in `strstr()` is not the most efficient, there are algorithms with better asymptotic runtimes; can you find more efficient implementations of a SOLUTION to the substring problem? 
 
 You will learn the terms **algorithm** and **asymptotic runtime** in CMPT 125, come back to this after you've mastered them and read the note again ;)
 
@@ -742,7 +742,7 @@ int main() {
 }
 ```
 
-**SOLUTION**? I'm sure you can do this one on your own ( \*u\*)b
+SOLUTION? I'm sure you can do this one on your own ( \*u\*)b
 
 ## Practice problem 04.2
 
@@ -785,7 +785,7 @@ z 0.0002
 ```
 
 <details>
-<summary style="margin-left: 25px;">**SOLUTION**</summary>
+<summary style="margin-left: 25px;">SOLUTION</summary>
 <div style="margin-left: 25px;">
 
 ```C
