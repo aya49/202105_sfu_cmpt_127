@@ -15,7 +15,7 @@ Try "Practice" problems on repl.it; these will NOT be graded. Note that the SOLU
 - [Practice 03](#practice-03)
 - [Practice 04](#practice-04)
 
-Do [Assignment 01](../../assignments/01).
+Do [Assignment 01](../assignments/01).
 
 Always remember, the internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
 

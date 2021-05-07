@@ -3,17 +3,18 @@
 Open lab 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 02_lab
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
+- [Guide 01](#guide) ([slides]()): Function definitions, declarations, and header files
+- [Guide 02](#guide-1) ([slides]()): Arrays
+- [Guide 03](#guide-2) ([slides]()): Program arguments and C strings
+- [Guide 04](#guide-3) ([slides]()): Stream redirection
 
-1. Create and use functions
-2. Create and use statically allocated arrays
-3. Create and use text strings (null-terminated character arrays)
-4. Build programs from multiple source files
-5. Create and use header files containing function declarations
-6. Use arguments passed to `main()`
-7. Compile a program from two source files.
-8. Test a function for correctness.
 
-Try "Practice" problems on repl.it; these will NOT be graded. Note that the SOLUTION given for practice problems is just one of many possible SOLUTIONs, better ones may exist ;)
+Try "Practice" problems on repl.it; these will NOT be graded. Note that the SOLUTION given for Practices is just one of many possible SOLUTIONs, better ones may exist ;)
+- [Practice 01](#practice-01)
+- [Practice 02](#practice-02)
+- [Practice 03](#practice-03)
+- [Practice 04.1](#practice-04.1)
+- [Practice 04.1](#practice-04.2)
 
 Note: from here on, the guide section will often include links to other material that can be crucial to solving the task. You should practice consulting online references and tutorials: this is a significant part of real-world programming. To encourage you to practice, we use external links instead of writing everything out in the guide. To be absolutely clear: **not everything you need to know is contained in our instructions. Therefore, you need to read about the new material discussed in the labs (e.g., C library functions, etc...) using the links and maybe searching online. This is deliberate and great practice!**
 
@@ -135,7 +136,7 @@ In addition to functions, header files can also declare global variables or prov
 
 
 
-## Practice problem 01
+## Practice 01
 
 **REQUIREMENT**: Create a file called `p1funcs.h` that contains function declarations for all the functions in `p1funcs.c`.
 - Edit the file `p1.c` to `#include` the new header file.
@@ -330,7 +331,7 @@ int main(void) {
 Note that your array values do not go out of scope (is not removed) once you finish executing the function, the pointer that the function created a copy of does.
 
 
-## Practice problem 02
+## Practice 02
 
 **REQUIREMENT**: Create a new file called `p2identical.c`, containing a single function `identical` that return 1 iff arrays `arr1` and `arr2` contain the same values in the same order, or 0 otherwise. The `identical` function has the following declaration:
 ```C
@@ -404,7 +405,7 @@ int identical(int arr1[], int arr2[], unsigned int len) {
 </div>
 </details>
 
-## Practice problem 02.1: challenge yourself!
+## Practice 02.1: challenge yourself!
 
 **REQUIREMENT**: Can you modify your `identical` function such that it returns `1` if the contents of the two arrays are exactly the same regardless of the order?
 - Define another function called `scrambled` in your `p2identical.c` file
@@ -545,7 +546,7 @@ The program can be run like so and work as expected:
 $ ./a.out 5 3.14
 ```
 
-## Practice problem 03
+## Practice 03
 
 For this practice, we'll go over how to implement a "substring" function in C.
 
@@ -684,7 +685,7 @@ This is a very powerful mechanism that is great for testing with lots of differe
 Here is a terse but good introduction to [BASH shell programming](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html), including a section on [redirection](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html).
 
 
-## Practice problem 04.1
+## Practice 04.1
 
 **REQUIREMENT**: add comments on file `p4.1.c` explaining what each line(s) is doing; do you understand the rationale behind these lines?
 
@@ -744,7 +745,7 @@ int main() {
 
 SOLUTION? I'm sure you can do this one on your own ( \*u\*)b
 
-## Practice problem 04.2
+## Practice 04.2
 
 **REQUIREMENT**: Write a program `p4.2.c`. `p4.2.c` should read ASCII text from stdin, count the occurence frequency of each letter in the input, and print the normalized frequencies for each letter a-z to stdout upon reaching EOF (end of file / `ctrl-d` in shell). The results should be printed as one letter per line, in alphabetical order using the format produced by:
 

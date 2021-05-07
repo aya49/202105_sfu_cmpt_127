@@ -1,6 +1,4 @@
-<div class="lab">
-
-# Lab 3 : Dynamic Memory Allocation
+# Lab 03: Dynamic memory allocation
 
 #### stack and heap, malloc() and free(), representing images
 
