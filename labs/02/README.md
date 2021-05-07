@@ -1,6 +1,8 @@
-# Lab 2: Functions, Arrays, C character strings, arguments to main, header files
+# Lab 02: Functions, Arrays, C character strings, arguments to main, and header files
 
 Open lab 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 02_lab
+
+(if repl.it doesn't work, download files [here](./files.zip))
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - [Guide 01](#guide) ([slides]()): Function definitions, declarations, and header files
@@ -16,7 +18,11 @@ Try "Practice" problems on repl.it; these will NOT be graded. Note that the SOLU
 - [Practice 04.1](#practice-04.1)
 - [Practice 04.1](#practice-04.2)
 
+Do [Assignment 01](../../assignments/02).
+
 Note: from here on, the guide section will often include links to other material that can be crucial to solving the task. You should practice consulting online references and tutorials: this is a significant part of real-world programming. To encourage you to practice, we use external links instead of writing everything out in the guide. To be absolutely clear: **not everything you need to know is contained in our instructions. Therefore, you need to read about the new material discussed in the labs (e.g., C library functions, etc...) using the links and maybe searching online. This is deliberate and great practice!**
+
+Always remember, the internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
 
 
 # Function definitions, declarations, and header files

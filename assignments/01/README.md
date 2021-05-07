@@ -2,8 +2,11 @@
 
 Open assignment 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 01_assignment
 
+(if repl.it doesn't work, download files [here](./files.zip), and upload your files in a zip to Canvas)
+
 **Remember**:
 - Reference [lab 01](../../labs/01) for help!
+- DO THE PRACTICE problems! They **directly** help you do the assignment tasks!
 - Assignments are to be done individually.
 - You may submit/resubmit the assignment on repl.it as many times as you want before the designated due date.
 - The internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
@@ -13,6 +16,8 @@ Open assignment 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Pr
 - [Task 02](#task-02)
 - [Task 03](#task-03)
 - [Task 04](#task-04)
+
+Your assignment will be graded according to this [**marking rubric**](#marking-rubric).
 
 ## Task 01
 
@@ -54,7 +59,7 @@ Provide floats separated by enter (line):
 -1.6
 9.5
 0
-The product of your values are:
+The product of your values is: 0
 
 ```
 
@@ -89,3 +94,22 @@ Enter an integer:
 **REMINDER**:
 - write comments!! Test and debug your code!
 - Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter an integer: "`, and let the user know what the output is by printing a message, e.g. `"Here is the result: "`.
+
+
+# Marking rubric
+
+| Task | Criteria                                      | Points |
+|------|-----------------------------------------------|--------|
+| All  | Programs are well documentated 
+         (i.e. student name and program description at 
+         the top of program files, commented on 
+         important code sections)                      | 0.5    |
+|      | Where applicable, program prompts user for 
+         input and indicates what the outputs are.     | 0.5    |
+| 01   | Program works as intended.                    | 1      |
+| 02   | Program works as intended.                    | 1      |
+| 03   | Program works as intended.                    | 1      |
+| 04   | Program works as intended.                    | 1      |
+|      | Program properly uses a for or while loop.    | 0.5    |
+|      | Program properly uses an if condition         | 0.5    |
+|      |                                         Total | 6      |

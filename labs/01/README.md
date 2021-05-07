@@ -2,6 +2,8 @@
 
 Open lab 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 01_lab
 
+(if repl.it doesn't work, download files [here](./files.zip))
+
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - Course outline ([slides]())
 - Setting up repl.it ([slides](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing))
@@ -15,7 +17,7 @@ Try "Practice" problems on repl.it; these will NOT be graded. Note that the SOLU
 - [Practice 03](#practice-03)
 - [Practice 04](#practice-04)
 
-Do [Assignment 01](../assignments/01).
+Do [Assignment 01](../../assignments/01).
 
 Always remember, the internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
 
