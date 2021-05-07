@@ -2,8 +2,6 @@
 
 Open lab 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 01_lab
 
-**Your to-do's**:
-
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - Course outline ([slides]())
 - Setting up repl.it ([slides](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing))
@@ -148,7 +146,7 @@ There are 4 things that define a variable:
 1. a **data type** of the value assigned to the variable (the computer determines how much space in memory to allocate to your variable based on the type of data value it will store), and 
 2. a **pointer** or an address indicating where in memory the variable's value is stored (we get this by prepending a `&` to the variable).
 3. a **variable name**, a human readable name you give to the variable, 
-4. a **value**, the value assigned to the variable (this is what functions take as input),
+4. a **value**, the value assigned to the variable (this is what functions take as input).
 
 
 A variable in C is created by the `=` operator:
@@ -176,6 +174,8 @@ Advantages to being _strongly typed_:
 
 C has several native (i.e. predefined) variable types. They differ by the kind of value they store and by the range of possible values. Here are the most commonly used variable types in C:
 
+`void` is a special type that means "nothing".
+
 **floating-point types**
 
 | Type specifiers | Precision (decimal digits) | Exponent range |
@@ -193,6 +193,8 @@ C has several native (i.e. predefined) variable types. They differ by the kind o
 A **characters** `char` uses 7 bits (bits = either 0 or 1) so it can represent 2^7 or 128 possible values. Hence, each character is represented by a unique set of numbers, see [ASCII](https://en.wikipedia.org/wiki/ASCII).
 
 Integer and floating point types represent numbers exactly over a limited range and approximately based on the number of bits respectively. [A complete list of the native types is available at Wikipedia](http://en.wikipedia.org/wiki/C_syntax#Primitive_data_types).
+
+
 
 **`sizeof`**
 
@@ -275,9 +277,17 @@ int main(void) {
 }
 ```
 
-- `scanf` is roughly the inverse of `printf`; it reads text from _standard input_ `stdin` and assigns it to a variable.
-    - argument 1 type string e.g. `%d`: this is the format string argument that tells `scanf` that it should interpret the user input as a decimal integer. Whitespace is ignored.
-    - argument 2 address in memory where it will store user input e.g. `&i`: arguments to functions are _passed by value_ (recall, `printf` has always printed the _value_ of our variables); however, if we give `scanf` `i`, it will see `0` which isn't an address in memory! So we prepend `i` with a `&` to get `i`'s pointer, the address in memory where we are currently storing `0`, and tell `scanf` to replace this value of `i` with the user input.
+`scanf` is roughly the inverse of `printf`; it reads text from _standard input_ `stdin` and assigns it to a variable.
+- argument 1 type string e.g. `%d`: this is the format string argument that tells `scanf` that it should interpret the user input as a decimal integer. Whitespace is ignored.
+- argument 2 address in memory where it will store user input e.g. `&i`: arguments to functions are _passed by value_ (recall, `printf` has always printed the _value_ of our variables); however, if we give `scanf` `i`, it will see `0` which isn't an address in memory! So we prepend `i` with a `&` to get `i`'s pointer, the address in memory where we are currently storing `0`, and tell `scanf` to replace this value of `i` with the user input.
+
+**Syntax rules: value vs pointer**:
+
+| Syntax             | Example | Value or pointer | Comment           |
+|--------------------|---------|------------------|-------------------|
+| `<variable name>`  | `i`     | value            | By default we pass the value of a variable to a function. |
+| `&<variable name>` | `&i`    | pointer          | Putting a `&` in front of your variable gets you its |
+| `*<pointer>`       | `*(&i)` | value            | Putting a `*` in front of your pointer gets you the value stored at the location in memory where the pointer points to. |
 
 ## Practice 02
 
@@ -593,7 +603,7 @@ int main(void) {
 
 `scanf` keeps going until you press `ctrl-d`, so press `ctrl-d` to stop the program.
 
-**Example**: sample `scanf` user input and `printf` output.
+**EXAMPLE**: sample `scanf` user input and `printf` output.
 
 ```
 Enter integers separated by space and press enter:
