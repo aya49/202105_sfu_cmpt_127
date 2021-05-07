@@ -100,12 +100,8 @@ Enter an integer:
 
 | Task | Criteria                                      | Points |
 |------|-----------------------------------------------|--------|
-| All  | Programs are well documentated 
-         (i.e. student name and program description at 
-         the top of program files, commented on 
-         important code sections)                      | 0.5    |
-|      | Where applicable, program prompts user for 
-         input and indicates what the outputs are.     | 0.5    |
+| All  | Programs are well documentated  (i.e. student name and program description at the top of program files, commented on important code sections) | 0.5    |
+|      | Where applicable, program prompts user for input and indicates what the outputs are. | 0.5    |
 | 01   | Program works as intended.                    | 1      |
 | 02   | Program works as intended.                    | 1      |
 | 03   | Program works as intended.                    | 1      |
