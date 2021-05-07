@@ -31,8 +31,8 @@ You have already used several functions provided by the standard library, such a
 ### Function syntax
 
 ```C
-type functionName(type arg_name1 [, type arg_name2, ...]) {
-        // code-block function body enclosed by curly braces
+type functionName(type arg_name1 <, type arg_name2, ...>) {
+    // code-block function body enclosed by curly braces
 }
 ```
 
