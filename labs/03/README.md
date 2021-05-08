@@ -14,7 +14,7 @@ Try "Practice" problems on repl.it; these will NOT be graded. Note that the SOLU
 
 ## Guide
 
-### Reminder/primer: Computer architecture memory layout
+Let's start by looking at the memory layout of a computer architecture.
 
 The memory layout for a process varies a bit by CPU architecture and OS, but the scheme used by Linux on X86 is pretty typical, and shown below. The program's text (compiled code) and static data exist in low memory, the function call stack in high memory, growing downwards, and the "heap" storage space in between. Ignore the "memory mapping segment" for now.
 
@@ -24,9 +24,7 @@ Credit: this image is taken from an [excellent online description](http://duarte
 
 
 
-
-
-### Storing "automatic" variables AND THE BUG!
+### Stack storage: "automatic" variables
 
 We have touched on "scope", let's look at it in more detail.
 
@@ -36,7 +34,7 @@ C implements this very efficiently by allocating all the space for local variabl
 
 When the function returns (i.e. we go out of scope), the stack pointer returns to its previous value, thus "freeing" all the local variables at small and near-constant cost.
 
-Consider file `p1name.c`, it contains a common and nasty C bug:
+Consider file `p0name.c`, it contains a common and nasty C bug:
 
 ```C
 #include <stdio.h>
@@ -74,8 +72,8 @@ The image below shows a sketch of the function call stack for a run of this prog
 
 
 This mechanism is why:
-1. you must declare all your variables in C: the compiler has to decide how large a function's stack frame needs to be before the function runs;
-2. C programs can be very fast: memory allocation and deallocation, are very cheap for automatic variables.
+- you must declare all your variables in C, the compiler has to decide how large a function's stack frame needs to be before the function runs;
+- C programs can be very fast: memory allocation and deallocation, are very cheap for automatic variables.
 
 
 The bug in `get_name()` is that the pointer returned by `get_name()` points to data inside that function's stack frame. When the function returns, that pointer is no longer valid. The illustration below explains what happens.
@@ -90,21 +88,23 @@ This bug is one of the main reasons people complain about C. The code looks like
 
 The good news is that modern compilers will generate a helpful warning if you return a pointer to memory allocated for an automatic variable. 
 
-**Try it yourself!**: Compile `p0name.c` and read its warnings; try to run the program and confirm it breaks as anticipated:
+**Try it yourself!**: Compile `p0name.c` and read its warnings; try to run the program and confirm it breaks as anticipated (you should get a warning: "function returns address of local variable"):
 ```
 $ gcc p0.c -o p0name.o -Wall
 ```
 
-**Moral of the story**: 
-- You CAN NOT return a POINTER that points to an address generated in the stack frame i.e. a local variable.
-- You CAN return a POINTER that points to an address generated outside the stack frame.
-- You CAN return a LOCAL VARIABLE VALUE (e.g. so far, a variable that is not an array).
-- **Read your warnings!** Better still, always use `-Wall` and fix all warnings in your builds, every time.
 
+## Practice 01: fixing the bug! (option 1)
 
-## First Solution: Allocate in caller
+The simpler, faster, and thus the best solution is to initialize (allocate) the array in the calling function and pass in a pointer to it; the function makes a copy of the pointer, uses it, and then throws away its copy of the pointer upon return --- without throwing away the actual array values in memory!
 
-There are two different approaches to fixing this problem. The simpler and faster solution - and thus the best one when you can use it - is to have the calling function allocate the array and pass in a pointer to it, like so:
+**REQUIREMENT**: debug `p0name.c`.
+
+<details>
+<summary style="margin-left: 25px;">SOLUTION</summary>
+<div style="margin-left: 25px;">
+
+See file `p0parent.c`. In this example, `get_name()` receives a pointer to array `name` which is stored inside `main()`'s stack frame. Since this is guaranteed to exist longer than the call to `get_name()` this will work correctly.
 
 ```C
 #include <stdio.h>
@@ -113,138 +113,170 @@ There are two different approaches to fixing this problem. The simpler and faste
 void get_name(char line[], int maxlen) {
     printf("Please enter your name: ");
 
-    // reads at most maxlen-1 chars from stdin, up to first newline, 
+    // fgets reads at most maxlen-1 chars from stdin, up to first newline, 
     // EOF or error.
-    if(fgets(line, maxlen, stdin) == 0) {// we ALWAYS check for I/O errors
+    if (fgets(line, maxlen, stdin) == 0) { // we ALWAYS check for I/O errors
         perror("failed to read a name");
-        exit(1);
+        exit(1); // "break", but for the entire program
     }
 }	
 
 int main(void) {
-    char name[1024];
-    get_name(name, 1024);
+    char name[1024]; // !! initializing name outside get_name fixes the bug !!
+    get_name(name, 1024); // passes array pointer to get_name
 
     // we don't need to be lucky this time
     printf("Your name is %s", name);
 
     return 0;
-}	             
+}
 ```
 
-This time `get_name()` receives a pointer to array `name` which is stored inside `main()`'s stack frame. Since this is guaranteed to exist longer than the call to `get_name()` this will work correctly.
+Try it yourself! Run the program
 
-<div class="steps">
-
-#### Try it yourself
-
-One of the source files you have downloaded for this lab, namely [get_name_parent.c](get_name_parent.c), contains the code above.
-
-1. Open this file in your text editor and have a read through it.
-
-2. Then compile it as follows, enabling all warnings to verify that the program builds without complaining about "function returns address of local variable":
-
-        <pre>$ gcc -Wall get_name_parent.c -o gnp```
-
-3. Run the program and confirm that it works correctly.
-
-Satisfy yourself that you understand it before moving on.
-
-</div>
-
-## Second solution: Explicit memory allocation
-
-The above method requires you to know how large an array your function call will need at most, and to allocate that much memory in advance. It is quite possible that you just don't know how much data to expect. Also, if the amount of data you expect is usually very small, but _could_ be very large, it would be wasteful to always allocate a huge array just in case.
-
-In these cases, we must allocate memory explicitly, using the system call `malloc()`. This allocates memory on the heap, and returns a pointer to it. The allocation will persist until explicitly de-allocated by a call to `free()`. Because the allocation is on the heap, it is available to any function that knows its address, regardless of the current state of the stack.
-
-Here is a simple example, omitting error checking for clarity:
-
-<pre class="prettyprint">// choose a random array length
-int len = rand();
-
-// allocate memory for an array of len ints
-int* array = malloc(len * sizeof(int));
-
-// array is now a pointer to an array of len integers on the heap
-// OR zero (null pointer) if the allocation failed
-
-// ...
-// (use the array)
-// ...
-
-// I am definitely finished with the array
-free(array);
-
-// make sure to cause a segmentation fault (segfault) if I use 
-// it again by mistake
-array = NULL; // or array = 0;
+```
+$ gcc p0parent.c -o p0parent.o -Wall
+$ ./p0parent.o
 ```
 
-The argument to `malloc()` is a size in bytes, so we almost always use sizeof(some_type) as a multiplier. It returns a special type: a `void*` (pronounced "void pointer"). By default C allows a void pointer to be assigned to any other kind of pointer without having to be converted explicity. All pointers are just memory addresses, after all.
-
-<div class="steps">
-
-#### A more realistic example
-
-Maybe you are not convinced that this could ever be useful.
-
-One of the source files you have downloaded for this lab, namely [randomrandom.c](randomrandom.c), contains a semi-realistic example with error checking included.
-
-1. Open this file in your text editor and have a read through it.
-
-2. Then compile it as follows:
-
-        <pre>$ gcc -Wall randomrandom.c -o rr```
-
-3. Run the program and confirm that it works as expected.
-
-Make sure you understand the code completely before you move on.
-
 </div>
+</details>
 
-## Limited stack size
+Note that the above solution still uses the stack. 
 
-There is one more reason to use `malloc()`: the size of the stack is very limited. The exact size depends on your OS, CPU architecture, and current configuration, but is generally a few MB at most, and can be as small as a few KB on embedded systems. The stack has to be limited in size to avoid it growing into the heap and corrupting both segments (called "smashing the stack"). You should allocate large things on the heap with `malloc()` instead. If the heap is out of space, `malloc()` tells you so and you can either cope with it gracefully or quit your program. Automatic variables on the stack do not give you this opportunity.
+Recall: this means that the compiler has to decide how large a function's stack frame needs to be before the function runs; so it requires you to know how large of an array your function call will need at most, and to allocate that much memory in advance.
 
-Once again, it is a downside of C that you must think about things like this. As usual, it's the price you pay for speed and control.
+However, you won't always know how big of an array to expect. Also, if the amount of data you expect is usually very small, but might be very large at times, it would be wasteful to always allocate a huge array just in case.
 
-#### How large is too large for the stack?
+#### Fixing the bug: option 2, explicit memory allocation on the heap
 
-The answer is system-dependent, but anything over a few KB should probably go on the heap.
+To overcome these shortcomings, we allocate memory explicitly, using `malloc()` (memory allocation) from the heap.
 
-## Say that again?
+### Heap storage
+
+About `malloc()`: 
+- INPUT: the argument to `malloc()` is a size in bytes, so we almost always use `sizeof(<some_type>)` as a multiplier. 
+- OUTPUT: `malloc()` returns a special type, a `void*` (pronounced "void pointer"). to a memory allocation that will persist until explicitly de-allocated by a call to `free()` regardless of the state of the stack.
+
+By default C allows a void pointer to be assigned to any other kind of pointer without having to be converted explicity. All pointers are just memory addresses, after all.
+
+There is one more reason to use `malloc()`: the size of the stack is very limited. It is generally a few MB at most, and can be as small as a few KB on embedded systems. The stack has to be limited in size to avoid it growing into the heap and corrupting both segments (this is called "smashing the stack"). How large is too large for the stack? The answer is system-dependent, but anything over a few KB should probably go on the heap.
+
+Using `malloc()`, you can and should allocate large things on the heap. If the heap is out of space, `malloc()` tells you so and you can either cope with it gracefully or quit your program. Automatic variables on the stack do not give you this opportunity. Once again, it is a downside of C that you must think about things like this. As usual, it's the price you pay for speed and control.
 
 If you'd like to read similar material on memory management, presented differently, [here is a good write-up by Paul Gribble](https://gribblelab.org/CBootCamp/7_Memory_Stack_vs_Heap.html).
 
-# Requirements
+Here is a simple example on how to use `malloc()` and `free()`, omitting error checking for clarity:
 
-<div class="req">
+```C
+// choose a random array length
+int len = 20;
 
-The task structure in this lab is different to your previous labs.
+// allocate memory for an array of len ints
+//
+// when you use malloc, you add a * in front of your data type
+// 
+// recall: <type>* initializes a POINTER 
+// pointing to a space in memory reserved for (len * int's)
+// this pointer points to the first element in the array of len integers on the heap
+// OR zero (null pointer) if the allocation failed
+int* array = malloc(len * sizeof(int));
 
-1. Your job, in this lab, is to finish the implementation of several function definitions in the supplied file `imgops.c`. The grading robot will exercise these functions to see if they meet the requirements (specifications).
+// (use the array)
 
-2. Read the documentation in `imgops.c` or in `imgops.h`. This documentation describes what each function does and the requirements you must satisfy when implementation each function.
+// I am finished with the array
+free(array);
 
-3. Implement and compile a task at a time.
+// set my array pointer to NULL; 
+// this way, if i accidentally use it again, 
+// it will cause a segmentation fault (segfault) error
+array = NULL; // or array = 0;
+```
 
-4. To test the function(s) of a task, extend the program in `test.c` so that it calls each of your function(s) and displays the resulting image in its own window.
+Maybe you are not convinced that this could ever be useful.
 
-        How to do this will be demonstrated at the beginning of the lab session.
+Take a read through `p0random.c`, compile it, and try running it. `p0random.c` contains a semi-realistic example with error checking included. Make sure you understand the code completely before you move on.
 
-        Writing tests is part of the work of a programmer, so get used to testing as you go.
+```C
+#include <stdio.h> // for printf()
+#include <stdlib.h> // for rand()
+#include <time.h> // for time()
 
-5. Once you have implemented, compiled and tested a task in `imgops.c`, you can add, commit and push this file to your Git repo and move on to the next task.
+/* Reads an integer len from stdin and returns a pointer to an array
+     of integers of length len, containing random values between 0 and
+     len-1 inclusive. Sets *reportlen (which must not be null) to indicate
+     the length of the array. */
+int* get_random_number_of_random_numbers(int* reportlen) {
+    // user enters a number for the array length AND maximum value    
+    printf("Enter an integer: ");
+    
+    int len=0;
+    if (scanf("%d", &len) != 1) { // always check I/O for errors
+            perror("reading an integer failed");
+            exit(1);
+        }
+    
+    // explicitly allocate space for an array of ints
+    int* arr = malloc(len * sizeof(int));
+    
+    if (arr == 0) {// always check a system call for errors
+            perror("allocating a random-length array failed");
+            exit(1);
+        }
+    
+    // fill the array with random numbers
+    for (int i=0; i<len; i++) {
+        arr[i] = rand() % len;
+    }
+    
+    *reportlen = len;
+    return arr;
+}	
 
-The grading robot will grade the pushed file, reporting on the task you have implemented and will mark the other yet-to-be implemented tasks as unsuccessful (red boxes). Repeat the above steps until all your tasks have successfully been tested (green boxes).
+int main(void) {
+    // intialize the random number generator with the current time in seconds
+    srand(time(0));
+    
+    // I can't know in advance how long array will be
+    int len=0;			
+    int* array = get_random_number_of_random_numbers(&len);			
 
-Important: DO NOT add a `main()` function in `imgops.c`. Keep it in `test.c`. This is because the grading robot has its own test driver program with a `main()` function. An extra `main()` will prevent the grading robot's test program from compiling.
+    printf("[");
+    for (int i=0; i<len; i++) {
+        printf(" %d", array[i]);
+    }
+    printf(" ]\n");
+    
+    // de-allocate the memory allocated by malloc
+    free(array);
 
-Also important: DO NOT make your `imgops.c` code rely on any other files. For testing, the grading robot copies only your `imgops.c` and will not bring any of your other files along.
+    return 0;
+}
+```
 
-</div>
+```
+$ gcc p0random.c -o p0random.o -Wall
+$ ./p0random.o
+```
 
-* * *
 
-<div class="labends">Lab 3 completed. [Back to the course web page](../../).</div>
+## Moral of the story
+
+Fixing bugs surrounding dynamic memory
+- You CAN NOT return a POINTER that points to an address generated in the stack frame i.e. a local variable.
+- You CAN return a POINTER that points to an address generated outside the stack frame.
+- You CAN return a LOCAL VARIABLE VALUE (e.g. so far, a variable that is not an array).
+- **Read your warnings!** Better still, always use `-Wall` and fix all warnings in your builds, every time.
+
+Stack vs heap
+- Stack storage
+    - Pro: everything is automatic! space for automatic variables are automatically allocated and freed up after reaching the end of a code block!
+    - Con: Being automatic also means that automatic variables are freed when you go out of scope, meaning it can't be accessed once we go out of scope.
+    - Con: requires you to know how large of an array your function call will need at most, and it requires you to allocate that much memory in advance.
+    - Con: there is limited space on a stack, generally a few MB, but anything more than a few KB should not go here; this is to avoid the stack from growing into the heap and corrupting both segments (this is called "smashing the stack").
+    - Con: you don't know when a stack runs out of space, hence you can't cope with it gracefully or quit the program.
+- Heap storage
+    - Pro: there is lots of space here!
+    - Pro: If the heap is out of space, `malloc()` tells you so and you can either cope with it gracefully or quit your program.
+    - Pro: Unlike things on a stack, things stored in memory allocated on the heap is available to any function that knows its address, regardless of the current state of the stack.
+    - Con: you have to manually allocate things on the heap using `malloc()`.
