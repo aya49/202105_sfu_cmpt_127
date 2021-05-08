@@ -2,7 +2,7 @@
 
 Open lab 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 01_lab
 
-(if repl.it doesn't work, download files [here](./files.zip))
+(if repl.it doesn't work, download files [here](./files)))
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - Course outline ([slides]())
@@ -162,7 +162,7 @@ int i = 0;
 - You can access `i`'s pointer with `&i`.
 
 
-### Value data types, `sizeof`, `printf`, and arithmetic expressions
+### Value data types, `sizeof`, and `printf`
 
 C is a **strongly typed** language. This means:
 - all variables have a static **type** that identifies the kind of data they store; a variable's type cannot change.
@@ -224,8 +224,26 @@ here: 0 3.14 + CMPT 127
 
 `printf` allows you to print all the native variable types. Using `printf` is similar to using the `%` idiom in Python's `print` function. `printf` is less flexible about its input than Python's `print`, but you can do a lot with it. For floating point numbers, you can specifiy the precision at which the number is printed by adding `.2` with `2` being the number of decimal points ot print to `%f` \> `%.2f`.
 
+### Standard fixed-size integer types
 
-**Arithmetic expressions**
+`sizeof(int)` or the number of bytes an integer requires in memory varies with machine architecture. Therefore, it is often useful to specify a standard set of sizes for your variables exactly. This way, your code will use predictable variable sizes no matter which machine you run it on.
+
+The header file `stdint.h` defines a set of sized integer variable types for you:
+
+```
+ int32_t     (32 bit signed int)
+uint32_t     (32 bit unsigned int)
+ int64_t     (64 bit signed int)
+uint64_t     (64 bit unsigned int)
+  int8_t     (8 bit signed int)
+ uint8_t     (8 bit unsigned int)
+```
+
+In this lab we will use `uint8_t` in place of its exact equivalent `unsigned char` for brevity. Note it is C convention that the suffix `_t` denotes a type.
+
+See [C data types](https://en.wikipedia.org/wiki/C_data_types) for more details.
+
+### Arithmetic expressions
 
 ```C
 int a = 2;
@@ -538,7 +556,7 @@ You can jump to the beginning of a loop body with the continue; statement. For e
 
 ## Practice 03
 
-**REQUIREMENT**: Write a C program `p3.c`. Re-write the previous example without using `continue`.
+**REQUIREMENT**: Write a C program `p3.c`. In it, re-write the previous example without using `continue`.
 
 <details>
 <summary style="margin-left: 25px;">SOLUTION</summary>
@@ -571,10 +589,12 @@ int main(void) {
 
 ## Practice 04
 
-**REQUIREMENT**: Save your program to the file `p4.c`. Read an arbitrary number of positive integer values separated by a space using `scanf`. On standard output, render a simple graph representation of the input values, in order, using hash `#` characters as shown in the examples below.
-- You may assume that the inputs are well-formed.
-- The number of hashes printed should be equal to the input value.
-- Your program should output exactly one line per input value.
+**REQUIREMENT**: Save your program to the file `p4.c`. 
+- INPUT: `p4.c` should read an arbitrary number of positive integer values separated by a space using `scanf`.
+    - You may assume that the inputs are well-formed. 
+- OUTPUT: `p4.c` should, on standard output, render a simple graph representation of the input values, in order, using hash `#` characters as shown in the examples below.
+    - The number of hashes printed should be equal to the input value.
+    - Your program should output exactly one line per input value.
 
 **HINT**: did you know that if `scanf`is looking for a series of integers separated by a space as input? You can directly input `1 3 5 6`, press enter, and `scanf` will help you loop through each integer. Try it out!
 

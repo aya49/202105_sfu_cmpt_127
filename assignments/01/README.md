@@ -2,7 +2,7 @@
 
 Open assignment 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 01_assignment
 
-(if repl.it doesn't work, download files [here](./files.zip), and upload your files in a zip to Canvas)
+(if repl.it doesn't work, download files [here](./files), and upload your files in a zip file to Canvas)
 
 **Remember**:
 - Reference [lab 01](../../labs/01) for help!
@@ -21,7 +21,8 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 
 ## Task 01
 
-**REQUIREMENT**: Save your program to `t1.c` that writes `Hello World!`, `My name is <your name>.`, and `Nice to meat you!` in 3 separate lines to standard output.
+**REQUIREMENT**: Save your program to `t1.c`. 
+- OUTPUT: `t1.c` should print `Hello World!`, `My name is <your name>.`, and `Nice to meat you!` in 3 separate lines to standard output.
 
 **REMEMINDER**: 
 - write comments!! Test and debug your code!
@@ -32,7 +33,9 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 
 ## Task 02
 
-**REQUIREMENT**: Save your program in the file `t2.c`. Write a program to `scanf` two integer values from standard input separated by a space, then `printf` their sum.
+**REQUIREMENT**: Save your program in the file `t2.c`. 
+- INPUT: `t2.c` should `scanf` two integer values from standard input separated by a space, 
+- OUTPUT: `t2.c` should `printf` the sum of these two integers.
 
 **REMINDER**:
 - write comments!! Test and debug your code!
@@ -42,10 +45,13 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 
 ## Task 03
 
-**REQUIREMENT**: Save your program to the file `t3.c`. Write a program to read any number of floating point values from standard input, separated by a space. After the user finishes inputting values, your program will print the product of all the inputs (hint: use the multiplication operator `*`).
-- Assume that the input is guaranteed to be well-formed and contain at least one valid floating point value.
-- The printed output should only have 2 decimal places.
-- If no floating point value can be parsed (i.e. a blank line was read) there should be no output. To put it another way: blank lines should be ignored.
+**REQUIREMENT**: Save your program to the file `t3.c`. 
+- INPUT: `t2.c` should read any number of floating point values from standard input, separated by a space. 
+     - Assume that the input is guaranteed to be well-formed and contain at least one valid floating point value.
+     - If no floating point value can be parsed (i.e. a blank line was read) there should be no output. To put it another way: blank lines should be ignored.
+- OUTPUT: After the user finishes inputting values, `t2.c` will print the product of all the inputs (hint: use the multiplication operator `*`).
+     - The printed output should only have 2 decimal places.
+
 
 **REMINDER**:
 - write comments!! Test and debug your code!
@@ -66,8 +72,11 @@ The product of your values is: 0
 
 ## Task 04
 
-**REQUIREMENT**: Save your program to the file `t4.c`. Write a program to ead a user input line containing a positive integer value. This integer will be the width and height of a reversed right triangle. On standard output, draw the outline of the right triangle `#` character and fill the triangle using the `.` character.
-- You can assume that the values are separated by one or more spaces, the input is guaranteed to be well-formed, and all values will be in the range \[1,...,50\].
+**REQUIREMENT**: Save your program to the file `t4.c`. 
+- INPUT: `t4.c` should read a user input line containing a positive integer value. This integer will be the width and height of a reversed right triangle. 
+    - You can assume that the input is guaranteed to be well-formed, and all values will be in the range \[1,...,50\].
+- OUTPUT: `t4.c` should, on standard output, draw the outline of the right triangle `#` character and fill the triangle using the `.` character.
+
 
 **EXAMPLE**: sample user input `scanf` and `printf` output.
 
@@ -101,11 +110,11 @@ Enter an integer:
 | Task | Criteria                                      | Points |
 |------|-----------------------------------------------|--------|
 | All  | Programs are well documentated  (i.e. student name and program description at the top of program files, commented on important code sections) | 0.5    |
-|      | Where applicable, program prompts user for input and indicates what the outputs are. | 0.5    |
+| All  | Where applicable, program prompts user for input and indicates what the outputs are. | 0.5    |
 | 01   | Program works as intended.                    | 1      |
 | 02   | Program works as intended.                    | 1      |
 | 03   | Program works as intended.                    | 1      |
 | 04   | Program works as intended.                    | 1      |
-|      | Program properly uses a for or while loop.    | 0.5    |
-|      | Program properly uses an if condition         | 0.5    |
-|      |                                         Total | 6      |
+| 04   | Program properly uses a for or while loop.    | 0.5    |
+| 04   | Program properly uses an if/else conditions   | 0.5    |
+| Total|                                               | 6      |

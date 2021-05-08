@@ -12,9 +12,9 @@
 
 This lab provides:
 
-1.  practice writing tests to determine the correctness of functions.
-2.  implementing operations on linked lists
-3.  write an efficient list sort function
+1. practice writing tests to determine the correctness of functions.
+2. implementing operations on linked lists
+3. write an efficient list sort function
 
 ### Setup
 
@@ -24,13 +24,15 @@ Note that these instructions no longer include all steps. You should know how to
 
 In the terminal:
 
-1.  Fetch the [new material](7.zip) for Lab 7 and save it into your local repo.
-2.  Expand it into your local repo. This will create the directory '7' containing the files you need.
-3.  Add the new directory to your repo with
+1. Fetch the [new material](7.zip) for Lab 7 and save it into your local repo.
+2. Expand it into your local repo. This will create the directory '7' containing the files you need.
+3. Add the new directory to your repo with
 
-    <pre>$ git add 7</pre>
+        ```
+$ git add 7
+```
 
-    then make '7' your working directory.
+        then make '7' your working directory.
 
 </div>
 
@@ -48,7 +50,7 @@ Figure 1 - Diagram by Leonardo da Vinci
 
 Figure 2 - Feynman Diagram
 
-* * *
+
 
 ## Guide: Linked Lists
 
@@ -60,11 +62,11 @@ Our implementation is typical in that it uses a second data structure called a *
 
 The list is assembled as follows:
 
-First a <tt>list_t</tt> structure is allocated on the heap, with its head- and tail-pointers set to NULL, representing an empty list.
+First a `list_t` structure is allocated on the heap, with its head- and tail-pointers set to NULL, representing an empty list.
 
 ![](../img/Lab7/list 1.png)
 
-To insert the first value into the list, a new <tt>element_t</tt> is allocated on the heap, the value is stored in it, and the header's head- and tail-pointers are both set to point to it. The first element's next-pointer is NULL to indicate it is the last element in the list.
+To insert the first value into the list, a new `element_t` is allocated on the heap, the value is stored in it, and the header's head- and tail-pointers are both set to point to it. The first element's next-pointer is NULL to indicate it is the last element in the list.
 
 ![](../img/Lab7/list 2.png)
 
@@ -90,41 +92,45 @@ It is important to note that while lists have good theoretical resizing properti
 
 ## Tasks 1..5
 
-The compressed file you downloaded contains a header file <tt>list.h</tt> that contains an interface specification for a linked-list-of-integers data structure. See the Guide above for notes on linked lists. Six slightly different implementations are provided, in files <tt>tN.c</tt> where N = [1..5]. The file <tt>main.c</tt> contains a very weak test program for the linked list code.
+The compressed file you downloaded contains a header file `list.h` that contains an interface specification for a linked-list-of-integers data structure. See the Guide above for notes on linked lists. Six slightly different implementations are provided, in files `tN.c` where N = [1..5]. The file `main.c` contains a very weak test program for the linked list code.
 
-The <tt>Makefile</tt> will build programs t1 through t5, each linking the same <tt>main.c</tt> with one of the list implementation C files.
+The `Makefile` will build programs t1 through t5, each linking the same `main.c` with one of the list implementation C files.
 
 Build each program by naming it as your 'make' target, e.g.
 
-<pre>$ make t1
+```
+$ make t1
 $ make t5
-</pre>
+
+```
 
 The above two make commands will each create an executable 't1' and 't5'. You can also build all programs by using the following command:
 
-<pre>$ make all</pre>
+```
+$ make all
+```
 
-Running the resulting programs, you will see that every one passes the test in <tt>main.c</tt>. At this point the beginner might relax and load up Minecraft. But we have left blissful ignorance behind us. We are suspicious. In fact all of these implementations contain bugs.
+Running the resulting programs, you will see that every one passes the test in `main.c`. At this point the beginner might relax and load up Minecraft. But we have left blissful ignorance behind us. We are suspicious. In fact all of these implementations contain bugs.
 
-Your task is to extend <tt>main.c</tt> to thoroughly test the list implementations. Your program must reliably distinguish all these faulty implementations from a correct one.
+Your task is to extend `main.c` to thoroughly test the list implementations. Your program must reliably distinguish all these faulty implementations from a correct one.
 
-The grading robot tests work as follows: Your <tt>main.c</tt> will be compiled with each of tN.c as well as a bug-free version (not supplied to you). You pass Task N if your program consistently returns 1 when it runs the buggy code, but 0 when it runs the bug-free code. Remember: returning 1 means an error has occured during the execution of your program while returning 0 means that your program successfully executed.
+The grading robot tests work as follows: Your `main.c` will be compiled with each of tN.c as well as a bug-free version (not supplied to you). You pass Task N if your program consistently returns 1 when it runs the buggy code, but 0 when it runs the bug-free code. Remember: returning 1 means an error has occured during the execution of your program while returning 0 means that your program successfully executed.
 
 ### Requirements
 
 <div class="req">
 
-1.  A program built from your <tt>main.c</tt> and linked against any implementation of the functions in <tt>list.h</tt> must return 0 if the functions are bug-free, or 1 if they contain one or more bugs.
-2.  Preferably, your program should not crash or halt on <tt>assert()</tt>. But a crash (e.g., segmentation fault) or assertion will be recorded as indicating the code contained bugs, just like with the grading robot.
-3.  Preferably, print an explanatory error message on stdout describing the problem you discovered.
-4.  You may produce (a sensible amount) of other text output on stdout or stderr if you wish.
-5.  The grading robot will not test your text output: only the return value. Try to make the text output helpful for yourself or an instructor/TA helping you.
+1. A program built from your `main.c` and linked against any implementation of the functions in `list.h` must return 0 if the functions are bug-free, or 1 if they contain one or more bugs.
+2. Preferably, your program should not crash or halt on `assert()`. But a crash (e.g., segmentation fault) or assertion will be recorded as indicating the code contained bugs, just like with the grading robot.
+3. Preferably, print an explanatory error message on stdout describing the problem you discovered.
+4. You may produce (a sensible amount) of other text output on stdout or stderr if you wish.
+5. The grading robot will not test your text output: only the return value. Try to make the text output helpful for yourself or an instructor/TA helping you.
 
 </div>
 
 ### Submission
 
-Commit a revised version of <tt>main.c</tt>. This will be linked against each of the buggy list implementations <tt>tN.c</tt> used by the grading robot in the same way you did locally. The grading robot also has a correct version of the code. Your program should return zero when linked to the correct code, and non-zero when linked to any of the buggy versions.
+Commit a revised version of `main.c`. This will be linked against each of the buggy list implementations `tN.c` used by the grading robot in the same way you did locally. The grading robot also has a correct version of the code. Your program should return zero when linked to the correct code, and non-zero when linked to any of the buggy versions.
 
 Task N will be passed if your program can reliably distinguish between a buggy and correct version of the code. To test reliability, your test program will be run several times. It must correctly detect bugs or no-bugs every time.
 
@@ -138,15 +144,15 @@ Task N will be passed if your program can reliably distinguish between a buggy a
 
 <div class="req">
 
-1.  Commit a new file called <tt>list.c</tt> containing correct implementations of all the functions described in <tt>list.h</tt>.
-2.  You may use any piece(s) of the supplied code, or write your own.
-3.  Your code should pass all your tests (i.e., the <tt>main.c</tt> you extended in Tasks 1 to 5, and the grading robot's tests.
+1. Commit a new file called `list.c` containing correct implementations of all the functions described in `list.h`.
+2. You may use any piece(s) of the supplied code, or write your own.
+3. Your code should pass all your tests (i.e., the `main.c` you extended in Tasks 1 to 5, and the grading robot's tests.
 
 </div>
 
 ### Submission
 
-Commit a single C file called <tt>list.c</tt>.
+Commit a single C file called `list.c`.
 
 </div>
 
@@ -160,22 +166,23 @@ Write a function that sorts an instance of our linked list of integers from smal
 
 <div class="req">
 
-1.  Commit a new file called <tt>sort.c</tt> containing at least the function <tt>list_sort()</tt>
-2.  Your file must not contain a <tt>main()</tt> function or change the structures in <tt>list.h</tt>.
-3.  The function must #include the <tt>list.h</tt> header...
-4.  ... and be consistent with the function declaration:
+1. Commit a new file called `sort.c` containing at least the function `list_sort()`
+2. Your file must not contain a `main()` function or change the structures in `list.h`.
+3. The function must #include the `list.h` header...
+4. ... and be consistent with the function declaration:
 
-    <pre class="prettyprint"> void list_sort( list_t* list ); </pre>
+        <pre class="prettyprint"> void list_sort(list_t* list); 
+```
 
-5.  **Use [an efficient algorithm](http://en.wikipedia.org/wiki/Sorting_algorithm), i.e., an algorithm that sorts in O(n log n)!**
-6.  Did you read requirement 5?
-7.  Do **not** turn your list into an array, sort it, then turn it back into a list. That's cheating.
+5. **Use [an efficient algorithm](http://en.wikipedia.org/wiki/Sorting_algorithm), i.e., an algorithm that sorts in O(n log n)!**
+6. Did you read requirement 5?
+7. Do **not** turn your list into an array, sort it, then turn it back into a list. That's cheating.
 
 </div>
 
 ### Submission
 
-Commit a single C file called <tt>sort.c</tt>.
+Commit a single C file called `sort.c`.
 
 </div>
 

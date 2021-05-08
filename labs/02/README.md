@@ -1,8 +1,8 @@
 # Lab 02: Functions, Arrays, C character strings, arguments to main, and header files
 
-Open lab 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 02_lab
+Open lab 02 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 02_lab
 
-(if repl.it doesn't work, download files [here](./files.zip))
+(if repl.it doesn't work, download files [here](./files)))
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - [Guide 01](#guide) ([slides]()): Function definitions, declarations, and header files
@@ -13,10 +13,11 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 
 Try "Practice" problems on repl.it; these will NOT be graded. Note that the SOLUTION given for Practices is just one of many possible SOLUTIONs, better ones may exist ;)
 - [Practice 01](#practice-01)
-- [Practice 02](#practice-02)
+- [Practice 02.1](#practice-021)
+- [Practice 02.2](#practice-022)
 - [Practice 03](#practice-03)
-- [Practice 04.1](#practice-04.1)
-- [Practice 04.1](#practice-04.2)
+- [Practice 04.1](#practice-041)
+- [Practice 04.1](#practice-042)
 
 Do [Assignment 01](../../assignments/02).
 
@@ -32,6 +33,12 @@ Always remember, the internet is your friend :) Search for documentation online 
 **Functions** (not to be confused with functions in mathematics): C is a [structured, procedural programming language](http://en.wikipedia.org/wiki/Procedural_programming_language). This means that C supports functions: isolated, self-contained blocks of code that can be re-used as components of larger programs. Other languages may call functions **procedures, subroutines**, or **methods**.
 
 **Encapsulation** is a trait of well-designed functions where you can often use it for what it does, and ignore the internal details of how it works. This makes it feasible for humans to write complex programs by breaking them down into small, more manageable pieces.
+
+**Functions in a nutshell**:
+- You **pass** 0+ arguments into a function, 
+- the function creates a **copy** of your arguments (this is IMPORTANT! IT'S NOT USING THE ORIGINAL COPY!), 
+- does something with the copy of your arguments (encapsulation), 
+- then the function returns 0 (`void`) or 1 thing to you.
 
 You have already used several functions provided by the standard library, such as `printf`, without seeing how they were implemented.
 
@@ -144,7 +151,7 @@ In addition to functions, header files can also declare global variables or prov
 
 ## Practice 01
 
-**REQUIREMENT**: Create a file called `p1funcs.h` that contains function declarations for all the functions in `p1funcs.c`.
+**REQUIREMENT**: Create a file called `p1funcs.h` that contain function declarations for all the functions in `p1funcs.c`.
 - Edit the file `p1.c` to `#include` the new header file.
 - The finished code must compile with this command with no errors or warnings:
 ```
@@ -337,14 +344,16 @@ int main(void) {
 Note that your array values do not go out of scope (is not removed) once you finish executing the function, the pointer that the function created a copy of does.
 
 
-## Practice 02
+## Practice 02.1
 
-**REQUIREMENT**: Create a new file called `p2identical.c`, containing a single function `identical` that return 1 iff arrays `arr1` and `arr2` contain the same values in the same order, or 0 otherwise. The `identical` function has the following declaration:
+**REQUIREMENT**: Create a new file called `p2identical.c`, containing a single function `identical` with the following declaration:
 ```C
-int identical(int arr1[], int arr2[], unsigned int len) {...}
+int identical(int arr1[], int arr2[], unsigned int len);
 ```
+- INPUT: `identical` takes as input, two `int` arrays `arr1` and `arr2`, and `len`.
     - Arrays `arr1` and `arr2` are both of length `len`, and contain arbitrary integer values.
     - `len` can have any unsigned int value, including 0.
+- OUTPUT: `identical` returns 1 iff arrays `arr1` and `arr2` contain the same values in the same order, or 0 otherwise.
     - If `len` is 0 then `identical()` should return 1 (since the arrays have the same - empty - contents).
     - You must not change the contents of the arrays.
 
@@ -367,13 +376,11 @@ arr1 = {10,15,20}, arr2 = {10,15,21}
 arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
 ```
 
-File: `p2.c`; an example of a program that uses your function:
+File: `p2.c` is an example of a program that uses your function:
 
 ```C
 #include <stdio.h>
-// FILL IN MERE: declaration of function implemented in identical.c
-
-int identical(int i_array1[], int i_array2[], unsigned int len);
+// FILL IN HERE: include header for p2identical.c
 
 int main(void) {
     int a1[3] = {10, 15, 20};
@@ -411,11 +418,9 @@ int identical(int arr1[], int arr2[], unsigned int len) {
 </div>
 </details>
 
-## Practice 02.1: challenge yourself!
+## Practice 02.2: challenge yourself!
 
-**REQUIREMENT**: Can you modify your `identical` function such that it returns `1` if the contents of the two arrays are exactly the same regardless of the order?
-- Define another function called `scrambled` in your `p2identical.c` file
-- Add `scrambled`'s declaration into the `p2identical.h` file, and add a line in in your program `p1.c` that calls your `scrambled` function.
+**REQUIREMENT**: Can you modify your `identical` function such that it returns `1` if the contents of the two arrays are exactly the same regardless of the order? Define another function called `scrambled` in your `p2identical.c` file. Add `scrambled`'s declaration into the `p2identical.h` file, and add a line in in your program `p1.c` that calls your `scrambled` function.
 
 **HINT**:
 - You can assume that the values in `arr1` and `arr2` are between `0` and `100`.
@@ -556,9 +561,12 @@ $ ./a.out 5 3.14
 
 For this practice, we'll go over how to implement a "substring" function in C.
 
-**REQUIREMENT**: Write a C program called `p3contains.c` that takes two text strings as arguments (length > 0 characters) and prints "true" followed by a newline if the second string is entirely contained within the first, or "false" followed by a newline otherwise.
-- Recall that you can name your executable file with `-o` e.g. `gcc main.c -o contains` and run it by `./contains`.
-- You can assume your strings are of length at least 1.
+**REQUIREMENT**: Write a C program called `p3.c`.
+- INPUT: `p3.c` takes two text strings as program arguments.
+    - You can ssume the two strings contain at least one character.
+- OUTPUT: prints "true" followed by a newline if the second string is entirely contained within the first, or "false" followed by a newline otherwise.
+
+Recall that you can name your executable file with `-o` e.g. `gcc p3.c -o p3.o` and run it by `./p3.o`.
 
 This is an [important problem in computer science](http://en.wikipedia.org/wiki/Substring), with wide applications from searching the internet, to understanding text, to finding DNA matches. It's easy to state and easy to code. It gets interesting when the strings are long and you want to do it very efficiently. For now you can be happy with a simple SOLUTION to practice managing `argv` array and char strings.
 
@@ -569,15 +577,15 @@ This is an [important problem in computer science](http://en.wikipedia.org/wiki/
 Example runs:
 
 ```
-$ ./p3contains.o "I have a really bad feeling about this" "bad feeling"
+$ ./p3.o "I have a really bad feeling about this" "bad feeling"
 true
-$ ./contains "To be or not to be" "That is the question"
+$ ./p3.o "To be or not to be" "That is the question"
 false
-$ ./contains "I am the walrus" "I am the walrus"
+$ ./p3.o "I am the walrus" "I am the walrus"
 true
-$ ./contains "the walrus" "I am the walrus"
+$ ./p3.o "the walrus" "I am the walrus"
 false
-$ ./contains "kmjnhbvc45&^$bn" "."
+$ ./p3.o "kmjnhbvc45&^$bn" "."
 false
 ```
 
@@ -702,7 +710,7 @@ Here is a program that would have been very tedious to run without stream redire
 - Characters beyond the final newline character will not be included in the line count.
 
 
-There are new functions `getchar()` and `isalpha` here which we haven't seen before. Check it out online or read its manual. There's a handy standard program called `wc` that does a similar job as `getchar()`, but it does not match the requirements exactly (it is a little more clever about word boundaries and will sometimes count fewer words than our simple program).
+There are new functions `getchar()` and `isalpha()` here which we haven't seen before. Check it out online or read its manual. There's a handy standard program called `wc` that does a similar job as `getchar()`, but it does not match the requirements exactly (it is a little more clever about word boundaries and will sometimes count fewer words than our simple program).
 
 **Escape characters**: This [Q&A on StackOverflow](http://stackoverflow.com/questions/2414478/c-escaping-an-apostrophe-in-a-string) gives advice on representing the apostrophe character using an **escape sequence**. StackOverflow is very useful indeed.
 
@@ -753,18 +761,21 @@ SOLUTION? I'm sure you can do this one on your own ( \*u\*)b
 
 ## Practice 04.2
 
-**REQUIREMENT**: Write a program `p4.2.c`. `p4.2.c` should read ASCII text from stdin, count the occurence frequency of each letter in the input, and print the normalized frequencies for each letter a-z to stdout upon reaching EOF (end of file / `ctrl-d` in shell). The results should be printed as one letter per line, in alphabetical order using the format produced by:
+**REQUIREMENT**: Write a program `p4.2.c`. 
+- INPUT: `p4.2.c` should read ASCII text from stdin.
+- BEHAVIOUR: `p4.2.c` will count the occurence frequency of each letter in the input.
+    - Letters that occur zero times should not appear in the output.
+    - Characters other than lower and upper case letters should be ignored.
+    - Lower and upper case instances count as the same letter, e.g. 'a' and 'A' are both reported for the letter 'a' on the output.
+- OUTPUT: `p4.2.c` will print the normalized frequencies for each letter a-z to stdout upon reaching EOF (end of file / `ctrl-d` in shell). 
+    - The frequencies reported should sum to approximately 1 (with a little slack for accumulation of `printf` rounding errors).
+    - The results should be printed as one letter per line, in alphabetical order using the format produced by:
 
 ```C
 printf("%c %.4f\n", letter, freq);
 ```
 
-- Letters that occur zero times should not appear in the output.
-- Characters other than lower and upper case letters should be ignored.
-- Lower and upper case instances count as the same letter, e.g. 'a' and 'A' are both reported for the letter 'a' on the output.
-- The frequencies reported should sum to approximately 1 (with a little slack for accumulation of `printf` rounding errors).
-- By the way, you cannot implement this function by writing 26 "if" statements (1 for each letter). Hint: Each letter has a numerical [ASCII](https://en.wikipedia.org/wiki/ASCII) value. Can this numerical value be used at all?
-
+By the way, you cannot implement this function by writing 26 "if" statements (1 for each letter). Hint: Each letter has a numerical [ASCII](https://en.wikipedia.org/wiki/ASCII) value. Can this numerical value be used at all?
 
 **EXAMPLE**: Assume you have named your executable `p4.2.o`. The first two example runs show the user entering the text manually in the terminal. The third and fourth runs have text piped in from a file (and the middle of the alphabet is omitted from the output for brevity). A text file `happy_prince.txt` containing a classic story in English is provided for testing.
 
