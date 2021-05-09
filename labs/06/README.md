@@ -458,3 +458,9 @@ intarr_t* intarr_load_json(const char* filename);
 2. The other requirements of Task 1 apply.
 3. _Hint: you should NOT create a single huge string in memory and write it out in one call to fwrite(). The string could require a huge amount of memory when your array is large. Since you chose an inefficient text format, you're not optimizing for speed so don't worry about using many calls to fwrite()._
 
+
+# Credit
+
+Last updated 2021-05 by Alice Yue. 
+
+Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn, Victor Cheung, and others.

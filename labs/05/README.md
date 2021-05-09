@@ -1,48 +1,44 @@
-<div class="lab">
+# Lab 05: Composite Data Types
 
-# Lab 5: Composite Data Types
+Open lab 05 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 05_lab
 
-#### <tt>struct</tt> and <tt>typedef</tt>; malloc() practice
+(if repl.it doesn't work, download files [here](./files)))
 
-<div id="floatingCornerLeft">[![](../img/balloon0.jpg)](http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA)</div>
+Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
+- [Guide 01](#guide) ([slides]()): composite data type `struct`, how to use it with `typedef` and `malloc()`, and deep copy-ing `struct`s.
 
-<div id="floatingCornerRight">[![](../img/balloon1.jpg)](http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA)</div>
+Try "Practice" problems on repl.it; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
+- [Practice 01-05](#practice-01-05)
 
-## Goals
+## Guide
 
-After this lab you will be able to
+### `struct`: a variable that is a group of other variables
 
-1. Create and use structured composite data types with typedef and struct.
-2. Implement an interface to a data collection using structures.
+It is often useful to collect multiple data items together into a single logical entity: a **composite data type**. C provides the `struct` keyword for this purpose; see syntax for creating one:
 
-## Setup
+```C
+struct {
+        <variable/array declarations>;
+} <struct name>;
+```
 
-<div class="steps">
+Before we start, let's talk about black and white raster images. In a computer, this image is simply a matrix where each of its cell ("pixel") contains an integer from 0-255, 0 means black, 255 means white. We use an array whose elements are arrays to other arrays. Each element in our main array represent the rows, the arrays they point to represent the values in each row
 
-In the terminal:
+![black and white raster image as an array](./img/imagecoord.png)
 
-1. From your local repo, create and 'git add' the new directory '5', then make '5' your working directory. (Exact commands ommitted - you should know how to do this by now. Refer to earlier labs if necessary.)
-2. Fetch the header file [intarr.h](intarr.h) containing Lab 5 tasks.
-
-</div>
-
-# Guide
-
-## Structures
-
-It is often useful to collect multiple data items together into a single logical entity: a **composite data type**. For example, consider the raster images from [Lab 3](../3/Lab3.html), each described by a pointer to an array of data, a width and height. All three items are required to interpret the encoded image. Most languages provide a mechanism to collect such a set into an object called a **structure** or **class**. C provides the <tt>struct</tt> keyword for this purpose. For example:
+Overall, an image can be described by a width, a height, and an array (whose elements are also arrays containing pixel values i.e. a 2D array). All three items are required to interpret the encoded image. Let's put these together to make a composite data for an image:
 
 ```C
 struct { 
-  uint8_t* pixels;
-  unsigned int cols;
-  unsigned int rows;
+    uint8_t* pixels;
+    unsigned int cols;
+    unsigned int rows;
 } img;
 ```
 
-This declaration creates a new variable called <tt>img</tt>, that collects the variables we need for one image.
+This declaration creates a new variable called `img`, that contains the variables we need for one image. These variables the `image` holdes is called **fields** or **members** of the structure. Each field can be accessed using the "dot" syntax.
 
-The components, called **fields** or **members**, of the structure are accessed using "dot" syntax, so we can initialize our image like so:
+So we can initialize our image like so:
 
 ```C
 img.cols = 640;
@@ -50,110 +46,100 @@ img.rows = 480;
 img.pixels = malloc(img.cols * img.rows * sizeof(uint8_t));
 ```
 
-The structure is implemented in the simple and fast sort of way you would expect from C. It is just a chunk of memory with space for all its fields. The dot syntax is interpreted at compile time as a number of bytes offset from the structure's base address, so these things are true:
+The structure is implemented as a chunk of memory with space for all its fields. The "dot" syntax is interpreted at compile time as a number of bytes offset from the structure's base address, so these things are true:
 
 ```C
+// 8-byte pointer (assuming a 64bit OS) + 2 * 4-byte unsigned integers
 sizeof(img) == sizeof(uint8_t*) + sizeof(unsigned int) + sizeof(unsigned int)
 
-&img.pixels == (void*)&img + 0
+&img.pixels == (void*)&img + 0 // `(void*)` signifies "pointer of unspecified type"
 &img.cols == (void*)&img + sizeof(uint8_t*)
 &img.rows == (void*)&img + sizeof(uint8_t*) + sizeof(unsigned int)
-
 ```
 
-`(void*)` signifies "pointer of unspecified type".
+Let this sink for a minute... better yet, draw out the memory!
 
-This means that C structures have almost no overhead on CPU or memory use at run-time.
+This means that C structures have almost no overhead on CPU or memory use at run-time.... BUT sometimes, the compiler may add some empty space called **padding** between fields so that each field starts at the CPU's favoured memory alignment boundary. Most modern CPUs are fastest when accessing memory at 4- or 8-byte boundaries. Inserting padding wastes a little bit of memory. Unless memory is very tight we usually ignore these details (our example structure contains 16 bytes, so it contains no padding.)
 
-An occasion when this is not quite true is that the compiler may add some empty space called **padding** between fields so that each field starts at the CPU's favoured memory alignment boundary. Most modern CPUs are fastest when accessing memory at 4- or 8-byte boundaries. Inserting padding wastes a little bit of memory. Unless memory is very tight we usually ignore these details. (Our example structure contains an 8-byte pointer (assuming a 64bit OS), and two 4-byte unsigned integers: all integer multiples of 4 bytes, so it contains no padding.)
+Let that sink again, draw out the memory!
 
 More information on memory alignment, including padding [can be found here](http://en.wikipedia.org/wiki/Data_structure_alignment). See [this article](http://www.catb.org/esr/structure-packing/) to understand padding and strategies for avoiding it.
 
-## Typedef
+### `typedef`, a user defined data type for structures
 
-The <tt>struct</tt> keyword as used above creates just one instance of a variable. Since we may want to create lots of images, or pass pointers to them into functions, we can create a new type based on our structure definition using the <tt>typedef</tt> keyword:
+The `struct` keyword creates just one instance of a variable. Since we may want to create lots of images, or pass pointers to them into functions, we can create a new type based on our structure definition using the `typedef` keyword.
+
+A type is like the primitive version of the template class you are learning about in CMPT 125, noticed the similarities and differences?
 
 ```C
 typedef struct { 
-  uint8_t* pixels;
-  unsigned int cols;
-  unsigned int rows;
+    uint8_t* pixels;
+    unsigned int cols;
+    unsigned int rows;
 } img_t;
 ```
 
-With the <tt>typedef</tt> prefix, instead of declaring a variable, we have declared a new **type** called <tt>img_t</tt>. It is conventional to use "_t" as a suffix on defined types. Having defined a type, we can create instances of it on the stack as shown below, creating two variables of type <tt>img_t</tt>, and a pointer-to-<tt>img_t</tt>. As the example shows, once <tt>typedef</tt>'d we can use our new type just like we use int, char, etc.
+With the `typedef` prefix, instead of declaring a variable, we have declared a new **type** called `img_t` --- it is conventional to use `_t` as a suffix on defined types. Having defined a type, we can create instances of it on the stack as shown below, creating two variables of type `img_t`, and a pointer-to-`img_t`. As the example shows, once `typedef`'d we can use our new type just like we use `int`, `char`, etc.
 
 ```C
 typedef struct { 
-  uint8_t* pixels;
-  unsigned int cols;
-  unsigned int rows;
+    uint8_t* pixels;
+    unsigned int cols;
+    unsigned int rows;
 } img_t;
 
 img_t img1;
 img_t img2;
-img_t* imgptr = &img1;
+img_t* imgptr = &img1; // imgptr is a pointer that points to the values of img1
 ```
 
-## Allocating structures on the heap
+### `malloc()` for structs
 
-Like any other type, space can be allocated for structures on the heap with <tt>malloc()</tt>. The <tt>sizeof()</tt> macro also works as it does for any other type, so the heap-allocation process looks very familiar:
+`malloc()` and `sizeof()` works the same for structures as they do for other data types.
 
-```C
-img_t* imgptr = malloc(sizeof(img_t));
-```
-
-This is an important mechanism because it allows functions to return pointers to newly-created structures. Recall from Lab 3 that returning pointers to local variables like this:
+This means that the bug we mentioned in lab 03 can also happen to structures:
 
 ```C
-  // ...
-  img_t img;
-  return &img; // OOPS!
-}  
-```
-
-is a serious bug as the stack memory allocated for variable img is freed when the function returns. Returning a pointer to heap memory provided by <tt>malloc()</tt> is safe:
-
-```C
-  // ...
-  img_t* imgptr = malloc(sizeof(img_t));
-  if(imgptr == NULL)
-  {
-    printf("Warning: failed to allocate memory for an image structure\n"); 
-  }
-
-  return imgptr; // safe to return a pointer provided by malloc()
+    // inside some function ...
+    img_t img;
+    return &img; // OOPS!
 }
 ```
 
-## Pointer indirection
-
-There is one more bit of syntax to learn: how to access the fields of a structure through a pointer. We have two choices: either "look inside" the pointer using the normal '*' syntax (also known as 'dereferencing' a pointer), followed by the dot syntax to access the field:
-
-```Cunsigned int width = (*imgptr).cols;```
-
-The parentheses are necessary, since the '.' operator has precedence over the '*' operator.
-
-Alternatively we can use the **indirection arrow** syntax to "look through" the pointer:
-
-```Cunsigned int width = imgptr->cols;```
-
-These two are exactly equivalent. The indirection arrow is arguably neater and is preferred.
-
-## User-defined types as function arguments
-
-You may use any defined type for function arguments and return values, for example something like this:
+The solutions to the bug also apply:
 
 ```C
-void draw_image(uint8_t* pixels, 
-                 unsigned int cols, 
-                 unsigned int rows) { ... }
+    // inside some function ...
+    img_t* imgptr = malloc(sizeof(img_t));
+    if (imgptr == NULL) {
+        printf("Warning: failed to allocate memory for an image structure\n"); 
+    }
 
-// call the function above
-draw_image(arr, w, h);
+    return imgptr; // safe to return a pointer provided by malloc()
+}
 ```
 
-Can be considerably simplified by passing in a pointer to a structure describing the image:
+### Pointer indirection for structs
+
+There is one more bit of syntax to learn: how to access the fields of a structure through a pointer. Given a pointer `imgptr`, we have two exactly equivalent choices:
+
+1. `*`: we can "look inside" and get the value at where the pointer is point to using the normal '*' syntax (also known as 'dereferencing' a pointer), followed by the dot syntax to access the field (note: the breackets are necessary, since the `.` operator has precedence over the `*` operator --- meaning C evaluates `.`s before `*`s, kind of like in math where multiplication is evaluated before additions):
+
+```C
+Cunsigned int width = (*imgptr).cols;
+```
+
+2. `->`: we can use the **indirection arrow** syntax to "look through" the pointer (arguably neater and is preferred):
+
+```C
+Cunsigned int width = imgptr->cols;
+```
+
+
+
+### User-defined types as function arguments
+
+Like arrays, a structure is passed to functions via it's pointer:
 
 ```C
 void draw_image(img_t* img) { ... }
@@ -162,68 +148,72 @@ void draw_image(img_t* img) { ... }
 draw_image(&img1);
 ```
 
-Note that we could pass a structure itself as an argument, as follows:
+We could also pass a structure itself as an argument but this is a BAD IDEA:
 
 ```C
-void draw_image(img_t img_copy) { ... }
+void draw_image(img_t img) {...}
 
 // call the function above - BAD!!!
 draw_image(img1);
 ```
 
-but since arguments are passed by value in C, the C function <tt>draw_image</tt> would then receive a copy of the actual value of the argument <tt>img1</tt>. <mark>This is not a good idea.</mark> Why? Because, if this structure is large (which is probably the case since it represents an image), it will take time and memory space to copy it. Also, if the function called (here: <tt>draw_image</tt>) modifies the data in the structure, the modifications will not be reflected in the argument (here: <tt>img1</tt>) once the execution flow returns to the code that called the function <tt>draw_image</tt>.
+Since arguments are passed by value in C, the C function `draw_image` would then receive a copy of the actual value of the argument `img1`. If this structure is large, it will take time and memory space to copy it.
 
-Conclusion: Passing a pointer to a structure is the most efficient way of calling a function with structures as arguments.
+### Shallow-copying structs
 
-## Shallow-copying entire structs by assignment
-
-When a structure variable is assigned, as on line 6 below, the structure on the right-hand-side of the assignment is copied byte-for-byte into the variable on the left-hand-side.
+When a structure variable is assigned, as on `img_t duplicate = original;`, `original` is copied byte-for-byte into `duplicate`. 
 
 ```C
 img_t original;
 original.cols = 32;
 original.rows = 32;
-original.pixels = malloc(originals.cols * original.rows * sizeof(uint8_t));
+unsigned int numbytes = original.cols * original.rows * sizeof(uint8_t)
+original.pixels = malloc(numbytes);
 
 img_t duplicate = original;
 
-assert(duplicate.rows == original.rows); // always true
-assert(duplicate.cols == original.cols); // always true
-assert(duplicate.pixels == original.pixels); // always true
+assert(duplicate.rows == original.rows); // two copies of the int value
+assert(duplicate.cols == original.cols); // two copies of the int value
+assert(duplicate.pixels == original.pixels); // two copies of the pointer pointing to the same values
 ```
 
-Note that in this example, the <tt>original.pixels</tt> and <tt>duplicate.pixels</tt> fields have the same value as they both contain the same memory address (the memory address of the array <tt>pixels</tt>). In other words, they point to the _same array of pixels_ obtained by return from <tt>malloc()</tt> on line 4: the array is not duplicated, we just have two identical pointers to it. This is known as a _shallow copy_, and illustrated in the figure below. Be very careful when copying structures that contain pointers, since this may not be the behaviour you want.
+This is called **shallow-copying** because for the pointer fields (e.g. `duplicate.pixels` and `original.pixels`), the original values the pointer points to is NOT copied. This means that if you modify the values of `duplicate.pixels`, you would have also modified the values associated with `original.pixels`, because they point to the same array!
 
-![](../img/shallow.png)
+![](./img/shallow.png)
 
-Also be aware that if you <tt>free(original.pixels)</tt> any subsequent use of the <tt>duplicate.pixels</tt> pointer is a bug, since the memory it points to has been freed. Having more than one copy of a pointer is called _pointer aliasing_, and is a notorious source of bugs. If possible, avoid having more than one copy of a pointer.
+BEWARE OF BUGS: **pointer aliasing** is when you have more than one copy of a pointer. This is a notorious source of bugs; if you `free(original.pixels)` any subsequent use of the `duplicate.pixels` pointer is a bug. If possible, avoid having more than one copy of a pointer.
 
-## Deep copy
 
-In order to duplicate the whole image including pixel data, we need to malloc() more space on the heap and copy the original pixel data into it. Duplicating all the data referenced by a struct and not just the struct fields themselves is known as a _deep copy_. Our <tt>img_t</tt> can be deep-copied thus:
+### Deep copying structs
+
+In order to duplicate the whole image including pixel data, not just the pointer to it, we need to 
+- `malloc()` more space on the heap
+- and use `memcpy()` to copy the original pixel data into it and assign to our new `duplicate.pixels`, a pointer that points to our new copy of the pixel values.
+
+This is called **Deep copy**.
 
 ```C
 img_t original;
 original.cols = 32;
 original.rows = 32;
-original.pixels = malloc(originals.cols * original.rows * sizeof(uint8_t));
+unsigned int numbytes = original.cols * original.rows * sizeof(uint8_t)
+original.pixels = malloc(numbytes); // malloc some space on heap
 
 img_t duplicate = original; // start with a shallow copy
 
 // allocate a new pixel array to perform a deep copy
-unsigned int numbytes = duplicate.cols * duplicate.rows * sizeof(uint8_t);
 duplicate.pixels = malloc(numbytes);
 
 // and copy numbytes from the original array to the new array
-// (see man memcpy for usage)
+// memory copy (see man memcpy for usage)
 memcpy(duplicate.pixels, original.pixels, numbytes);
 ```
 
-After this code runs, <tt>original</tt> and <tt>duplicate</tt> have the same values in their <tt>cols</tt> and <tt>rows</tt> fields, but different pointer values, i.e., different memory addresses, in their <tt>pixels</tt> field, as illustrated:
+After this code runs, `original` and `duplicate` have the same values in their `cols` and `rows` fields, but different pointer values, i.e., different memory addresses, in their `pixels` field, as illustrated:
 
-![](../img/deep.png)
+![](./img/deep.png)
 
-## Arrays of structs
+### Arrays of structs
 
 Arrays of typedef'd structs work in the same way as any other type:
 
@@ -237,35 +227,134 @@ unsigned int width = imgarr[43].cols;
 img_t* thousand_images = malloc(1000 * sizeof(img_t));
 ```
 
-## When to use <tt>typedef struct</tt>
+### When to use `typedef struct`
 
-Deciding when to create a new structured type is an important part of program design. Your type choices can have effects throughout your code. Some rules of thumb:
+Deciding when to create a new structured type is an important part of program design. Your type choices can have effects throughout your code. Some rules of thumb of when you should:
+- use a `struct` 
+    - when a set of variables must always appear together, and/or 
+    - when a set of variables are jointly responsible for something, e.g. interpreting an encoding in our image.
+- use `typedef`
+    - when you need to declare more than one instance of a structure, and 
+    - when using a structure for function arguments, since the resulting code is easier to read.
+- use template classes whenever you can get access to C++ ( \*u\*)b
 
-You should probably use a struct when a set of variables must always appear together, and/or are jointly responsible for something, e.g. interpreting an encoding in our image example.
 
-You should probably use typedef when you need to declare more than one instance of a structure, and when using a structure for function arguments, since the resulting code is easier to read.
+## Practice 01-05
 
-# Tasks [1:8]
+Note: structures can be defined in header files.
 
-## Requirements
+**REQUIREMENT**: implement the integer array functions declared and specified in the supplied header file `p1intarr.h` in the file `p1intarr.c`.
 
-<div class="req">
+These functions would work around the following two user defined data structures (see `p1intarr.h`):
 
-1. Your task is to implement the integer array functions declared and specified in the supplied header file <tt>intarr.h</tt>. These are introduced in the guided part of the lab.
+```C
+/* Structure type that encapsulates our safe int array. */
+typedef struct {
+  int* data;
+  unsigned int len;
+} intarr_t;
 
-2. Your implementation of these functions must be entirely contained in a C source file called <tt>intarr.c</tt> (full path inside your repo: <tt>5/intarr.c</tt>).
+/* A type for returning status codes */
+typedef enum {
+  INTARR_OK,
+  INTARR_BADARRAY,
+  INTARR_BADINDEX,
+  INTARR_BADALLOC,
+  INTARR_NOTFOUND
+} intarr_result_t;
+```
 
-3. <mark>Incrementally develop these functions</mark>. To do so, you need to:
+**HINTS**
+- Create a test driver: a program `p1.c` with a main function from which each of the functions in `p1intarr.c` are called (tested). Compile and execute your `p1intarr.c` (with stubs) and your test driver.
+- Don't forget to keep adding appropriate function calls to your test driver as you go along.
+- An example of **stubing** is to replace the body with `return 0` if your function is supposed to return an `int`. This way, your program compiles even if your function body is incomplete.
+    - If your code compiles, then implement the two functions of Practice 1.
+    - Compile and execute your test driver. Note that this time, your test driver is testing the functions you have implemented for Task 1. Are these functions working as expected?.
+    - Repeat the above two steps until all functions have been designed, implemented and tested.
 
-    1. 'Stub' each function: to know how to do this, see 'Lab 5 Incremental Development and Helpful Tips' and 'Lab 5 Demo' posted on our course web site.
-    2. Create a test driver: a program with a main function from which each of the functions created in <tt>intarr.c</tt> are called (tested). Start by having your testDriver.c calling the functions of Task 1.
-    3. Compile and execute your intarr.c (with stubs) and your test driver. Note that for this first iteration, your test driver is calling two functions that have been stubbed (functions without a body).
-    4. If your code compile, then implement these two functions of Task 1.
-    5. Compile an execute your test driver. Note that this time, your test driver is testing the functions you have implemented for Task 1\. Are these functions working as expected? Yes? Then submit your <tt>intarr.c</tt> to your Git repo.
-    6. Repeat the above two steps until all functions have been designed, implemented, tested and submitted to your Git repo. Don't forget to keep adding appropriate function calls to your test driver.
-4. <mark>Do Task 7 before doing Task 6.</mark>
+The following is a breakdown of the practice problems, also see comments in `p1intarr.h`.
 
-5. Important: DO NOT add a <tt>main()</tt> function to <tt>intarr.c</tt>. This will prevent the grading robot from linking the file. The main() function must be in your test driver.
+Try the practice problems first; verify your solutions [here](./files/p1intarr_solution.c).
 
-6. Important: DO NOT modify <tt>intarr.h</tt>: the server will use the file **as supplied to you**. In particular, your function definitions must match the declarations given in <tt>intarr.h</tt>.
+### Practice 01.1
 
+**REQUIREMENT**: write a function in `p1intarr.c` with the following declaration:
+```C
+intarr_t* intarr_create(unsigned int len);
+```
+- INPUT: the `len` of the desired array.
+- OUTPUT: `intarr_create()` returns the POINTER to a new instance of data structure `intarr_t`.
+- BEHAVIOUR: if `malloc()` fails (i.e. returns `NULL`), `intarr_create()` returns `NULL`.
+
+### Practice 01.2
+
+**REQUIREMENT**: write a function in `p1intarr.c` with the following declaration:
+```C
+void intarr_destroy(intarr_t* ia);
+```
+- INPUT: the pointer of a `intarr_t` variable `ia`.
+- BEHAVIOUR: `intarr_destroy()` should `free()` the memory allocated to `ia`.
+
+### Practice 02.1
+
+**REQUIREMENT**: write a function in `p1intarr.c` with the following declaration:
+```C
+intarr_result_t intarr_set(intarr_t* ia, unsigned int index, int val);
+```
+- INPUT: the pointer of a `intarr_t` variable `ia`, an index, and a value.
+- OUTPUT:
+    - If `ia` is `NULL`, return `INTARR_BADARRAY`.
+    - If the `index` is valid (exists in the data array of `ia`), set the value at `ia->data[index]` to `val` and return `INTARR_OK`. 
+    - Otherwise, leave the array unmodified and return `INTARR_BADINDEX`.
+
+### Practice 02.2
+
+**REQUIREMENT**: write a function in `p1intarr.c` with the following declaration:
+```C
+intarr_result_t intarr_get(const intarr_t* ia, unsigned int index, int* val);
+```
+- INPUT: the pointer of a `intarr_t` variable `ia` (`const` means that you cannot modify `ia`), an index, and the pointer to a value.
+- OUTPUT:
+    - If `index` is valid and `val` is non-`NULL`, set `*val` to `ia->data[index]` and return `INTARR_OK`. 
+    - Otherwise do not modify `*val` and return `INTARR_BADINDEX`. 
+    - If `ia` is `NULL`, return `INTARR_BADARRAY`.
+
+### Practice 03
+
+**REQUIREMENT**: write a function in `p1intarr.c` with the following declaration:
+```C
+intarr_t* intarr_copy(const intarr_t* ia);
+```
+- INPUT: the pointer of a `intarr_t` variable `ia`.
+- OUTPUT: 
+    - Return a duplicate of `ia`, allocating new storage for the duplicate data (we call this a "deep copy"). 
+    - If unsuccessful (i.e. memory allocation for the copy fails, or `ia` is `NULL`), return a null pointer.
+
+### Practice 04
+
+**REQUIREMENT**: write a function in `p1intarr.c` with the following declaration:
+```C
+intarr_result_t intarr_find(intarr_t* ia, int target, int* i);
+```
+- INPUT: the pointer of a `intarr_t` variable `ia`, a `target` value, and a pointer to an integer `i`.
+- OUTPUT:
+    - If `ia` is `NULL`, return `INTARR_BADARRAY`.
+    - if the `target` value is found in the array in `ia` and `i` is non-`NULL`, set `*i` to the index where `target` first occured and return `INTARR_OK`.
+    - If `target` does not occur in the array, leave `*i` unmodified and return `INTARR_NOTFOUND`.
+
+### Practice 05
+
+**REQUIREMENT**: write a function in `p1intarr.c` with the following declaration:
+```C
+intarr_t* intarr_copy_subarray(intarr_t* ia, unsigned int first, unsigned int last);
+```
+- INPUT: the pointer of a `intarr_t` variable `ia`, an index `first`, and an index `last`.
+- OUTPUT:
+    - Return a deep copy of a portion of ia from index 'first' to index 'last' inclusive. If successful, return a pointer to a newly-allocated `intarr_t` containing a copy of the specified section. 
+    - If an error occurs, i.e. ia is `NULL`, 'first' or 'last' are out of bounds, 'last' < 'first', or memory allocation fails, return a null pointer.
+    
+# Credit
+
+Last updated 2021-05 by Alice Yue. 
+
+Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn, Victor Cheung, and others.

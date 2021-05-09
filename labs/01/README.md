@@ -11,7 +11,7 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 - [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/190OipgViJdy5Lr_GlBDHxRkRSY8iP_xixe3slwoyx58/edit?usp=sharing)): variables
 - [Guide 03](#guide-2) ([slides](https://docs.google.com/presentation/d/1dBXA2Lsim2lFisvjnfkTylcQ2rqIEl9g1VZ0JA44pRY/edit?usp=sharing)): conditions and loops
 
-Try "Practice" problems on repl.it; these will NOT be graded. Note that the SOLUTION given for practice problems is just one of many possible SOLUTIONs, better ones may exist ;)
+Try "Practice" problems on repl.it; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
 - [Practice 01](#practice-01)
 - [Practice 02](#practice-02)
 - [Practice 03](#practice-03)
@@ -440,7 +440,7 @@ Let's extend `scanf` to handle any numer of inputs. For this we need to repeat p
 The while keyword has the following form:
 
 ```C
-while (<condition>) {
+while (/*condition*/) {
     // this block executes repeatedly as long as condition evaluates to true
 }
  ```     
@@ -662,14 +662,14 @@ int main(void) {
 
 C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analagous to each other in C and C++.
 
-|                  | C                                      | C++                                                                           |
-|------------------|----------------------------------------|-------------------------------------------------------------------------------|
-| Function/keyword | `printf`                               | `std::cout`                                                                   |
-| Example          |`printf("This is the number 1: %d", i);`| `std::cout << "This is the number 1: " << i;`                                 |
-|                  |                                        |                                                                               |
-| Function/keyword | `scanf`                                | `std::cin`                                                                    |
-| Example          | `scanf("%d%", &i);`                    | `std::cin >> i;`                                                              |
-|                  |                                        |                                                                               |
+|                  | C                                      | C++              |
+|------------------|----------------------------------------|------------------|
+| Function/keyword | `printf`                               | `std::cout`      |
+| Example          |`printf("This is the number 1: %d", i);`| `std::cout << "This is the number 1: " << i;` |
+| | | |
+| Function/keyword | `scanf`                                | `std::cin`       |
+| Example          | `scanf("%d%", &i);`                    | `std::cin >> i;  |
+| | | |
 | Comments         | Data types are explicit.               | Handles all data types without needing to state them. Always use this in C++. |
 
 # Extra info, for your enjoyment

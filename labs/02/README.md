@@ -11,7 +11,7 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 - [Guide 04](#guide-3) ([slides]()): Stream redirection
 
 
-Try "Practice" problems on repl.it; these will NOT be graded. Note that the SOLUTION given for Practices is just one of many possible SOLUTIONs, better ones may exist ;)
+Try "Practice" problems on repl.it; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
 - [Practice 01](#practice-01)
 - [Practice 02.1](#practice-021)
 - [Practice 02.2](#practice-022)

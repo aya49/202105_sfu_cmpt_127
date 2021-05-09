@@ -5,12 +5,10 @@ Open lab 03 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects 
 (if repl.it doesn't work, download files [here](./files)))
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
-- [Guide 01](#guide) ([slides]()): 
-- [Guide 02](#guide-1) ([slides]()): 
-- [Guide 03](#guide-2) ([slides]()): 
-- [Guide 04](#guide-3) ([slides]()): 
+- [Guide 01](#guide) ([slides]()): dynamic memory allocation
 
-Try "Practice" problems on repl.it; these will NOT be graded. Note that the SOLUTION given for Practices is just one of many possible SOLUTIONs, better ones may exist ;)
+Try "Practice" problems on repl.it; these will NOT be graded.
+- [Practice 01](#practice-01-fixing-the-bug-option-1)
 
 ## Guide
 
@@ -280,3 +278,10 @@ Stack vs heap
     - Pro: If the heap is out of space, `malloc()` tells you so and you can either cope with it gracefully or quit your program.
     - Pro: Unlike things on a stack, things stored in memory allocated on the heap is available to any function that knows its address, regardless of the current state of the stack.
     - Con: you have to manually allocate things on the heap using `malloc()`.
+
+
+# Credit
+
+Last updated 2021-05 by Alice Yue. 
+
+Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn, Victor Cheung, and others.
