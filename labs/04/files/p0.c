@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "intarr.h"
 
-//helper function that prints the content of the intarr
+// helper function that prints the content of the intarr
 void print_intarr(intarr_t* ia) {
     if (ia == NULL) {
         printf("Invalid intarr (null).\n");
@@ -17,12 +17,12 @@ void print_intarr(intarr_t* ia) {
 }
 
 int main() {
-    //test variables to hold values returned by the functions
+    // test variables to hold values returned by the functions
     intarr_t* test_ia = NULL;
     intarr_result_t test_result = INTARR_OK;
 
 
-    //test Tasks 1 & 2
+    // test practice 01 & 02
     printf("Creating test_ia by calling 'intarr_create(10)'\n");
     test_ia = intarr_create(10);
     if (test_ia == NULL) {
@@ -51,12 +51,11 @@ int main() {
     }
 
 
+    // test practice 03
 
-    //test practice 03
+    // test practice 04
 
-    //test practice 04
-
-    //test practice 05
+    // test practice 05
 
 
     printf("Destroying test_ia\n");

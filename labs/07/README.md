@@ -1,94 +1,48 @@
-<div class="lab">
+# Lab 07: Testing and linked lists
 
-# Lab 7: Testing and Lists
+Linked lists have been described in CMPT 125, but it doesn't hurt to see them again.
 
-#### Testing code for correctness; linked lists
+# Drawing - a tool for thinking
 
-<div id="floatingCornerLeft">[![](../img/balloon0.jpg)](http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA)</div>
+Drawing diagrams is very helpful before writing code that modifies lists. In general, sketching machines - including code - is a tool for thinking; even if you think you know what you are doing, drawing out the operations is a concrete test of your understanding. Even very experienced people with great intuition use drawings for thinking.
 
-<div id="floatingCornerRight">[![](../img/balloon1.jpg)](http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA)</div>
+# Linked lists
 
-### Goals
+## Guide
 
-This lab provides:
+**Linked lists** are data structures that contain a sequence of data elements, like arrays, but with different dynamic properties. The key idea in the linked list is to use a simple data structure to store each data element along with a pointer to the next element in the list. The end of the list is denoted by a `NULL` pointer.
 
-1. practice writing tests to determine the correctness of functions.
-2. implementing operations on linked lists
-3. write an efficient list sort function
-
-### Setup
-
-<div class="steps">
-
-Note that these instructions no longer include all steps. You should know how to do these things by now. If in doubt, refer to previous lab instructions.
-
-In the terminal:
-
-1. Fetch the [new material](7.zip) for Lab 7 and save it into your local repo.
-2. Expand it into your local repo. This will create the directory '7' containing the files you need.
-3. Add the new directory to your repo with
-
-        ```
-$ git add 7
-```
-
-        then make '7' your working directory.
-
-</div>
-
-Make sure you read and understand the Guide section below. Linked lists have been described in CMPT 125, but it doesn't hurt to see them again.
-
-### Drawing - A tool for thinking
-
-Drawing diagrams like those below is very helpful before writing code that modifies lists. In general, sketching machines - including code - is a tool for thinking: even if you think you know what you are doing, drawing out the operations is a concrete test of your understanding. Even very experienced people with great intuition use drawings for thinking.
-
-[![](../img/Lab7/leonardo.jpg)](http://en.wikipedia.org/wiki/Leonardo_da_Vinci#Observation_and_invention:)
-
-Figure 1 - Diagram by Leonardo da Vinci
-
-[![](../img/Lab7/feynman.png)](http://en.wikipedia.org/wiki/Feynman_diagram)
-
-Figure 2 - Feynman Diagram
-
-
-
-## Guide: Linked Lists
-
-**Linked lists** are data structures that contain a sequence of data elements, like arrays, but with different dynamic properties.
-
-The key idea in the linked list is to use a simple data structure to store each data element along with a pointer to the next element in the list. The end of the list is denoted by NULL next-pointer.
-
-Our implementation is typical in that it uses a second data structure called a **header** to store pointers to the first (head) and last (tail) elements in the list.
+Our implementation uses a second data structure called a **header** to store pointers to the first (head) and last (tail) elements in the list.
 
 The list is assembled as follows:
 
 First a `list_t` structure is allocated on the heap, with its head- and tail-pointers set to NULL, representing an empty list.
 
-![](../img/Lab7/list 1.png)
+![](../img/list1.png)
 
-To insert the first value into the list, a new `element_t` is allocated on the heap, the value is stored in it, and the header's head- and tail-pointers are both set to point to it. The first element's next-pointer is NULL to indicate it is the last element in the list.
+To insert the first value into the list, a new `element_t` is allocated on the heap, the value is stored in it, and the header's head- and tail-pointers are both set to point to it. The first element's next-pointer is `NULL` to indicate it is the last element in the list.
 
-![](../img/Lab7/list 2.png)
+![](../img/list2.png)
 
 When a subsequent element is added, the next-pointer of the tail element and the tail-pointer of the header are both changed to the address of the new element:
 
-![](../img/Lab7/list 3.png)
+![](../img/list3.png)
 
-One more addition using the same mechanism. Notice that the tail element always has its next-pointer set to NULL.
+One more addition using the same mechanism. Notice that the tail element always has its next-pointer set to `NULL`.
 
-![](../img/Lab7/list 4.png)
+![](../img/list4.png)
 
-Notice that the head- and tail-pointers can be used to add elements to the beginning or end of the list in constant time (O(1)), in contrast to extending native C arrays which in general takes time proportional to the number of elements in the array, i.e. O(n).
-
-Also, given a pointer to any element, an element can be inserted _after it_ in constant time.
-
-However, looking up a list element by its position in the list, like an array index, takes time proportional to its position in the list, i.e. O(n). List elements are therefore best accessed in order, since accessing the next element takes constant time.
 
 A common variant is the **double-linked list** in which every element contains a previous-pointer in addition to the next-pointer. Double-linked lists can be traversed forwards and backwards, at the cost of a little more storage space per element.
 
-It is important to note that while lists have good theoretical resizing properties, iterating over elements in a list can be much slower than iterating over C arrays due to the cache behaviour of current computer architectures. C arrays guarantee that elements are contiguous in memory, making very effective use of the cache. We will talk about cache behaviour later in labs.
+### Linked lists vs arrays: runtime
 
-<div class="task">
+| Task | Arrays | Linked lists | Double-linked list |
+|------|--------|--------------|--------------------|
+| Add an element to the start/end | O(n) | **O(1)** | **O(1)** |
+| Access an element based on index| **O(1)** | O(n) | O(n) |
+
+List elements are therefore best accessed in order, since accessing the next element takes constant time.
 
 ## Tasks 1..5
 
@@ -188,6 +142,8 @@ Commit a single C file called `sort.c`.
 
 * * *
 
-<div class="labends">Lab 7 complete. [Back to the course web page](../../).</div>
+# Credit
 
-</div>
+Last updated 2021-05 by Alice Yue. 
+
+Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn, Victor Cheung, and others.

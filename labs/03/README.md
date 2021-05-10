@@ -1,8 +1,8 @@
 # Lab 03: Dynamic memory allocation
 
-Open lab 03 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 03_lab
+Open lab 03 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > lab > 03
 
-(if repl.it doesn't work, download files [here](./files)))
+(if repl.it doesn't work, download files [here](./files))
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - [Guide 01](#guide) ([slides]()): dynamic memory allocation
@@ -56,7 +56,7 @@ char* get_name(void) {
 }	
 
 int main(void) {
-    char* name = get_name(); // recall <type>* <var name> initiates a pointer!
+    char* name = get_name(); // recall type* var initiates a pointer!
     printf("Your name is %s\n", name);
     return 0;
 }	             
@@ -153,7 +153,7 @@ To overcome these shortcomings, we allocate memory explicitly, using `malloc()` 
 ### Heap storage
 
 About `malloc()`: 
-- INPUT: the argument to `malloc()` is a size in bytes, so we almost always use `sizeof(<some_type>)` as a multiplier. 
+- INPUT: the argument to `malloc()` is a size in bytes, so we almost always use `sizeof(/*some_type*/)` as a multiplier. 
 - OUTPUT: `malloc()` returns a special type, a `void*` (pronounced "void pointer"). to a memory allocation that will persist until explicitly de-allocated by a call to `free()` regardless of the state of the stack.
 
 By default C allows a void pointer to be assigned to any other kind of pointer without having to be converted explicity. All pointers are just memory addresses, after all.
@@ -174,7 +174,7 @@ int len = 20;
 //
 // when you use malloc, you add a * in front of your data type
 // 
-// recall: <type>* initializes a POINTER 
+// recall: type* initializes a pointer 
 // pointing to a space in memory reserved for (len * int's)
 // this pointer points to the first element in the array of len integers on the heap
 // OR zero (null pointer) if the allocation failed

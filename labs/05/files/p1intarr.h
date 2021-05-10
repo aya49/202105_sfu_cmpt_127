@@ -23,54 +23,23 @@ typedef enum {
 } intarr_result_t;
 
 
-/* Lab 05; practice 01 */
+/* lab 06; practice 01 */
 
-// Create a new intarr_t with initial size len.  If successful
-// (i.e. memory allocation succeeds), returns a pointer to a
-// newly-allocated intarr_t.  If unsuccessful, returns a null pointer.
-intarr_t* intarr_create(unsigned int len);
+/*
+  Save the entire array ia into a file called 'filename' in a binary
+  file format that can be loaded by intarr_load_binary(). Returns
+  zero on success, or a non-zero error code on failure. Arrays of
+  length 0 should produce an output file containing an empty array.
 
-// Frees all memory allocated for ia. If the pointer is null, do
-// nothing. If the ia->data is null, do not attempt to free it.
-void intarr_destroy(intarr_t* ia);
+  Make sure you validate the parameters before you use them.
+*/
+int intarr_save_binary(intarr_t* ia, const char* filename);
 
+/*
+  Load a new array from the file called 'filename', that was
+  previously saved using intarr_save_binary(). Returns a pointer to a
+  newly-allocated intarr_t on success, or NULL on failure.
 
-/* Lab 05; practice 02 */
-
-// If index is valid, set the value at ia->data[index] to val and return
-// INTARR_OK. Otherwise, leave the array unmodified and return
-// INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
-intarr_result_t intarr_set(intarr_t* ia, unsigned int index, int val);
-
-// If index is valid and val is non-null, set *val to ia->data[index] and return
-// INTARR_OK. Otherwise do not modify *val and return
-// INTARR_BADINDEX. If ia is null, return INTARR_BADARRAY.
-intarr_result_t intarr_get(const intarr_t* ia, unsigned int index, int* val);
-
-
-/* Lab 05; practice 03 */
-
-// Return a duplicate of ia, allocating new storage for the duplicate
-// data (we call this a "deep copy"). If unsuccessful (i.e. memory
-// allocation for the copy fails, or ia is null), return a null pointer. 
-intarr_t* intarr_copy(const intarr_t* ia);
-
-
-/* Lab 05; practice 04 */
-
-// Find the first occurrence of the target in the array, searching from
-// index 0. If the target is found and i is non-null, set *i to the
-// location index and return INTARR_OK. If target does not occur in
-// the array, leave *i unmodified and return INTARR_NOTFOUND. If ia is
-// null, return INTARR_BADARRAY.
-intarr_result_t intarr_find(intarr_t* ia, int target, int* i);
-
-
-/* Lab 05; practice 05 */
-
-// Get a deep copy of a portion of ia from index 'first' to index 'last'
-// inclusive. If successful, return a pointer to a newly-allocated
-// intarr_t containing a copy of the specified section. If an error
-// occurs, i.e. ia is null, 'first' or 'last' are out of bounds, 
-// 'last' < 'first', or memory allocation fails, return a null pointer.
-intarr_t* intarr_copy_subarray(intarr_t* ia, unsigned int first, unsigned int last);
+  Make sure you validate the parameter before you use it.
+*/
+intarr_t* intarr_load_binary(const char* filename);

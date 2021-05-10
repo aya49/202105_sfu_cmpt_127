@@ -1,466 +1,168 @@
-<div class="lab">
+# Lab 06: Testing memory allocation performance
 
-# Lab 6: File I/O
+Today we are going to look at different strategies for resizing arrays (e.g. inserting elements, deleting elements).
 
-#### `external data representation; fopen(), fclose(), fread()` and `fwrite(), struct` practice
+Recall: amortized analysis $\Omega$ (average performance) and big O analysis $O$ (worst case performance).
 
-<div id="floatingCornerLeft">[![](../img/balloon0.jpg)](http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA)</div>
+# Reallocation `realloc()` (resizing arrays in O(n)) and unstable remove
 
-<div id="floatingCornerRight">[![](../img/balloon1.jpg)](http://books.google.ca/books?id=RFJiAgAACAAJ&dq=%22Computer+lieben+Frauen&hl=en&sa=X&ei=H9SoUuCrBI_YoASa2oCADQ&ved=0CEcQ6AEwAA)</div>
+## Guide
 
-### Goals
-
-After this lab you will be able to
-
-1. Explain what XDR is, and how it relates to files.
-2. Open files with `fopen()` with correct usage mode, and `fclose()` them.
-3. Handle error codes returned from the relevant system calls.
-4. Read and write to files with `fread()` and `fwrite()` using simple arrays and structs.
-
-## Setup
-
-<div class="steps">
-
-In the terminal:
-
-1. From your local repo, create and 'git add' the new directory '6', then make '6' your working directory.
-2. Fetch the header file [intarr.h](intarr.h). <mark>This is a different `intarr.h` file than the one we fetched in Lab 5.</mark> It contains all the Lab 5 tasks (which you have already done) as well as the Lab 6 tasks (which you are to do in this lab).
-
-</div>
-
-## External Data Representation using Files
-
-A program's working memory of stack and heap data structures (i.e., data structures to which memory from the stack memory segment or the heap memory segment has been allocated) only exists while the program is running. To store data between runs, and to capture output, we can use the _filesystem_. The filesystem is a service provided by the operating system (OS) that provides _files_ to your programs. A file is like a named array of bytes, and once created a file will persist until deleted, even when the computer is turned off.
-
-You are familiar with files: text files like C sourcecode; sound files like MP3s; executable files like your compiled programs. At the filesystem abstraction level, these are all the same thing: just a contiguous sequence of bytes. The interpretation of these bytes is up to your program.
-
-Files are a common special case of the general problem of storing data outside a running program. In general this is called **External Data Representation (XDR)**. Other examples of XDR occur when using databases or networking.
-
-Files are identified by a [_path_](http://en.wikipedia.org/wiki/Path_(computing)), which is a generalization of a [_filename_](http://en.wikipedia.org/wiki/Filename) and can be any of:
-
-- a simple filename, e.g. "hadfield.png". This is often used when we are "manipulating" a file located in the current directory. For example, in Lab 3, we issued the command
-
-```
-$ ./test hadfield.png
-```
-
-        at the command line. We were able to do so because our executable file `test` as well as our test file `hadfield.png` were both located in our current directory.
-- a _relative path_ that specifies a path (location) in the filesystem's directory structure relative to the current working directory, e.g. "students/bsimpson/reportcard.pdf". This is often used when the path to a file can be specified starting from our current directory. For example, the desired file can be located either in a "parent" directory, i.e., a directory "above" the current directory, or in a directory "below" the current directory.
-- an _absolute path_ that begins with a '/' (which signifies the "root" directory) and fully specifies a location in the directory structure, e.g. "/home/vader/projects/deathstar.dxf". This is used when the path to a file (location of a file) cannot be specified using the first two ways.
-
-The programmer's interface to the filesystem is quite basic, with most of the work done with four abstract operations:
-
-- OPEN(path, mode): opens a file (described by "path") for reading and/or writing, possibly creating a new file if file (i.e, "path") does not exist. These options are defined by the mode. Returns an identifier that the other functions use to identify an open file. The file has a length in bytes, which is initially zero for a new file, and a _current read/write position_ which is an index into the bytes of the file at which read and write operations will do their work. After OPEN() the initial read/write position is either at the beginning or end of the file depending on the mode.
-
-- WRITE(ID, source, length): writes length bytes from source into the file, starting from the current read/write position and overwriting anything already there. The length of the file will increase automatically if necessary. When the write has finished, the current read/write position is set to one beyond the data written.
-
-- READ(ID, dest, length): reads length bytes from the file into dest. When the read is finished, the current read/write position is set to one beyond the data read.
-
-- CLOSE(ID): closes the file, indicating to the OS that we have finished using it.
-
-A less-used fifth operation, SEEK(), allows you to set the read/write position directly without reading or writing.
-
-Almost every programming language supports a version of this interface. You may recognize it from Python. For the C programmer, this interface is provided by these four _system calls_ defined in `stdio.h`:
+The supplied header file `point_array.h` defines the following structures to represent points in 3D space, and an array to contain them, similar to examples you have seen before:
 
 ```C
-FILE * fopen(const char * filename, 
-                            const char * mode);
+typedef struct point {
+  double x, y, z;    // a point location in 3D space
+} point_t;
 
-size_t fwrite(const void * ptr, 
-                             size_t size, 
-                             size_t nitems, 
-                             FILE * stream);
+typedef struct {
+  size_t len;        // number of points in the array
+  point_t* points;   // an array of 'len' points (point_t structs)
+} point_array_t;
+```
 
-size_t fread(void * ptr,
-                            size_t size, 
-                            size_t nitems, 
-                            FILE * stream);
+It also declares four functions for manipulating `point_array_t` arrays. Each takes a pointer to an array structure as their first argument. Notice that the `init` and `reset` functions do a similar job to the `create` and `destroy` functions we have seen before, but with a slightly different interface. This style allows us to use structs allocated on the stack, which can be useful. 
 
-int fclose(FILE *stream);
+Therefore, `init` must NOT call `malloc()` nor must it call `realloc()` since the memory for the struct has already been allocated (automatically, on the stack) and the memory allocation call to obtain the memory for the array is done in `append()`.
+
+```C
+// Safely initalize an empty array structure.
+void point_array_init(point_array_t* pa);
+
+// Resets the array to be empty, freeing any 
+// memory allocated if necessary.
+void point_array_reset(point_array_t* pa);
+
+// Append a point to the end of an array. 
+// If successful, return 0, else return 1.
+int point_array_append(point_array_t* pa, point_t* p);
+
+// Remove the point at index i from the array, 
+// reducing the number of elements stored in the array 
+// by one. The order of points in the array may change.
+// If successful, return 0, else return 1\. 
+int point_array_remove(point_array_t* pa, unsigned int i);
+```
+
+Example of use:
+
+```C
+point_array_t A;
+point_array_init(&A);
+
+point_t p;
+p.x = 0.0;
+p.y = 1.0;
+p.z = 2.0;
+
+point_array_append(&A, &p);
+
+// do some work with the array
+// ...
+
+// clean up
+point_array_reset(&A);
+```
+
+In graphics-heavy programs like games, we often have arrays of 3D points that are very large, perhaps with hundreds of thousands or millions of points. For decent performance we need to be able to add points to the array very quickly. 
+
+Notice that the array interface does not have a resize function: just an append for adding one point at a time. 
+
+The only memory allocation standard library call we have seen so far is [`malloc()`](http://pubs.opengroup.org/onlinepubs/009695399/functions/malloc.html), which takes a single argument specifying how much memory it should allocate. 
+
+Now we introduce the [`realloc()`](http://pubs.opengroup.org/onlinepubs/009695399/functions/realloc.html) standard library call, which allows us to resize our chunk of already allocated memory.
+
+- INPUT: We pass `realloc()` the pointer we obtained from an earlier `malloc()` or `realloc()` and a **new** size.
+- OUTPUT: `realloc()` will **reallocate** a chunk of memory of the new size.
+    - If the memory allocation system can find enough space at the existing address (e.g. when the new size is smaller than the original size or there is enough room to expand the array), `realloc()` will:
+        1. extend the allocated memory, and
+        2. return the original pointer.
+    - If the memory allocation system could only find enough space starting at another address, it will:
+        1. allocate the new chunk of memory,
+        2. copy the content of the old chunk into the new chunk,
+        3. free the old chunk, and
+        4. return a pointer to the new chunk.
+
+**Big O analysis**: insertion takes $O(n)$; reallocation is in the size of the array, since it may have to copy the array. 
+
+**Amortized analysis**: insertion takes $\Omega(1)$; In practice, it does a very good job of copying only occasionally, and often appears to be nearly amortized constant time.
+
+### Unstable remove
+
+If you do not need to preserve the order of array elements, you can remove elements from arbitrary array indices in constant time $O(1)$. This is an example of an **unstable operation**, one that may reorder an array or list of elements. The fast, unstable array remove algorithm is:
+1. Copy the element at the end of the array over the element you wish to remove.
+2. Decrement the array length by 1.
+
+This needs to be refined to handle empty arrays and other corner cases.
+
+**Big O and amortized analysis**: deletion takes O(1).
+
+## Practice 01
+
+**REQUIREMENT**: create a file `p1.c` that implementations the four functions declared in `p1.h`. It may contain other functions too, but remember you are aiming for high performance so you should probably keep things simple.
+- Use `realloc()` instead of `malloc()` for high performance.
+- Use a constant time $O(1)$ unstable remove.
+
+# Preallocation (approaching O(1))
+
+## Guide
+
+`realloc()` improved things a lot, but we can do better with preallocation.
+
+**Preallocation**: The basic idea is to allocate more memory than we need right now, to avoid having to allocate often in future.
+
+In this lab, we decouple the size of the allocated memory from the number of elements currently stored in it. To do so:
+1. In the array structure, we shall keep track of:
+    - the amount of memory allocated in one field (`reserved`), and 
+    - the number of elements (points) currently stored in the array, in another field (`len`).
+2. To append an element:
+    - If the new array is full, we **double the allocated space** (an $O(n)$ operation) to it and ensure `reserved` reflects this.
+    - Then, we copy in the new element to the end of the array and increment the array length `len` (i.e., the number of elements) where both copy and increment are $O(1)$ operations.
+
+**Big O analysis**: insertion takes $O(n)$; inserting n elements takes $O(n)$ time overall ($O(n)$ to do the expansion + ($n \dot O(1)$) operations to insert elements). 
+
+**Amortized analysis**: $\Omega(1)$; while a single append operation remains $O(n)$ in the worst case (i.e. when a reallocation occurs), this happens only once every $n$ appends. As the number of appends approaches infinity, the cost per append approaches a constant. This is called **amortized constant time**. A detailed discussion is beyond the scope of this class: see CMPT225: _Data Structures and Algorithms_ for details). But growing memory buffers geometrically is so useful, you should know about it now.
+
+### Trade-off
+
+The cost of this speed is that up to twice the memory is required, and 1.5 times on average. This is often a reasonable trade off. It is trivial to trim the extra space off if you know you are done appending - just `realloc()` the size you need.
+
+Most real-world resizeable-array implementations use this strategy, though they vary on the constant factor chosen. For example Python's lists grow by 9/8 at a time. Java's ArrayList uses 3/2\. The value chosen determines the trade-off between wasted space and the amortized cost of each append.
+
+Your task is to create another version of the point array functions that use this amortized constant time preallocation strategy. The `point_array.h` header file already has the extra field in the array structure (we deliberately ommitted this above):
+
+```C
+typedef struct 
+{
+  size_t len;        // number of points in the array
+  size_t reserved;   // amount of memory allocated
+  point_t* points;   // an array of 'len' point_t structs
+} point_array_t;
 
 ```
 
-These calls closely match their abstract versions, except that read and write have a convenient extension that makes it easy to work with structs (see example code above). The following links give the specifications of each of these functions according to the [Open Group standard](http://pubs.opengroup.org/onlinepubs/009695399/frontmatter/preface.html):
+Reimplement all the array functions to use the `reserved` field as described above. Test your code using the methods described in the lab to show that you have improved performance.
 
-- [`fopen()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fopen.html)
+### Requirements
 
-- [`fwrite()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fwrite.html)
+<div class="req">
 
-- [`fread()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fread.html)
+1. Add and commit the single file `t2.c` that contains implementations of the four functions declared in `point_array.h`.
+2. Use the geometric preallocation strategy to get amortized constant time performance.
+3. Use a constant time unstable remove.
 
-- [`fclose()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fclose.html)
-
-Documentation is also available as man pages on your local computer. The advantages of the Open Group specifications are that they are sometimes better written, cover only the functionality supported by all standard implementations and often contain examples. The man pages will contain details that are specific to your local OS.
-
-You should get used to reading documentation in these forms.
-
-Unless you have a good reason, stick to the standard interfaces. This will make it easier (i) to port your code to another OS; and (ii) to find another programmer who can understand it. Also, new versions of OS are more likely to implement the standard than to retain their previous quirks.
-
-#### A note on interface design
-
-These functions are a masterpiece of interface design. `fopen()` has the most complex functionality, but a very simple interface. `fwrite()` and `fread()` have the _same_ interface to opposite functionality. Your calls to read and write look exactly the same, which makes it easy to write them correctly.
-
-#### Useful extras
-
-You may find these useful:
-
-- [`fseek()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fseek.html) : repositions the current read/write location.
-
-- [`feof()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/feof.html) : tells you if the end-of-file is reached.
-
-- [`ftell()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/ftell.html) : returns the current read/write location.
-
-- [`ftruncate()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/ftruncate.html) : truncate a file to a specified length.
-
-- [`stat()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/stat.html) : get file status
+</div>
 
 * * *
 
-## Files by example
+### Note: Measuring time
 
-Here are some examples of using the file API. Background on files and links to the interface specifications are provided below.
-
-#### Write a simple array to a file
-
-```C
-#include <stdio.h>
-
-int main(int argc, char* argv[]) {
-    const size_t len = 100;
-    int arr[len];
-
-    // put data in the array
-    // ...
-
-    // write the array into a file (error checks ommitted)
-    FILE* f = fopen("myfile", "w"); 
-    fwrite(arr, sizeof(int), len, f);
-    fclose(f);
-
-    return 0;
-}
-
-```
-
-#### Read a simple array from a file
-
-```C
-#include <stdio.h>
-
-int main(int argc, char* argv[]) {
-    const size_t len = 100;
-    int arr[len];
-
-    // read the array from a file (error checks ommitted)
-    FILE* f = fopen("myfile", "r"); 
-    fread(arr, sizeof(int), len, f);
-    fclose(f);
-
-    // use the array
-    // ...
-
-    return 0;
-}
-
-```
-
-#### Write an array of structs to a file, then read it back
-
-```C
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-typedef    struct 
-{
-    int x,y,z;
-} point3d_t;
-
-int main(int argc, char* argv[]) {
-    const size_t len = atoi(argv[1]);
-
-    // array of points to write out
-    point3d_t wpts[len];
-
-    // fill with random points
-    for(size_t i=0; i<len; i++)
-        {
-            wpts[i].x = rand() % 100;
-            wpts[i].y = rand() % 100;
-            wpts[i].z = rand() % 100;
-        }
-
-    // write the struct to a file (error checks ommitted)
-    FILE* f1 = fopen(argv[2], "w"); 
-    fwrite(wpts, sizeof(point3d_t), len, f1);
-    fclose(f1);
-
-    // array of points to read in from the same file
-    point3d_t rpts[len];
-
-    // read the array from a file (error checks ommitted)
-    FILE* f2 = fopen(argv[2], "r"); 
-    fread(rpts, sizeof(point3d_t), len, f2);
-    fclose(f2);
-
- if (memcmp(wpts, rpts, len * sizeof(rpts[0])) != 0)
-        puts("Arrays differ");
-    else
-        puts("Arrays match");
-
-    return 0;
-}
-
-```
-
-#### Saving and loading an image structure, with error checking
-
-This example shows the use of a simple file format that uses a short "header" to describe the file contents, so that an object of unknown size can be loaded.
-
-Make sure you understand this example in detail. It combines elements from the examples above into a simple but realistic implementation of a file format.
-
-```C
-/* saves an image to the filesytem using the file format:
-     [ cols | rows | pixels ]
-     where:
-         cols is a uint32_t indicating image width
-         rows is a uint32_t indicating image height
-         pixels is cols * rows of uint8_ts indicating pixel grey levels
-*/
-int img_save(const img_t* img, const char* filename) {
-    // validate the parameters 
-    assert(img);
-    assert(img->data);
-    assert(filename);
-
-    // open the file for writing
-    FILE* f = fopen(filename, "w"); 
- if (f == NULL)
-        {
-            puts("Failed to open image file for writing");
-            return 1;
-        }
-
-    // write the image dimensions header
-    uint32_t hdr[2];
-    hdr[0] = img->cols;
-    hdr[1] = img->rows;
-
- if (fwrite(hdr, sizeof(uint32_t), 2, f) != 2)
-        {
-            puts("Failed to write image header");
-            return 2;
-        }        
-
-    const size_t len = img->cols * img->rows;
-
- if (fwrite(img->data, sizeof(uint8_t), len, f) != len)
-        {
-            puts("Failed to write image pixels");
-            return 3;
-        }        
-
-    // always close a file
-    fclose(f);
-    return 0;
-}
-
-/* loads an img_t from the filesystem using the same 
-     format as img_save().
-
-     Warning: any existing pixel data in img->data is not free()d.
-*/
-int img_load(img_t* img, const char* filename) {
-    // validate the parameters
-    assert(img);
-    assert(filename);
-
-    // open the file for reading
-    FILE* f = fopen(filename, "r"); 
- if (f == NULL)
-        {
-            puts("Failed to open image file for reading");
-            return 1;
-        }
-
-    // read the image dimensions header:
-    uint32_t hdr[2];
-
- if (fread(hdr, sizeof(uint32_t), 2, f) != 2)
-        {
-            puts("Failed to read image header");
-            return 2;
-        }        
-
-    img->cols = hdr[0];
-    img->rows = hdr[1];
-
-    // helpful debug:
-    // printf("read header: %u cols %u rows\n", 
-    //	    img->cols, img->rows);
-
-    // allocate array for pixels now we know the size
-    const size_t len = img->cols * img->rows; 
-    img->data = malloc(len * sizeof(uint8_t));
-    assert(img->data);
-
-    // read pixel data into the pixel array
- if (fread(img->data, sizeof(uint8_t), len, f) != len) 
-         { 
-             puts("Failed to read image pixels"); 
-             return 3;
-         }        
-
-    // always close a file
-    fclose(f);
-    return 0;
-}
-
-```
-
-Usage:
-
-```C
-img_t img;
-img_load(&img, "before.img");
-
-image_frobinate(img); // manipulate the image somehow
-
-img_save(&img, "after.img");
-
-```
-
-<div class="task">
-
-## Task 1: Serialize an array of integers to a binary-format file
-
-Extend the functionality of your integer array from Lab 5 to support saving and loading arrays from the filesystem in a binary format.
-
-## Instructions
-
-<div class="steps">
-
-Use the header file `intarr.h` you have fetched for this lab. It contains these new function declarations:
-
-</div>
-
-```C
-/* LAB 6 TASK 1 */
-
-/*
-    Save the entire array ia into a file called 'filename' in a binary
-    file format that can be loaded by intarr_load_binary(). Returns
-    zero on success, or a non-zero error code on failure. Arrays of
-    length 0 should produce an output file containing an empty array.
-
-    Make sure you validate the parameters before you use them.
-*/
-int intarr_save_binary(intarr_t* ia, const char* filename);
-
-/*
-    Load a new array from the file called 'filename', that was
-    previously saved using intarr_save_binary(). Returns a pointer to a
-    newly-allocated intarr_t on success, or NULL on failure.
-
-    Make sure you validate the parameter before you use it.
-*/
-intarr_t* intarr_load_binary(const char* filename);
-
-```
-
-### Requirements
-
-<div class="req">
-
-1. Add and commit a single C source file called "t1.c" containing implementations of these two functions.
-2. The file must include the "intarr.h" header file.
-3. Your code for this task may call any other functions declared in "intarr.h" and implemented as part of Lab 5\. Your code will be linked against the grading robot's reference implementation of all the tasks of Lab 5 for testing, so make sure the file "t1.c" you submit does not contain the implementation of any of the tasks (functions) of Lab 5.
-4. To test your code for this Task 1, create your own "testDriver.c" (which you do not have to submit) and use your own implementation of the tasks (functions) of Lab 5, i.e., "intarr.c".
-5. _Performance hint: calls to fwrite() are relatively expensive. Try to use as few as you can._
-
-</div>
-
-### Submission
-
-Commit the single file "t1.c" to your repo in the Lab 6 directory.
-
-</div>
-
-<div class="task">
-
-## Task 2: Serialize an array of integers to a JSON text-format file
-
-Extend the functionality of your integer array from Lab 5 to support saving and loading arrays from the filesystem in JSON, a common human- and machine-readable text format.
-
-Sometimes it is useful for humans to be able to read your stored data, or to import your data into another program that does not understand your binary format. The most readable, portable XDR format is plain text. A popular syntax for text files is [JSON (JavaScript Object Notation)](http://json.org), which, as the name suggests, was originally an XDR format for web programs. It is easier to use and less verbose than the also-popular [Extensible Markup Language (XML)](http://en.wikipedia.org/wiki/XML) and more expressive than the bare-bones [Comma-Separated Values (CSV)](http://en.wikipedia.org/wiki/Comma-separated_values) formats you may have seen.
-
-The down side of text formats is that they are:
-
-1. inefficient in space, since e.g. a four-byte integer (int32_t) could require up to 11 bytes to represent its minimum value of -2147483648 as a decimal string;
-2. inefficent in time, since parsing the text file to convert it back into a binary format is much more expensive than loading a binary file.
-
-The standard library has two functions that can be very helpful for rendering text into files:
-
-- [`fprintf()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fprintf.html)
-- [`fscanf()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fscanf.html)
-
-They work just like the familiar `printf()` and `scanf()` but read to and write from `FILE*` objects instead of standard input and standard output. You should probably use these to solve this task.
-
-Notice from those man pages that another pair of functions `snprintf()` and `sscanf()` is also available to print and scan from C strings too. (`sprintf()` exists, but the lack of array length checking means this is not safe or secure to use. Always use `snprintf()`).
-
-The header file "intarr.h" also contains these new function declarations:
-
-```C
-/* LAB 6 TASK 2 */
-
-/*
-    Save the entire array ia into a file called 'filename' in a JSON
-    text file array file format that can be loaded by
-    intarr_load_json(). Returns zero on success, or a non-zero error
-    code on failure. Arrays of length 0 should produce an output file
-    containing an empty array.
-
-    Make sure you validate the parameters before you use them.
-
-    The JSON output should be human-readable.
-
-    Examples:
-
-    The following line is a valid JSON array:
-    [ 100, 200, 300 ]
-
-    The following lines are a valid JSON array:
-    [ 
-     100, 
-     200, 
-     300 
-    ]
-*/
-int intarr_save_json(intarr_t* ia, const char* filename);
-
-/*
-    Load a new array from the file called 'filename', that was
-    previously saved using intarr_save_json(). The file may contain an array
-    of length 0\. Returns a pointer to a newly-allocated intarr_t on
-    success (even if that array has length 0), or NULL on failure.
-
-    Make sure you validate the parameter before you use it.
-*/
-intarr_t* intarr_load_json(const char* filename);
-
-```
-
-### Requirements
-
-<div class="req">
-
-1. Add and commit a single C source file called "t2.c" containing implementations of these two functions.
-2. The other requirements of Task 1 apply.
-3. _Hint: you should NOT create a single huge string in memory and write it out in one call to fwrite(). The string could require a huge amount of memory when your array is large. Since you chose an inefficient text format, you're not optimizing for speed so don't worry about using many calls to fwrite()._
-
+See the supplied file `demo.c` for examples of the use of the [`gettimeofday()`](http://pubs.opengroup.org/onlinepubs/009695399/functions/gettimeofday.html) library call, which gives you access to the real-time clock on your computer.
 
 # Credit
 
 Last updated 2021-05 by Alice Yue. 
 
 Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn, Victor Cheung, and others.
+
+(This lab was reviously lab 08)

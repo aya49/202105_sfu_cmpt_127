@@ -1,8 +1,8 @@
 # Lab 01: Introduction to C
 
-Open lab 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 01_lab
+Open lab 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > lab > 01
 
-(if repl.it doesn't work, download files [here](./files)))
+(if repl.it doesn't work, download files [here](./files))
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - Course outline ([slides]())
@@ -488,7 +488,7 @@ do    {
     // this block executes at least once, 
     // then repeats as long as
     // condition evaluates true
-} while (<condition>);
+} while (/*condition*/);
 ```
 
 For example this code
@@ -509,7 +509,7 @@ DANGER: if `i` never becomes equal or greater than `1000`, this program will hap
 The pattern above, where we initialize a variable, test its value, then perform a loop that changes the value, is so frequently used that it has a special syntax: the **for loop**, which has the form
 
 ```C
-for(<initialize>; <condition>; <modify>) {
+for(/*initialize*/; /*condition*/; /*modify*/) {
     // this code runs until condition evaluates to false 
 }
 ```
@@ -658,7 +658,7 @@ int main(void) {
 </details>
 
 
-# C vs C++
+# Bonus material: C vs C++
 
 C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analagous to each other in C and C++.
 
@@ -672,7 +672,7 @@ C is a subset of C++; all C functions/keywords/code will work with a C++ compile
 | | | |
 | Comments         | Data types are explicit.               | Handles all data types without needing to state them. Always use this in C++. |
 
-# Extra info, for your enjoyment
+# Bonus material: for your enjoyment
 
 ## What does a compiler do?
 

@@ -1,8 +1,8 @@
 # Lab 02: Functions, Arrays, C character strings, arguments to main, and header files
 
-Open lab 02 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 02_lab
+Open lab 02 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > lab > 02
 
-(if repl.it doesn't work, download files [here](./files)))
+(if repl.it doesn't work, download files [here](./files))
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - [Guide 01](#guide) ([slides]()): Function definitions, declarations, and header files
@@ -144,7 +144,7 @@ In addition to functions, header files can also declare global variables or prov
 
 - **Functions**: encapsulate a piece of code (e.g. `int max(int int1, int int2) {...}`).
 - If you have lots of functions, it's good practice to put your functions into separate files (e.g. `p1funcs.c`). To use these files together with your program (e.g. `p1.c`), you need to:
-    1. Create **header files** associated with your function files; header files have the same file name as your function file but with a `.h` file extension (e.g. `p1funcs.h`). In your header files, put in the **function declarations** for the functions in the associated function files (e.g. `int max(int int1, int int2);`).
+    1. Create **header files** associated with your function files; header files have the `.h` file extension (e.g. `p1funcs.h`). In your header files, put in the **function declarations** for the functions in the associated function files (e.g. `int max(int int1, int int2);`).
     2. `#include` your header file in your program (e.g. `#include "p1funcs.h"`).
 
 
