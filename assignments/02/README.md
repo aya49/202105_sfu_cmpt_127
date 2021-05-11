@@ -85,7 +85,7 @@ Recall that in lab 02 practice 03, you made a similar program; take caution not 
 **TESTING**: you can test your program by running:
 ```
 $ make t3
-$ ./t3 "string1" "string 2"
+$ ./t3 "string1" "string2"
 ```
 
 **EXAMPLE**
@@ -142,18 +142,18 @@ ge : 2
 
 # Submission
 
-Make sure the files are named correctly, otherwise they won't be graded.
+Make sure you have the following files ready for submission and that they are named appropriately, otherwise they won't be graded.
 - Task 01: `t1.c`, `t1funcs.h`
-- Task 02: `t2.c`, `t2mirror.c`
+- Task 02: `t2mirror.c`
 - Task 03: `t3.c`
 - Task 04: `t4.c`
 
-Compress these files into a zip file called `a1.zip`; you can do this by using the following command from console:
+Compress these files into a zip file called `a.zip`; you can do this by using the following command from console:
 ```
 $ make submit
 ```
 
-Upload `a1.zip` onto the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments > 01.
+Upload `a.zip` to the appropriate assignment submission page on the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments.
 
 # Marking rubric
 
@@ -161,12 +161,12 @@ Upload `a1.zip` onto the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sf
 | Task | Criteria                                      | Points |
 |------|-----------------------------------------------|--------|
 | All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas) | 1 |
-|      | Programs are well documentated  (i.e. student name and program description at the top of program files) | 0.5 |
-|      | Where applicable, program prompts user for input and indicates what the outputs are. | 0.5 |
-| 01   | Program works as intended.                    | 1      |
-| 02   | Program works as intended.                    | 2      |
+|      | Programs are well documentated  (i.e. student name and program description at the top of program files, comments are added where appropriate) | 0.5 |
+| 01   | `t1funcs.h` contains the function declarations for the functions in `t1funcs.c`. | 0.5 |
+|      | `t1.c` contains an import statement for `t1funcs.h` | 0.5 | 
+| 02   | Program works as intended (i.e. outputs false and true for the first and second half of the tests in `t2.c` respectively). | 2 |
 | 03   | Program works as intended.                    | 2      |
 | 04   | Program works as intended.                    | 2      |
-|      | Program properly uses a for or while loop.    | 0.5    |
-|      | Program properly uses an if/else conditions   | 0.5    |
+|      | Program properly uses `scanf` to take as input, two C strings and a text file. | 0.5 |
+|      | Program properly initializes and uses arrays in an appropriate manner. | 0.5 |
 | Total|                                               | 10     |
