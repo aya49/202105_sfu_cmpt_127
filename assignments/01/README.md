@@ -28,6 +28,10 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 - Compile and run it, and verify that it now produces the correct output (expected result).
 - Now your program meets the requirements and you are ready to submit it.
 
+**TESTING**: you can test your program by running:
+```
+$ make t1
+```
 
 ## Task 02
 
@@ -40,6 +44,10 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 - Your program should handle negative numbers (which are also valid integers).
 - Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter an integer: "`, and let the user know what the output is by printing a message, e.g. `"Here is the sum: "`.
 
+**TESTING**: you can test your program by running:
+```
+$ make t2
+```
 
 ## Task 03
 
@@ -55,6 +63,11 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 - write comments!! Test and debug your code!
 - Your program should handle negative numbers (which are also valid integers).
 - Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter integers; after each integer, press enter: "`, and let the user know what the output is by printing a message, e.g. `"Here is the sum: "`.
+
+**TESTING**: you can test your program by running:
+```
+$ make t3
+```
 
 **Example**: sample input and output:
 ```
@@ -75,6 +88,10 @@ The product of your values is: 0
     - You can assume that the input is guaranteed to be well-formed, and all values will be in the range \[1,...,50\].
 - OUTPUT: `t4.c` should, on standard output, draw the outline of the right triangle `#` character and fill the triangle using the `.` character.
 
+**TESTING**: you can test your program by running:
+```
+$ make t4
+```
 
 **EXAMPLE**: sample user input `scanf` and `printf` output.
 
