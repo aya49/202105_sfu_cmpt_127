@@ -20,7 +20,7 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 ## Task 01
 
 **REQUIREMENT**: you will write a program to and submit file `t1.c`.
-- OUTPUT: `t1.c` should print `Hello World!`, `My name is <your name>.`, and `Nice to meat you!` in 3 separate lines to standard output.
+- OUTPUT: `t1.c` should print `Hello World!`, `My name is <your name>.`, and `Nice to meet you!` in 3 separate lines to standard output.
 
 **REMEMINDER**: 
 - write comments!! Test and debug your code!

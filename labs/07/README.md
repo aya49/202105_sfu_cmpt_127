@@ -1,369 +1,117 @@
-# Lab 05: File I/O (input/output)
+# Lab 07: Testing and linked lists
 
-Open lab 05 on [repl.it](https://replit.com/team/202105cmpt127) > Team projects > lab > 05
+Download lab files [here](./files.zip).
 
-(if repl.it doesn't work, download files [here](./files))
+Linked lists have been described in CMPT 125, but it doesn't hurt to see them again.
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
-- [Guide 01](#guide) ([slides]()): external data representation (XDR) using files in C
+- [Guide 01](#guide) ([slides]()): linked lists
 
 Try "Practice" problems on repl.it; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
 - [Practice 01](#practice-01)
 - [Practice 02](#practice-02)
 
+# Drawing - a tool for thinking
+
+Drawing diagrams is very helpful before writing code that modifies lists. In general, sketching machines - including code - is a tool for thinking; even if you think you know what you are doing, drawing out the operations is a concrete test of your understanding. Even very experienced people with great intuition use drawings for thinking.
+
+# Linked lists
 
 ## Guide
 
-Today we're going to talk about external data representation with `fopen()`, `fclose()`, `fread()` and `fwrite()`, plus we'll do some more `struct` practice!
+**Linked lists** are data structures that contain a sequence of data elements, like arrays, but with different dynamic properties. The key idea in the linked list is to use a simple data structure to store each data element along with a pointer to the next element in the list. The end of the list is denoted by a `NULL` pointer.
 
-Recall: we talked about stream redirection, where we redirected text on the standard output from and to files using `<` and `>` respectively. While the standard output is technically a file, today, we leave the standard output and learn how to read/write to other files on our operating system.
+Our implementation uses a second data structure called a **header** to store pointers to the first (head) and last (tail) elements in the list.
 
+The list is assembled as follows:
 
-### External data representation (XDR) using files
+First a `list_t` structure is allocated on the heap, with its head- and tail-pointers set to NULL, representing an empty list.
 
-**Memory**: data structored stored on a programs' working memory of stack and heap are temporary; they only exists while the program is running. To store data between runs, we use the **filesystem**. The filesystem is a service provided by the operating system (OS) that provides **files** to your programs. A file is like a named array of bytes which, once created, will exist until deleted, even when the computer is turned off.
+![](../img/list1.png)
 
-**External Data Representation (XDR)**: XDR is the general problem of storing data outside a running program.
+To insert the first value into the list, a new `element_t` is allocated on the heap, the value is stored in it, and the header's head- and tail-pointers are both set to point to it. The first element's next-pointer is `NULL` to indicate it is the last element in the list.
 
-**Files** are a common special case of XDR. Other examples of XDR occur when using databases or networking. You are familiar with files: text files like C sourcecode; sound files like MP3s; executable files like your compiled programs. 
-- At the **filesystem abstraction** level, these files are all the same thing: just a contiguous sequence of bytes. 
-- The **interpretation** of these bytes is up to your program.
+![](../img/list2.png)
 
-Files are identified by a [**path**](http://en.wikipedia.org/wiki/Path_(computing)), which is a generalization of a [**filename**](http://en.wikipedia.org/wiki/Filename) and can be any of:
-- a **filename**, e.g. `p1.c`. This is often used when we are manipulating a file located in the **current directory**, e.g. compiling `$ gcc p1.c -o p1.o`, executing `$ ./p1.o`.
-- a **relative path** that specifies the path (location) to a file starting from or **relative to the current working directory**, e.g. `./students/bsimpson/reportcard.pdf`. This is commonly used when, for example, the desired file is in a "parent" directory, e.g., `../reportcard.pdf`, or in a "child" directory, e.g. `./students/bsimpson/reportcard.pdf`.
-- an **absolute path** begins with a '/' (the "root" directory) and fully specifies a location in the directory structure, e.g. `/home/vader/projects/deathstar.dxf`. This is used when the path to a file (location of a file) cannot be specified using the first two ways.
+When a subsequent element is added, the next-pointer of the tail element and the tail-pointer of the header are both changed to the address of the new element:
 
-The programmer's interface to the filesystem is quite basic. We can do most of our work on files with four abstract operations:
-- OPEN(path, mode): opens a file in "path" in one of the "mode" reading and/or writing. If the file doesn't exist, we could possibly use OPEN to create a new file in the path.
-    - File size: the file has a length in bytes, which is initially zero for a new file
-    - Current read/write position: an index into the bytes of the file at which read and write operations will do their work. After OPEN() the initial read/write position is either at the beginning or end of the file depending on the mode and program specifications.
-- WRITE(ID, source, length): writes length bytes from source into the file, starting from the current read/write position and overwrites anything already there. The length of the file will increase automatically if necessary. When the write has finished, the current read/write position is set to one byte beyond the data written.
-- READ(ID, dest, length): reads length bytes from the file into dest-ination. When the read is finished, the current read/write position is set to one beyond the data read.
-- CLOSE(ID): closes the file, indicating to the OS that we have finished using it.
-- SEEK(): a less-used fifth operation, that allows you to set the read/write position directly without reading or writing.
+![](../img/list3.png)
 
-Almost every programming language supports a version of this interface. You may recognize it from Python.
+One more addition using the same mechanism. Notice that the tail element always has its next-pointer set to `NULL`.
 
-This process can also be called: serialization (converting from program memory) to a binary-format file
+![](../img/list4.png)
 
-#### XDR in C
 
-In C, this interface is provided by these four **system calls** defined in `stdio.h`. The following links give the specifications of each of these functions according to the [Open Group standard](http://pubs.opengroup.org/onlinepubs/009695399/frontmatter/preface.html):
+**double-linked list** is a common variant of the regular linked list in which every element contains a previous-pointer in addition to the next-pointer. Double-linked lists can be traversed forwards and backwards, at the cost of a little more storage space per element.
 
-- [`fopen()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fopen.html): this most complex functionality, but a very simple interface.
-```C
-FILE * fopen(const char * filename,  const char * mode);
-```
-- [`fwrite()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fwrite.html)
-```C
-size_t fwrite(const void * ptr, size_t size, size_t nitems, FILE * stream);
-```
-- [`fread()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fread.html)
-```C
-size_t fread(void * ptr, size_t size, size_t nitems, FILE * stream);
-```
-- [`fclose()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fclose.html)
-```C
-int fclose(FILE *stream);
-```
-```C
-// int fseek(FILE *stream, long int offset, int whence);
-```
+### Linked lists vs arrays (vs `std::vector` in C++): runtime
 
-Note: `fread` and `fwrite` have the same interface to opposite functionality; they also have a convenient extension that makes it easy to work with structs.
+| Task                             | Arrays                | Double-/linked lists |
+|----------------------------------|-----------------------|----------------------|
+| Insert an element                | O(n) (preallocaiton: Θ(1)) | **O(1)** |
+| Access an element based on index | **O(1)**              | O(n) |
+| Remove an element                | O(1) (O(n) if stable) | O(1) |
 
-Below are some examples of using the file API.
+The `std::vector` in C++ is the same as an array except it can automatically change in size i.e. it has implemented preallocation Θ(1) for you so you don't have to (see [push-back](https://www.cplusplus.com/vector::push_back)). But remember, there are also other implementations of vectors in C++, so don't assume thaat preallocation is the default implementation.
 
-#### XDR in C: write a simple array to a file
+List elements are therefore best accessed in order, since accessing the next element takes constant time.
 
-```C
-#include <stdio.h>
-
-int main(int argc, char* argv[]) {
-    const size_t len = 100;
-    int arr[len];
-
-    // put data in the array
-    // ...
-
-    // write the array into a file (error checks ommitted)
-    FILE* f = fopen("myfile", "w"); 
-    fwrite(arr, sizeof(int), len, f);
-    fclose(f);
-
-    return 0;
-}
-
-```
-
-#### XDR in C: read a simple array from a file
-
-```C
-#include <stdio.h>
-
-int main(int argc, char* argv[]) {
-    const size_t len = 100;
-    int arr[len];
-
-    // read the array from a file (error checks ommitted)
-    FILE* f = fopen("myfile", "r"); 
-    fread(arr, sizeof(int), len, f);
-    fclose(f);
-
-    // use the array
-    // ...
-
-    return 0;
-}
-
-```
-
-#### XDR in C: write an array of structs to a file + read it back
-
-```C
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-typedef struct {
-    int x,y,z;
-} point3d_t;
-
-int main(int argc, char* argv[]) {
-    const size_t len = atoi(argv[1]);
-
-    // array of points to write out
-    point3d_t wpts[len];
-
-    // fill with random points
-    for (size_t i=0; i<len; i++) {
-            wpts[i].x = rand() % 100;
-            wpts[i].y = rand() % 100;
-            wpts[i].z = rand() % 100;
-        }
-
-    // write the struct to a file (error checks ommitted)
-    FILE* f1 = fopen(argv[2], "w"); 
-    fwrite(wpts, sizeof(point3d_t), len, f1);
-    fclose(f1);
-
-    // array of points to read in from the same file
-    point3d_t rpts[len];
-
-    // read the array from a file (error checks ommitted)
-    FILE* f2 = fopen(argv[2], "r"); 
-    fread(rpts, sizeof(point3d_t), len, f2);
-    fclose(f2);
-
-    if (memcmp(wpts, rpts, len * sizeof(rpts[0])) != 0) {
-        puts("Arrays differ");
-    } else {
-        puts("Arrays match");
-    }
-    
-    return 0;
-}
-
-```
-
-#### XDR in C: saving and loading an image structure, with error checking
-
-This example shows the use of a simple file format that uses a short "header" to describe the file contents, so that an object of unknown size can be loaded.
-
-Make sure you understand this example in detail. It combines elements from the examples above into a simple but realistic implementation of a file format.
-
-```C
-/* saves an image to the filesytem using the file format:
-     [ cols | rows | pixels ]
-     where:
-         cols is a uint32_t indicating image width
-         rows is a uint32_t indicating image height
-         pixels is cols * rows of uint8_ts indicating pixel grey levels
-*/
-int img_save(const img_t* img, const char* filename) {
-    // validate the parameters 
-    assert(img);
-    assert(img->data);
-    assert(filename);
-
-    // open the file for writing
-    FILE* f = fopen(filename, "w"); 
-    if (f == NULL) {
-        puts("Failed to open image file for writing");
-        return 1;
-    }
-
-    // write the image dimensions header
-    uint32_t hdr[2];
-    hdr[0] = img->cols;
-    hdr[1] = img->rows;
-
-    if (fwrite(hdr, sizeof(uint32_t), 2, f) != 2) {
-        puts("Failed to write image header");
-        return 2;
-    }
-
-    const size_t len = img->cols * img->rows;
-
-    if (fwrite(img->data, sizeof(uint8_t), len, f) != len) {
-        puts("Failed to write image pixels");
-        return 3;
-    }
-
-    // always close a file
-    fclose(f);
-    return 0;
-}
-
-/* loads an img_t from the filesystem using the same 
-     format as img_save().
-
-     Warning: any existing pixel data in img->data is not free()d.
-*/
-int img_load(img_t* img, const char* filename) {
-    // validate the parameters
-    assert(img);
-    assert(filename);
-
-    // open the file for reading
-    FILE* f = fopen(filename, "r"); 
-    if (f == NULL) {
-        puts("Failed to open image file for reading");
-        return 1;
-    }
-
-    // read the image dimensions header:
-    uint32_t hdr[2];
-
-    if (fread(hdr, sizeof(uint32_t), 2, f) != 2) {
-        puts("Failed to read image header");
-        return 2;
-    }        
-
-    img->cols = hdr[0];
-    img->rows = hdr[1];
-
-    // helpful debug:
-    // printf("read header: %u cols %u rows\n", 
-    //	    img->cols, img->rows);
-
-    // allocate array for pixels now we know the size
-    const size_t len = img->cols * img->rows; 
-    img->data = malloc(len * sizeof(uint8_t));
-    assert(img->data);
-
-    // read pixel data into the pixel array
-    if (fread(img->data, sizeof(uint8_t), len, f) != len) { 
-        puts("Failed to read image pixels"); 
-        return 3;
-    }        
-
-    // always close a file
-    fclose(f);
-    return 0;
-}
-
-```
-
-Usage:
-
-```C
-img_t img;
-img_load(&img, "before.img");
-
-image_frobinate(img); // manipulate the image somehow
-
-img_save(&img, "after.img");
-```
-
+Arrays and vectors are therefore, the most efficient data structure(s).
 
 ## Practice 01
 
-**REQUIREMENT**: you will extend the functionality of your integer array from the previous lab, practice 01-05 to support saving and loading arrays from the filesystem in a binary format. Use the header file `p1intarr.h`.
-- Create a C source file called "p1intarr.c" containing implementations of the two functions declared in `p1intarr.h`.
-- To test your code, create your own `p1.c`.
-- Your code may call any other functions declared and implemented as part of the previous lab, practice 01-05 by copying these files over and changing their names to `intarr.c` and `intarr.h` and importing them (DON'T re-implement these).
+**DESCRIPTION**:
+- `p1list.h` contains an interface specification for a linked-list-of-integers data structure.
+- 5 slightly different implementations are provided, in files `p1.N.c` where N = [1,...,5].
+- `p1.c` contains a very weak test program for the linked list code.
 
-**HINT**: calls to `fwrite()` are relatively expensive. Try to use as few as you can.
+`Makefile` will build programs `p1.1` through `p1.5`, each linking the same `main.c` with one of the list implementation C files. Build each program by naming it as your 'make' target, e.g. the above two make commands will each create an executable 'p1.1' and 'p1.5'.
 
-Declarations in `p1intarr.h`:
-
-```C
-int intarr_save_binary(intarr_t* ia, const char* filename);
 ```
-- INPUT: the pointer of a `intarr_t` variable `ia`, a filename (recall: C strings are arrays of character elements + a terminator `\0` element).
-- OUTPUT: returns `0` on success, or a non-`0` error code on failure.
-- BEHAVIOUR: saves the `ia` array into a file `filename` in a binary file format that can be loaded by `intarr_load_binary()`.
+$ make p1.1
+$ ./p1.1
 
-```C
-intarr_t* intarr_load_binary(const char* filename);
+$ make p1.5
+$ ./p1.5
 ```
-- INPUT: a filename.
-- OUTPUT: returns a pointer to a newly-allocated `intarr_t` on success, or `NULL` on failure.
-- BEHAVIOUR: loads a new array from the file called 'filename', that was previously saved using `intarr_save_binary()`. Make sure you validate the parameter before you use it.
 
-Try it yourself first; then verify your solutions [here](./files/p1intarr_solution.c).
+You can also build all programs by using the following command:
+
+```
+$ make all
+```
+
+Running the resulting programs, you will see that every one passes the test in `p1.c`... but in fact, all of these implementations contain bugs.
+
+**REQUIREMENT**: your task is to extend `p1.c` to thoroughly test the list implementations. Your program must reliably distinguish all these faulty implementations from a correct one.
+- Your `p1.c` will be compiled with each of `p1.N.c` as well as a bug-free version (not supplied to you).
+- OUTPUT: 
+    - A program built from your `p1.c` and linked against any implementation of the functions in `list.h` must return 0 if the functions are bug-free, or 1 if they contain one or more bugs.
+    - Remember: returning `1` means an error has occured during the execution of your program while returning 0 means that your program successfully executed.
+- BEHAVIOUR:
+    - Preferably, your program should not crash or halt on `assert()`. But a crash (e.g. segmentation fault) or assertion will be recorded as indicating the code contained bugs.
+    - Preferably, print an explanatory error message on stdout describing the problem you discovered.
+    - You may produce (a sensible amount) of other text output on stdout or stderr. Try to make the text output helpful for yourself or an instructor/TA/peer-tutor helping you.
+
+Try it yourself first; then verify your solution with your solution to the next practice problem :).
+
 
 ## Practice 02
 
-In practice 01, we exported our array into a binary format. However, binary formats are not human read-able nor are they export-able to other programs that does not understand your finary format.
+**REQUIREMENT**: create a new file called `p2list.c` containing correct implementations of all the functions described in `p1list.h`.
+- You may use any piece(s) of the supplied code, or write your own.
+- Your code should pass all your tests i.e. the `p1.c` you extended.
 
-The most readable, portable XDR format is plain text. A popular syntax for text files is [JSON (JavaScript Object Notation)](http://json.org), which, as the name suggests, was originally an XDR format for web programs make with the programming language, JavaScript. It is easier to use, less verbose than the also-popular [Extensible Markup Language (XML)](http://en.wikipedia.org/wiki/XML), and more expressive than the bare-bones [Comma-Separated Values (CSV)](http://en.wikipedia.org/wiki/Comma-separated_values) formats you may have seen. JSON's popularity can also be attributed to the fact that it is readable for humans and can be imported into another program that does not understand your binary format.
-
-The down side of text formats is that they are:
-1. inefficient in space, since e.g. a four-byte integer (`int32_t`) could require up to 11 bytes to represent its minimum value of -2147483648 as a decimal string;
-2. inefficent in time, since parsing the text file to convert it back into a binary format is much more expensive than loading a binary file.
-
-The C standard library has two functions that can be very helpful for rendering text into files. They work just like the familiar `printf()` and `scanf()` but read to and write from `FILE*` objects instead of standard input and standard output. You should probably use these to solve this practice problem.
-- [`fprintf()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fprintf.html)
-- [`fscanf()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fscanf.html)
-
-Notice from those manual pages that functions `snprintf()` and `sscanf()` can also print and scan from C strings. (`sprintf()` exists, but the lack of array length checking means this is not safe or secure to use. Always use `snprintf()`).
-
-**REQUIREMENT**: you will extend the functionality of your integer array from the previous lab, practice 01-05, to support saving and loading arrays from the filesystem in JSON. 
-- Create a C source file called `p2intarr.c` containing implementations of the two functions declared in `p2intarr.h`.
-- To test your code, create your own `p2.c`.
-- Your code may call any other functions declared in "intarr.h" and implemented as part of the previous lab, practice 01-05 by copying these files over and changing their names to `intarr.c` and `intarr.h` and importing them, if you haven't already for practice 01 (DON'T re-implement these).
-
-You should NOT create a single huge string in memory and write it out in one call to `fwrite()`. The string could require a huge amount of memory when your array is large. Since you chose an inefficient text format, you're not optimizing for speed so don't worry about using many calls to `fwrite()`.
-
-The header file `p2intarr.h` contains these new function declarations:
-
-```C
-int intarr_save_json(intarr_t* ia, const char* filename);
+**TESTING**: you can test your program by running:
 ```
-- INPUT: the pointer of a `intarr_t` variable `ia` and a filename.
-- OUTPUT: returns `0` on success, or a non-`0` error code on failure.
-- BEHAVIOUR: saves the `ia` array into a file `filename` in a JSON file format that can be loaded by `intarr_load_json()`.
-    - Arrays of length 0 should produce an output file containing an empty array.
-    - Make sure you validate the parameters before you use them.
-    - The JSON output should be human-readable.
-
-```C
-intarr_t* intarr_load_json(const char* filename);
+$ make p2list
+$ ./p2list
 ```
-- INPUT: a filename.
-- OUTPUT: returns a pointer to a newly-allocated `intarr_t` on success (even if that array has length 0), or `NULL` on failure.
-- BEHAVIOUR: loads a new array from the file called 'filename', that was previously saved using `intarr_save_json()`. 
-    - Make sure you validate the parameter before you use it.
 
-Try it yourself first; then verify your solutions [here](./files/p2intarr_solution.c).
-
-# Bonus material
-
-You may find these useful:
-- [`fseek()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fseek.html) : repositions the current read/write location.
-- [`feof()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/feof.html) : tells you if the end-of-file is reached.
-- [`ftell()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/ftell.html) : returns the current read/write location.
-- [`ftruncate()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/ftruncate.html) : truncate a file to a specified length.
-- [`stat()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/stat.html) : get file status
-
+Try it yourself first; then verify your solutions [here](./files/solution/p1list.c).
 
 # Credit
 
 Last updated 2021-05 by Alice Yue. 
 
 Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn, Victor Cheung, and others.
-
-(This lab was previously lab 06)

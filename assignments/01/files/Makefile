@@ -2,7 +2,7 @@
 # -Werror treats warnings as if they were errors (stopping compilation)
 # -Wfatal-errors causes compilation to stop after the first error
 # -g adds debugging information to the file
-CFLAGS = -Wextra -Werror -Wfatal-errors -g
+CFLAGS = -Werror -Wfatal-errors -g
 
 
 t1: t1.c

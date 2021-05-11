@@ -1,8 +1,6 @@
 # Lab 04: Structures, composite Data Types
 
-Open lab 04 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > lab > 04
-
-(if repl.it doesn't work, download files [here](./files))
+Download lab files [here](./files.zip).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - [Guide 01](#guide) ([slides]()): composite data type `struct`, how to use it with `typedef` and `malloc()`, and deep copy-ing `struct`s.
@@ -18,7 +16,7 @@ It is often useful to collect multiple data items together into a single logical
 
 ```C
 struct {
-        /*variable/array declarations*/;
+    /*variable/array declarations*/;
 } /*struct_name*/;
 ```
 
@@ -138,8 +136,8 @@ Like arrays, a structure is passed to functions via it's pointer:
 ```C
 void draw_image(img_t* img) { ... }
 
-// call the function above
-draw_image(&img1);
+    // call the function above
+    draw_image(&img1);
 ```
 
 We could also pass a structure itself as an argument but this is a BAD IDEA:
@@ -237,7 +235,9 @@ Deciding when to create a new structured type is an important part of program de
 
 Note: structures can be defined in header files.
 
-**REQUIREMENT**: implement the integer array functions declared and specified in the supplied header file `p0intarr.h` in the file `p0intarr.c`.
+**REQUIREMENT**: Write your program to two files: `p0intarr.c` `p0.c`.
+- in `p0intarr.c` implement the integer array functions declared and specified in the supplied header file `p0intarr.h`.
+- Create a test driver: a program `p0.c` with a main function from which each of the functions in `p0intarr.c` are called (tested). Compile and execute your `p0intarr.c` (with stubs) and your test driver.
 
 These functions would work around the following two user defined data structures (see `p0intarr.h`):
 
@@ -259,16 +259,21 @@ typedef enum {
 ```
 
 **HINTS**
-- Create a test driver: a program `p0.c` with a main function from which each of the functions in `p0intarr.c` are called (tested). Compile and execute your `p0intarr.c` (with stubs) and your test driver.
 - Don't forget to keep adding appropriate function calls to your test driver as you go along.
 - An example of **stubing** is to replace the body with `return 0` if your function is supposed to return an `int`. This way, your program compiles even if your function body is incomplete.
     - If your code compiles, then implement the two functions of Practice 1.
     - Compile and execute your test driver. Note that this time, your test driver is testing the functions you have implemented for Task 1. Are these functions working as expected?.
     - Repeat the above two steps until all functions have been designed, implemented and tested.
 
-The following is a breakdown of the practice problems, also see comments in `p0intarr.h`.
+**TESTING**: you can test your program by running:
+```
+$ make p0
+$ ./p0
+```
 
-Try it yourself first; then verify your solutions [here](./files/p0intarr_solution.c).
+The following is a breakdown of the practice problems.
+
+Try it yourself first; then verify your solutions [here](./files/solution/p0intarr.c).
 
 ### Practice 01.1
 

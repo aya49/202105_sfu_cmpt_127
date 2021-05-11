@@ -1,17 +1,11 @@
-# Lab 06: Testing memory allocation performance
+# Lab 05: Testing memory allocation performance
 
-Today we are going to look at different strategies for resizing arrays (e.g. inserting elements, deleting elements).
+Download lab files [here](./files.zip).
 
-Recall: amortized analysis Θ() (average performance) and big O analysis O() (worst case performance).
-
-TRACE CODE IN CLASS
-
-Open lab 06 on [repl.it](https://replit.com/team/202105cmpt127) > Team projects > lab > 06
-
-(if repl.it doesn't work, download files [here](./files))
+Today we are going to look at different strategies for resizing arrays (e.g. inserting elements, deleting elements). Recall: amortized analysis Θ() (average performance) and big O analysis O() (worst case performance).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
-- [Guide 01](#guide) ([slides]()): Reallocation (inserting elements into arrays in O(n)) and unstable remove (removing elements from arrays in O(1))
+- [Guide 01](#guide) ([slides]()): reallocation (inserting elements into arrays in O(n)) and unstable remove (removing elements from arrays in O(1))
 - [Guide 02](#guide-1) ([slides]()): Preallocation (inserting elements into arrays in Θ(1))
 
 Try "Practice" problems on repl.it; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
@@ -119,11 +113,18 @@ If we want to remove an element in a stable manner without changing the order of
 **REQUIREMENT**: create a file `p1.c` that implementations the four functions declared in `p1.h`. It may contain other functions too, but remember you are aiming for high performance so you should probably keep things simple.
 - Use `realloc()` instead of `malloc()` for high performance.
 - Use a constant time O(1) unstable remove.
-- use `p0.c` to test the performance of your functions.
 
-`p0.c` includes examples of the use of the [`gettimeofday()`](http://pubs.opengroup.org/onlinepubs/009695399/functions/gettimeofday.html) library call, which gives you access to the real-time clock on your computer so that you can time how long your functions take to run.
+`p1test.c` includes examples of the use of the [`gettimeofday()`](http://pubs.opengroup.org/onlinepubs/009695399/functions/gettimeofday.html) library call, which gives you access to the real-time clock on your computer so that you can time how long your functions take to run.
 
-Try it yourself first; then verify your solutions [here](./files/p1_solution.c).
+**HINT**: in functions where there is no return `void`, but you still want to verify variables, you can use `assert()` from `#import <assert.h>`. It allows you to throw error messages if you find something off, look it up!
+
+**TESTING**: use `p1test.c` to test the performance of your functions by running:
+```
+$ make p1
+$ ./p1
+```
+
+Try it yourself first; then verify your solutions [here](./files/solution/p1.c).
 
 # Preallocation (approaching O(1))
 
@@ -156,9 +157,14 @@ The `std::vector` in C++ is the same as an array except it can automatically cha
 **REQUIREMENT**: create another version of the point array functions that use this amortized constant time preallocation strategy. Reimplement all the array functions to use the `reserved` field in `point_array_t` as described above. The `p2.h` header file already has the extra field `reserved` in the array structure.
 - Use the preallocation strategy to get amortized constant time performance.
 - Use a constant time O(1) unstable remove.
-- use `p0.c` to test the performance of your functions.
 
-Try it yourself first; then verify your solutions [here](./files/p2_solution.c).
+**TESTING**: use `p1test.c` to test the performance of your functions by running:
+```
+$ make p2
+$ ./p2
+```
+
+Try it yourself first; then verify your solutions [here](./files/solution/p2.c).
 
 
 # Bonus material: C vs C++

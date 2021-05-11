@@ -1,8 +1,6 @@
 # Lab 03: 2D arrays and dynamic memory allocation
 
-Open lab 03 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > lab > 03
-
-(if repl.it doesn't work, download files [here](./files))
+Download lab files [here](./files.zip).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - [Guide 01](#guide) ([slides]()): dynamic memory allocation
@@ -145,44 +143,18 @@ The simpler, faster, and thus the best solution is to initialize (allocate) the 
 
 **REQUIREMENT**: debug `p0name.c`.
 
+**TESTING**: you can test your program by running:
+```
+$ make p1
+$ ./p1
+```
+
 <details>
-<summary style="margin-left: 25px;">SOLUTION</summary>
+<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
-See file `p0parent.c`. In this example, `get_name()` receives a pointer to array `name` which is stored inside `main()`'s stack frame. Since this is guaranteed to exist longer than the call to `get_name()` this will work correctly.
+See file [`p0parent.c`](./files/solution/p0parent.c). In this example, `get_name()` receives a pointer to array `name` which is stored inside `main()`'s stack frame. Since this is guaranteed to exist longer than the call to `get_name()` this will work correctly.
 
-```C
-#include <stdio.h>
-#include <stdlib.h>
-
-void get_name(char line[], int maxlen) {
-    printf("Please enter your name: ");
-
-    // fgets reads at most maxlen-1 chars from stdin, up to first newline, 
-    // EOF or error.
-    if (fgets(line, maxlen, stdin) == 0) { // we ALWAYS check for I/O errors
-        perror("failed to read a name");
-        exit(1); // "break", but for the entire program
-    }
-}	
-
-int main(void) {
-    char name[1024]; // !! initializing name outside get_name fixes the bug !!
-    get_name(name, 1024); // passes array pointer to get_name
-
-    // we don't need to be lucky this time
-    printf("Your name is %s", name);
-
-    return 0;
-}
-```
-
-Try it yourself! Run the program
-
-```
-$ gcc p0parent.c -o p0parent.o -Wall
-$ ./p0parent.o
-```
 
 </div>
 </details>
@@ -238,9 +210,12 @@ free(array);
 array = NULL; // or array = 0;
 ```
 
-Maybe you are not convinced that this could ever be useful.
-
-Take a read through `p0random.c`, compile it, and try running it. `p0random.c` contains a semi-realistic example with error checking included. Make sure you understand the code completely before you move on.
+If you are not convinced this could be useful, take a read through `p0random.c`, compile it, and try running it.
+```
+$ make p0random
+$ ./p0random
+```
+`p0random.c` contains a semi-realistic example with error checking included. Make sure you understand the code completely before you move on.
 
 ```C
 #include <stdio.h> // for printf()
@@ -297,11 +272,6 @@ int main(void) {
 
     return 0;
 }
-```
-
-```
-$ gcc p0random.c -o p0random.o -Wall
-$ ./p0random.o
 ```
 
 # Building 2D arrays on the heap

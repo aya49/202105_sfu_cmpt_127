@@ -22,22 +22,22 @@ typedef struct {
 /* ALL THESE FUNCTIONS REQUIRE A VALID POINT_ARRAY_T POINTER AS THEIR
    FIRST PARAMETER. THEY SHOULD FAIL ON ASSERTION IF THIS POINTER IS NULL */
 
-/* practice 01 */
+/* practice 01.1 */
 
 // Safely initalize an empty array structure.
 int point_array_init(point_array_t* pa);
 
-/* practice 02 */
+/* practice 01.2 */
 
 // Resets the array to be empty, freeing any memory allocated if necessary.
 void point_array_reset(point_array_t* pa);
 
-/* practice 03 */
+/* practice 01.3 */
 
 // Append a point to the end of an array. If successful, return 0, else return 1.
 int point_array_append(point_array_t* pa, point_t* p);
 
-/* practice 04 */
+/* practice 01.4 */
 
 // Remove the point at index i from the array, reducing the number of elements
 // stored in the array by one. The order of points in the array may change.

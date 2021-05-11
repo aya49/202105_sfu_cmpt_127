@@ -1,6 +1,6 @@
 # Lab 01: Introduction to C
 
-C is used in operating systems
+C is used in operating systems; conditions compare the same data type!
 
 Download lab files [here](./files.zip).
 
@@ -81,8 +81,8 @@ Hello World
 3. Specify a more descriptive name for your program than the default `a.out` with the compiler output name option `-o`:
 
 ```
-$ gcc t1.c -o t1.o
-$ ./t1.o
+$ gcc t1.c -o t1
+$ ./t1
 Hello World
 ```
     
@@ -113,30 +113,10 @@ How are you?
 **TESTING**: you can test your program by running:
 ```
 $ make p1
+$ ./p1
 ```
 
-<details>
-<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
-<div style="margin-left: 25px;">
-
-```C
-// author: <First name, last name; YOUR SFU USER ID HERE>
-// date: 2021-05-18
-// input: void
-// output: int
-// description: prints a greeting to standard output.
-
-#include <stdio.h>
-
-int main(void) {
-    printf("Hello World\n");
-    printf("How are you?\n");
-    return 0;
-}
-```
-
-</div>
-</details>
+Try it yourself first; then verify your solutions [here](./files/solution/p1.c).
 
 
     
@@ -570,30 +550,10 @@ You can jump to the beginning of a loop body with the continue; statement. For e
 **TESTING**: you can test your program by running:
 ```
 $ make p3
+$ ./p3
 ```
 
-<details>
-<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
-<div style="margin-left: 25px;">
-
-```C
-#include <stdio.h>
-
-int main(void) {
-    // for integers between 0 and 104
-    for (int i=0; i<105; i++) {
-        // if the integer is not 100, print it!
-        if (i != 100) {
-            printf("%d ", i++); // prints the value and THEN increments it 
-        }
-    }
-    
-    return 0;
-}
-```
-
-</div>
-</details>
+Try it yourself first; then verify your solutions [here](./files/solution/p3.c).
 
 
 
@@ -613,6 +573,7 @@ int main(void) {
 **TESTING**: you can test your program by running:
 ```
 $ make p4
+$ ./p4
 ```
 
 **HINT**: did you know that if `scanf`is looking for a series of integers separated by a space as input? You can directly input `1 3 5 6`, press enter, and `scanf` will help you loop through each integer. Try it out below!
@@ -653,28 +614,7 @@ Output:
 #
 ```
 
-<details>
-<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
-<div style="margin-left: 25px;">
-
-```C
-#include <stdio.h>
-
-int main(void) {
-    int j = 0;
-    printf("Enter integers separated by space and press enter:\n");
-    while (scanf("%d", &j) == 1) { // remember, 1 means true, 0 means false! True here meaning that scanf is still reading user inputs :)
-        for (int i=0; i<j; i++) {
-            printf("#");
-        }
-        printf("\n");
-    }
-    return 0;
-}
-```
-
-</div>
-</details>
+Try it yourself first; then verify your solutions [here](./files/solution/p4.c).
 
 
 # Bonus material: C vs C++
@@ -742,7 +682,7 @@ $ gcc -S t1.c
 
 - The next step is to translate the assembly representation into the binary format that the computer can read directly. This is now a sequence of numbers, each representing either a datum value, a memory address, or an actual CPU operation to perform (**opcode**). This is no longer readable by most humans, but it is a direct translation of the assembly so you can translate back and forth if needed.
     
-- The program is now a chunk of binary data called an **object**, and the compiler writes it to a file in called an **object file**, which ends with `.o`, so `t1.c` creates `t1.o`. If multiple source files were compiled, each gets its own object file.
+- The program is now a chunk of binary data called an **object**, and the compiler writes it to a file in called an **object file** `t1`, so `t1.c` creates `t1`. If multiple source files were compiled, each gets its own object file.
     
 - To see this happening, we can ask the compiler to stop at the object stage:
 
@@ -750,14 +690,14 @@ $ gcc -S t1.c
 $ gcc -c t1.c
 ```
         
-- The working directory will contain the file `t1.o`. Opening this in an editor, you will see a lot of unreadable stuff, with some familiar bits here and there, such as the string "Hello World" which is stored in the object as data. You'll also see the function names `main` and `printf` which are kept around in human-readable form in case we want to debug the program as it runs.
+- The working directory will contain the file `t1`. Opening this in an editor, you will see a lot of unreadable stuff, with some familiar bits here and there, such as the string "Hello World" which is stored in the object as data. You'll also see the function names `main` and `printf` which are kept around in human-readable form in case we want to debug the program as it runs.
         
-- The final stage is to **link** together all the object files, along with any code libraries they referenced, to create the complete executable program. Code libraries are just collections of `.o` object files all smooshed together with an index at the start. (Object files are often small and numerous, so collecting them simplifies distribution).
+- The final stage is to **link** together all the object files, along with any code libraries they referenced, to create the complete executable program. Code libraries are just collections of object files all smooshed together with an index at the start. (Object files are often small and numerous, so collecting them simplifies distribution).
         
 - Invoking the compiler with our object file will do the link to create a new executable called `t1` in the current directory:
 
 ```
-$ gcc -o t1 t1.o
+$ gcc -o t1 t1
 ```
 
 Now you have seen a typical C compiler process from start to finish. In practice you will almost always let the compiler do the whole thing at once for you. It deletes the intermediate files when it's finished with them, so you won't even see them unless you look hard.

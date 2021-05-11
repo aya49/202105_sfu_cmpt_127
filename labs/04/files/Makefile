@@ -5,20 +5,8 @@
 CFLAGS = -Werror -Wfatal-errors -g
 
 
-p1: p1.c
-	gcc $(CFLAGS) -o $@ p1.c
-
-p2.1: 2.1.c
-	gcc $(CFLAGS) -o $@ p2.1.c
-
-p2.2: 2.2.c
-	gcc $(CFLAGS) -o $@ p2.2.c
-
-p3: p3.c
-	gcc $(CFLAGS) -o $@ p3.c
-
-p4: p4.c
-	gcc $(CFLAGS) -o $@ p4.c
+p0: p0.c p0intarr.c
+	gcc $(CFLAGS) -o $@ p0.c p0intarr.c
 
 clean:
-	rm -f p1 p2.1 p2.2 p3 p4 *.o
+	rm -f p0 *.o

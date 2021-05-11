@@ -2,28 +2,14 @@
 # -Werror treats warnings as if they were errors (stopping compilation)
 # -Wfatal-errors causes compilation to stop after the first error
 # -g adds debugging information to the file
-CFLAGS = $(CFLAGS) -Wextra -Werror -Wfatal-errors -g
+CFLAGS = -Werror -Wfatal-errors -g
 
 
-all:  p1.1 p1.2 p1.3 p1.4 p1.5 p2list
+p1: p1.c p1intarr.c
+	gcc $(CFLAGS) -o $@ p1.c p1intarr.c
 
-p1.1: p1.c p1.1.c
-	gcc $(CFLAGS) -o $@ p1.c p1.1.c
-
-p1.2: p1.c p1.2.c
-	gcc $(CFLAGS) -o $@ p1.c p1.2.c
-
-p1.3: p1.c p1.3.c
-	gcc $(CFLAGS) -o $@ p1.c p1.3.c
-
-p1.4: p1.c p1.4.c
-	gcc $(CFLAGS) -o $@ p1.c p1.4.c
-
-p1.5: p1.c p1.5.c
-	gcc $(CFLAGS) -o $@ p1.c p1.5.c
-
-p2list: p1.c p2list.c
-	gcc $(CFLAGS) -o $@ p1.c p2list.c
+p2: p2.c p2intarr.c
+	gcc $(CFLAGS) -o $@ p2.c p2intarr.c
 
 clean:
-	rm -f p1.1 p1.2 p1.3 p1.4 p1.5 p2list *.o
+	rm -f p1 p2 *.o

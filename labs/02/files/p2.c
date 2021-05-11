@@ -5,7 +5,7 @@
 // description: 
 
 #include <stdio.h>
-// FILL IN HERE the header file for p2identical.c
+#include "p2identical.h"
 
 int identical(int i_array1[], int i_array2[], unsigned int len);
 
@@ -17,6 +17,12 @@ int main(void) {
         printf("a1 and a2 are identical\n");
     } else {
         printf("a1 and a2 are NOT identical\n");
+    }
+
+    if (scrambled(a1, a2, 3) == 1) { 
+        printf("a1 and a2 are scrambled\n");
+    } else {
+        printf("a1 and a2 are NOT scrambled\n");
     }
 
     return 0;

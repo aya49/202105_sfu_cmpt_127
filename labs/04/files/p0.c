@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "intarr.h"
+#include "p0intarr.h"
 
 // helper function that prints the content of the intarr
 void print_intarr(intarr_t* ia) {
@@ -16,7 +16,7 @@ void print_intarr(intarr_t* ia) {
     }
 
     printf("Printing intarr of length %d:\n", ia->len);
-    for (int i=0; i<ia->len; i++) {
+    for (unsigned int i=0; i<ia->len; i++) {
         printf("%d ", ia->data[i]);
     }
     printf("\n");
@@ -37,7 +37,7 @@ int main() {
     }
 
     printf("Populating test_ia by calling 'intarr_set(test_ia, i, random)'\n");
-    for (int i=0; i<test_ia->len; i++) {
+    for (unsigned int i=0; i<test_ia->len; i++) {
         if(intarr_set(test_ia, i, (rand()%100)) != INTARR_OK) {
             printf("Cannot set value at index %d\n", i);
             return 1; //exit with a non-zero value

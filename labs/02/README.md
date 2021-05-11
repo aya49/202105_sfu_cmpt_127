@@ -1,6 +1,6 @@
 # Lab 02: Functions, Arrays, C character strings, arguments to main, and header files
 
-Download lab 02 files [here](./files.zip))
+Download lab files [here](./files.zip).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - [Guide 01](#guide) ([slides]()): Function definitions, declarations, and header files
@@ -11,11 +11,10 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 
 Try "Practice" problems on repl.it; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
 - [Practice 01](#practice-01)
-- [Practice 02.1](#practice-021)
-- [Practice 02.2](#practice-022)
+- [Practice 02](#practice-021)
 - [Practice 03](#practice-03)
 - [Practice 04.1](#practice-041)
-- [Practice 04.1](#practice-042)
+- [Practice 04.2](#practice-042)
 
 Do [Assignment 02](../../assignments/02).
 
@@ -151,9 +150,11 @@ In addition to functions, header files can also declare global variables or prov
 
 **REQUIREMENT**: Create a file called `p1funcs.h` that contain function declarations for all the functions in `p1funcs.c`.
 - Edit the file `p1.c` to `#include` the new header file.
-- The finished code must compile with this command with no errors or warnings:
+
+**TESTING**: the finished code must compile with this command with no errors or warnings:
 ```
 $ make p1
+$ ./p1
 The max of our numbers is 12.
 The min of our numbers is 11.
 ```
@@ -344,15 +345,23 @@ Note that your array values do not go out of scope (is not removed) once you fin
 ## Practice 02.1
 
 **REQUIREMENT**: Create a new file called `p2identical.c`, containing a single function `identical` with the following declaration:
+
 ```C
 int identical(int arr1[], int arr2[], unsigned int len);
 ```
+
 - INPUT: `identical` takes as input, two `int` arrays `arr1` and `arr2`, and `len`.
     - Arrays `arr1` and `arr2` are both of length `len`, and contain arbitrary integer values.
     - `len` can have any unsigned int value, including 0.
 - OUTPUT: `identical` returns 1 iff arrays `arr1` and `arr2` contain the same values in the same order, or 0 otherwise.
     - If `len` is 0 then `identical()` should return 1 (since the arrays have the same - empty - contents).
     - You must not change the contents of the arrays.
+
+**TESTING**: you can test your program by running:
+```
+$ make p2
+$ ./p2
+```
 
 **EXAMPLE**
 
@@ -377,7 +386,7 @@ File: `p2.c` is an example of a program that uses your function:
 
 ```C
 #include <stdio.h>
-// FILL IN HERE: include header for p2identical.c
+#include "p2identical.h"
 
 int main(void) {
     int a1[3] = {10, 15, 20};
@@ -393,27 +402,7 @@ int main(void) {
 }
 ```
 
-<details>
-<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
-<div style="margin-left: 25px;">
-
-File: `p2identical.c`
-```C
-int identical(int arr1[], int arr2[], unsigned int len) {
-    if (len == 0) {
-        return 1;
-    }
-    for (int i=0; i<len; i++) {
-        if (arr1[i] != arr2[i]) {
-            return 0;
-        }
-    }
-    return 1;
-}
-```
-
-</div>
-</details>
+Try it yourself first; then verify your solutions [here](./files/solution/p2identical.c)
 
 ## Practice 02.2: challenge yourself!
 
@@ -425,6 +414,12 @@ int identical(int arr1[], int arr2[], unsigned int len) {
 
 ```C
 int arr[101] = {0};
+```
+
+**TESTING**: you can test your program by running:
+```
+$ make p2
+$ ./p2
 ```
 
 **EXAMPLE**
@@ -445,40 +440,7 @@ arr1 = {10,15,20}, arr2 = {10,15,21}
 arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
 ```
 
-<details>
-<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
-<div style="margin-left: 25px;">
-
-```C
-int scrambled(unsigned int arr1[], unsigned int arr2[], unsigned int len) {
-    if (len == 0) {
-        return 1;
-    }
-
-    // arr: array where its index represents the values in the two arrays; elements initialized to 0
-    // we make arr length 100 since we can assume the values of arr1 and arr2 are between 0 and 100
-    int arr[101] = {0};
-    for (int i=0; i<len; i++) {
-        // you can create more than 1 variable with the same data type on one line!
-        int tmp1 = 0, tmp2 = 0;
-        tmp1 = arr1[i];
-        tmp2 = arr2[i];
-        arr[tmp1]++;
-        arr[tmp2]--;
-    }
-    for (int i=0; i<100; i++) {
-        // do you know what it means if an element in arr is not 0?
-        // hint: arr[tmp1]++; arr[tmp2]--;
-        if (arr[i] != 0) {
-            return 0;
-        }
-    }
-    return 1;
-}
-```
-
-</div>
-</details>
+Try it yourself first; then verify your solutions [here](./files/solution/p2identical.c).
 
 
 # Program arguments and C strings
@@ -548,7 +510,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-The program can be run like so and work as expected:
+The program can be run like so and work as expected (we use `a.out` as the program name):
 
 ```
 $ ./a.out 5 3.14
@@ -569,67 +531,37 @@ This is an [important problem in computer science](http://en.wikipedia.org/wiki/
 
 **HINT**: you can find useful string functions like `strlen()` (length of a C string) in the header you imported, `#include <stdio.h>`, by looking up its [manual/documentation](https://www.tutorialspoint.com/c_standard_library/stdio_h.htm) online!
 
+**TESTING**: you can test your program by running:
+```
+$ make p3
+$ ./p3
+```
+
 **EXAMPLE**
 
 Example runs:
 
 ```
-$ ./p3.o "I have a really bad feeling about this" "bad feeling"
+$ ./p3 "I have a really bad feeling about this" "bad feeling"
 true
-$ ./p3.o "To be or not to be" "That is the question"
+$ ./p3 "To be or not to be" "That is the question"
 false
-$ ./p3.o "I am the walrus" "I am the walrus"
+$ ./p3 "I am the walrus" "I am the walrus"
 true
-$ ./p3.o "the walrus" "I am the walrus"
+$ ./p3 "the walrus" "I am the walrus"
 false
-$ ./p3.o "kmjnhbvc45&^$bn" "."
+$ ./p3 "kmjnhbvc45&^$bn" "."
 false
 ```
 
 Notice that the strings do not have quote characters around them when delivered to your program via `argv`. The quotes prevent the shell from breaking the strings up into individual words.
 
+
 <details>
 <summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
-```C
-#include <stdio.h>
-#include <string.h> // strlen
-
-void contains(char* str1, char* str2) {
-    int len1 = strlen(str1);
-    int len2 = strlen(str2);
-
-    if (len1 < len2) {
-        printf("false\n");
-    }
-
-    int res = 1;
-    for (int i=0; i<=len1-len2; i++) {
-        for (int j=i; j<i+len2; j++) {
-            res = 1;
-            if (str1[j] != str2[j-i]) {
-                res = 0;
-                break;
-            }
-        }
-        if (res==1) {
-            printf("true\n");
-            break;
-        }
-    }
-
-    if (res!=1) {
-        printf("false\n");
-    }
-}
-
-
-int main(int argc, char* argv[]) {
-    contains(argv[1], argv[2]);
-    return 0;
-}
-```
+Click [here](./files/solution/p3.c) for the solution code.
 
 Note: `#import <string.h>` contains function `strstr()` that solves the substring problem. The algorithm implemented in `strstr()` is not the most efficient, there are algorithms with better asymptotic runtimes; can you find more efficient implementations of a solution to the substring problem? 
 
@@ -648,10 +580,10 @@ You will find it tedious to type lots of text into your program's stdin. The she
 
 **stream redirection** allows you to route the stdin and stdout for a program away from the console and into a file. 
 
-**stream redirection**; stdout: If we have a program called `p4hello.o` (`gcc p4hello.c p4hello.o`) that prints "Hello world!\n" on stdout, we can redirect this output to `p1.txt`:
+**stream redirection**; stdout: If we have a program called `p4hello` (`gcc p4hello.c -o p4hello`) that prints "Hello world!\n" on stdout, we can redirect this output to `p1.txt`:
 
 ```
-$ ./p4hello.o > p1.txt
+$ ./p4hello > p1.txt
 ```
 
 To confirm this, inspect the contents of the file with `cat`:
@@ -709,8 +641,6 @@ Here is a program that would have been very tedious to run without stream redire
 There are new functions `getchar()` and `isalpha()` here which we haven't seen before. Check it out online or read its manual. There's a handy standard program called `wc` that does a similar job as `getchar()`, but it does not match the requirements exactly (it is a little more clever about word boundaries and will sometimes count fewer words than our simple program).
 
 **Escape characters**: This [Q&A on StackOverflow](http://stackoverflow.com/questions/2414478/c-escaping-an-apostrophe-in-a-string) gives advice on representing the apostrophe character using an **escape sequence**. StackOverflow is very useful indeed.
-
-
 
 ```C
 #include <stdio.h> // getchar, EOF constant
@@ -773,23 +703,29 @@ printf("%c %.4f\n", letter, freq);
 
 By the way, you cannot implement this function by writing 26 "if" statements (1 for each letter). Hint: Each letter has a numerical [ASCII](https://en.wikipedia.org/wiki/ASCII) value. Can this numerical value be used at all?
 
-**EXAMPLE**: Assume you have named your executable `p4.2.o`. The first two example runs show the user entering the text manually in the terminal. The third and fourth runs have text piped in from a file (and the middle of the alphabet is omitted from the output for brevity). A text file `happy_prince.txt` containing a classic story in English is provided for testing.
+**TESTING**: you can test your program by running:
+```
+$ make p4.2
+$ ./p4.2
+```
+
+**EXAMPLE**: Assume you have named your executable `p4.2`. The first two example runs show the user entering the text manually in the terminal. The third and fourth runs have text piped in from a file (and the middle of the alphabet is omitted from the output for brevity). A text file `happy_prince.txt` containing a classic story in English is provided for testing.
 
 ```
-$ ./p4.2.o
+$ ./p4.2
 aaab
 a 0.7500
 b 0.2500
 ```
 
 ```
-$ ./p4.2.o
+$ ./p4.2
 q
 q 1.0000
 ```
 
 ```
-./p4.2.o < p4.2prince.txt
+./p4.2 < p4.2prince.txt
 a 0.0841
 b 0.0140
 c 0.0206
@@ -798,41 +734,7 @@ y 0.0240
 z 0.0002
 ```
 
-<details>
-<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
-<div style="margin-left: 25px;">
-
-```C
-#include <stdio.h> // getchar, EOF constant
-#include <ctype.h> // isalpha
-
-int main() {
-    float letters[26] = {0};
-    int count = 0;
-    char c = getchar();
-
-    while (c!= EOF) {
-        if (isalpha(c)) {
-            count++;
-            if (c >= 'A' && c <= 'Z') {
-                c += 32;
-            }
-            c -= 'a';
-            letters[c]++;
-        }
-        c = getchar();
-    }
-    for (int i = 0; i < sizeof(letters)/4; i++) {
-        if (letters[i] != 0) {
-            printf("%c %.4f\n", 'a'+i, letters[i]/count);
-        }
-    }
-    return 0;
-}
-```
-
-</div>
-</details>
+Try it yourself first; then verify your solutions [here](./files/solution/p4.2.c).
 
 
 # Bonus material: C vs C++
