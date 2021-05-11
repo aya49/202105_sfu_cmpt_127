@@ -148,8 +148,9 @@ In addition to functions, header files can also declare global variables or prov
 
 ## Practice 01
 
-**REQUIREMENT**: Create a file called `p1funcs.h` that contain function declarations for all the functions in `p1funcs.c`.
-- Edit the file `p1.c` to `#include` the new header file.
+**REQUIREMENT**: you will
+- create a file called `p1funcs.h` that contain function declarations for all the functions in `p1funcs.c`.
+- edit the file `p1.c` to `#include` the new header file.
 
 **TESTING**: the finished code must compile with this command with no errors or warnings:
 ```
@@ -344,7 +345,7 @@ Note that your array values do not go out of scope (is not removed) once you fin
 
 ## Practice 02.1
 
-**REQUIREMENT**: Create a new file called `p2identical.c`, containing a single function `identical` with the following declaration:
+**REQUIREMENT**: you will write to file `p2identical.c`, a single function `identical()` with the following declaration:
 
 ```C
 int identical(int arr1[], int arr2[], unsigned int len);
@@ -406,7 +407,7 @@ Try it yourself first; then verify your solutions [here](./files/solution/p2iden
 
 ## Practice 02.2: challenge yourself!
 
-**REQUIREMENT**: Can you modify your `identical` function such that it returns `1` if the contents of the two arrays are exactly the same regardless of the order? Define another function called `scrambled` in your `p2identical.c` file. Add `scrambled`'s declaration into the `p2identical.h` file, and add a line in in your program `p1.c` that calls your `scrambled` function.
+**REQUIREMENT**: can you modify your `identical` function such that it returns `1` if the contents of the two arrays are exactly the same regardless of the order? Define another function called `scrambled` in your `p2identical.c` file. Add `scrambled`'s declaration into the `p2identical.h` file, and add a line in in your program `p1.c` that calls your `scrambled` function.
 
 **HINT**:
 - You can assume that the values in `arr1` and `arr2` are between `0` and `100`.
@@ -520,7 +521,7 @@ $ ./a.out 5 3.14
 
 For this practice, we'll go over how to implement a "substring" function in C.
 
-**REQUIREMENT**: Write a C program called `p3.c`.
+**REQUIREMENT**: you will write a program to file `p3.c`.
 - INPUT: `p3.c` takes two text strings as program arguments.
     - You can ssume the two strings contain at least one character.
 - OUTPUT: prints "true" followed by a newline if the second string is entirely contained within the first, or "false" followed by a newline otherwise.
@@ -687,7 +688,7 @@ Solution? I'm sure you can do this one on your own ( \*u\*)b
 
 ## Practice 04.2
 
-**REQUIREMENT**: Write a program `p4.2.c`. 
+**REQUIREMENT**: you will write a program to file `p4.2.c`. 
 - INPUT: `p4.2.c` should read ASCII text from stdin.
 - BEHAVIOUR: `p4.2.c` will count the occurence frequency of each letter in the input.
     - Letters that occur zero times should not appear in the output.

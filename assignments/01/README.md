@@ -19,7 +19,7 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 
 ## Task 01
 
-**REQUIREMENT**: you will write a program to and submit file `t1.c`.
+**REQUIREMENT**: you will write a program to file `t1.c`.
 - OUTPUT: `t1.c` should print `Hello World!`, `My name is <your name>.`, and `Nice to meet you!` in 3 separate lines to standard output.
 
 **REMEMINDER**: 
@@ -36,7 +36,7 @@ $ ./t1
 
 ## Task 02
 
-**REQUIREMENT**: you will write a program to and submit file `t2.c`. 
+**REQUIREMENT**: you will write a program to file `t2.c`. 
 - INPUT: `t2.c` should `scanf` two integer values from standard input separated by a space, 
 - OUTPUT: `t2.c` should `printf` the sum of these two integers.
 
@@ -53,7 +53,7 @@ $ ./t2
 
 ## Task 03
 
-**REQUIREMENT**: you will write a program to and submit file `t3.c`. 
+**REQUIREMENT**: you will write a program to file `t3.c`. 
 - INPUT: `t2.c` should read any number of floating point values from standard input, separated by a space. 
      - Assume that the input is guaranteed to be well-formed and contain at least one valid floating point value.
      - If no floating point value can be parsed (i.e. a blank line was read) there should be no output. To put it another way: blank lines should be ignored.
@@ -86,7 +86,7 @@ The product of your values is: 0
 
 ## Task 04
 
-**REQUIREMENT**: you will write a program to and submit file `t4.c`. 
+**REQUIREMENT**: you will write a program to file `t4.c`. 
 - INPUT: `t4.c` should read a user input line containing a positive integer value. This integer will be the width and height of a reversed right triangle. 
     - You can assume that the input is guaranteed to be well-formed, and all values will be in the range \[1,...,50\].
 - OUTPUT: `t4.c` should, on standard output, draw the outline of the right triangle `#` character and fill the triangle using the `.` character.
@@ -125,7 +125,7 @@ Enter an integer:
 
 # Submission
 
-Make sure the files are named correctly, otherwise they won't be graded.
+Make sure you have the following files ready for submission and that they are named appropriately, otherwise they won't be graded.
 - Task 01: `t1.c`
 - Task 02: `t2.c`
 - Task 03: `t3.c`

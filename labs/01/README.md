@@ -103,7 +103,7 @@ Testing is extremely important, and beginners often underestimate how much time 
 
 ## Practice 01
 
-**REQUIREMENT**: Write a C program `p1.c`; can you modify the example code in [C syntax](#c-syntax) to get the following output?
+**REQUIREMENT**: you will write a C program to file `p1.c`; can you modify the example code in [C syntax](#c-syntax) to get the following output?
 
 ```
 Hello world
@@ -545,7 +545,7 @@ You can jump to the beginning of a loop body with the continue; statement. For e
 
 ## Practice 03
 
-**REQUIREMENT**: Write a C program `p3.c`. In it, re-write the previous example without using `continue`.
+**REQUIREMENT**: you will write a C program to file `p3.c`. In it, re-write the previous example without using `continue`.
 
 **TESTING**: you can test your program by running:
 ```
@@ -563,7 +563,7 @@ Try it yourself first; then verify your solutions [here](./files/solution/p3.c).
 
 ## Practice 04
 
-**REQUIREMENT**: Save your program to the file `p4.c`. 
+**REQUIREMENT**: you will write a program to file `p4.c`. 
 - INPUT: `p4.c` should read an arbitrary number of positive integer values separated by a space using `scanf`.
     - You may assume that the inputs are well-formed. 
 - OUTPUT: `p4.c` should, on standard output, render a simple graph representation of the input values, in order, using hash `#` characters as shown in the examples below.

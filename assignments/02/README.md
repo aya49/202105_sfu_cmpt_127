@@ -1,8 +1,6 @@
 # Assignment 02: Functions, Arrays, C character strings, arguments to main, and header files
 
-Open assignment 02 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 02_assignment
-
-(if repl.it doesn't work, download files [here](./files), and upload your files in a zip file to Canvas)
+Download the files for this assignment [here](./files.zip) (or from the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments > 01).
 
 **Remember**:
 - Reference [lab 02](../../labs/02) for help!
@@ -21,12 +19,14 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 
 ## Task 01
 
-**REQUIREMENT**: Create a file called `t1funcs.h` that contain function declarations for all the functions in `p1funcs.c`.
+**REQUIREMENT**: You will write to file `t1funcs.h` and edit file `t1.c`.
+- Create a file called `t1funcs.h` that contain function declarations for all the functions in `t1funcs.c`.
 - Edit the file `t1.c` to `#include` the new header file.
-- The finished code must compile with this command with no errors or warnings:
+
+**TESTING**: the finished code must compile with this command with no errors or warnings:
 ```
-$ gcc t1.c p1funcs.c -o t1.o -Wall
-$ ./t1.o
+$ make t1
+$ ./t1
 The product of our numbers is 12.
 The quotient of our numbers is 3.
 ```
@@ -36,16 +36,22 @@ The quotient of our numbers is 3.
 
 ## Task 02
 
-**REQUIREMENT**: Create a new file called `t2mirror.c`, containing a single function `mirror` with the following function declaration:
+**REQUIREMENT**: you will write in file `t2mirror.c`, a single function `mirror()` with the following function declaration:
 ```C
 int mirror(int arr1[], int arr2[], unsigned int len);
 ```
-- INPUT: The `mirror` function has the following declaration:
+- INPUT: The `mirror()` function has the following declaration:
     - Arrays `arr1` and `arr2` are both of length `len`, and contain arbitrary integer values.
     - `len` can have any unsigned int value, including 0.
     - If `len` is 0 then `mirror()` should return 1 (since the arrays have the same - empty - contents).
     - You must not change the contents of the arrays.
-- OUTPUT: `mirror` should return 1 iff arrays `arr1` and `arr2` contain the same values in the reverse order, or 0 otherwise. 
+- OUTPUT: `mirror()` should return 1 iff arrays `arr1` and `arr2` contain the same values in the reverse order, or 0 otherwise. 
+
+**TESTING**: use `t2.c` to test your function by editing the arrays `a1` and `a2` and by running:
+```
+$ make t2
+$ ./t2
+```
 
 **EXAMPLE**
 
@@ -67,61 +73,44 @@ arr1 = {1,2,3,4,5}, arr2 = {5,3,4,1,2}
 arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
 ```
 
-File: `t2.c` is an example of a program that uses your function:
-
-```C
-#include <stdio.h>
-// FILL IN HERE: include header for t2mirror.c
-
-int main(void) {
-    int a1[3] = {10, 15, 20};
-    int a2[3] = {10, 20, 15};
-
-    if (mirror(a1, a2, 3) == 1) { 
-        printf("a1 and a2 are mirrored\n");
-    } else {
-        printf("a1 and a2 are NOT mirrored\n");
-    }
-
-    return 0;
-}
-```
-
-
 ## Task 03
 
-**REQUIREMENT**: Write a C program called `t3.c`.
+**REQUIREMENT**: you will write a program to file `t3.c`.
 - INPUT: `t3.c` takes two text strings as arguments.
     - You can assume your strings are of length at least 1.
 - OUTPUT: `t3.c` prints "true" followed by a newline if the second string is entirely **in the same order but not necessarily continuously** contained within the first, or "false" followed by a newline otherwise.
 
-Recall that 
-- you can name your executable file with `-o` e.g. `gcc t3.c -o t3.o` and run it by `./t3.o`.
-- in lab 02 practice 03, you made a similar program, take caution not to confuse the requirements of the practice problem and this task!
+Recall that in lab 02 practice 03, you made a similar program; take caution not to confuse the requirements of the practice problem and this task!
+
+**TESTING**: you can test your program by running:
+```
+$ make t3
+$ ./t3 "string1" "string 2"
+```
 
 **EXAMPLE**
 
 Example runs:
 
 ```
-$ ./p3.o "I have a really bad feeling about this" "had fling"
+$ ./t3 "I have a really bad feeling about this" "had fling"
 true
-$ ./p3.o "To be or not to be" "to not be"
+$ ./t3 "To be or not to be" "to not be"
 true
-$ ./p3.o "To be or not to be" "be to not"
+$ ./t3 "To be or not to be" "be to not"
 true
-$ ./p3.o "I am the walrus" "I am the walrus"
+$ ./t3 "I am the walrus" "I am the walrus"
 true
-$ ./p3.o "the walrus" "I am the walrus"
+$ ./t3 "the walrus" "I am the walrus"
 false
-$ ./p3.o "kmjnhbvc45&^$bn" "."
+$ ./t3 "kmjnhbvc45&^$bn" "."
 false
 ```
 
 
 ## Task 04
 
-**REQUIREMENT**: Write a C program called `t4.c`.
+**REQUIREMENT**: you will write a program to `t4.c`.
 - INPUT: `t4.c` takes two program arguments of type C string: `str1` and `str2`. The program would also read from stdin, a text file. 
     - Every byte read from stdin counts as a character.
     - Words are defined as contiguous sequences of letters (a through z, A through Z) and the apostrophe (', value 39 decimal) separated by any character outside these ranges.
@@ -130,9 +119,10 @@ false
 
 Recall escape characters --- may be helpful ;)
 
-Your program should work as follows:
+**TESTING**: your program should work as follows:
 ```
-$ ./t4.o as to < t4prince.txt
+$ make t4
+$ ./t4 as to < t4prince.txt
 ```
 
 **EXAMPLE**
@@ -150,16 +140,33 @@ ge : 2
 ```
 
 
+# Submission
+
+Make sure the files are named correctly, otherwise they won't be graded.
+- Task 01: `t1.c`, `t1funcs.h`
+- Task 02: `t2.c`, `t2mirror.c`
+- Task 03: `t3.c`
+- Task 04: `t4.c`
+
+Compress these files into a zip file called `a1.zip`; you can do this by using the following command from console:
+```
+$ make submit
+```
+
+Upload `a1.zip` onto the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments > 01.
+
 # Marking rubric
+
 
 | Task | Criteria                                      | Points |
 |------|-----------------------------------------------|--------|
-| All  | Programs are well documentated  (i.e. student name and program description at the top of program files, commented on important code sections) | 0.5    |
-| All  | Programs are coded with good coding styles (i.e. no extra code after final return statement in functions, variables initiated are used, arrays are properly passed etc.). | 0.5    |
+| All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas) | 1 |
+|      | Programs are well documentated  (i.e. student name and program description at the top of program files) | 0.5 |
+|      | Where applicable, program prompts user for input and indicates what the outputs are. | 0.5 |
 | 01   | Program works as intended.                    | 1      |
-| 02   | Program works as intended.                    | 1      |
-| 03   | Program works as intended.                    | 1      |
-| 03   | Program properly uses while or for loops      | 0.5    |
-| 04   | Program works as intended.                    | 1      |
-| 04   | Program properly uses an if/else conditions.  | 0.5    |
-| Total|                                               | 6      |
+| 02   | Program works as intended.                    | 2      |
+| 03   | Program works as intended.                    | 2      |
+| 04   | Program works as intended.                    | 2      |
+|      | Program properly uses a for or while loop.    | 0.5    |
+|      | Program properly uses an if/else conditions   | 0.5    |
+| Total|                                               | 10     |

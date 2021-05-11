@@ -1,0 +1,1 @@
+int mirror(int arr1[], int arr2[], unsigned int len);
