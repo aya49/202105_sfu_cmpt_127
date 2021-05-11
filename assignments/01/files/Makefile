@@ -22,4 +22,4 @@ submit:
 	zip a1.zip t1.c t2.c t3.c t4.c
 
 clean:
-	rm -f t1.c t2.c t3.c t4.c *.o
+	rm -f t1 t2 t3 t4 *.o
