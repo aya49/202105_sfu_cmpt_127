@@ -122,7 +122,7 @@ he following files will be greaded, make sure the files are named correctly or e
 |      | Programs are well documentated  (i.e. student name and program description at the top of program files) | 0.5 |
 |      | Where applicable, program prompts user for input and indicates what the outputs are. | 0.5 |
 | 01   | Program works as intended.                    | 1      |
-| 02   | Program works as intended.                    | 1.5    |
+| 02   | Program works as intended.                    | 2      |
 | 03   | Program works as intended.                    | 2      |
 | 04   | Program works as intended.                    | 2      |
 |      | Program properly uses a for or while loop.    | 0.5    |
