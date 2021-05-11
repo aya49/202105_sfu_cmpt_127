@@ -2,7 +2,7 @@
 
 C is used in operating systems
 
-Download or view lab files [here](./files).
+Download lab files [here](./files.zip).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - Course outline ([slides]())
