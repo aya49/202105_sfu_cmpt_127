@@ -1,8 +1,6 @@
 # Assignment 01: Introduction to C
 
-Open assignment 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > 01_assignment
-
-(if repl.it doesn't work, download files [here](./files), and upload your files in a zip file to Canvas)
+Download the files for this assignment [here](./files.zip) (or from the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments > 01).
 
 **Remember**:
 - Reference [lab 01](../../labs/01) for help!
@@ -106,14 +104,20 @@ Enter an integer:
 
 # Submission
 
-he following files will be greaded, make sure the files are named correctly or else they won't be graded!
+Make sure the files are named correctly, otherwise they won't be graded.
 - Task 01: `t1.c`
 - Task 02: `t2.c`
 - Task 03: `t3.c`
 - Task 04: `t4.c`
 
-# Marking rubric
+Compress these files into a zip file called `a1.zip`; you can do this by using the following command from console:
+```
+$ make submit
+```
 
+Upload `a1.zip` onto the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments > 01.
+
+# Marking rubric
 
 
 | Task | Criteria                                      | Points |

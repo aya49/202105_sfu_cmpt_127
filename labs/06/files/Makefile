@@ -1,13 +1,8 @@
-# $(CFLAGS) reports all warnings 
 # -Wextra turns on even more warnings
 # -Werror treats warnings as if they were errors (stopping compilation)
 # -Wfatal-errors causes compilation to stop after the first error
 # -g adds debugging information to the file
 CFLAGS = $(CFLAGS) -Wextra -Werror -Wfatal-errors -g
-
-# -lm links the math library, so that programs that include math.h will link;
-#     this option can be removed for programs that don't include math.h
-LDLIBS = -lm
 
 
 all:  p1.1 p1.2 p1.3 p1.4 p1.5 p2list
