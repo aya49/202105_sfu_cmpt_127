@@ -104,23 +104,27 @@ Enter an integer:
 - write comments!! Test and debug your code!
 - Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter an integer: "`, and let the user know what the output is by printing a message, e.g. `"Here is the result: "`.
 
+# Submission
 
-# Marking rubric
-
-The following files will be greaded, make sure the files are named correctly or else they won't be graded!
+he following files will be greaded, make sure the files are named correctly or else they won't be graded!
 - Task 01: `t1.c`
 - Task 02: `t2.c`
 - Task 03: `t3.c`
 - Task 04: `t4.c`
 
+# Marking rubric
+
+
+
 | Task | Criteria                                      | Points |
 |------|-----------------------------------------------|--------|
-| All  | Programs are well documentated  (i.e. student name and program description at the top of program files, commented on important code sections) | 0.5    |
-| All  | Where applicable, program prompts user for input and indicates what the outputs are. | 0.5    |
+| All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas) | 1 |
+|      | Programs are well documentated  (i.e. student name and program description at the top of program files) | 0.5 |
+|      | Where applicable, program prompts user for input and indicates what the outputs are. | 0.5 |
 | 01   | Program works as intended.                    | 1      |
-| 02   | Program works as intended.                    | 1      |
-| 03   | Program works as intended.                    | 1      |
-| 04   | Program works as intended.                    | 1      |
-| 04   | Program properly uses a for or while loop.    | 0.5    |
-| 04   | Program properly uses an if/else conditions   | 0.5    |
-| Total|                                               | 6      |
+| 02   | Program works as intended.                    | 1.5    |
+| 03   | Program works as intended.                    | 2      |
+| 04   | Program works as intended.                    | 2      |
+|      | Program properly uses a for or while loop.    | 0.5    |
+|      | Program properly uses an if/else conditions   | 0.5    |
+| Total|                                               | 10     |

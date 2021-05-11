@@ -165,11 +165,22 @@ Try it yourself first; then verify your solutions [here](./files/p2_solution.c).
 
 C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analagous to each other in C and C++.
 
-Let's look at the difference memory allocation in C (`malloc()`, `realloc()`, `free()`) and C++ (`new`, `delete`).
+Let's look at the difference between C functions (`malloc()`, `realloc()`, `free()`) and C++ operators (`new`, `delete`).
+
+|            | | `new` / `delete`  | `malloc()` / `free()`  |
+|------------|-|-------------------|--------------|
+| It is a... | | operator          | function     |
+| Returns    | | `type *` (it's type-safe!) | `void *` |
+| On failure | | throws error      | returns NULL |
+| It also... | | calls the constructor / destructor | |
+
+- In C++, instead of using `realloc()` you can use `std::string` or `std::vector` they support change in size.
+- The C++ version is type safe
+- ALWAYS use `malloc()` and `free()` together, and `new` and `delete` together. If you initialized an object using a constructor, you need to remove it using its destructor
 
 As a rule of thumb, unless you must use C, alays use `new` and `delete`.
 
-The biggest differences between them and their C counterparts are that they are type-safe (they handle types for you) and for object oriented programming, they will call the constructor and destructor. [This article](https://www.delftstack.com/howto/cpp/cpp-maloc-vs-new/) gives a nice example on their differences.
+Below are examples of using these functions and operators to create and remove 1D and 2D arrays.
 
 C:
 ```C
