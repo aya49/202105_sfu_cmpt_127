@@ -12,7 +12,8 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 
 Try "Practice" problems on repl.it; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
 - [Practice 01](#practice-01)
-- [Practice 02](#practice-02)
+- [Practice 02.1](#practice-021)
+- [Practice 02.2](#practice-022)
 - [Practice 03](#practice-03)
 - [Practice 04](#practice-04)
 
@@ -107,6 +108,11 @@ Testing is extremely important, and beginners often underestimate how much time 
 ```
 Hello world
 How are you?
+```
+
+**TESTING**: you can test your program by running:
+```
+$ make p1
 ```
 
 <details>
@@ -306,9 +312,11 @@ int main(void) {
 | `&<variable name>` | `&i`    | pointer          | Putting a `&` in front of your variable gets you its |
 | `*<pointer>`       | `*(&i)` | value            | Putting a `*` in front of your pointer gets you the value stored at the location in memory where the pointer points to. |
 
-## Practice 02
+## Practice 02.1
 
-**REQUIREMENT**: Answer the following question. What happens if we remove the `&` from `&i`? Why do you think that happens? Use C program `p2.1.c` to verify your answer.
+**REQUIREMENT**: 
+- Answer the following question. What happens if we remove the `&` from `&i`? Why do you think that happens? 
+- Use C program `p2.1.c` to verify your answer.
 
 <details>
 <summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
@@ -323,8 +331,10 @@ scanf("%d", i); // ERROR!
 </div>
 </details>
 
+## Practice 02.2
+
+**REQUIREMENT**: Answer the following question. What does the following code output? Do you understand the output?
 - Use C program `p2.2.c` to verify your answer.
-- What does the following code output? Do you understand the output?
 - Add comments on the code to document what the code is doing!
 
 ```C
@@ -557,6 +567,11 @@ You can jump to the beginning of a loop body with the continue; statement. For e
 
 **REQUIREMENT**: Write a C program `p3.c`. In it, re-write the previous example without using `continue`.
 
+**TESTING**: you can test your program by running:
+```
+$ make p3
+```
+
 <details>
 <summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
@@ -595,7 +610,12 @@ int main(void) {
     - The number of hashes printed should be equal to the input value.
     - Your program should output exactly one line per input value.
 
-**HINT**: did you know that if `scanf`is looking for a series of integers separated by a space as input? You can directly input `1 3 5 6`, press enter, and `scanf` will help you loop through each integer. Try it out!
+**TESTING**: you can test your program by running:
+```
+$ make p4
+```
+
+**HINT**: did you know that if `scanf`is looking for a series of integers separated by a space as input? You can directly input `1 3 5 6`, press enter, and `scanf` will help you loop through each integer. Try it out below!
 
 ```C
 #include <stdio.h>

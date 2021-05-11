@@ -1,8 +1,6 @@
 # Lab 02: Functions, Arrays, C character strings, arguments to main, and header files
 
-Open lab 02 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > lab > 02
-
-(if repl.it doesn't work, download files [here](./files))
+Download lab 02 files [here](./files.zip))
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - [Guide 01](#guide) ([slides]()): Function definitions, declarations, and header files
@@ -19,7 +17,7 @@ Try "Practice" problems on repl.it; these will NOT be graded. Note that the solu
 - [Practice 04.1](#practice-041)
 - [Practice 04.1](#practice-042)
 
-Do [Assignment 01](../../assignments/02).
+Do [Assignment 02](../../assignments/02).
 
 Note: from here on, the guide section will often include links to other material that can be crucial to solving the task. You should practice consulting online references and tutorials: this is a significant part of real-world programming. To encourage you to practice, we use external links instead of writing everything out in the guide. To be absolutely clear: **not everything you need to know is contained in our instructions. Therefore, you need to read about the new material discussed in the labs (e.g., C library functions, etc...) using the links and maybe searching online. This is deliberate and great practice!**
 
@@ -155,8 +153,7 @@ In addition to functions, header files can also declare global variables or prov
 - Edit the file `p1.c` to `#include` the new header file.
 - The finished code must compile with this command with no errors or warnings:
 ```
-$ gcc p1.c p1funcs.c -o p1.o -Wall
-$ ./p1.o
+$ make p1
 The max of our numbers is 12.
 The min of our numbers is 11.
 ```

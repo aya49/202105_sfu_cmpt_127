@@ -31,6 +31,7 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 **TESTING**: you can test your program by running:
 ```
 $ make t1
+$ ./t1
 ```
 
 ## Task 02
@@ -47,6 +48,7 @@ $ make t1
 **TESTING**: you can test your program by running:
 ```
 $ make t2
+$ ./t2
 ```
 
 ## Task 03
@@ -67,6 +69,7 @@ $ make t2
 **TESTING**: you can test your program by running:
 ```
 $ make t3
+$ ./t3
 ```
 
 **Example**: sample input and output:
@@ -91,6 +94,7 @@ The product of your values is: 0
 **TESTING**: you can test your program by running:
 ```
 $ make t4
+$ ./t4
 ```
 
 **EXAMPLE**: sample user input `scanf` and `printf` output.
