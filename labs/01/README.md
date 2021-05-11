@@ -1,12 +1,11 @@
 # Lab 01: Introduction to C
 
-Open lab 01 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > lab > 01
+C is used in operating systems
 
-(if repl.it doesn't work, download files [here](./files))
+Download or view lab files [here](./files).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - Course outline ([slides]())
-- Setting up repl.it ([slides](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing))
 - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing)): introduction to C; C syntax, workflow, and compiling
 - [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/190OipgViJdy5Lr_GlBDHxRkRSY8iP_xixe3slwoyx58/edit?usp=sharing)): variables
 - [Guide 03](#guide-2) ([slides](https://docs.google.com/presentation/d/1dBXA2Lsim2lFisvjnfkTylcQ2rqIEl9g1VZ0JA44pRY/edit?usp=sharing)): conditions and loops
@@ -111,7 +110,7 @@ How are you?
 ```
 
 <details>
-<summary style="margin-left: 25px;">SOLUTION</summary>
+<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -312,7 +311,7 @@ int main(void) {
 **REQUIREMENT**: Answer the following question. What happens if we remove the `&` from `&i`? Why do you think that happens? Use C program `p2.1.c` to verify your answer.
 
 <details>
-<summary style="margin-left: 25px;">SOLUTION</summary>
+<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
 If we do omit the `&` before the argument `i` we get an error message because `scanf` is expecting a pointer not a value.
@@ -351,7 +350,7 @@ int main(void) {
 ```
 
 <details>
-<summary style="margin-left: 25px;">SOLUTION</summary>
+<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
 The code outputs the values and pointers of variables `i`, `j`, and `k`; the value of `i` was replaced by the user input because we gave the pointer of `i` to `scanf`. It went to the pointer address we provided and replaced what was at that address, `i`'s value `0.0`, with the user input.
@@ -559,7 +558,7 @@ You can jump to the beginning of a loop body with the continue; statement. For e
 **REQUIREMENT**: Write a C program `p3.c`. In it, re-write the previous example without using `continue`.
 
 <details>
-<summary style="margin-left: 25px;">SOLUTION</summary>
+<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -635,7 +634,7 @@ Output:
 ```
 
 <details>
-<summary style="margin-left: 25px;">SOLUTION</summary>
+<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -661,6 +660,8 @@ int main(void) {
 # Bonus material: C vs C++
 
 C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analagous to each other in C and C++.
+
+Let's look at how C and C++ read/write to standard output.
 
 |                  | C                                      | C++              |
 |------------------|----------------------------------------|------------------|

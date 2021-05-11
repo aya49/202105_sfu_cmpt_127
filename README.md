@@ -79,8 +79,8 @@ Students are free to attend labs and office hours of any section.
 ## Grading breakdown
 
 ```
-  50% = 8 weekly assignments x  6.25% each
-+ 50% = 5 biweekly quizzes   x 10%    each
+  60% = 6 assignments x  10% each
++ 40% = 4 quizzes     x  10% each
   ----
 = 100%
 ```
@@ -88,11 +88,11 @@ Students are free to attend labs and office hours of any section.
 **Assignments**: 
 - Each assignment contains several tasks.
 - An optional bonus assignment will be given at the end; only your top 8 scoring assignments will be counted towards your grade.
-- Some assignment will have bonus tasks for bonus marks; but remember that assignments will still account for a maximum of 50% of your grade.
+- Some assignment will have bonus tasks for bonus marks; but remember that assignments will still account for a maximum of 60% of your grade.
 
 **Quizzes**: 
-- All quizzes are take-home. They will be open for 24 hours on Canvas to accomodate students in different time zones; all students must complete the quiz within the desginated 24 hours. 
-- Students must pass at least 3 out of the 5 quizzes to pass the course; "pass" here means C- or above.
+- All quizzes are take-home. They will be open for 24 hours on Canvas to accomodate students in different time zones; all students must complete the quiz within the desginated 24 hours. Once you start the quiz, it will last for 1 hour. THIS IS IMPORTANT, this means that you only have 1 continuous hour to do the quiz, but you can do choose when to do that 1 hour as long as you START and FINISH the quiz within that 24 hours.
+- Students must pass at least 3 out of the 4 quizzes to pass the course; "pass" here means C- or above.
 
 No late assignments or quizzes will be accepted unless a substantial and valid reason is given --- but remember, we only take your top 10 scoring assignments!
 
@@ -112,6 +112,12 @@ No late assignments or quizzes will be accepted unless a substantial and valid r
 |C-   | 55-59    |
 |D    | 50-54    |
 
+## Late polocy
+
+Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 50%.
+
+Quizzes cannot be done late, there is a 24 hour leeway so use that wisely ;), remember that your quiz must be SUBMITTED before the 24 hour time.
+
 
 # Academic Honesty
 
@@ -123,4 +129,4 @@ See [student services: academic integrity](https://www.sfu.ca/students/academici
 
 The internet is your friend, we encourage you to search up solutions for whatever problems you may be having. We almost never code from scratch, we almost always have a reference; so please do use the examples in class and search up your questions online!
 
-We all feel anxious learning something new at first. Believe in your self, and always remember, practice makes perfect :)
+We all feel anxious learning something new at first. Believe in your self, and always remember, practice makes perfect.

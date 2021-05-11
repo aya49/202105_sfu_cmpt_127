@@ -268,7 +268,7 @@ typedef enum {
 
 The following is a breakdown of the practice problems, also see comments in `p0intarr.h`.
 
-Try the practice problems first; verify your solutions [here](./files/p0intarr_solution.c).
+Try it yourself first; then verify your solutions [here](./files/p0intarr_solution.c).
 
 ### Practice 01.1
 
@@ -350,6 +350,8 @@ intarr_t* intarr_copy_subarray(intarr_t* ia, unsigned int first, unsigned int la
 # Bonus material: C vs C++
 
 Recall that C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analagous to each other in C and C++.
+
+Let's compare and contrast structures in C, classes in C++, and template classes in C++.
 
 C `typedef struct`: structures are a collection of type-defined variables.
 ```C

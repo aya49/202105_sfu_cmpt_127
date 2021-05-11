@@ -1,3 +1,9 @@
+// author: <First name, last name; YOUR SFU USER ID HERE>
+// date: 
+// input: 
+// output: 
+// description: 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "intarr.h"

@@ -1,4 +1,4 @@
-# Lab 03: Dynamic memory allocation
+# Lab 03: 2D arrays and dynamic memory allocation
 
 Open lab 03 on [repl.it](https://replit.com/team/202105cmpt127) > Team Projects > lab > 03
 
@@ -10,6 +10,54 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 Try "Practice" problems on repl.it; these will NOT be graded.
 - [Practice 01](#practice-01-fixing-the-bug-option-1)
 
+
+# Multidimensional arrays
+
+## Guide
+
+Multi-dimensional arrays are arrays whose elements are pointers to other arrays.
+
+Below, a series of 1D and multidimensional arrays are declared and used in the way you might guess by extrapolating from the 1D case:
+
+```C
+int A[4]; // 1D array of 4 elements
+int B[4][4]; // 2D array of 4x4 elements
+
+int C[3][3][4]; // 3D array of 3*3*4=28 ints (imagin a 3x3x4 cube)
+int D[20][5][10][4]; // 4D array of 20*5*10*4=4000 ints
+
+// sets every element in A
+for (int a=0; a<4; a++) {
+     A[a] = 99;
+}
+
+// sets every element in B
+for (int y=0; y<4; y++) { // we assume the first array is rows (y axis)
+    for (int x=0; x<4; x++) { // columns (x axis)
+         B[y][x] = 99;
+    }
+}
+
+C[0][0][0] = 99;
+D[101][2][1][0] = 99;
+```
+
+`A` is of type array of int, `B` is of type array-of-array of int, etc.
+
+Let's take a look at their memory layout.
+
+![](../img/1darray.png)
+
+![](../img/2darray.png)
+
+
+You can see that there is some overhead in using the 2+D arrays; for example, in the 2D array case, we require more memory space and a two-step lookup to find the integer of interest.
+
+In practice, arrays of more than 3 dimensions are rarely used.
+
+
+# Dynamic memory allocation
+
 ## Guide
 
 Let's start by looking at the memory layout of a computer architecture.
@@ -19,7 +67,6 @@ The memory layout for a process varies a bit by CPU architecture and OS, but the
 ![](./img/linuxmemory.png)
 
 Credit: this image is taken from an [excellent online description](http://duartes.org/gustavo/blog/post/anatomy-of-a-program-in-memory) of the memory layout of Linux by Gustavo Duarte.
-
 
 
 ### Stack storage: "automatic" variables
@@ -257,8 +304,26 @@ $ gcc p0random.c -o p0random.o -Wall
 $ ./p0random.o
 ```
 
+# Building 2D arrays on the heap
 
-## Moral of the story
+The examples above show multi-dimensional arrays allocated on the stack. They can also be allocated manually on the heap. This example builds arrays `A` and `B` on the heap (omitting error checking) in C:
+
+```C
+int* A = malloc(16 * sizeof(int)); // 1D array
+
+int** B = malloc(4 * sizeof(int*)); // 2D array
+for (int i=0; i<4; i++) {
+    B[i] = malloc(4 * sizeof(int));
+}
+```
+
+This results in the same memory layout picture we saw before, except that all the arrays are in the heap: only pointers A and B are on the stack.
+
+While this creation process is a bit laborious, accessing these arrays once created is simple and almost as fast as 1D arrays, so 2D arrays do get used quite a lot in practice.
+
+When multi-dimensional arrays are built up manually in this way, you can cheaply reorder the higher dimensions of the array (e.g. B[y]) by swapping the pointers they contain, without touching the contents of the lower dimensions (e.g. B[*][x]). If the elements stored in the lowest dimension are numerous and/or large, this can make a big difference in performance.
+
+# Moral of the story
 
 Fixing bugs surrounding dynamic memory
 - You CAN NOT return a POINTER that points to an address generated in the stack frame i.e. a local variable.

@@ -164,7 +164,7 @@ The min of our numbers is 11.
 **REMEMBER**: header files contain function declarations, these are the same as a function definition except the braces and everything in the braces are replaced by a `;`.
 
 <details>
-<summary style="margin-left: 25px;">SOLUTION</summary>
+<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
 File: `p1funcs.h`
@@ -397,7 +397,7 @@ int main(void) {
 ```
 
 <details>
-<summary style="margin-left: 25px;">SOLUTION</summary>
+<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
 File: `p2identical.c`
@@ -449,7 +449,7 @@ arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
 ```
 
 <details>
-<summary style="margin-left: 25px;">SOLUTION</summary>
+<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -568,7 +568,7 @@ For this practice, we'll go over how to implement a "substring" function in C.
 
 Recall that you can name your executable file with `-o` e.g. `gcc p3.c -o p3.o` and run it by `./p3.o`.
 
-This is an [important problem in computer science](http://en.wikipedia.org/wiki/Substring), with wide applications from searching the internet, to understanding text, to finding DNA matches. It's easy to state and easy to code. It gets interesting when the strings are long and you want to do it very efficiently. For now you can be happy with a simple SOLUTION to practice managing `argv` array and char strings.
+This is an [important problem in computer science](http://en.wikipedia.org/wiki/Substring), with wide applications from searching the internet, to understanding text, to finding DNA matches. It's easy to state and easy to code. It gets interesting when the strings are long and you want to do it very efficiently. For now you can be happy with a simple solution to practice managing `argv` array and char strings.
 
 **HINT**: you can find useful string functions like `strlen()` (length of a C string) in the header you imported, `#include <stdio.h>`, by looking up its [manual/documentation](https://www.tutorialspoint.com/c_standard_library/stdio_h.htm) online!
 
@@ -592,7 +592,7 @@ false
 Notice that the strings do not have quote characters around them when delivered to your program via `argv`. The quotes prevent the shell from breaking the strings up into individual words.
 
 <details>
-<summary style="margin-left: 25px;">SOLUTION</summary>
+<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -634,7 +634,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-Note: `#import <string.h>` contains function `strstr()` that solves the substring problem. The algorithm implemented in `strstr()` is not the most efficient, there are algorithms with better asymptotic runtimes; can you find more efficient implementations of a SOLUTION to the substring problem? 
+Note: `#import <string.h>` contains function `strstr()` that solves the substring problem. The algorithm implemented in `strstr()` is not the most efficient, there are algorithms with better asymptotic runtimes; can you find more efficient implementations of a solution to the substring problem? 
 
 You will learn the terms **algorithm** and **asymptotic runtime** in CMPT 125, come back to this after you've mastered them and read the note again ;)
 
@@ -709,7 +709,6 @@ Here is a program that would have been very tedious to run without stream redire
 - Lines are defined as contiguous sequences of characters separated by newline characters ('\n').
 - Characters beyond the final newline character will not be included in the line count.
 
-
 There are new functions `getchar()` and `isalpha()` here which we haven't seen before. Check it out online or read its manual. There's a handy standard program called `wc` that does a similar job as `getchar()`, but it does not match the requirements exactly (it is a little more clever about word boundaries and will sometimes count fewer words than our simple program).
 
 **Escape characters**: This [Q&A on StackOverflow](http://stackoverflow.com/questions/2414478/c-escaping-an-apostrophe-in-a-string) gives advice on representing the apostrophe character using an **escape sequence**. StackOverflow is very useful indeed.
@@ -757,7 +756,7 @@ int main() {
 }
 ```
 
-SOLUTION? I'm sure you can do this one on your own ( \*u\*)b
+Solution? I'm sure you can do this one on your own ( \*u\*)b
 
 ## Practice 04.2
 
@@ -803,7 +802,7 @@ z 0.0002
 ```
 
 <details>
-<summary style="margin-left: 25px;">SOLUTION</summary>
+<summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
 ```C
@@ -838,6 +837,22 @@ int main() {
 </div>
 </details>
 
+
+# Bonus material: C vs C++
+
+C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analagous to each other in C and C++.
+
+Let's look at the difference between C string and string in C++.
+
+- C strings are `char` arrays terminated by a null element/byte `\0`; everything that applies to arrays apply to C strings.
+- `std::string` in C++ are **objects** (recall: classes); you could even dynamic stuff like:
+
+```C++
+std::string s = "Hello";
+s += " World!";
+```
+
+Always use `std::string` if you have C++ handy, they are a lot safer and easier to use, especially for the novices.
 
 # Credit
 

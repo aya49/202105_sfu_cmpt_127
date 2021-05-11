@@ -1,168 +1,100 @@
-# Lab 06: Testing memory allocation performance
+# Lab 07: Testing and linked lists
 
-Today we are going to look at different strategies for resizing arrays (e.g. inserting elements, deleting elements).
+Linked lists have been described in CMPT 125, but it doesn't hurt to see them again.
 
-Recall: amortized analysis $\Omega$ (average performance) and big O analysis $O$ (worst case performance).
+# Drawing - a tool for thinking
 
-# Reallocation `realloc()` (resizing arrays in O(n)) and unstable remove
+Drawing diagrams is very helpful before writing code that modifies lists. In general, sketching machines - including code - is a tool for thinking; even if you think you know what you are doing, drawing out the operations is a concrete test of your understanding. Even very experienced people with great intuition use drawings for thinking.
+
+# Linked lists
 
 ## Guide
 
-The supplied header file `point_array.h` defines the following structures to represent points in 3D space, and an array to contain them, similar to examples you have seen before:
+**Linked lists** are data structures that contain a sequence of data elements, like arrays, but with different dynamic properties. The key idea in the linked list is to use a simple data structure to store each data element along with a pointer to the next element in the list. The end of the list is denoted by a `NULL` pointer.
 
-```C
-typedef struct point {
-  double x, y, z;    // a point location in 3D space
-} point_t;
+Our implementation uses a second data structure called a **header** to store pointers to the first (head) and last (tail) elements in the list.
 
-typedef struct {
-  size_t len;        // number of points in the array
-  point_t* points;   // an array of 'len' points (point_t structs)
-} point_array_t;
-```
+The list is assembled as follows:
 
-It also declares four functions for manipulating `point_array_t` arrays. Each takes a pointer to an array structure as their first argument. Notice that the `init` and `reset` functions do a similar job to the `create` and `destroy` functions we have seen before, but with a slightly different interface. This style allows us to use structs allocated on the stack, which can be useful. 
+First a `list_t` structure is allocated on the heap, with its head- and tail-pointers set to NULL, representing an empty list.
 
-Therefore, `init` must NOT call `malloc()` nor must it call `realloc()` since the memory for the struct has already been allocated (automatically, on the stack) and the memory allocation call to obtain the memory for the array is done in `append()`.
+![](../img/list1.png)
 
-```C
-// Safely initalize an empty array structure.
-void point_array_init(point_array_t* pa);
+To insert the first value into the list, a new `element_t` is allocated on the heap, the value is stored in it, and the header's head- and tail-pointers are both set to point to it. The first element's next-pointer is `NULL` to indicate it is the last element in the list.
 
-// Resets the array to be empty, freeing any 
-// memory allocated if necessary.
-void point_array_reset(point_array_t* pa);
+![](../img/list2.png)
 
-// Append a point to the end of an array. 
-// If successful, return 0, else return 1.
-int point_array_append(point_array_t* pa, point_t* p);
+When a subsequent element is added, the next-pointer of the tail element and the tail-pointer of the header are both changed to the address of the new element:
 
-// Remove the point at index i from the array, 
-// reducing the number of elements stored in the array 
-// by one. The order of points in the array may change.
-// If successful, return 0, else return 1\. 
-int point_array_remove(point_array_t* pa, unsigned int i);
-```
+![](../img/list3.png)
 
-Example of use:
+One more addition using the same mechanism. Notice that the tail element always has its next-pointer set to `NULL`.
 
-```C
-point_array_t A;
-point_array_init(&A);
+![](../img/list4.png)
 
-point_t p;
-p.x = 0.0;
-p.y = 1.0;
-p.z = 2.0;
 
-point_array_append(&A, &p);
+**double-linked list** is a common variant of the regular linked list in which every element contains a previous-pointer in addition to the next-pointer. Double-linked lists can be traversed forwards and backwards, at the cost of a little more storage space per element.
 
-// do some work with the array
-// ...
+### Linked lists vs arrays (vs `std::vector` in C++): runtime
 
-// clean up
-point_array_reset(&A);
-```
+| Task                             | Arrays                | Double-/linked lists |
+|----------------------------------|-----------------------|----------------------|
+| Insert an element                | O(n) (preallocaiton: Θ(1)) | **O(1)** |
+| Access an element based on index | **O(1)**              | O(n) |
+| Remove an element                | O(1) (O(n) if stable) | O(1) |
 
-In graphics-heavy programs like games, we often have arrays of 3D points that are very large, perhaps with hundreds of thousands or millions of points. For decent performance we need to be able to add points to the array very quickly. 
+The `std::vector` in C++ is the same as an array except it can automatically change in size i.e. it has implemented preallocation Θ(1) for you so you don't have to (see [push-back](https://www.cplusplus.com/vector::push_back)). But remember, there are also other implementations of vectors in C++, so don't assume thaat preallocation is the default implementation.
 
-Notice that the array interface does not have a resize function: just an append for adding one point at a time. 
+List elements are therefore best accessed in order, since accessing the next element takes constant time.
 
-The only memory allocation standard library call we have seen so far is [`malloc()`](http://pubs.opengroup.org/onlinepubs/009695399/functions/malloc.html), which takes a single argument specifying how much memory it should allocate. 
-
-Now we introduce the [`realloc()`](http://pubs.opengroup.org/onlinepubs/009695399/functions/realloc.html) standard library call, which allows us to resize our chunk of already allocated memory.
-
-- INPUT: We pass `realloc()` the pointer we obtained from an earlier `malloc()` or `realloc()` and a **new** size.
-- OUTPUT: `realloc()` will **reallocate** a chunk of memory of the new size.
-    - If the memory allocation system can find enough space at the existing address (e.g. when the new size is smaller than the original size or there is enough room to expand the array), `realloc()` will:
-        1. extend the allocated memory, and
-        2. return the original pointer.
-    - If the memory allocation system could only find enough space starting at another address, it will:
-        1. allocate the new chunk of memory,
-        2. copy the content of the old chunk into the new chunk,
-        3. free the old chunk, and
-        4. return a pointer to the new chunk.
-
-**Big O analysis**: insertion takes $O(n)$; reallocation is in the size of the array, since it may have to copy the array. 
-
-**Amortized analysis**: insertion takes $\Omega(1)$; In practice, it does a very good job of copying only occasionally, and often appears to be nearly amortized constant time.
-
-### Unstable remove
-
-If you do not need to preserve the order of array elements, you can remove elements from arbitrary array indices in constant time $O(1)$. This is an example of an **unstable operation**, one that may reorder an array or list of elements. The fast, unstable array remove algorithm is:
-1. Copy the element at the end of the array over the element you wish to remove.
-2. Decrement the array length by 1.
-
-This needs to be refined to handle empty arrays and other corner cases.
-
-**Big O and amortized analysis**: deletion takes O(1).
+Arrays and vectors are therefore, the most efficient data structure(s).
 
 ## Practice 01
 
-**REQUIREMENT**: create a file `p1.c` that implementations the four functions declared in `p1.h`. It may contain other functions too, but remember you are aiming for high performance so you should probably keep things simple.
-- Use `realloc()` instead of `malloc()` for high performance.
-- Use a constant time $O(1)$ unstable remove.
+**DESCRIPTION**:
+- `p1list.h` contains an interface specification for a linked-list-of-integers data structure.
+- 5 slightly different implementations are provided, in files `p1.N.c` where N = [1,...,5].
+- `p1.c` contains a very weak test program for the linked list code.
 
-# Preallocation (approaching O(1))
+`Makefile` will build programs `p1.1` through `p1.5`, each linking the same `main.c` with one of the list implementation C files. Build each program by naming it as your 'make' target, e.g. the above two make commands will each create an executable 'p1.1' and 'p1.5'.
 
-## Guide
-
-`realloc()` improved things a lot, but we can do better with preallocation.
-
-**Preallocation**: The basic idea is to allocate more memory than we need right now, to avoid having to allocate often in future.
-
-In this lab, we decouple the size of the allocated memory from the number of elements currently stored in it. To do so:
-1. In the array structure, we shall keep track of:
-    - the amount of memory allocated in one field (`reserved`), and 
-    - the number of elements (points) currently stored in the array, in another field (`len`).
-2. To append an element:
-    - If the new array is full, we **double the allocated space** (an $O(n)$ operation) to it and ensure `reserved` reflects this.
-    - Then, we copy in the new element to the end of the array and increment the array length `len` (i.e., the number of elements) where both copy and increment are $O(1)$ operations.
-
-**Big O analysis**: insertion takes $O(n)$; inserting n elements takes $O(n)$ time overall ($O(n)$ to do the expansion + ($n \dot O(1)$) operations to insert elements). 
-
-**Amortized analysis**: $\Omega(1)$; while a single append operation remains $O(n)$ in the worst case (i.e. when a reallocation occurs), this happens only once every $n$ appends. As the number of appends approaches infinity, the cost per append approaches a constant. This is called **amortized constant time**. A detailed discussion is beyond the scope of this class: see CMPT225: _Data Structures and Algorithms_ for details). But growing memory buffers geometrically is so useful, you should know about it now.
-
-### Trade-off
-
-The cost of this speed is that up to twice the memory is required, and 1.5 times on average. This is often a reasonable trade off. It is trivial to trim the extra space off if you know you are done appending - just `realloc()` the size you need.
-
-Most real-world resizeable-array implementations use this strategy, though they vary on the constant factor chosen. For example Python's lists grow by 9/8 at a time. Java's ArrayList uses 3/2\. The value chosen determines the trade-off between wasted space and the amortized cost of each append.
-
-Your task is to create another version of the point array functions that use this amortized constant time preallocation strategy. The `point_array.h` header file already has the extra field in the array structure (we deliberately ommitted this above):
-
-```C
-typedef struct 
-{
-  size_t len;        // number of points in the array
-  size_t reserved;   // amount of memory allocated
-  point_t* points;   // an array of 'len' point_t structs
-} point_array_t;
+```
+$ make p1.1
+$ make p1.5
 
 ```
 
-Reimplement all the array functions to use the `reserved` field as described above. Test your code using the methods described in the lab to show that you have improved performance.
+You can also build all programs by using the following command:
 
-### Requirements
+```
+$ make all
+```
 
-<div class="req">
+Running the resulting programs, you will see that every one passes the test in `p1.c`... but in fact, all of these implementations contain bugs.
 
-1. Add and commit the single file `t2.c` that contains implementations of the four functions declared in `point_array.h`.
-2. Use the geometric preallocation strategy to get amortized constant time performance.
-3. Use a constant time unstable remove.
+**REQUIREMENT**: your task is to extend `p1.c` to thoroughly test the list implementations. Your program must reliably distinguish all these faulty implementations from a correct one.
+- Your `p1.c` will be compiled with each of `p1.N.c` as well as a bug-free version (not supplied to you).
+- OUTPUT: 
+    - A program built from your `p1.c` and linked against any implementation of the functions in `list.h` must return 0 if the functions are bug-free, or 1 if they contain one or more bugs.
+    - Remember: returning `1` means an error has occured during the execution of your program while returning 0 means that your program successfully executed.
+- BEHAVIOUR:
+    - Preferably, your program should not crash or halt on `assert()`. But a crash (e.g. segmentation fault) or assertion will be recorded as indicating the code contained bugs.
+    - Preferably, print an explanatory error message on stdout describing the problem you discovered.
+    - You may produce (a sensible amount) of other text output on stdout or stderr. Try to make the text output helpful for yourself or an instructor/TA/peer-tutor helping you.
 
-</div>
+Try it yourself first; then verify your solution with your solution to the next practice problem :).
 
-* * *
 
-### Note: Measuring time
+## Practice 02
 
-See the supplied file `demo.c` for examples of the use of the [`gettimeofday()`](http://pubs.opengroup.org/onlinepubs/009695399/functions/gettimeofday.html) library call, which gives you access to the real-time clock on your computer.
+**REQUIREMENT**: create a new file called `p2list.c` containing correct implementations of all the functions described in `p1list.h`.
+- You may use any piece(s) of the supplied code, or write your own.
+- Your code should pass all your tests i.e. the `p1.c` you extended.
+
+Try it yourself first; then verify your solutions [here](./files/p1list_solution.c).
 
 # Credit
 
 Last updated 2021-05 by Alice Yue. 
 
 Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn, Victor Cheung, and others.
-
-(This lab was reviously lab 08)
