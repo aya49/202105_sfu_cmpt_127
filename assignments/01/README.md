@@ -144,7 +144,7 @@ Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 1
 | Task | Criteria                                      | Points |
 |------|-----------------------------------------------|--------|
 | All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas). | 1 |
-|      | Programs are well documentated  (i.e. student name and program description at the top of program files). | 0.5 |
+|      | Source code is readable (i.e. student name and program description at the top of program files, variable names are self-descriptive and consistent, comments describing what code does is available where appropriate, indentatations are consistent). | 0.5 |
 |      | Where applicable, program prompts user for input and indicates what the outputs are. | 0.5 |
 | 01   | Program works as intended.                    | 1      |
 | 02   | Program works as intended.                    | 2      |

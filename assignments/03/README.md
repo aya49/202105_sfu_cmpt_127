@@ -159,6 +159,7 @@ Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 1
 | Task | Criteria                                      | Points |
 |------|-----------------------------------------------|--------|
 | All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas). | 1 |
+|      | Source code is readable (i.e. student name and program description at the top of program files, variable names are self-descriptive and consistent, comments describing what code does is available where appropriate, indentatations are consistent). | 0.5 |
 |`t0.c`| Tests are created for each of the 7 functions x 0.5; each test either works appropriately (0.5) or they don't (0). | 3.5 |
 | 01   | `img_create` works as intended.               | 0.5    |
 |      | `img_destroy` works as intended.              | 0.5    |
@@ -167,5 +168,4 @@ Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 1
 | 03   | `img_copy` works as intended.                 | 1      |
 | 04   | `img_find` works as intended.                 | 1      |
 | 05   | `img_copy_subarray` works as intended.        | 1      |
-| All  | All tests in `t0.c` works and all functions implemented works as intended. | 0.5 |
 | Total|                                               | 10     |

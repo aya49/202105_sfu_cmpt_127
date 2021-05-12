@@ -93,7 +93,8 @@ Students are free to attend labs and office hours of any section.
 - Due date: quizzes will be open at 8:30am on the desingated Tuesday and is due within 24 hours at 8:30am the next day Wednesday; 
   - all quizzes will be open for 24 hours on Canvas to accomodate students in different time zones.
   - You have to start the quiz on Canvas on or after 8:30am on the Tuesday and submit the quiz. 
-  - After you start the quiz, you have 1 hour to do the quiz but the quiz must be submitted before 8:30am on the Wednesday. THIS IS IMPORTANT, this means that you only have 1 continuous hour to do the quiz, but you can do choose when to do that 1 hour as long as you START and FINISH the quiz within that 24 hours.
+  - After you start the quiz, you have 1 continuous hour to do the quiz but the quiz must be submitted before 8:30am on the Wednesday. 
+  - In other words, you have 1 continuous hour to do the quiz, but you can do choose when to do that 1 hour anytime within the given 24 hours.
     - e.g. if you started your quiz at 8:45am Tuesday, you have until 9:45am Tuesday to submit it; 
     - e.g. if you started your quiz at 8:00am on the next day Wednesday, you will have to submit your quiz before 8:30am.
 - Content: the content examined in the quizzes are cumulative.
