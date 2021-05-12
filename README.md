@@ -119,14 +119,14 @@ Students are free to attend labs and office hours of any section.
 
 Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 50%, assignments won't be graded after 24 hours of the due date. This is to ensure that all the assignments would be marked and given back to you in a timely manner.
 
-Quizzes cannot be submitted late (i.e. after the 24 hours  at 8:30am on the Wednesday), there is a 24 hour leeway so use that wisely ;).
+Quizzes cannot be submitted late (i.e. after the 24 hour period from 8:30am Tuesday to 8:30am on the Wednesday), there is a 24 hour leeway so use that wisely ;).
 
 
 # Academic Honesty
 
 See [student services: academic integrity](https://www.sfu.ca/students/academicintegrity.html) for details.
 
-**Independent work**: all assignments and quizzes is to be done independently. This course is a safe space for you to practice coding; because in the future, you will be expected to learn coding independently a lot (speaking from experience).
+**Independent work**: all assignments and quizzes is to be done independently. This course is a safe space for you to practice coding.
 
 **Citation**: if you plan to use code not provided to you in class, please cite it (e.g. link it!). Not only is this an academic honesty requirement, citing also helps you understand what you did when you need to use your code again in the future.
 
