@@ -85,11 +85,18 @@ Students are free to attend labs and office hours of any section.
 = 100%
 ```
 
-**Assignments**:
-- Each assignment contains several tasks.
+**Assignments**: 
+- Due date: assignments are due 11:59pm on the designated Monday.
+- Content: each assignment contains several tasks which will correspond to the lab practice questions done in class.
 
-**Quizzes**: the content included of the quizzes are cumulative.
-- All quizzes are take-home. They will be open for 24 hours on Canvas to accomodate students in different time zones; all students must complete the quiz within the desginated 24 hours. Once you start the quiz, it will last for 1 hour. THIS IS IMPORTANT, this means that you only have 1 continuous hour to do the quiz, but you can do choose when to do that 1 hour as long as you START and FINISH the quiz within that 24 hours.
+**Quizzes**: 
+- Due date: quizzes will be open at 8:30am on the desingated Tuesday and is due within 24 hours at 8:30am the next day Wednesday; 
+  - all quizzes will be open for 24 hours on Canvas to accomodate students in different time zones.
+  - You have to start the quiz on Canvas on or after 8:30am on the Tuesday and submit the quiz. 
+  - After you start the quiz, you have 1 hour to do the quiz but the quiz must be submitted before 8:30am on the Wednesday. THIS IS IMPORTANT, this means that you only have 1 continuous hour to do the quiz, but you can do choose when to do that 1 hour as long as you START and FINISH the quiz within that 24 hours.
+    - e.g. if you started your quiz at 8:45am Tuesday, you have until 9:45am Tuesday to submit it; 
+    - e.g. if you started your quiz at 8:00am on the next day Wednesday, you will have to submit your quiz before 8:30am.
+- Content: the content examined in the quizzes are cumulative.
 - Students must safely pass at least 3 out of the 4 quizzes to safely pass the course; "safely pass" here means C- or above.
 
 
@@ -112,7 +119,7 @@ Students are free to attend labs and office hours of any section.
 
 Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 50%, assignments won't be graded after 24 hours of the due date. This is to ensure that all the assignments would be marked and given back to you in a timely manner.
 
-Quizzes cannot be done late, there is a 24 hour leeway so use that wisely ;), remember that your quiz must be SUBMITTED before the 24 hour time.
+Quizzes cannot be submitted late (i.e. after the 24 hours  at 8:30am on the Wednesday), there is a 24 hour leeway so use that wisely ;).
 
 
 # Academic Honesty
