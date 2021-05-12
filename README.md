@@ -79,8 +79,8 @@ Students are free to attend labs and office hours of any section.
 ## Grading breakdown
 
 ```
-  60% = 6 assignments x  10% each
-+ 40% = 4 quizzes     x  10% each
+  60% = 6 assignments x 10% each
++ 40% = 4 quizzes     x 10% each
   ----
 = 100%
 ```
@@ -115,7 +115,7 @@ Students are free to attend labs and office hours of any section.
 |C-   | 55-59    |
 |D    | 50-54    |
 
-## Late polocy
+## Late policy
 
 Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 50%, assignments won't be graded after 24 hours of the due date. This is to ensure that all the assignments would be marked and given back to you in a timely manner.
 
