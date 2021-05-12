@@ -1,6 +1,6 @@
 # Assignment 02: Functions, Arrays, C character strings, arguments to main, and header files
 
-Download the files for this assignment [here](./files.zip) (or from the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments > 01).
+Download the files for this assignment [here](./files.zip) (or from the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments).
 
 **Remember**:
 - Reference [lab 02](../../labs/02) for help!
@@ -160,10 +160,10 @@ Upload `a.zip` to the appropriate assignment submission page on the [CMPT 127 D1
 
 | Task | Criteria                                      | Points |
 |------|-----------------------------------------------|--------|
-| All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas) | 1 |
-|      | Programs are well documentated  (i.e. student name and program description at the top of program files, comments are added where appropriate) | 0.5 |
+| All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas). | 1 |
+|      | Programs are well documentated  (i.e. student name and program description at the top of program files, comments are added where appropriate). | 0.5 |
 | 01   | `t1funcs.h` contains the function declarations for the functions in `t1funcs.c`. | 0.5 |
-|      | `t1.c` contains an import statement for `t1funcs.h` | 0.5 | 
+|      | `t1.c` contains an import statement for `t1funcs.h`. | 0.5 | 
 | 02   | Program works as intended (i.e. outputs false and true for the first and second half of the tests in `t2.c` respectively). | 2 |
 | 03   | Program works as intended.                    | 2      |
 | 04   | Program works as intended.                    | 2      |

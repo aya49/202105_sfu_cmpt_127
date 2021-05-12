@@ -38,7 +38,7 @@ int main() {
 
     printf("Populating test_ia by calling 'intarr_set(test_ia, i, random)'\n");
     for (unsigned int i=0; i<test_ia->len; i++) {
-        if(intarr_set(test_ia, i, (rand()%100)) != INTARR_OK) {
+        if (intarr_set(test_ia, i, (rand()%100)) != INTARR_OK) {
             printf("Cannot set value at index %d\n", i);
             return 1; //exit with a non-zero value
         }

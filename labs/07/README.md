@@ -98,7 +98,7 @@ Try it yourself first; then verify your solution with your solution to the next 
 
 ## Practice 02
 
-**REQUIREMENT**: create a new file called `p2list.c` containing correct implementations of all the functions described in `p1list.h`.
+**REQUIREMENT**: you will implmenet the correct version of all the functions described in `p1list.h` to file `p2list.c`.
 - You may use any piece(s) of the supplied code, or write your own.
 - Your code should pass all your tests i.e. the `p1.c` you extended.
 

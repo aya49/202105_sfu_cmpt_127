@@ -110,7 +110,7 @@ If we want to remove an element in a stable manner without changing the order of
 
 ## Practice 01
 
-**REQUIREMENT**: create a file `p1.c` that implementations the four functions declared in `p1.h`. It may contain other functions too, but remember you are aiming for high performance so you should probably keep things simple.
+**REQUIREMENT**: you will write to file `p1.c`, implementations of the four functions declared in `p1.h`. It may contain other functions too, but remember you are aiming for high performance so you should probably keep things simple.
 - Use `realloc()` instead of `malloc()` for high performance.
 - Use a constant time O(1) unstable remove.
 
@@ -154,7 +154,7 @@ The `std::vector` in C++ is the same as an array except it can automatically cha
 
 ## Practice 02
 
-**REQUIREMENT**: create another version of the point array functions that use this amortized constant time preallocation strategy. Reimplement all the array functions to use the `reserved` field in `point_array_t` as described above. The `p2.h` header file already has the extra field `reserved` in the array structure.
+**REQUIREMENT**: you will create another version of the point array functions that use this amortized constant time preallocation strategy. Reimplement all the array functions to use the `reserved` field in `point_array_t` as described above. The `p2.h` header file already has the extra field `reserved` in the array structure.
 - Use the preallocation strategy to get amortized constant time performance.
 - Use a constant time O(1) unstable remove.
 
@@ -173,12 +173,12 @@ C is a subset of C++; all C functions/keywords/code will work with a C++ compile
 
 Let's look at the difference between C functions (`malloc()`, `realloc()`, `free()`) and C++ operators (`new`, `delete`).
 
-|            | | `new` / `delete`  | `malloc()` / `free()`  |
-|------------|-|-------------------|--------------|
-| It is a... | | operator          | function     |
-| Returns    | | `type *` (it's type-safe!) | `void *` |
-| On failure | | throws error      | returns NULL |
-| It also... | | calls the constructor / destructor | |
+|            | `new` / `delete`  | `malloc()` / `free()`  |
+|------------|-------------------|--------------|
+| It is a... | operator          | function     |
+| Returns    | `type *` (it's type-safe!) | `void *` |
+| On failure | throws error      | returns NULL |
+| It also... | calls the constructor / destructor | |
 
 - In C++, instead of using `realloc()` you can use `std::string` or `std::vector` they support change in size.
 - The C++ version is type safe

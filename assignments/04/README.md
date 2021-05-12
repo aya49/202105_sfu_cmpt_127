@@ -1,4 +1,4 @@
-# Assignment 01: Introduction to C
+# Assignment 04: Memory allocation
 
 Download the files for this assignment [here](./files.zip) (or from the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments).
 

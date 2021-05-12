@@ -9,17 +9,17 @@
 
 /* Structure type that encapsulates our safe int array. */
 typedef struct {
-  int* data;
-  unsigned int len;
+    int* data;
+    unsigned int len;
 } intarr_t;
 
 /* A type for returning status codes */
 typedef enum {
-  INTARR_OK,
-  INTARR_BADARRAY,
-  INTARR_BADINDEX,
-  INTARR_BADALLOC,
-  INTARR_NOTFOUND
+    INTARR_OK,
+    INTARR_BADARRAY,
+    INTARR_BADINDEX,
+    INTARR_BADALLOC,
+    INTARR_NOTFOUND
 } intarr_result_t;
 
 

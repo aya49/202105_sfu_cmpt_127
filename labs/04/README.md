@@ -235,9 +235,9 @@ Deciding when to create a new structured type is an important part of program de
 
 Note: structures can be defined in header files.
 
-**REQUIREMENT**: Write your program to two files: `p0intarr.c` `p0.c`.
-- in `p0intarr.c` implement the integer array functions declared and specified in the supplied header file `p0intarr.h`.
-- Create a test driver: a program `p0.c` with a main function from which each of the functions in `p0intarr.c` are called (tested). Compile and execute your `p0intarr.c` (with stubs) and your test driver.
+**REQUIREMENT**: you will write your program to two files: `p0intarr.c` `p0.c`.
+- n `p0intarr.c`, implement the integer array functions declared and specified in the supplied header file `p0intarr.h`.
+- Create a test driver program in file `p0.c` with a main function from which each of the functions in `p0intarr.c` are called (tested). Compile and execute your `p0intarr.c` (with stubs) and your test driver.
 
 These functions would work around the following two user defined data structures (see `p0intarr.h`):
 
@@ -261,8 +261,8 @@ typedef enum {
 **HINTS**
 - Don't forget to keep adding appropriate function calls to your test driver as you go along.
 - An example of **stubing** is to replace the body with `return 0` if your function is supposed to return an `int`. This way, your program compiles even if your function body is incomplete.
-    - If your code compiles, then implement the two functions of Practice 1.
-    - Compile and execute your test driver. Note that this time, your test driver is testing the functions you have implemented for Task 1. Are these functions working as expected?.
+    - If your code compiles, then implement the two functions of practice 01.1.
+    - Compile and execute your test driver. Note that this time, your test driver is testing the functions you have implemented for practice 01.1. Are these functions working as expected?.
     - Repeat the above two steps until all functions have been designed, implemented and tested.
 
 **TESTING**: you can test your program by running:
