@@ -87,14 +87,10 @@ Students are free to attend labs and office hours of any section.
 
 **Assignments**:
 - Each assignment contains several tasks.
-- An optional bonus assignment will be given at the end; only your top 8 scoring assignments will be counted towards your grade.
-- Some assignment will have bonus tasks for bonus marks; but remember that assignments will still account for a maximum of 60% of your grade.
 
-**Quizzes**: quizzes are cumulative.
+**Quizzes**: the content included of the quizzes are cumulative.
 - All quizzes are take-home. They will be open for 24 hours on Canvas to accomodate students in different time zones; all students must complete the quiz within the desginated 24 hours. Once you start the quiz, it will last for 1 hour. THIS IS IMPORTANT, this means that you only have 1 continuous hour to do the quiz, but you can do choose when to do that 1 hour as long as you START and FINISH the quiz within that 24 hours.
-- Students must pass at least 3 out of the 4 quizzes to pass the course; "pass" here means C- or above.
-
-No late assignments or quizzes will be accepted unless a substantial and valid reason is given --- but remember, we only take your top 10 scoring assignments!
+- Students must safely pass at least 3 out of the 4 quizzes to safely pass the course; "safely pass" here means C- or above.
 
 
 ## Grading system
@@ -114,7 +110,7 @@ No late assignments or quizzes will be accepted unless a substantial and valid r
 
 ## Late polocy
 
-Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 50%.
+Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 50%, assignments won't be graded after 24 hours of the due date. This is to ensure that all the assignments would be marked and given back to you in a timely manner.
 
 Quizzes cannot be done late, there is a 24 hour leeway so use that wisely ;), remember that your quiz must be SUBMITTED before the 24 hour time.
 
