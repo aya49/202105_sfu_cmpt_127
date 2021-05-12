@@ -6,11 +6,11 @@ Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100
 
 Welcome to CMPT 127! Make sure you bookmark this page.
 # Important links
-- Lab hour Zoom link: [link](https://sfu.zoom.us/j/7631796740/)
+- Lab hour Zoom link: [Zoom](https://sfu.zoom.us/j/7631796740/)
 - Assignment & quiz submission: [Canvas](https://canvas.sfu.ca/courses/62984)
-- Canvas discussion board: [link](https://canvas.sfu.ca/courses/62984)
-- Office hours: [link](#office-hours)
-- Peer tutoring session: [link](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html)
+- Discussion board: [Canvas discussions](https://canvas.sfu.ca/courses/62984/discussion_topics)
+- Lab & office hours: [link](#lab-and-office-hours)
+- Peer tutoring session: [schedule](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html)
 
 
 # Got questions?
@@ -19,22 +19,20 @@ Please contact the appropriate people to get timely help (see detailed contact i
 
 | Inquiry                                               | Contact                                                                    |
 |-------------------------------------------------------|----------------------------------------------------------------------------|
-| Course content related questions                      | [Canvas discussion board](https://canvas.sfu.ca/courses/62984) (fastest!), [peer tutoring sessions](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (highly recommend for 1-on-1 help!), [office hours](#office-hours) [lab hours](#office-hours), [lab hours](#lab-hours)  |
+| Course content related questions                      | [Canvas discussion board](https://canvas.sfu.ca/courses/62984) (fastest!), [peer tutoring sessions](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (highly recommend for 1-on-1 help!), [lab and office hours](#lab-and-office-hours)  |
 | Hardware, SFU network, SFU software related questions | CS helpdesk: email [helpdesk at sfu dot ca]                                |
-| Questions about marking, 1-on-1 help with course      | Contact the TA who marked your assignment/quiz (will be announced) via their [email](#course-logistics), [office hours](#office-hours), or [lab hours](#lab-hours) |
-| Course administration issues                          | Contact the instructor via [email](#course-logistics) or [lab hours](#office-hours)                 |
+| Questions about marking, 1-on-1 help with course      | Contact the TA who marked your assignment/quiz (will be announced) via their [email](#course-logistics), [lab and office hours](#lab-and-office-hours) |
+| Course administration issues                          | Contact the instructor via [email](#course-logistics) or during [lab and office hours](#lab-and-office-hours)                 |
 
 # Course logistics
 
-Contacts (emails on Canvas)
+Contacts (emails on [Canvas](https://canvas.sfu.ca/courses/62984))
 - Instructor: Alice Yue
-- Teaching assistants (TA): 
-  - D100: Danoosh Chamani
-- Helpdesk
+- Teaching assistants (TA): Danoosh Chamani, Evgenii Pravda, Wallace Michel Pinto Lira
 
 Email policy
-- **IMPORTANT**: Please go to [Piazza](https://piazza.com/sfu.ca/summer2021/cmpt127/home/) for all course content and logistic related questions!! Your classmate, the instructor, or a teaching assistant might have already answered the question there :).
-- To ensure a quick turn around, include the following information in your email: course (CMPT 127), section (e.g. D100), full name (e.g. Alice Yue), SFU & student ID (e.g. aya43 & 301196607), and inquiry.
+- **IMPORTANT**: Please go to [Canvas discussions](https://canvas.sfu.ca/courses/62984/discussion_topics) for all course content and logistic related questions!! Your classmate, the instructor, or a teaching assistant might have already answered the question there :).
+- To ensure a quick turn around, include the following information in your email: course (CMPT 127), section (e.g. D100), full name (e.g. Alice Yue), SFU & student ID (e.g. aya43 & 301196607), and the inquiry.
 
 Emails will be answered during work hours only.
 
@@ -46,30 +44,31 @@ Emails will be answered during work hours only.
 | Announcements will be sent to your @sfu.ca email| mail list [cmpt-127 at sfu.ca] + [Canvas](https://canvas.sfu.ca/courses/62984) |
 
 
-## Lab hours
+## Lab and office hours
 
-All lab hours are on **Zoom**: [link](https://sfu.zoom.us/j/7631796740/) (use your SFU Zoom account on sfu.zoom.ca to enter automatically; [guide](https://www.sfu.ca/itservices/technical/videoconferencing/zoom/using-zoom/how-to-guides.html))
+All lab hours (and alice's office hours) are on **Zoom**: https://sfu.zoom.us/j/7631796740/ (use your SFU Zoom account on sfu.zoom.ca to enter automatically; [guide](https://www.sfu.ca/itservices/technical/videoconferencing/zoom/using-zoom/how-to-guides.html))
 
-| Section | Tuesdays at       | Type                | Instructor/TA |
-|---------|-------------------|---------------------|---------------|
-| D100    | 08:30am - 09:20am | Lab lecture         | Alice Yue     |
-| D100    | 09:30am - 10:20am | Lab hour            | TA, Alice Yue |
-| D100    | 10:30am - 11:20am | Lab hour            |               |
+| Section | Time/duration      | Type              | Who        | Zoom link |
+|---------|--------------------|-------------------|------------|-----------|
+| D100 | Tue 08:30am - 09:20am | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
+| D100 | Tue 09:30am - 10:20am | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
+| D100 | Tue 10:30am - 11:20am | Lab hour          |            | [link](https://sfu.zoom.us/j/7631796740/) |
 |||||
-| D200    | 11:30am - 12:20pm | Lab lecture         | Alice Yue     |
-| D200    | 12:30pm - 01:20pm | Lab hour            | TA, Alice Yue |
-| D200    | 01:30pm - 02:20pm | Lab hour            |               |
+| D200 | Tue 11:30am - 12:20pm | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
+| D200 | Tue 12:30pm - 01:20pm | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
+| D200 | Tue 01:30pm - 02:20pm | Lab hour          |            | [link](https://sfu.zoom.us/j/7631796740/) |
 |||||
-| D300    | 02:30pm - 03:20pm | Lab lecture         | Alice Yue     |
-| D300    | 03:30pm - 04:20pm | Lab hour            | TA, Alice Yue |
-| D300    | 04:30pm - 05:20pm | Lab hour            | TA            |
+| D300 | Tue 02:30pm - 03:20pm | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
+| D300 | Tue 03:30pm - 04:20pm | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
+| D300 | Tue 04:30pm - 05:20pm | Lab hour          | TA         | [link](https://sfu.zoom.us/j/7631796740/) |
+|||||
+| All  | Mon 02:30pm - 03:20pm | office hour       | TA         | [link]() |
+| All  | Wed 03:30pm - 04:20pm | office hour       | TA         | [link]() |
+| All  | Fri 04:30pm - 05:20pm | office hour       | TA         | [link]() |
 
 Students are free to attend labs and office hours of any section.
 - Lab hours: this is a time for students to do the weekly assignments and ask questions. Everyone will be in the "main room", questions will be asked in chat; if you wish to have a short 1-on-1, we will go into a breakout room.
-- Office hours: this is a time for students to ask TA's questions.
-
-## Office hours
-
+- Office hours: this is a time for students to ask questions.
 
 # Schedule
 

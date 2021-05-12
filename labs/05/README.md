@@ -167,6 +167,46 @@ $ ./p2
 Try it yourself first; then verify your solutions [here](./files/solution/p2.c).
 
 
+# Bonus material: why is preallocation amortized constant time?
+
+## Big O analaysis
+
+Let's start by calculating how many operations preallocation requires for our big O analaysis.
+- `n = 2`: let's say you start with a size `1` array `[ ]`.
+- `m = 2`: for preallocation, whenever we increase the size of the array, we double the size of array i.e. we increase the array size by a factor of `m = 2`.
+- `log(n,m)` = number of preallocations: we conduct preallocation when our array is filled up at size `n = 2,4,8,16,...` i.e. `n^i` where `i` is the `i`th preallocation. Thinking backwards, when we reach `n=16`, we would have conducted preallocation `4 = log(16,2) = log(n,m)` times (where the second argument to `log` is the log base).
+- O(n) = the sum of the number of operations in each preallocation: 
+    - the number of operations in preallocation can be upper bounded by `1 + 2 + 4 + ... + 2^i` i.e. in the first, second, and third preallocations, we create 1, 2, and 4 empty array elements respectively, and so on. Such series is called geometric series: `1 + 2 + 4 + ... + 2^i = (2^i - 1)`. Using this property, let's summarize the number of operations using `2^i` or `m^i`.
+    - Since `i` is the number of preallocations, we can replace it too: `m^log(n,m)`. 
+    - Finally, since your exponent and log base uses the same factor `m`, they cancel out to give `m^log(n,m) = n`.
+
+## Amortized analysis
+
+Amortized analysis asks for the average number of operations. Let's start by looking the same example except this time, we do each insertion operation one by one:
+
+```
+insertions:
+1: [1]
+2: [1][2] (i=1, first preallocation!)
+3: [1][2][3][ ] (i=2)
+4: [1][2][3][4]
+5: [1][2][3][4][5][ ][ ][ ] (o=3)
+6: [1][2][3][4][5][6][ ][ ]
+...
+```
+Amortized observations:
+- Not all insertions are O(n), insertion operation 3, 5, 6, ... are O(1) operations.
+- To be exact, for each of the `n` insertions, we have this many operations: `(1+(1+1)+(1+2)+1+(1+4)+1+...) / n`.
+- If we split up the constant operations from those with preallocations, it would be: `((1+1+1+...) + (1+2+4+...)) / n`.
+- We know that the second preallocation term occurs is roughly O(n) and the first term is also roughly O(n); so `2 n / n` is roughly Θ(1).
+
+## Big O vs amortized analysis
+
+The main difference between our big O analysis and our amortized analysis is the first term. 
+- In big O analysis, we assume the worst case where every insertion requires a doubling in array size. 
+- Whereas in amortized analysis, we realize that this is not the case and that most of the time, insertion will be constant time.
+
+
 # Bonus material: C vs C++
 
 C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analagous to each other in C and C++.
