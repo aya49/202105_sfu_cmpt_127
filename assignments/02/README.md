@@ -168,5 +168,5 @@ Upload `a.zip` to the appropriate assignment submission page on the [CMPT 127 D1
 | 03   | Program works as intended.                    | 2      |
 | 04   | Program works as intended.                    | 2      |
 |      | Program properly uses `scanf` to take as input, two C strings and a text file. | 0.5 |
-|      | Program properly initializes and uses arrays in an appropriate manner. | 0.5 |
+|      | Program properly initializes and uses arrays appropriately. | 0.5 |
 | Total|                                               | 10     |
