@@ -8,7 +8,7 @@ Download the files for this assignment [here](./files.zip) (or from the [CMPT 12
 - Reference [lab 01](../../labs/01) for help!
 - DO THE PRACTICE problems! They **directly** help you do the assignment tasks!
 - Assignments are to be done individually.
-- You may submit/resubmit the assignment on repl.it as many times as you want before the designated due date.
+- You may submit/resubmit the assignment before the designated due date.
 - The internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
 
 **Contents**: for this assignment, you will complete the following tasks.

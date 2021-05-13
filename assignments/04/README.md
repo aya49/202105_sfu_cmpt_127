@@ -12,7 +12,6 @@ Download the files for this assignment [here](./files.zip) (or from the [CMPT 12
 - The internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
 
 **Contents**: for this assignment, you will complete the following tasks.
-- [Task 00](#task-00)
 - [Task 01](#task-01)
 - [Task 02](#task-02)
 - [Task 03](#task-03)
@@ -163,8 +162,8 @@ Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 1
 |      | `img_save_binary` works as intended.          | 1      |
 |      | `img_load_binary` works as intended.          | 1      |
 | 02   | `t2.c` tests are created for each of the 2 functions x 0.5; each test either works appropriately (0.5) or they don't (0). | 1 |
-|      | `img_save_binary` works as intended.          | 1      |
-|      | `img_load_binary` works as intended.          | 1      |
+|      | `img_save_json` works as intended.            | 1.5    |
+|      | `img_load_json` works as intended.            | 1      |
 | 03   | `t3.c` tests are created for each of the function in `t3img.c`; each test either works appropriately (0.5) or they don't (0). | 0.5 |
-|      | `img_save_ppm` works as intended.             | 2      |
+|      | `img_save_ppm` works as intended.             | 1.5    |
 | Total|                                               | 10     |
