@@ -6,10 +6,9 @@ Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100
 
 Welcome to CMPT 127! Make sure you bookmark this page.
 # Important links
-- Lab hour Zoom link: [Zoom](https://sfu.zoom.us/j/7631796740/)
+- Lab and office hours: [link](#lab-and-office-hours) (lab hour zoom link: https://sfu.zoom.us/j/7631796740/)
 - Assignment & quiz submission: [Canvas](https://canvas.sfu.ca/courses/62984)
 - Discussion board: [Canvas discussions](https://canvas.sfu.ca/courses/62984/discussion_topics)
-- Lab & office hours: [link](#lab-and-office-hours)
 - Peer tutoring session: [schedule](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html)
 
 

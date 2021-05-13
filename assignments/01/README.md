@@ -123,7 +123,7 @@ Enter an integer:
 - write comments!! Test and debug your code!
 - Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter an integer: "`, and let the user know what the output is by printing a message, e.g. `"Here is the result: "`.
 
-# Submission
+# Submission: due 2021-05-31 11:59pm
 
 Make sure you have the following files ready for submission and that they are named appropriately, otherwise they won't be graded.
 - Task 01: `t1.c`
