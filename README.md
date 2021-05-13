@@ -1,7 +1,6 @@
 # CMPT 127 - computing laboratory (summer 2021)
 
-Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100), [D200](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d200), [D300](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d300) ([CMPT 125](http://www.sfu.ca/outlines.html?2021/summer/cmpt/125/d100))
-
+Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100), [D200](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d200), [D300](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d300)
 # Announcements
 
 Welcome to CMPT 127! Make sure you bookmark this page.
