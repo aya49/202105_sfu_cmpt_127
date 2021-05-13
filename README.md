@@ -50,11 +50,11 @@ All lab hours (and alice's office hours) are on **Zoom**: https://sfu.zoom.us/j/
 |---------|--------------------|-------------------|------------|-----------|
 | D100 | Tue 08:30am - 09:20am | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
 | D100 | Tue 09:30am - 10:20am | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
-| D100 | Tue 10:30am - 11:20am | Lab hour          |            | [link](https://sfu.zoom.us/j/7631796740/) |
+| D100 | Tue 10:30am - 11:20am | Lab hour          | TA         | [link](https://sfu.zoom.us/j/7631796740/) |
 |||||
 | D200 | Tue 11:30am - 12:20pm | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
 | D200 | Tue 12:30pm - 01:20pm | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
-| D200 | Tue 01:30pm - 02:20pm | Lab hour          |            | [link](https://sfu.zoom.us/j/7631796740/) |
+| D200 | Tue 01:30pm - 02:20pm | Lab hour          | TA         | [link](https://sfu.zoom.us/j/7631796740/) |
 |||||
 | D300 | Tue 02:30pm - 03:20pm | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
 | D300 | Tue 03:30pm - 04:20pm | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
