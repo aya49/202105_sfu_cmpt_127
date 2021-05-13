@@ -5,11 +5,18 @@
 CFLAGS = -Werror -Wfatal-errors -g
 
 
-p1: p1.c p1point.c
-	gcc $(CFLAGS) -o $@ p1.c p1point.c
+t1: t1.c t1img.c
+	gcc $(CFLAGS) -o $@ t1.c t1img.c
 
-p2: p2.c p2point.c
-	gcc $(CFLAGS) -o $@ p2.c p2point.c
+t2: t2.c t2img.c
+	gcc $(CFLAGS) -o $@ t2.c t2img.c
+
+t3: t3.c t3img.c
+	gcc $(CFLAGS) -o $@ t3.c t3img.c
+
+submit:
+	rm -f a.zip
+	zip a.zip t1.c t1img.c t2.c t2img.c t3.c t3img.c
 
 clean:
-	rm -f p1 p2 *.o
+	rm -f t1 t2 t3 *.o

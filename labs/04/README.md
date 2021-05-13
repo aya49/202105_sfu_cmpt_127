@@ -231,7 +231,7 @@ Deciding when to create a new structured type is an important part of program de
 - use template classes whenever you can get access to C++ ( \*u\*)b
 
 
-## Practice 01-05
+## Practice 00-05
 
 Note: structures can be defined in header files.
 

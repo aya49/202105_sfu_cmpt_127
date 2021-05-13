@@ -5,11 +5,11 @@
 CFLAGS = -Werror -Wfatal-errors -g
 
 
-p1: p1test.c p1.c
-	gcc $(CFLAGS) -o $@ p1test.c p1.c
+p1: p1.c p1intarr.c
+	gcc $(CFLAGS) -o $@ p1.c p1intarr.c
 
-p2: p1test.c p2.c
-	gcc $(CFLAGS) -o $@ p1test.c p2.c
+p2: p2.c p2intarr.c
+	gcc $(CFLAGS) -o $@ p2.c p2intarr.c
 
 clean:
-	rm -f p1 p2.1 p2 *.o
+	rm -f p1 p2 *.o

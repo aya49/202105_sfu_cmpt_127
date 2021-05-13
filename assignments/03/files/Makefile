@@ -5,12 +5,12 @@
 CFLAGS = -Werror -Wfatal-errors -g
 
 
-t0: t0.c t0intarr.c
-	gcc $(CFLAGS) -o $@ t0.c t0intarr.c
+t0: t0.c t0img.c
+	gcc $(CFLAGS) -o $@ t0.c t0img.c
 
 submit:
 	rm -f a.zip
-	zip a.zip t0.c t0intarr.c
+	zip a.zip t0.c t0img.c
 
 clean:
 	rm -f t0 *.o

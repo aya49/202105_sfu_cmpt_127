@@ -1,32 +1,51 @@
-# Assignment 04: Memory allocation
+# Assignment 04: File I/O
+
+Due:
 
 Download the files for this assignment [here](./files.zip) (or from the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments).
 
 **Remember**:
-- Reference [lab 01](../../labs/01) for help!
+- Reference [lab 05](../../labs/05) for help!
 - DO THE PRACTICE problems! They **directly** help you do the assignment tasks!
 - Assignments are to be done individually.
 - You may submit/resubmit the assignment on repl.it as many times as you want before the designated due date.
 - The internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
 
 **Contents**: for this assignment, you will complete the following tasks.
+- [Task 00](#task-00)
 - [Task 01](#task-01)
 - [Task 02](#task-02)
 - [Task 03](#task-03)
-- [Task 04](#task-04)
 
 Your assignment will be graded according to this [**marking rubric**](#marking-rubric).
 
 ## Task 01
 
-**REQUIREMENT**: you will write a program to file `t1.c`.
-- OUTPUT: `t1.c` should print `Hello World!`, `My name is <your name>.`, and `Nice to meet you!` in 3 separate lines to standard output.
+You will extend the functionality of your integer array from the previous assignment, task 01-05 to support saving and loading arrays from the filesystem in a binary format. 
 
-**REMEMINDER**: 
-- write comments!! Test and debug your code!
-- Fix the error in code in `t1.c` by adding the missing exclamation point.
-- Compile and run it, and verify that it now produces the correct output (expected result).
-- Now your program meets the requirements and you are ready to submit it.
+**REQUIREMENT**:
+- you will create a C source file called "t1img.c" containing implementations of the two functions declared in `t1img.h`.
+- you will create your own `t1.c` to test your functions.
+
+Your code may call any other functions declared and implemented as part of the previous assignment, task 01-05 by copying these files over to `t1img.c` and `t1img.h` (DO NOT re-implement these).
+
+**HINT**: calls to `fwrite()` are relatively expensive. Try to use as few as you can.
+
+Declarations in `t1img.h`:
+
+```C
+int img_save_binary(img_t* im, const char* filename);
+```
+- INPUT: the pointer of a `img_t` variable `im`, a filename (recall: C strings are arrays of character elements + a terminator `\0` element).
+- OUTPUT: returns `0` on success, or a non-`0` error code on failure.
+- BEHAVIOUR: saves `im`'s 2D array into a file `filename` in a binary file format that can be loaded by `img_load_binary()`.
+
+```C
+img_t* img_load_binary(const char* filename);
+```
+- INPUT: a filename.
+- OUTPUT: returns a pointer to a newly-allocated `img_t` on success, or `NULL` on failure.
+- BEHAVIOUR: loads a new array from the file called 'filename', that was previously saved using `img_save_binary()`. Make sure you validate the parameter before you use it.
 
 **TESTING**: you can test your program by running:
 ```
@@ -34,16 +53,52 @@ $ make t1
 $ ./t1
 ```
 
+
 ## Task 02
 
-**REQUIREMENT**: you will write a program to file `t2.c`. 
-- INPUT: `t2.c` should `scanf` two integer values from standard input separated by a space, 
-- OUTPUT: `t2.c` should `printf` the sum of these two integers.
+In task 01, we exported our array into a binary format. However, binary formats are not human read-able nor are they export-able to other programs that does not understand your finary format.
 
-**REMINDER**:
-- write comments!! Test and debug your code!
-- Your program should handle negative numbers (which are also valid integers).
-- Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter an integer: "`, and let the user know what the output is by printing a message, e.g. `"Here is the sum: "`.
+The most readable, portable XDR format is plain text. A popular syntax for text files is [JSON (JavaScript Object Notation)](http://json.org), which, as the name suggests, was originally an XDR format for web programs make with the programming language, JavaScript. It is easier to use, less verbose than the also-popular [Extensible Markup Language (XML)](http://en.wikipedia.org/wiki/XML), and more expressive than the bare-bones [Comma-Separated Values (CSV)](http://en.wikipedia.org/wiki/Comma-separated_values) formats you may have seen. JSON's popularity can also be attributed to the fact that it is readable for humans and can be imported into another program that does not understand your binary format.
+
+The down side of text formats is that they are:
+1. inefficient in space, since e.g. a four-byte integer (`int32_t`) could require up to 11 bytes to represent its minimum value of -2147483648 as a decimal string;
+2. inefficent in time, since parsing the text file to convert it back into a binary format is much more expensive than loading a binary file.
+
+The C standard library has two functions that can be very helpful for rendering text into files. They work just like the familiar `printf()` and `scanf()` but read to and write from `FILE*` objects instead of standard input and standard output. You should probably use these to solve this task.
+- [`fprintf()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fprintf.html)
+- [`fscanf()`](http://pubs.opengroup.org/onlinepubs/9699919799/functions/fscanf.html)
+
+Notice from those manual pages that functions `snprintf()` and `sscanf()` can also print and scan from C strings. (`sprintf()` exists, but the lack of array length checking means this is not safe or secure to use. Always use `snprintf()`).
+
+You will extend the functionality of your integer array from the previous assignment, task 01-05, to support saving and loading arrays from the filesystem in JSON. 
+
+**REQUIREMENT**: 
+- you will create a C source file called `t2img.c` containing implementations of the two functions declared in `t2img.h`.
+- you will create your own `t2.c` to test your functions.
+
+Your code may call any other functions declared in "t2img.h" and implemented as part of the previous assignment, task 01-05 by copying these files over and changing their names to `t2img.c` and `t2img.h` and importing them, if you haven't already for task 01 (DON'T re-implement these).
+
+You should NOT create a single huge string in memory and write it out in one call to `fwrite()`. The string could require a huge amount of memory when your array is large. Since you chose an inefficient text format, you're not optimizing for speed so don't worry about using many calls to `fwrite()`.
+
+The header file `t2img.h` contains these new function declarations:
+
+```C
+int img_save_json(img_t* im, const char* filename);
+```
+- INPUT: the pointer of a `img_t` variable `im` and a filename.
+- OUTPUT: returns `0` on success, or a non-`0` error code on failure.
+- BEHAVIOUR: saves the `im` array into a file `filename` in a JSON file format that can be loaded by `img_load_json()`.
+    - Arrays of length 0 should produce an output file containing an empty array.
+    - Make sure you validate the parameters before you use them.
+    - The JSON output should be human-readable.
+
+```C
+img_t* img_load_json(const char* filename);
+```
+- INPUT: a filename.
+- OUTPUT: returns a pointer to a newly-allocated `img_t` on success (even if that array has length 0), or `NULL` on failure.
+- BEHAVIOUR: loads a new array from the file called 'filename', that was previously saved using `img_save_json()`. 
+    - Make sure you validate the parameter before you use it.
 
 **TESTING**: you can test your program by running:
 ```
@@ -53,18 +108,29 @@ $ ./t2
 
 ## Task 03
 
-**REQUIREMENT**: you will write a program to file `t3.c`. 
-- INPUT: `t2.c` should read any number of floating point values from standard input, separated by a space. 
-     - Assume that the input is guaranteed to be well-formed and contain at least one valid floating point value.
-     - If no floating point value can be parsed (i.e. a blank line was read) there should be no output. To put it another way: blank lines should be ignored.
-- OUTPUT: After the user finishes inputting values, `t2.c` will print the product of all the inputs (hint: use the multiplication operator `*`).
-     - The printed output should only have 2 decimal places.
+Since our data type `img_t` stores an image, let's save it as an image!
 
+In this task, we will save out pixels as a .ppm file; this is a text file format that can be opened using image viewer applications. 
 
-**REMINDER**:
-- write comments!! Test and debug your code!
-- Your program should handle negative numbers (which are also valid integers).
-- Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter integers; after each integer, press enter: "`, and let the user know what the output is by printing a message, e.g. `"Here is the sum: "`.
+Currently, we have one value in each cell of our 2D matrix. This means that our image is greyscale. Image formats usually save their images in colour format. This means that in each cell, their 2D matrix would have three values: red, green, blue. 
+
+Fortunately, it is simple to convert between our single value and the regular triple value RGB format. For each cell, we just have to replicate our value three times and ensure that our value is less than or equal to 225.
+
+**REQUIREMENT**: 
+- you will finish the function code started for you in file `t3img.c` containing the implementation of a function declared in `t3img.h`.
+- you will create your own `t3.c` to test your functions.
+
+The header file `p3img.h` contains this new function declaration:
+
+```C
+int img_save_ppm(img_t* im, const char* filename);
+```
+- INPUT: the pointer of a `img_t` variable `im` and a filename.
+- OUTPUT: returns `0` on success, or a non-`0` error code on failure.
+- BEHAVIOUR: saves the `im` array into a file `filename` in a .ppm file format.
+    - Arrays of length 0 should produce an output file containing an empty array.
+    - Make sure you validate the parameters before you use them.
+    - The .ppm output should be a text file that can also be viewed as an image in an image viewer.
 
 **TESTING**: you can test your program by running:
 ```
@@ -72,64 +138,12 @@ $ make t3
 $ ./t3
 ```
 
-**Example**: sample input and output:
-```
-Provide floats separated by enter (line):
-3.2
--1.6
-9.5
-0
-The product of your values is: 0
-
-```
-
-
-## Task 04
-
-**REQUIREMENT**: you will write a program to file `t4.c`. 
-- INPUT: `t4.c` should read a user input line containing a positive integer value. This integer will be the width and height of a reversed right triangle. 
-    - You can assume that the input is guaranteed to be well-formed, and all values will be in the range \[1,...,50\].
-- OUTPUT: `t4.c` should, on standard output, draw the outline of the right triangle `#` character and fill the triangle using the `.` character.
-
-**TESTING**: you can test your program by running:
-```
-$ make t4
-$ ./t4
-```
-
-**EXAMPLE**: sample user input `scanf` and `printf` output.
-
-You'll need to use a fixed-width font in your terminal for these shapes to look right in your output. (If the examples below don't look symmetrical in your browser, check that your `pre` font is fixed-width.)
-
-```
-Enter an integer:
-6
-     #
-    ##
-   #.#
-  #..#
- #...#
-######
-
-2
- #
-##
-
-1
-#
-```
-
-**REMINDER**:
-- write comments!! Test and debug your code!
-- Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter an integer: "`, and let the user know what the output is by printing a message, e.g. `"Here is the result: "`.
-
 # Submission
 
 Make sure you have the following files ready for submission and that they are named appropriately, otherwise they won't be graded.
-- Task 01: `t1.c`
-- Task 02: `t2.c`
-- Task 03: `t3.c`
-- Task 04: `t4.c`
+- Task 01: `t1img.c`, `t1.c`
+- Task 02: `t2img.c`, `t2.c`
+- Task 03: `t3img.c`, `t3.c`
 
 Compress these files into a zip file called `a.zip`; you can do this by using the following command from console:
 ```
@@ -144,12 +158,13 @@ Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 1
 | Task | Criteria                                      | Points |
 |------|-----------------------------------------------|--------|
 | All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas). | 1 |
-|      | Programs are well documentated  (i.e. student name and program description at the top of program files). | 0.5 |
-|      | Where applicable, program prompts user for input and indicates what the outputs are. | 0.5 |
-| 01   | Program works as intended.                    | 1      |
-| 02   | Program works as intended.                    | 2      |
-| 03   | Program works as intended.                    | 2      |
-| 04   | Program works as intended.                    | 2      |
-|      | Program properly uses a for or while loop.    | 0.5    |
-|      | Program properly uses an if/else conditions.  | 0.5    |
+|      | Source code is readable (i.e. student name and program description at the top of program files, variable names are self-descriptive and consistent, comments describing what code does is available where appropriate, indentatations are consistent). | 0.5 |
+| 01   | `t1.c` tests are created for each of the 2 functions x 0.5; each test either works appropriately (0.5) or they don't (0). | 1 |
+|      | `img_save_binary` works as intended.          | 1      |
+|      | `img_load_binary` works as intended.          | 1      |
+| 02   | `t2.c` tests are created for each of the 2 functions x 0.5; each test either works appropriately (0.5) or they don't (0). | 1 |
+|      | `img_save_binary` works as intended.          | 1      |
+|      | `img_load_binary` works as intended.          | 1      |
+| 03   | `t3.c` tests are created for each of the function in `t3img.c`; each test either works appropriately (0.5) or they don't (0). | 0.5 |
+|      | `img_save_ppm` works as intended.             | 2      |
 | Total|                                               | 10     |

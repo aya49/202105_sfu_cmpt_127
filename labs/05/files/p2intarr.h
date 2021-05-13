@@ -23,7 +23,7 @@ typedef enum {
 } intarr_result_t;
 
 
-/* lab 06; practice 02 */
+/* practice 02 */
 
 /*
   Save the entire array ia into a file called 'filename' in a JSON
@@ -48,7 +48,7 @@ typedef enum {
    300 
   ]
 */
-int intarr_save_json( intarr_t* ia, const char* filename );
+int intarr_save_json(intarr_t* ia, const char* filename);
 
 
 /*
@@ -59,4 +59,4 @@ int intarr_save_json( intarr_t* ia, const char* filename );
 
   Make sure you validate the parameter before you use it.
 */
-intarr_t* intarr_load_json( const char* filename );
+intarr_t* intarr_load_json(const char* filename);

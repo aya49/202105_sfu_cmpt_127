@@ -10,6 +10,7 @@ Download the files for this assignment [here](./files.zip) (or from the [CMPT 12
 - The internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
 
 **Contents**: for this assignment, you will complete the following tasks.
+- [Task 00](#task-00)
 - [Task 01](#task-01)
 - [Task 02](#task-02)
 - [Task 03](#task-03)
@@ -17,9 +18,9 @@ Download the files for this assignment [here](./files.zip) (or from the [CMPT 12
 
 Your assignment will be graded according to this [**marking rubric**](#marking-rubric).
 
-## Task 01-05
+## Task 00-04
 
-**REQUIREMENT**: you will write your program to two files: `t0img.c` `t0.c`.
+**REQUIREMENT**: you will write your program to two files: `t0img.c`, `t0.c`.
 - In `t0img.c`, implement the integer array functions declared and specified in the supplied header file `t0img.h`.
 - Create a test driver program in file `t0.c` with a main function from which each of the functions in `t0img.c` are called (tested). Compile and execute your `t0img.c` (with stubs) and your test driver.
 
@@ -110,12 +111,13 @@ img_result_t img_get(const img_t* im, unsigned int row, unsigned int col, int* v
 
 **REQUIREMENT**: write a function in `t0img.c` with the following declaration:
 ```C
-img_t* img_copy(const img_t* im);
+img_result_t img_find(img_t* im, int target, int* i, int* j);
 ```
-- INPUT: the pointer of a `img_t` variable `im`.
-- OUTPUT: 
-    - Return a duplicate of `im`, allocating new storage for the duplicate data (we call this a "deep copy"). 
-    - If unsuccessful (i.e. memory allocation for the copy fails, or `im` is `NULL`), return a null pointer.
+- INPUT: the pointer of a `img_t` variable `im`, a `target` value, and pointers to integers `i` and `j`.
+- OUTPUT:
+    - If `im` is `NULL`, return `IMG_BADARRAY`.
+    - if the `target` value is found in the array in `im` and `i` is non-`NULL`, set `*i` and `*j` to the `row` and `col` index respectively, of where `target` first occured and return `IMG_OK`. The order of search is done left to right, top to bottom i.e. search the entire first row in order, then search the second row.
+    - If `target` does not occur in the array, leave `*i` unmodified and return `IMG_NOTFOUND`.
 
 ### Task 04
 
@@ -144,7 +146,7 @@ img_t* img_copy_subarray(img_t* im, unsigned int first_row, unsigned int last_ro
 # Submission
 
 Make sure you have the following files ready for submission and that they are named appropriately, otherwise they won't be graded.
-- Task 01-05: `t0img.c`, `t0.c`
+- Task 00-05: `t0img.c`, `t0.c`
 
 Compress these files into a zip file called `a.zip`; you can do this by using the following command from console:
 ```
@@ -160,7 +162,7 @@ Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 1
 |------|-----------------------------------------------|--------|
 | All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas). | 1 |
 |      | Source code is readable (i.e. student name and program description at the top of program files, variable names are self-descriptive and consistent, comments describing what code does is available where appropriate, indentatations are consistent). | 0.5 |
-|`t0.c`| Tests are created for each of the 7 functions x 0.5; each test either works appropriately (0.5) or they don't (0). | 3.5 |
+| 00   | `t0.c` tests are created for each of the 7 functions x 0.5; each test either works appropriately (0.5) or they don't (0). | 3.5 |
 | 01   | `img_create` works as intended.               | 0.5    |
 |      | `img_destroy` works as intended.              | 0.5    |
 | 02   | `img_set` works as intended.                  | 0.5    |

@@ -23,7 +23,7 @@ typedef enum {
 } intarr_result_t;
 
 
-/* lab 06; practice 01 */
+/* practice 01 */
 
 /*
   Save the entire array ia into a file called 'filename' in a binary

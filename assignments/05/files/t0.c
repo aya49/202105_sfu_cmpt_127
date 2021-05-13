@@ -4,10 +4,15 @@
 // output: 
 // description: 
 
-#include <stdio.h>
+#define _XOPEN_SOURCE        /* ALWAYS BEFORE the include statement */ 
 #include <stdlib.h>
+#include <stdio.h>
+#include <sys/time.h>
+#include <time.h>
+#include <stdint.h>
 
-#include "p0img.h"
+#include "p1imgr.h"
+
 
 // helper function that prints the content of the img
 void print_img(img_t* im) {
@@ -21,7 +26,7 @@ void print_img(img_t* im) {
         for unsigned int j=0; j<im->col; j++) {
             printf("%d ", im->pixels[i][j]);
         }
-        printf("\n")
+        printf("\n");
     }
     printf("\n");
 }
@@ -33,14 +38,14 @@ int main() {
 
 
     // test task 01 & 02
-    printf("Creating test_im by calling 'img_create(10, 10)'\n");
-    test_im = img_create(10, 10);
+    printf("Creating test_im by calling 'imgr_create(10, 10)'\n");
+    test_im = img_create(10, 0);
     if (test_im == NULL) {
         printf("test_im == NULL\n");
         return 1; //exit with a non-zero value
     }
 
-    printf("Populating test_im by calling 'img_set(test_im, i, j, random)'\n");
+    printf("Populating test_im by calling 'imgr_set(test_im, i, j, random)'\n");
     for (unsigned int i=0; i<test_im->row; i++) {
         for (unsigned int j=0; i<test_im->col; j++) {
             if (img_set(test_im, i, j, (rand()%100)) != IMG_OK) {
@@ -53,21 +58,10 @@ int main() {
     printf("Printing test_im\n");
     print_img(test_im);
 
-    printf("Getting a value from test_im by calling 'img_get(test_im, 0, 0, val)'\n");
-    int val = 100; //we know none of the values in test_im is 100
-    if (img_get(test_im, 0, 0, &val) != IMG_OK) {
-        printf("Cannot get value at index 0\n");
-        return 1; //exit with a non-zero value
-    } else {
-        printf("Successfully got a value from test_im: %d\n", val);
-    }
 
+    // test task 02
 
     // test task 03
-
-    // test task 04
-
-    // test task 05
 
 
     printf("Destroying test_im\n");
