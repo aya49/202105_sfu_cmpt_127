@@ -31,8 +31,8 @@ Upload `cheatsheet.pdf` onto to the appropriate assignment submission page on th
 | All  | The assigment submitted is in PDF file format and is named `cheatsheet.pdf`. | 0.5 |
 |      | The cheatsheet fits on a 2-sided A4 sheet.    | 0.5    |
 |      | The student used font of at least size 10 pt. | 0.5    |
-| Syntax | Source code syntax guides are helpful for understanding how to write C code (i.e. there are appropriate explanations or definitions for C code syntax). | 1 |
-| Code examples | source code examples are readable (e.g. variable names are descriptive, tabs/spacing are appropriate). | 1 |
+| Syntax | Source code syntax guides are helpful for understanding how to write C code (i.e. there are appropriate explanations or definitions for C code syntax). | 0.5 |
+| Code examples | source code examples are readable (e.g. variable names are descriptive, tabs/spacing are appropriate). | 0.5 |
 | Concept | Concepts are well described and demonstrated (e.g. via examples, syntax guides). | 1 |
 | Comprehensive | Concepts, syntax, and code examples are organized in a way that flow and is easy to understand; the student has demonstrated full understanding of the material. | 1 |
 | Completeness | The cheatsheept covers lab 01: basic C syntax, for/while loops, if/else conditions, infix operators, and how to compile C code. | 0.5 |
