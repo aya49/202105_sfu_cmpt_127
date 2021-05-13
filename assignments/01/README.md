@@ -4,14 +4,14 @@ Due: 2021-05-31 11:59pm.
 
 Download the files for this assignment [here](./files.zip) (or from the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments).
 
-**Remember**:
+**REMEMBER**:
 - Reference [lab 01](../../labs/01) for help!
 - DO THE PRACTICE problems! They **directly** help you do the assignment tasks!
 - Assignments are to be done individually.
-- You may submit/resubmit the assignment before the designated due date.
+- You may submit/resubmit the assignment as many times as you need before the designated due date (please don't do it too often though).
 - The internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
 
-**Contents**: for this assignment, you will complete the following tasks.
+**CONTENTS**: for this assignment, you will complete the following tasks.
 - [Task 01](#task-01)
 - [Task 02](#task-02)
 - [Task 03](#task-03)

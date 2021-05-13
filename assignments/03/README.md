@@ -2,17 +2,19 @@
 
 Download the files for this assignment [here](./files.zip) (or from the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments > 01).
 
-**Remember**:
+**REMEMBER**:
 - Reference [lab 03](../../labs/03) (on 2D arrays) and [lab 04](../../labs/04) for help!
 - DO THE PRACTICE problems! They **directly** help you do the assignment tasks!
 - Assignments are to be done individually.
-- You may submit/resubmit the assignment on repl.it as many times as you want before the designated due date.
+- You may submit/resubmit the assignment as many times as you need before the designated due date (please don't do it too often though).
 - The internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!
 
-**Contents**: for this assignment, you will complete the following tasks.
-- [Task 00](#task-00)
-- [Task 01](#task-01)
-- [Task 02](#task-02)
+**CONTENTS**: for this assignment, you will complete the following tasks.
+- [Task 00](#task-00-04)
+- [Task 01.1](#task-011)
+- [Task 01.2](#task-012)
+- [Task 02.1](#task-021)
+- [Task 02.2](#task-022)
 - [Task 03](#task-03)
 - [Task 04](#task-04)
 
