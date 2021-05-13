@@ -59,10 +59,7 @@ All lab hours (and alice's office hours) are on **Zoom**: https://sfu.zoom.us/j/
 | D300 | Tue 02:30pm - 03:20pm | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
 | D300 | Tue 03:30pm - 04:20pm | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
 | D300 | Tue 04:30pm - 05:20pm | Lab hour          | TA         | [link](https://sfu.zoom.us/j/7631796740/) |
-|||||
-| All  | Mon  | office hour       | TA         | [link]() |
-| All  | Wed  | office hour       | TA         | [link]() |
-| All  | Fri  | office hour       | TA         | [link]() |
+
 
 Students are free to attend labs and office hours of any section.
 - Lab hours: this is a time for students to do the weekly assignments and ask questions. Everyone will be in the "main room", questions will be asked in chat; if you wish to have a short 1-on-1, we will go into a breakout room.
