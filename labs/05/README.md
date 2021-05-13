@@ -126,7 +126,7 @@ $ ./p1
 
 Try it yourself first; then verify your solutions [here](./files/solution/p1.c).
 
-# Preallocation (approaching O(1))
+# Preallocation (Θ(1))
 
 ## Guide
 

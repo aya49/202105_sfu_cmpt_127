@@ -1,3 +1,6 @@
+#include <assert.h>
+#include "p2.h"
+
 int point_array_init(point_array_t* pa) { 
     if (pa == NULL)
         return 1;
@@ -10,7 +13,6 @@ int point_array_init(point_array_t* pa) {
     
     return 0;
 }
-
 
 void point_array_reset(point_array_t* pa) {
     assert(pa != NULL);
