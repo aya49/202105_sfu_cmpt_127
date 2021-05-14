@@ -44,9 +44,9 @@ D[101][2][1][0] = 99;
 
 Let's take a look at their memory layout.
 
-![](../img/1darray.png)
+![](./img/1darray.png)
 
-![](../img/2darray.png)
+![](./img/2darray.png)
 
 
 You can see that there is some overhead in using the 2+D arrays; for example, in the 2D array case, we require more memory space and a two-step lookup to find the integer of interest.

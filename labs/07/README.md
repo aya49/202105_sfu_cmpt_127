@@ -27,19 +27,19 @@ The list is assembled as follows:
 
 First a `list_t` structure is allocated on the heap, with its head- and tail-pointers set to NULL, representing an empty list.
 
-![](../img/list1.png)
+![](./img/list1.png)
 
 To insert the first value into the list, a new `element_t` is allocated on the heap, the value is stored in it, and the header's head- and tail-pointers are both set to point to it. The first element's next-pointer is `NULL` to indicate it is the last element in the list.
 
-![](../img/list2.png)
+![](./img/list2.png)
 
 When a subsequent element is added, the next-pointer of the tail element and the tail-pointer of the header are both changed to the address of the new element:
 
-![](../img/list3.png)
+![](./img/list3.png)
 
 One more addition using the same mechanism. Notice that the tail element always has its next-pointer set to `NULL`.
 
-![](../img/list4.png)
+![](./img/list4.png)
 
 
 **double-linked list** is a common variant of the regular linked list in which every element contains a previous-pointer in addition to the next-pointer. Double-linked lists can be traversed forwards and backwards, at the cost of a little more storage space per element.
