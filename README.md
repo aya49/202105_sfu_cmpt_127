@@ -67,7 +67,7 @@ Students are free to attend labs and office hours of any section.
 
 # Schedule
 
-| Week | Date     | Lab | Lab content | Assignment (due on the Monday) | Quiz        |
+| Week | Date     | Lab | Lab content | Assignment: due on the Mon | Quiz        |
 |----|------------|-----|-------------------------|-----------------|----------------|
 | 01 | 2021-05-18 | [01](./labs/01) | C syntax, compiinge, variables, conditions/loops | | |
 | 02 | 2021-05-25 | [01](./labs/01) | | | |
