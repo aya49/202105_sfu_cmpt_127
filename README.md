@@ -15,12 +15,12 @@ Welcome to CMPT 127! Make sure you bookmark this page.
 
 Please contact the appropriate people to get timely help (see detailed contact information in [course logistics](#course-logistics)):
 
-| Inquiry                                               | Contact                                                                    |
+| Inquiry                 | Contact                        |
 |-------------------------------------------------------|----------------------------------------------------------------------------|
-| Course content related questions                      | [Canvas discussion board](https://canvas.sfu.ca/courses/62984) (fastest!), [peer tutoring sessions](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (highly recommend for 1-on-1 help!), [lab and office hours](#lab-and-office-hours)  |
-| Hardware, SFU network, SFU software related questions | CS helpdesk: email [helpdesk at sfu dot ca]                                |
-| Questions about marking, 1-on-1 help with course      | Contact the TA who marked your assignment/quiz (will be announced) via their [email](#course-logistics), [lab and office hours](#lab-and-office-hours) |
-| Course administration issues                          | Contact the instructor via [email](#course-logistics) or during [lab and office hours](#lab-and-office-hours)                 |
+| Course content related questions        | [Canvas discussion board](https://canvas.sfu.ca/courses/62984) (fastest!), [peer tutoring sessions](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (highly recommend for 1-on-1 help!), [lab and office hours](#lab-and-office-hours)  |
+| Hardware, SFU network, SFU software related questions | CS helpdesk: email [helpdesk at sfu dot ca]            |
+| Questions about marking, 1-on-1 help with course  | Contact the TA who marked your assignment/quiz (will be announced) via their [email](#course-logistics), [lab and office hours](#lab-and-office-hours) |
+| Course administration issues          | Contact the instructor via [email](#course-logistics) or during [lab and office hours](#lab-and-office-hours)       |
 
 # Course logistics
 
@@ -34,11 +34,11 @@ Email policy
 
 Emails will be answered during work hours only.
 
-| Description                                     | Link    |
+| Description             | Link  |
 |-------------------------------------------------|---------|
-| Online lab hours                                | [Zoom](https://sfu.zoom.us/j/7631796740/)    |
-| Assignments, Quizzes, and Discussions           | [Canvas](https://canvas.sfu.ca/courses/62984)  |
-| Peer tutoring                                   | [Link](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) 
+| Online lab hours            | [Zoom](https://sfu.zoom.us/j/7631796740/)  |
+| Assignments, Quizzes, and Discussions     | [Canvas](https://canvas.sfu.ca/courses/62984)  |
+| Peer tutoring             | [Link](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) 
 | Announcements will be sent to your @sfu.ca email| mail list [cmpt-127 at sfu.ca] + [Canvas](https://canvas.sfu.ca/courses/62984) |
 
 
@@ -46,19 +46,19 @@ Emails will be answered during work hours only.
 
 All lab hours (and alice's office hours) are on **Zoom**: https://sfu.zoom.us/j/7631796740/ (use your SFU Zoom account on sfu.zoom.ca to enter automatically; [guide](https://www.sfu.ca/itservices/technical/videoconferencing/zoom/using-zoom/how-to-guides.html))
 
-| Section | Time/duration      | Type              | Who        | Zoom link |
+| Section | Time/duration  | Type      | Who    | Zoom link |
 |---------|--------------------|-------------------|------------|-----------|
-| D100 | Tue 08:30am - 09:20am | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
+| D100 | Tue 08:30am - 09:20am | Lab lecture   | Alice  | [link](https://sfu.zoom.us/j/7631796740/) |
 | D100 | Tue 09:30am - 10:20am | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
-| D100 | Tue 10:30am - 11:20am | Lab hour          | TA         | [link](https://sfu.zoom.us/j/7631796740/) |
+| D100 | Tue 10:30am - 11:20am | Lab hour    | TA   | [link](https://sfu.zoom.us/j/7631796740/) |
 |||||
-| D200 | Tue 11:30am - 12:20pm | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
+| D200 | Tue 11:30am - 12:20pm | Lab lecture   | Alice  | [link](https://sfu.zoom.us/j/7631796740/) |
 | D200 | Tue 12:30pm - 01:20pm | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
-| D200 | Tue 01:30pm - 02:20pm | Lab hour          | TA         | [link](https://sfu.zoom.us/j/7631796740/) |
+| D200 | Tue 01:30pm - 02:20pm | Lab hour    | TA   | [link](https://sfu.zoom.us/j/7631796740/) |
 |||||
-| D300 | Tue 02:30pm - 03:20pm | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
+| D300 | Tue 02:30pm - 03:20pm | Lab lecture   | Alice  | [link](https://sfu.zoom.us/j/7631796740/) |
 | D300 | Tue 03:30pm - 04:20pm | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
-| D300 | Tue 04:30pm - 05:20pm | Lab hour          | TA         | [link](https://sfu.zoom.us/j/7631796740/) |
+| D300 | Tue 04:30pm - 05:20pm | Lab hour    | TA   | [link](https://sfu.zoom.us/j/7631796740/) |
 
 
 Students are free to attend labs and office hours of any section.
@@ -67,7 +67,20 @@ Students are free to attend labs and office hours of any section.
 
 # Schedule
 
-
+| Week | Date     | Lab | Lab content | Assignment (due on the Monday) | Quiz        |
+|----|------------|-----|-------------------------|-----------------|----------------|
+| 01 | 2021-05-18 | [01](./labs/01) | C syntax, compiinge, variables, conditions/loops | | |
+| 02 | 2021-05-25 | [01](./labs/01) | | | |
+| 03 | 2021-06-01 | [02](./labs/02) | Functions, arrays, C string, stream redirection | [01 (lab 01)](./assignments/01) | |
+| 04 | 2021-06-08 | | | | [01 (lab 01)](https://canvas.sfu.ca/courses/62984/quizzes) |
+| 05 | 2021-06-15 | [03](./labs/03) | Multidimensional arrays, stack storage, heap storage (`malloc()`, `free()`) | [02 (lab 02)](./assignments/02) | |
+| 06 | 2021-06-22 | | | | [02 (lab 01-03)](https://canvas.sfu.ca/courses/62984/quizzes) |
+| 07 | 2021-06-29 | [04](./labs/04) | `typedef struct` and how to `malloc()` and shallow/deep copy it | | |
+| 08 | 2021-07-06 | [05](./labs/05) | File i/o: XDR | [03 (lab 04)](./assignments/03) | |
+| 09 | 2021-07-13 | | | [04 (lab 05)](./assignments/04) | [03 (lab 01-05)](https://canvas.sfu.ca/courses/62984/quizzes) |
+| 10 | 2021-07-20 | [06](./labs/06) | `realloc()`, preallocation, unstable remove | | |
+| 11 | 2021-07-27 | [07](./labs/07) | Linked lists | [05 (lab 06)](./assignments/05) | |
+| 12 | 2021-08-03 | | | [06 (cheatsheet)](./assignments/06) | [04 (lab 01-07)](https://canvas.sfu.ca/courses/62984/quizzes) |
 
 # Grading
 
@@ -75,7 +88,7 @@ Students are free to attend labs and office hours of any section.
 
 ```
   60% = 6 assignments x 10% each
-+ 40% = 4 quizzes     x 10% each
++ 40% = 4 quizzes   x 10% each
   ----
 = 100%
 ```
@@ -90,8 +103,8 @@ Students are free to attend labs and office hours of any section.
   - You have to start the quiz on Canvas on or after 8:30am on the Tuesday and submit the quiz. 
   - After you start the quiz, you have 1 continuous hour to do the quiz but the quiz must be submitted before 8:30am on the Wednesday. 
   - In other words, you have 1 continuous hour to do the quiz, but you can do choose when to do that 1 hour anytime within the given 24 hours.
-    - e.g. if you started your quiz at 8:45am Tuesday, you have until 9:45am Tuesday to submit it; 
-    - e.g. if you started your quiz at 8:00am on the next day Wednesday, you will have to submit your quiz before 8:30am.
+  - e.g. if you started your quiz at 8:45am Tuesday, you have until 9:45am Tuesday to submit it; 
+  - e.g. if you started your quiz at 8:00am on the next day Wednesday, you will have to submit your quiz before 8:30am.
 - Content: the content examined in the quizzes are cumulative.
 - The quizzes are open book.
 - Students must safely pass at least 3 out of the 4 quizzes to safely pass the course; "safely pass" here means C- or above.
@@ -101,16 +114,16 @@ Students are free to attend labs and office hours of any section.
 
 |Grade|Percentage|
 |-----|----------|
-|A+   | 95-100   |
-|A    | 90-94    |
-|A-   | 85-89    |
-|B+   | 80-84    |
-|B    | 75-79    |
-|B-   | 70-74    |
-|C+   | 65-69    |
-|C    | 60-64    |
-|C-   | 55-59    |
-|D    | 50-54    |
+|A+ | 95-100 |
+|A  | 90-94  |
+|A- | 85-89  |
+|B+ | 80-84  |
+|B  | 75-79  |
+|B- | 70-74  |
+|C+ | 65-69  |
+|C  | 60-64  |
+|C- | 55-59  |
+|D  | 50-54  |
 
 ## Late policy
 
