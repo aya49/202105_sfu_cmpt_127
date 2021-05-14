@@ -1,5 +1,7 @@
 # Assignment 02: Functions, Arrays, C character strings, arguments to main, and header files
 
+Due: 2021-06-14 11:59pm.
+
 Download the files for this assignment [here](./files.zip) (or from the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments).
 
 **REMEMBER**:

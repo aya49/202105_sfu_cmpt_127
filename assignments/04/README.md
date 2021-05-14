@@ -1,6 +1,6 @@
 # Assignment 04: File I/O
 
-Due:
+Due: 2021-07-12 11:59pm.
 
 Download the files for this assignment [here](./files.zip) (or from the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments).
 

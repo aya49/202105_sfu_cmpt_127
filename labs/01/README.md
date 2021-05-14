@@ -200,11 +200,12 @@ int i = 0; // integer
 char c = '+'; // character
 float pi = 3.14159; // floating point number
 
-printf( "Here: %d %.2f %c \n", i, pi, c);
+printf( "here: %d %.2f %c \n", i, pi, c);
 ```
 Output:
 ```
-here: 0 3.14 + CMPT 127
+here: 0 3.14 + 
+
 ```
 
 `printf` allows you to print all the native variable types. Using `printf` is similar to using the `%` idiom in Python's `print` function. `printf` is less flexible about its input than Python's `print`, but you can do a lot with it. For floating point numbers, you can specifiy the precision at which the number is printed by adding `.2` with `2` being the number of decimal points ot print to `%f` \> `%.2f`.

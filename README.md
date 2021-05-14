@@ -93,6 +93,7 @@ Students are free to attend labs and office hours of any section.
     - e.g. if you started your quiz at 8:45am Tuesday, you have until 9:45am Tuesday to submit it; 
     - e.g. if you started your quiz at 8:00am on the next day Wednesday, you will have to submit your quiz before 8:30am.
 - Content: the content examined in the quizzes are cumulative.
+- The quizzes are open book.
 - Students must safely pass at least 3 out of the 4 quizzes to safely pass the course; "safely pass" here means C- or above.
 
 
