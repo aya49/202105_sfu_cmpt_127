@@ -13,6 +13,8 @@ Welcome to CMPT 127! Make sure you bookmark this page.
 
 # Schedule
 
+Zoom links in the next section.
+
 |Week| Date       | Lab             | Lab content | Assignments: due on Mon | Quizzes |
 |----|------------|-----------------|-------------|-------------------------|---------|
 | 01 | 2021-05-18 | [01](./labs/01) | C syntax, compiinge, variables, conditions/loops | | |
