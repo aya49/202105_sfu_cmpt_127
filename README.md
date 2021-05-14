@@ -5,42 +5,28 @@ Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100
 
 Welcome to CMPT 127! Make sure you bookmark this page.
 # Important links
+- Schedule: [link](#schedule)
 - Lab and office hours: [link](#lab-and-office-hours) (lab hour zoom link: https://sfu.zoom.us/j/7631796740/)
 - Assignment & quiz submission: [Canvas](https://canvas.sfu.ca/courses/62984)
 - Discussion board: [Canvas discussions](https://canvas.sfu.ca/courses/62984/discussion_topics)
 - Peer tutoring session: [schedule](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html)
 
+# Schedule
 
-# Got questions?
-
-Please contact the appropriate people to get timely help (see detailed contact information in [course logistics](#course-logistics)):
-
-| Inquiry                 | Contact                        |
-|-------------------------------------------------------|----------------------------------------------------------------------------|
-| Course content related questions        | [Canvas discussion board](https://canvas.sfu.ca/courses/62984) (fastest!), [peer tutoring sessions](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (highly recommend for 1-on-1 help!), [lab and office hours](#lab-and-office-hours)  |
-| Hardware, SFU network, SFU software related questions | CS helpdesk: email [helpdesk at sfu dot ca]            |
-| Questions about marking, 1-on-1 help with course  | Contact the TA who marked your assignment/quiz (will be announced) via their [email](#course-logistics), [lab and office hours](#lab-and-office-hours) |
-| Course administration issues          | Contact the instructor via [email](#course-logistics) or during [lab and office hours](#lab-and-office-hours)       |
-
-# Course logistics
-
-Contacts (emails on [Canvas](https://canvas.sfu.ca/courses/62984))
-- Instructor: Alice Yue
-- Teaching assistants (TA): Danoosh Chamani, Evgenii Pravda, Wallace Michel Pinto Lira
-
-Email policy
-- **IMPORTANT**: Please go to [Canvas discussions](https://canvas.sfu.ca/courses/62984/discussion_topics) for all course content and logistic related questions!! Your classmate, the instructor, or a teaching assistant might have already answered the question there :).
-- To ensure a quick turn around, include the following information in your email: course (CMPT 127), section (e.g. D100), full name (e.g. Alice Yue), SFU & student ID (e.g. aya43 & 301196607), and the inquiry.
-
-Emails will be answered during work hours only.
-
-| Description             | Link  |
-|-------------------------------------------------|---------|
-| Online lab hours            | [Zoom](https://sfu.zoom.us/j/7631796740/)  |
-| Assignments, Quizzes, and Discussions     | [Canvas](https://canvas.sfu.ca/courses/62984)  |
-| Peer tutoring             | [Link](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) 
-| Announcements will be sent to your @sfu.ca email| mail list [cmpt-127 at sfu.ca] + [Canvas](https://canvas.sfu.ca/courses/62984) |
-
+|Week| Date       | Lab             | Lab content | Assignments: due on Mon | Quizzes |
+|----|------------|-----------------|-------------|-------------------------|---------|
+| 01 | 2021-05-18 | [01](./labs/01) | C syntax, compiinge, variables, conditions/loops | | |
+| 02 | 2021-05-25 | [01](./labs/01) | | | |
+| 03 | 2021-06-01 | [02](./labs/02) | Functions, arrays, C string, stream redirection | [01 (lab 01)](./assignments/01) | |
+| 04 | 2021-06-08 |                 | | | [01 (lab 01)](https://canvas.sfu.ca/courses/62984/quizzes) |
+| 05 | 2021-06-15 | [03](./labs/03) | Multidimensional arrays, stack storage, heap storage (`malloc()`, `free()`) | [02 (lab 02)](./assignments/02) | |
+| 06 | 2021-06-22 |                 | | | [02 (lab 01-03)](https://canvas.sfu.ca/courses/62984/quizzes) |
+| 07 | 2021-06-29 | [04](./labs/04) | `typedef struct` and how to `malloc()` and shallow/deep copy it | | |
+| 08 | 2021-07-06 | [05](./labs/05) | File i/o: XDR | [03 (lab 04)](./assignments/03) | |
+| 09 | 2021-07-13 |                 | [04 (lab 05)](./assignments/04) | [03 (lab 01-05)](https://canvas.sfu.ca/courses/62984/quizzes) |
+| 10 | 2021-07-20 | [06](./labs/06) | `realloc()`, preallocation, unstable remove | | |
+| 11 | 2021-07-27 | [07](./labs/07) | Linked lists | [05 (lab 06)](./assignments/05) | |
+| 12 | 2021-08-03 |                 | | [06 (cheatsheet)](./assignments/06) | [04 (lab 01-07)](https://canvas.sfu.ca/courses/62984/quizzes) |
 
 ## Lab and office hours
 
@@ -65,22 +51,27 @@ Students are free to attend labs and office hours of any section.
 - Lab hours: this is a time for students to do the weekly assignments and ask questions. Everyone will be in the "main room", questions will be asked in chat; if you wish to have a short 1-on-1, we will go into a breakout room.
 - Office hours: this is a time for students to ask questions.
 
-# Schedule
+# Got questions?
 
-|Week| Date       | Lab             | Lab content | Assignments: due on Mon | Quizzes |
-|----|------------|-----------------|-------------|-------------------------|---------|
-| 01 | 2021-05-18 | [01](./labs/01) | C syntax, compiinge, variables, conditions/loops | | |
-| 02 | 2021-05-25 | [01](./labs/01) | | | |
-| 03 | 2021-06-01 | [02](./labs/02) | Functions, arrays, C string, stream redirection | [01 (lab 01)](./assignments/01) | |
-| 04 | 2021-06-08 |                 | | | [01 (lab 01)](https://canvas.sfu.ca/courses/62984/quizzes) |
-| 05 | 2021-06-15 | [03](./labs/03) | Multidimensional arrays, stack storage, heap storage (`malloc()`, `free()`) | [02 (lab 02)](./assignments/02) | |
-| 06 | 2021-06-22 |                 | | | [02 (lab 01-03)](https://canvas.sfu.ca/courses/62984/quizzes) |
-| 07 | 2021-06-29 | [04](./labs/04) | `typedef struct` and how to `malloc()` and shallow/deep copy it | | |
-| 08 | 2021-07-06 | [05](./labs/05) | File i/o: XDR | [03 (lab 04)](./assignments/03) | |
-| 09 | 2021-07-13 |                 | [04 (lab 05)](./assignments/04) | [03 (lab 01-05)](https://canvas.sfu.ca/courses/62984/quizzes) |
-| 10 | 2021-07-20 | [06](./labs/06) | `realloc()`, preallocation, unstable remove | | |
-| 11 | 2021-07-27 | [07](./labs/07) | Linked lists | [05 (lab 06)](./assignments/05) | |
-| 12 | 2021-08-03 |                 | | [06 (cheatsheet)](./assignments/06) | [04 (lab 01-07)](https://canvas.sfu.ca/courses/62984/quizzes) |
+Please contact the appropriate people to get timely help (see detailed contact information in [course logistics](#course-logistics)):
+
+| Inquiry                 | Contact                        |
+|-------------------------------------------------------|----------------------------------------------------------------------------|
+| Course content related questions        | [Canvas discussion board](https://canvas.sfu.ca/courses/62984) (fastest!), [peer tutoring sessions](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (highly recommend for 1-on-1 help!), [lab and office hours](#lab-and-office-hours)  |
+| Hardware, SFU network, SFU software related questions | CS helpdesk: email [helpdesk at sfu dot ca]            |
+| Questions about marking, 1-on-1 help with course  | Contact the TA who marked your assignment/quiz (will be announced) via their [email](#course-logistics), [lab and office hours](#lab-and-office-hours) |
+| Course administration issues          | Contact the instructor via [email](#course-logistics) or during [lab and office hours](#lab-and-office-hours)       |
+| Announcements will be sent to your @sfu.ca email | mail list [cmpt-127 at sfu.ca] + [Canvas discussion board](https://canvas.sfu.ca/courses/62984) |
+
+Contacts (emails on [Canvas](https://canvas.sfu.ca/courses/62984))
+- Instructor: Alice Yue
+- Teaching assistants (TA): Danoosh Chamani, Evgenii Pravda, Wallace Michel Pinto Lira
+
+Email policy
+- **IMPORTANT**: Please go to [Canvas discussions](https://canvas.sfu.ca/courses/62984/discussion_topics) for all course content and logistic related questions!! Your classmate, the instructor, or a teaching assistant might have already answered the question there :).
+- To ensure a quick turn around, include the following information in your email: course (CMPT 127), section (e.g. D100), full name (e.g. Alice Yue), SFU & student ID (e.g. aya43 & 301196607), and the inquiry.
+
+Emails will be answered during work hours only.
 
 # Grading
 
