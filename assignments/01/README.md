@@ -26,7 +26,6 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 
 **REMEMINDER**: 
 - write comments!! Test and debug your code!
-- Fix the error in code in `t1.c` by adding the missing exclamation point.
 - Compile and run it, and verify that it now produces the correct output (expected result).
 - Now your program meets the requirements and you are ready to submit it.
 
@@ -53,20 +52,32 @@ $ make t2
 $ ./t2
 ```
 
+**EXAMPLE**: sample inputs and outputs:
+
+```
+Give me two integers: 2 5
+Here is the sum of your two integers: 7
+```
+
+```
+Give me two integers: 0 6
+Here is the sum of your two integers: 6
+```
+
 ## Task 03
 
 **REQUIREMENT**: you will write a program to file `t3.c`. 
-- INPUT: `t2.c` should read any number of floating point values from standard input, separated by a space. 
+- INPUT: `t3.c` should read any number of floating point values from standard input, separated by a new line, and stop upon the user entering `0` (the program should discard the `0` and not use it in the output). 
      - Assume that the input is guaranteed to be well-formed and contain at least one valid floating point value.
      - If no floating point value can be parsed (i.e. a blank line was read) there should be no output. To put it another way: blank lines should be ignored.
-- OUTPUT: After the user finishes inputting values, `t2.c` will print the product of all the inputs (hint: use the multiplication operator `*`).
+- OUTPUT: After the user finishes inputting values, `t3.c` will print the product of all the inputs (hint: use the multiplication operator `*`).
      - The printed output should only have 2 decimal places.
 
 
 **REMINDER**:
 - write comments!! Test and debug your code!
-- Your program should handle negative numbers (which are also valid integers).
-- Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter integers; after each integer, press enter: "`, and let the user know what the output is by printing a message, e.g. `"Here is the sum: "`.
+- Your program should handle negative numbers.
+- Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter numbers separated by an enter: "`, and let the user know what the output is by printing a message, e.g. `"Here is the product: "`.
 
 **TESTING**: you can test your program by running:
 ```
@@ -76,12 +87,12 @@ $ ./t3
 
 **Example**: sample input and output:
 ```
-Provide floats separated by enter (line):
-3.2
--1.6
-9.5
+Provide floats separated by a space: 
+3.2 
+-1.6 
+9.5 
 0
-The product of your values is: 0
+The product of your values is: -48.64 
 
 ```
 
@@ -106,24 +117,31 @@ You'll need to use a fixed-width font in your terminal for these shapes to look 
 ```
 Enter an integer:
 6
+Here's your result:
      #
     ##
    #.#
   #..#
  #...#
 ######
-
+```
+```
+Enter an integer:
 2
+Here's your result:
  #
 ##
-
+```
+```
+Enter an integer:
 1
+Here's your result:
 #
 ```
 
 **REMINDER**:
 - write comments!! Test and debug your code!
-- Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter an integer: "`, and let the user know what the output is by printing a message, e.g. `"Here is the result: "`.
+- Prompt the user for what they should enter by printing messages with `printf`, e.g. `"Enter an integer: "`, and let the user know what the output is by printing a message, e.g. `"Here's your result: "`.
 
 # Submission
 
