@@ -1,7 +1,5 @@
 # Lab 01: Introduction to C
 
-C is used in operating systems; conditions compare the same data type!
-
 Download lab files [here](./files.zip).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
