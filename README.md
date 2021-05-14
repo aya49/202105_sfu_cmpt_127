@@ -5,15 +5,14 @@ Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100
 
 Welcome to CMPT 127! Make sure you bookmark this page.
 # Important links
-- Schedule: [link](#schedule)
-- Lab and office hours: [link](#lab-and-office-hours) (lab hour zoom link: https://sfu.zoom.us/j/7631796740/)
-- Assignment & quiz submission: [Canvas](https://canvas.sfu.ca/courses/62984)
-- Discussion board: [Canvas discussions](https://canvas.sfu.ca/courses/62984/discussion_topics)
-- Peer tutoring session: [schedule](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html)
+- [Lab and office hours](#lab-and-office-hours)
+- Assignment & quiz @ [Canvas](https://canvas.sfu.ca/courses/62984)
+- [Canvas discussion board](https://canvas.sfu.ca/courses/62984/discussion_topics)
+- Peer tutoring session [schedule](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (starts 2021-05-24)
 
 # Schedule
 
-Zoom links in the next section.
+Lab hour Zoom link: https://sfu.zoom.us/j/7631796740/
 
 |Week| Date       | Lab             | Lab content | Assignments: due on Mon | Quizzes |
 |----|------------|-----------------|-------------|-------------------------|---------|
@@ -57,23 +56,22 @@ Students are free to attend labs and office hours of any section.
 
 Please contact the appropriate people to get timely help (see detailed contact information in [course logistics](#course-logistics)):
 
-| Inquiry                 | Contact                        |
-|-------------------------------------------------------|----------------------------------------------------------------------------|
-| Course content related questions        | [Canvas discussion board](https://canvas.sfu.ca/courses/62984) (fastest!), [peer tutoring sessions](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (highly recommend for 1-on-1 help!), [lab and office hours](#lab-and-office-hours)  |
-| Hardware, SFU network, SFU software related questions | CS helpdesk: email [helpdesk at sfu dot ca]            |
-| Questions about marking, 1-on-1 help with course  | Contact the TA who marked your assignment/quiz (will be announced) via their [email](#course-logistics), [lab and office hours](#lab-and-office-hours) |
-| Course administration issues          | Contact the instructor via [email](#course-logistics) or during [lab and office hours](#lab-and-office-hours)       |
-| Announcements will be sent to your @sfu.ca email | mail list [cmpt-127 at sfu.ca] + [Canvas discussion board](https://canvas.sfu.ca/courses/62984) |
+| Inquiry                                              | Contact |
+|------------------------------------------------------|---------|
+| Course content related questions                     | [Canvas discussion board](https://canvas.sfu.ca/courses/62984), [peer tutoring sessions](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (highly recommend ^^), [lab and office hours](#lab-and-office-hours) |
+| Questions about marking, 1-on-1 help with course     | Contact the TA who marked your assignment/quiz (will be announced) via their [email](#course-logistics), [lab and office hours](#lab-and-office-hours) |
+| Course administration issues                         | Contact the instructor via during [lab and office hours](#lab-and-office-hours) or via email |
+| SFU hardware, network, andsoftware related questions | CS helpdesk: email [helpdesk at sfu dot ca] |
+| Announcements will be sent to your @sfu.ca email     | mail list [cmpt-127 at sfu.ca] + [Canvas discussion board](https://canvas.sfu.ca/courses/62984) |
 
 Contacts (emails on [Canvas](https://canvas.sfu.ca/courses/62984))
 - Instructor: Alice Yue
 - Teaching assistants (TA): Danoosh Chamani, Evgenii Pravda, Wallace Michel Pinto Lira
 
-Email policy
+Email policy:
 - **IMPORTANT**: Please go to [Canvas discussions](https://canvas.sfu.ca/courses/62984/discussion_topics) for all course content and logistic related questions!! Your classmate, the instructor, or a teaching assistant might have already answered the question there :).
 - To ensure a quick turn around, include the following information in your email: course (CMPT 127), section (e.g. D100), full name (e.g. Alice Yue), SFU & student ID (e.g. aya43 & 301196607), and the inquiry.
-
-Emails will be answered during work hours only.
+- Emails will be answered during work hours only.
 
 # Grading
 
@@ -81,14 +79,14 @@ Emails will be answered during work hours only.
 
 ```
   60% = 6 assignments x 10% each
-+ 40% = 4 quizzes   x 10% each
++ 40% = 4 quizzes     x 10% each
   ----
 = 100%
 ```
 
 **Assignments**: 
-- Due date: assignments are due 11:59pm on the designated Monday.
-- Content: each assignment contains several tasks which will correspond to the lab practice questions done in class.
+- Due date: assignments are due 11:59pm on the designated Monday; they will open on the dat the associated lab starts.
+- Content: each assignment corresponds to a lab and contains several tasks which will correspond to the lab practice questions done in class.
 
 **Quizzes**: 
 - Due date: quizzes will be open at 8:30am on the desingated Tuesday and is due within 24 hours at 8:30am the next day Wednesday; 
@@ -96,8 +94,8 @@ Emails will be answered during work hours only.
   - You have to start the quiz on Canvas on or after 8:30am on the Tuesday and submit the quiz. 
   - After you start the quiz, you have 1 continuous hour to do the quiz but the quiz must be submitted before 8:30am on the Wednesday. 
   - In other words, you have 1 continuous hour to do the quiz, but you can do choose when to do that 1 hour anytime within the given 24 hours.
-  - e.g. if you started your quiz at 8:45am Tuesday, you have until 9:45am Tuesday to submit it; 
-  - e.g. if you started your quiz at 8:00am on the next day Wednesday, you will have to submit your quiz before 8:30am.
+    - e.g. if you started your quiz at 8:45am Tuesday, you have until 9:45am Tuesday to submit it; 
+    - e.g. if you started your quiz at 8:00am on the next day Wednesday, you will have to submit your quiz before 8:30am.
 - Content: the content examined in the quizzes are cumulative.
 - The quizzes are open book.
 - Students must safely pass at least 3 out of the 4 quizzes to safely pass the course; "safely pass" here means C- or above.
@@ -105,18 +103,18 @@ Emails will be answered during work hours only.
 
 ## Grading system
 
-|Grade|Percentage|
-|-----|----------|
-|A+ | 95-100 |
-|A  | 90-94  |
-|A- | 85-89  |
-|B+ | 80-84  |
-|B  | 75-79  |
-|B- | 70-74  |
-|C+ | 65-69  |
-|C  | 60-64  |
-|C- | 55-59  |
-|D  | 50-54  |
+| Grade | Percentage |
+|----|--------|
+| A+ | 95-100 |
+| A  | 90-94  |
+| A- | 85-89  |
+| B+ | 80-84  |
+| B  | 75-79  |
+| B- | 70-74  |
+| C+ | 65-69  |
+| C  | 60-64  |
+| C- | 55-59  |
+| D  | 50-54  |
 
 ## Late policy
 
