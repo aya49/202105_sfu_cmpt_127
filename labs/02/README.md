@@ -105,7 +105,7 @@ As it is now, the compiler will attempt to compile all files into one program...
 $ gcc p1funcs.c p1.c -o p1.o -Wall
 ```
 
-(the `-Wall` compiler option enables "all warnings" i.e. the compiler will warn you about potential problems)
+(the `-Wall` compiler option enables "all warnings" i.e. the compiler will warn you about potential problems; options like `-Wall` are added automatically in your Makefile!)
 
 For this to work, you will need to do the following:
 

@@ -16,7 +16,7 @@ It is often useful to collect multiple data items together into a single logical
 
 ```C
 struct {
-    /*variable/array declarations*/;
+    /*variable declarations*/;
 } /*struct_name*/;
 ```
 

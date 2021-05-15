@@ -90,7 +90,7 @@ char* get_name(void) {
 
     // reads at most 1023 chars from stdin, up to first newline, 
     // EOF or error.
-    if(fgets(line, 1024, stdin) == 0) {// we ALWAYS check for I/O errors
+    if (fgets(line, 1024, stdin) == 0) {// we ALWAYS check for I/O errors
         perror("failed to read a name");
         exit(1); 
     }
@@ -104,7 +104,7 @@ int main(void) {
     char* name = get_name(); // recall type* var initiates a pointer!
     printf("Your name is %s\n", name);
     return 0;
-}	             
+}
 ```
 
 The image below shows a sketch of the function call stack for a run of this program up to and including the first line in `main`. 
@@ -173,7 +173,9 @@ To overcome these shortcomings, we allocate memory explicitly, using `malloc()` 
 
 About `malloc()`: 
 - INPUT: the argument to `malloc()` is a size in bytes, so we almost always use `sizeof(/*some_type*/)` as a multiplier. 
-- OUTPUT: `malloc()` returns a special type, a `void*` (pronounced "void pointer"). to a memory allocation that will persist until explicitly de-allocated by a call to `free()` regardless of the state of the stack.
+- OUTPUT: `malloc()` returns a special type, a `void*` (pronounced "void pointer") to a memory allocation that will persist until explicitly de-allocated by a call to `free()` regardless of the state of the stack.
+
+NOTE: most modern operating systems will recover all the allocated memory space after a program exits --- HOWEVER, it is good practice (and for the rare case, a necessary practice) to `free()` all the space you have `malloc()`-ed to the heap in your program so you know exactly when you take up how much space.
 
 By default C allows a void pointer to be assigned to any other kind of pointer without having to be converted explicity. All pointers are just memory addresses, after all.
 
