@@ -16,18 +16,18 @@ Lab hour Zoom link: https://sfu.zoom.us/j/7631796740/
 
 | Wk | Date     | Lab: Tue        | Lab content | Assignments: due Mon | Quizzes: Tue |
 |------|----------|-----------------|-------------|----------------------|--------------|
-| 01 | 2021-05-17 | [01](./labs/01) | C, variables, conditions/loops | | |
-| 02 | 2021-05-24 | [01](./labs/01) | | | |
-| 03 | 2021-05-31 | [02](./labs/02) | Functions, arrays, stream redirection | [01 (lab 01)](./assignments/01) | |
-| 04 | 2021-06-07 |                 | | | [01 (lab 01)](https://canvas.sfu.ca/courses/62984/quizzes) |
-| 05 | 2021-06-14 | [03](./labs/03) | More arrays, stack/heap storage | [02 (lab 02)](./assignments/02) | |
-| 06 | 2021-06-21 |                 | | | [02 (lab 01-03)](https://canvas.sfu.ca/courses/62984/quizzes) |
-| 07 | 2021-06-28 | [04](./labs/04) | `typedef struct`, shallow/deep copy | | |
-| 08 | 2021-07-05 | [05](./labs/05) | File i/o: XDR | [03 (lab 04)](./assignments/03) | |
-| 09 | 2021-07-12 |                 | | [04 (lab 05)](./assignments/04) | [03 (lab 01-05)](https://canvas.sfu.ca/courses/62984/quizzes) |
-| 10 | 2021-07-19 | [06](./labs/06) | `realloc()`, unstable remove | | |
-| 11 | 2021-07-26 | [07](./labs/07) | Linked lists | [05 (lab 06)](./assignments/05) | |
-| 12 | 2021-08-02 |                 | | [06 (lab 01-07)](./assignments/06) | [04 (lab 01-07)](https://canvas.sfu.ca/courses/62984/quizzes) |
+| 01 | 2021-05-18 | [01](./labs/01) | C, variables, conditions/loops | | |
+| 02 | 2021-05-25 | [01](./labs/01) | | | |
+| 03 | 2021-06-01 | [02](./labs/02) | Functions, arrays, stream redirection | [01 (lab 01)](./assignments/01) | |
+| 04 | 2021-06-08 |                 | | | [01 (lab 01)](https://canvas.sfu.ca/courses/62984/quizzes) |
+| 05 | 2021-06-15 | [03](./labs/03) | More arrays, stack/heap storage | [02 (lab 02)](./assignments/02) | |
+| 06 | 2021-06-22 |                 | | | [02 (lab 01-03)](https://canvas.sfu.ca/courses/62984/quizzes) |
+| 07 | 2021-06-29 | [04](./labs/04) | `typedef struct`, shallow/deep copy | | |
+| 08 | 2021-07-06 | [05](./labs/05) | File i/o: XDR | [03 (lab 04)](./assignments/03) | |
+| 09 | 2021-07-13 |                 | | [04 (lab 05)](./assignments/04) | [03 (lab 01-05)](https://canvas.sfu.ca/courses/62984/quizzes) |
+| 10 | 2021-07-20 | [06](./labs/06) | `realloc()`, unstable remove | | |
+| 11 | 2021-07-27 | [07](./labs/07) | Linked lists | [05 (lab 06)](./assignments/05) | |
+| 12 | 2021-08-03 |                 | | [06 (lab 01-07)](./assignments/06) | [04 (lab 01-07)](https://canvas.sfu.ca/courses/62984/quizzes) |
 
 ## Lab and office hours
 
