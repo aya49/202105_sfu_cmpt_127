@@ -14,7 +14,7 @@ Welcome to CMPT 127! Make sure you bookmark this page.
 
 Lab hour Zoom link: https://sfu.zoom.us/j/7631796740/
 
-|Week| Assignments: due on Mon    | Quizzes: 1 hour | Lab: Tue  | Contents  |
+|Week| Assignments: due Mon    | Quizzes: 1 hour | Lab: Tue  | Contents  |
 |----|----------------------------|-------------|-------------------------|---------|
 | 01 | | | 2021-05-18 [01](./labs/01) | C syntax, compile, variables, conditions/loops |
 | 02 | | | 2021-05-25 [01](./labs/01) | |
