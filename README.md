@@ -14,7 +14,7 @@ Welcome to CMPT 127! Make sure you bookmark this page.
 
 Lab hour Zoom link: https://sfu.zoom.us/j/7631796740/
 
-| Week | Date     | Lab: Tue        | Lab content | Assignments: due Mon | Quizzes: Tue |
+| Wk | Date     | Lab: Tue        | Lab content | Assignments: due Mon | Quizzes: Tue |
 |------|----------|-----------------|-------------|----------------------|--------------|
 | 01 | 2021-05-17 | [01](./labs/01) | C, variables, conditions/loops | | |
 | 02 | 2021-05-24 | [01](./labs/01) | | | |
