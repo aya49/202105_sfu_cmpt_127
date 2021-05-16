@@ -41,16 +41,25 @@ One more addition using the same mechanism. Notice that the tail element always 
 
 ![](./img/list4.png)
 
+To remove the head element, you just have to do the opposite of insertion: free the head pointer, and redirect the head pointer to the second element. Assuming that your list is called `list`, see an example below for removing an element:
+
+```C
+element_t* curr = list->head;
+element_t* next = curr->next;
+free(curr);
+list->head = next;
+```
+
 
 **double-linked list** is a common variant of the regular linked list in which every element contains a previous-pointer in addition to the next-pointer. Double-linked lists can be traversed forwards and backwards, at the cost of a little more storage space per element.
 
-### Linked lists vs arrays (vs `std::vector` in C++): runtime
+### Arrays vs linked lists: runtime
 
 | Task                             | Arrays                | Double-/linked lists |
 |----------------------------------|-----------------------|----------------------|
-| Insert an element                | O(n) (preallocaiton: Θ(1)) | **O(1)** |
-| Access an element based on index | **O(1)**              | O(n) |
-| Remove an element                | O(1) (O(n) if stable) | O(1) |
+| Insert an element                | O(n) (preallocaiton: Θ(1)) | **O(1)**        |
+| Access an element based on index | **O(1)**              | O(n)                 |
+| Remove an element                | O(1) (O(n) if stable) | O(1)                 |
 
 The `std::vector` in C++ is the same as an array except it can automatically change in size i.e. it has implemented preallocation Θ(1) for you so you don't have to (see [push-back](https://www.cplusplus.com/vector::push_back)). But remember, there are also other implementations of vectors in C++, so don't assume thaat preallocation is the default implementation.
 

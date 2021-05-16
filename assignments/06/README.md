@@ -3,7 +3,7 @@
 Due: 2021-08-02 11:59pm.
 
 **REMEMBER**:
-- Reference the [labs](../../labs), their practice problems, and the [assignments](../) for content!
+- Reference ALL the [labs](../../labs), their practice problems, and the [assignments](../) for content!
 - Assignments are to be done individually.
 - You may submit/resubmit the assignment as many times as you need before the designated due date (please don't do it too often though).
 - The internet is your friend :) Search for documentation online and make sure to understand why things work the way they do!

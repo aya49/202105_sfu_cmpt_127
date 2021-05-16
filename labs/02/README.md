@@ -686,6 +686,20 @@ int main() {
 
 Solution? I'm sure you can do this one on your own ( \*u\*)b
 
+DID YOU KNOW: there will be times when you need to store words you read in as C strings (perhaps in your assignment). Here is a piece of code that allows you to do that, do you understand what it is doing?
+
+```C
+int i = 0;
+char* str[100];
+char c;
+while ((c = getchar()) ch != EOF ) {
+    if (i < nchars) {
+        str[i++] = c;
+    }
+}
+str[i] = '\0';
+```
+
 ## Practice 04.2
 
 **REQUIREMENT**: you will write a program to file `p4.2.c`. 
