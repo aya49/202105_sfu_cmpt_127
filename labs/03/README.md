@@ -51,6 +51,8 @@ Let's take a look at their memory layout.
 
 You can see that there is some overhead in using the 2+D arrays; for example, in the 2D array case, we require more memory space and a two-step lookup to find the integer of interest.
 
+For this course, we will be using row-oriented 2D arrays where the two index brackets `[][]` represents the row and the column respectively i.e. if we imaging our 2D array as a matrix, each element in the array of arrays points to an array that represents a row.
+
 In practice, arrays of more than 3 dimensions are rarely used.
 
 

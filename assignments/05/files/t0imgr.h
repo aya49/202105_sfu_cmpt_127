@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 
 /* Structure type that encapsulates our image: 2D array.
  * the rows represent the indices of the main array,

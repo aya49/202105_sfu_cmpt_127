@@ -212,7 +212,7 @@ here: 0 3.14 +
 
 `sizeof(int)` or the number of bytes an integer requires in memory varies with machine architecture. Therefore, it is often useful to specify a standard set of sizes for your variables exactly. This way, your code will use predictable variable sizes no matter which machine you run it on.
 
-The header file `stdint.h` defines a set of sized integer variable types for you:
+The header file `stdint.h` (add `#include <stdint.h>` to use this!) defines a set of sized integer variable types for you:
 
 ```
  int32_t     (32 bit signed int)

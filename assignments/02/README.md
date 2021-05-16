@@ -84,6 +84,33 @@ arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
 
 Recall that in lab 02 practice 03, you made a similar program; take caution not to confuse the requirements of the practice problem and this task!
 
+**HINT**:
+- use `strcmp()`, look it up!
+- to keep track of the words you are reading from standard input, initialize a C string with, e.g. 200, characters plus an integer keeping track of how long your C string currently is; for example:
+
+```C
+int i = 0; // keeps track of the length of the str + 1
+char* str[200]; // assuming a word doesn't exceed 200 characters
+char last = getchar();
+while (last != EOF) {
+    char current = getchar();
+
+    if (!isalpha(last) && isalpha(current)) {
+        str[i] = '\0';
+        for (j in /*ref_strings*/) {
+            if (strcmp(ref, str) == 0) {
+                /* add 1 to counter*/
+                break;
+            }
+        }
+        
+    } else {
+        str[i++] = current;
+    }
+    last = current;
+}
+```
+
 **TESTING**: you can test your program by running:
 ```
 $ make t3
