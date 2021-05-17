@@ -3,7 +3,7 @@
 Download lab files [here](./files.zip).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
-- Course outline ([slides]())
+- Course outline ([slides](https://docs.google.com/presentation/d/19MI7qZW5vdthKojCezivhSF3kx9NnZdOIc2e-Kr7E5Y/edit?usp=sharing))
 - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1KT8REjNgl8Ng2z17IM3yyHHDU9G6oIqsWAWc5F0vgzo/edit?usp=sharing)): introduction to C; C syntax, workflow, and compiling
 - [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/190OipgViJdy5Lr_GlBDHxRkRSY8iP_xixe3slwoyx58/edit?usp=sharing)): variables
 - [Guide 03](#guide-2) ([slides](https://docs.google.com/presentation/d/1dBXA2Lsim2lFisvjnfkTylcQ2rqIEl9g1VZ0JA44pRY/edit?usp=sharing)): conditions and loops
