@@ -120,7 +120,9 @@ Email policy:
 
 ## Late policy
 
-Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 50%, assignments won't be graded after 24 hours of the due date. This is to ensure that all the assignments would be marked and given back to you in a timely manner.
+Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 90%, if the assignment is submitted within 48 hours after the due date, students can get a maximum of 80%, etc. i.e. you will get a maximum of \[100% - (days late)x10%\] on the assignment!
+
+If you submit your assignment late though, we may not be able to mark it in a timely manner :(.
 
 Quizzes cannot be submitted late (i.e. after the 24 hour period from 8:30am Tuesday to 8:30am on the Wednesday), there is a 24 hour leeway so use that wisely ;).
 
