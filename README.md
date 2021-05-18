@@ -120,7 +120,7 @@ Email policy:
 
 ## Late policy
 
-Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 90%, if the assignment is submitted within 48 hours after the due date, students can get a maximum of 80%, etc. i.e. you will get a maximum of \[100% - (days late)x10%\] on the assignment!
+Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 90%, if the assignment is submitted within 48 hours after the due date, students can get a maximum of 80%, etc. i.e. you will get a maximum of \[100% - (days late)x10%\] for a minimum of 0% on the assignment!
 
 If you submit your assignment late though, we may not be able to mark it in a timely manner :(.
 
