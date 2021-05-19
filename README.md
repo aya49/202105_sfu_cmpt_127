@@ -52,7 +52,7 @@ All lab hours (and Alice's office hours) are on Zoom: https://sfu.zoom.us/j/7631
 | D300 | Tue 04:30pm - 05:20pm | Lab hour          | Danoosh         | [link](https://sfu.zoom.us/j/7631796740/) |
 |||||
 |  | Mon 03:30pm - 04:30pm | Office hour       | Wallace      | [link](https://sfu.zoom.us/j/62961637757?pwd=aXU4YkJoUkZOVmllYTNlNlp3aE1WZz09) |
-|  | Wed 11:00am - 12:00pm | office hour | Evgenii | [link](https://sfu.zoom.us/j/61652361522?pwd=MHBqbnQyM1ZKRnREd3NNOVI1QzZMZz09) |
+|  | Wed 11:00am - 12:00pm | Office hour | Evgenii | [link](https://sfu.zoom.us/j/61652361522?pwd=MHBqbnQyM1ZKRnREd3NNOVI1QzZMZz09) |
 |  | Fri 02:30pm - 03:30pm | Office hour          | Danoosh         | [link](https://sfu.zoom.us/j/63444435161?pwd=VnAvNFlicWhwOU9sMVVJY0tiL3lkUT09) |
 
 Students are free to attend labs and office hours of any section.
