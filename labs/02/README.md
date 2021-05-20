@@ -5,8 +5,7 @@ Download lab files [here](./files.zip).
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1e5x62e1PLZV4hSXGmtKIsqWdjSpwY1aWi8lX-5QL4AI/edit?usp=sharing)): Function definitions, declarations, and header files
 - [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/1myUYQWCfbC6jIHIoT9gjfbKLfEuthosidxkpz3ajc74/edit?usp=sharing)): Arrays
-- [Guide 03](#guide-2) ([slides]()): Program arguments and C strings
-- [Guide 04](#guide-3) ([slides]()): Stream redirection
+- [Guide 03](#guide-2); [Guide 04](#guide-3) ([slides](https://docs.google.com/presentation/d/1hxiZTsV0BkjZplmKtpoH7uvxjHwy7ufDymR-hCQUyyc/edit?usp=sharing)): Program arguments and C strings; stream redirection
 
 
 Try "Practice" problems on repl.it; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
@@ -225,7 +224,7 @@ int i2 = i_array[100]; // ERROR! the 101st element doesn't exist in a 100-elemen
 Array vs memory:
 - In memory: arrays are allocated as contiguous chunk of memory, of size `array-length * sizeof(type)` bytes.
 - Like variable, the memory allocated to the array is automatically freed when the array variable goes out of scope i.e. if you initialize an array in a function, after exiting the function, your array will be automatically freed from memory.
-- **IMPORTANT**: The variable of an array does **NOT** have a separate pointer, the variable name itself is a pointer that points to the first byte of the first element in the array i.e. the name of an array can be used like a pointer, so the following are true:
+- **IMPORTANT**: The variable of an array does **NOT** have a separate pointer, the variable name itself is passed as a pointer that points to the first byte of the first element in the array so the following are true:
 
 ```C
 int i_array[100];
@@ -299,7 +298,7 @@ int main(void) {
 ```
 
 Some notes:
-- The two versions of the `array_max` function passes a pointer and the name of the array respectively. To the compiler, these are the same because the name of your array IS a pointer.
+- The two versions of the `array_max` function passes a pointer and the name of the array respectively. To the compiler, these are the same because the name of your array is passed as a pointer.
 - You should almost always use the array-bracket syntax version (`int arr[]`) since it tells the human reader that an array is expected.
 - We had to pass the length of the array into both versions. C arrays do not know how long they are.
 
@@ -501,7 +500,7 @@ Since main's arguments are stored as character strings, another step is needed t
 
 // takes two arguments: an integer followed by a float
 int main(int argc, char* argv[]) {
-    if(argc != 3) { // argv[0] is the program name
+    if (argc != 3) { // argv[0] is the program name
         printf("I wanted 2 arguments\n");
     }
 
@@ -581,16 +580,17 @@ You will find it tedious to type lots of text into your program's stdin. The she
 
 **stream redirection** allows you to route the stdin and stdout for a program away from the console and into a file. 
 
-**stream redirection**; stdout: If we have a program called `p4hello` (`gcc p4hello.c -o p4hello`) that prints "Hello world!\n" on stdout, we can redirect this output to `p1.txt`:
+**stream redirection**; stdout: If we have a program called `p4hello` that prints "Hello world!\n" on stdout, we can redirect this output to `p4.txt`:
 
 ```
-$ ./p4hello > p1.txt
+$ gcc p4hello.c -o p4hello
+$ ./p4hello > p4.txt
 ```
 
 To confirm this, inspect the contents of the file with `cat`:
 
 ```
-$ cat t1.txt
+$ cat p4.txt
 Hello world!
 ```
 
