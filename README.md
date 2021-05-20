@@ -14,8 +14,8 @@ Welcome to CMPT 127! Make sure you bookmark this page.
 
 Lab hour Zoom link: https://sfu.zoom.us/j/7631796740/
 
-| Wk | Date     | Lab        | Lab content | Assignments: due Mon | Quizzes: Tue |
-|------|----------|-----------------|-------------|----------------------|--------------|
+| Wk | Date       | Lab             | Lab content | Assignments: due Mon | Quizzes: Tue |
+|----|------------|-----------------|-------------|----------------------|--------------|
 | 01 | 2021-05-18 | [01](./labs/01) | C, variables, conditions/loops | | |
 | 02 | 2021-05-25 | [01](./labs/01) | | | |
 | 03 | 2021-06-01 | [02](./labs/02) | Functions, arrays, stream redirection | [01 (lab 01)](./assignments/01) | |
@@ -36,17 +36,24 @@ All lab hours (and Alice's office hours) are on Zoom: https://sfu.zoom.us/j/7631
 | Section | Time/duration      | Type              | Who        | Zoom link |
 |---------|--------------------|-------------------|------------|-----------|
 | D100 | Tue 08:30am - 09:20am | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
-| D100 | Tue 09:30am - 10:20am | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
-| D100 | Tue 10:30am - 11:20am | Lab hour          | TA         | [link](https://sfu.zoom.us/j/7631796740/) |
+| D100 | Tue 09:30am - 10:20am | Lab / office hour | Evgenii / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
+| D100 | Tue 10:30am - 11:20am | Lab hour          | Evgenii         | [link](https://sfu.zoom.us/j/7631796740/) |
 |||||
 | D200 | Tue 11:30am - 12:20pm | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
-| D200 | Tue 12:30pm - 01:20pm | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
-| D200 | Tue 01:30pm - 02:20pm | Lab hour          | TA         | [link](https://sfu.zoom.us/j/7631796740/) |
+| D200 | Tue 12:30pm - 01:20pm | Lab / office hour | Wallace / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
+| D200 | Tue 01:30pm - 02:20pm | Lab hour          | Wallace         | [link](https://sfu.zoom.us/j/7631796740/) |
 |||||
 | D300 | Tue 02:30pm - 03:20pm | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
-| D300 | Tue 03:30pm - 04:20pm | Lab / office hour | TA / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
-| D300 | Tue 04:30pm - 05:20pm | Lab hour          | TA         | [link](https://sfu.zoom.us/j/7631796740/) |
-
+| D300 | Tue 03:30pm - 04:20pm | Lab / office hour | Danoosh / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
+| D300 | Tue 04:30pm - 05:20pm | Lab hour          | Danoosh         | [link](https://sfu.zoom.us/j/7631796740/) |
+|||||
+| D300 | Tue 02:30pm - 03:20pm | Lab lecture       | Alice      | [link](https://sfu.zoom.us/j/7631796740/) |
+| D300 | Tue 03:30pm - 04:20pm | Lab / office hour | Danoosh / Alice | [link](https://sfu.zoom.us/j/7631796740/) |
+| D300 | Tue 04:30pm - 05:20pm | Lab hour          | Danoosh         | [link](https://sfu.zoom.us/j/7631796740/) |
+|||||
+|  | Mon 03:30pm - 04:30pm | Office hour       | Wallace      | [link](https://sfu.zoom.us/j/62961637757?pwd=aXU4YkJoUkZOVmllYTNlNlp3aE1WZz09) |
+|  | Wed 11:00am - 12:00pm | Office hour | Evgenii | [link](https://sfu.zoom.us/j/61652361522?pwd=MHBqbnQyM1ZKRnREd3NNOVI1QzZMZz09) |
+|  | Fri 02:30pm - 03:30pm | Office hour          | Danoosh         | [link](https://sfu.zoom.us/j/63444435161?pwd=VnAvNFlicWhwOU9sMVVJY0tiL3lkUT09) |
 
 Students are free to attend labs and office hours of any section.
 - Lab hours: this is a time for students to do the weekly assignments and ask questions. Everyone will be in the "main room", questions will be asked in chat; if you wish to have a short 1-on-1, we will go into a breakout room.
@@ -65,7 +72,7 @@ Please contact the appropriate people to get timely help (see detailed contact i
 | SFU hardware, network, andsoftware related questions | CS helpdesk: email [helpdesk at sfu dot ca] |
 | Announcements will be sent to your @sfu.ca email     | mail list [cmpt-127 at sfu.ca] + [Canvas discussion board](https://canvas.sfu.ca/courses/62984) |
 
-Contacts (emails on [Canvas](https://canvas.sfu.ca/courses/62984))
+Contacts (meet them on [Canvas](https://canvas.sfu.ca/courses/62984/pages/teaching-team)!)
 - Instructor: Alice Yue
 - Teaching assistants (TA): Danoosh Chamani, Evgenii Pravda, Wallace Michel Pinto Lira
 - Instructional support group (ISG): Hazra Imran (ISG manager), Glory Quan, John Edgar
@@ -120,7 +127,9 @@ Email policy:
 
 ## Late policy
 
-Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 50%, assignments won't be graded after 24 hours of the due date. This is to ensure that all the assignments would be marked and given back to you in a timely manner.
+Assignments will all be due on Monday 11:59pm. If the assignment is submitted within 24 hours after the due date, students can get a maximum of 90%, if the assignment is submitted within 48 hours after the due date, students can get a maximum of 80%, etc. i.e. you will get a maximum of \[100% - (days late)x10%\] for a minimum of 0% on the assignment!
+
+If you submit your assignment late though, we may not be able to mark it in a timely manner :(.
 
 Quizzes cannot be submitted late (i.e. after the 24 hour period from 8:30am Tuesday to 8:30am on the Wednesday), there is a 24 hour leeway so use that wisely ;).
 
