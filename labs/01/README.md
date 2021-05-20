@@ -2,6 +2,8 @@
 
 Download lab files [here](./files.zip).
 
+Lecture recording(s): [2021-05-18](https://youtu.be/v5OjFrzpQT8)
+
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - Course outline ([slides](https://docs.google.com/presentation/d/19MI7qZW5vdthKojCezivhSF3kx9NnZdOIc2e-Kr7E5Y/edit?usp=sharing))
 - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1zwLTZjPFa8Ff4Eq3Qk9nTL72QQyCl22rLGIVo0gGdvs/edit?usp=sharing)): introduction to C; C syntax, workflow, and compiling
