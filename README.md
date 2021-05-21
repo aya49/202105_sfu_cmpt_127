@@ -3,7 +3,8 @@
 Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100), [D200](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d200), [D300](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d300)
 # Announcements
 
-Welcome to CMPT 127! Make sure you bookmark this page.
+Lecture recordings are posted to the top of the associated lab page! (i.e. the link to the recording of the first lecture is posted at https://github.com/aya49/202105_sfu_cmpt_127/tree/main/labs/01)
+
 # Important links
 - [Lab and office hours](#lab-and-office-hours)
 - Assignment & quiz @ [Canvas](https://canvas.sfu.ca/courses/62984)
