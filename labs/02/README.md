@@ -8,7 +8,7 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 - [Guide 03](#guide-2); [Guide 04](#guide-3) ([slides](https://docs.google.com/presentation/d/1hxiZTsV0BkjZplmKtpoH7uvxjHwy7ufDymR-hCQUyyc/edit?usp=sharing)): Program arguments and C strings; stream redirection
 
 
-Try "Practice" problems on repl.it; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
+Try "Practice" problems; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
 - [Practice 01](#practice-01)
 - [Practice 02](#practice-021)
 - [Practice 03](#practice-03)

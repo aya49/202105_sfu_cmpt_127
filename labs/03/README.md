@@ -5,7 +5,7 @@ Download lab files [here](./files.zip).
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - [Guide 01](#guide) ([slides]()): dynamic memory allocation
 
-Try "Practice" problems on repl.it; these will NOT be graded.
+Try "Practice" problems; these will NOT be graded.
 - [Practice 01](#practice-01-fixing-the-bug-option-1)
 
 
