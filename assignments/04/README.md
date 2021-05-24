@@ -1,4 +1,4 @@
-# Assignment 04: File I/O
+# Assignment 04: file I/O
 
 Due: 2021-07-12 11:59pm.
 

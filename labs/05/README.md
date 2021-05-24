@@ -1,4 +1,4 @@
-# Lab 05: File I/O (input/output)
+# Lab 05: file I/O (input/output)
 
 Download lab files [here](./files.zip).
 

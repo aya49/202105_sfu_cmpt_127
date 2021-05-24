@@ -1,4 +1,4 @@
-# Assignment 02: Functions, Arrays, C character strings, arguments to main, and header files
+# Assignment 02: functions, arrays, C character strings, arguments to main, and header files
 
 Due: 2021-06-14 11:59pm.
 

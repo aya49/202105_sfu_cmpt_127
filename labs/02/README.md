@@ -1,4 +1,4 @@
-# Lab 02: Functions, Arrays, C character strings, arguments to main, and header files
+# Lab 02: functions, arrays, C character strings, arguments to main, and header files
 
 Download lab files [here](./files.zip).
 

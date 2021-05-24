@@ -1,4 +1,4 @@
-# Assignment 05: Memory allocation
+# Assignment 05: memory allocation
 
 Due: 2021-07-26 11:59pm.
 

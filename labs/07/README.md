@@ -1,4 +1,4 @@
-# Lab 07: Testing and linked lists
+# Lab 07: testing and linked lists
 
 Download lab files [here](./files.zip).
 

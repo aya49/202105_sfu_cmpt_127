@@ -1,4 +1,4 @@
-# Assignment 03: 2D arrays, dynamic memory allocation, and structures
+# Assignment 03: dynamic memory allocation, and structures
 
 Due: 2021-07-05 11:59pm.
 

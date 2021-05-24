@@ -1,4 +1,4 @@
-# Assignment 06: Make your own C cheatsheet
+# Assignment 06: make your own C cheatsheet
 
 Due: 2021-08-02 11:59pm.
 

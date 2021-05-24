@@ -1,4 +1,4 @@
-# Lab 01: Introduction to C
+# Lab 01: introduction to C
 
 Download lab files [here](./files.zip).
 
@@ -630,7 +630,7 @@ Let's look at how C and C++ read/write to standard output.
 | Example          |`printf("This is the number 1: %d", i);`| `std::cout << "This is the number 1: " << i;` |
 | | | |
 | Function/keyword | `scanf`                                | `std::cin`       |
-| Example          | `scanf("%d%", &i);`                    | `std::cin >> i;  |
+| Example          | `scanf("%d%", &i);`                    | `std::cin >> i;`  |
 | | | |
 | Comments         | Data types are explicit.               | Handles all data types without needing to state them. Always use this in C++. |
 
