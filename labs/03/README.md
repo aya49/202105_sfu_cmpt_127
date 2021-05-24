@@ -26,13 +26,13 @@ int D[20][5][10][4]; // 4D array of 20*5*10*4=4000 ints
 
 // sets every element in A
 for (int a=0; a<4; a++) {
-     A[a] = 99;
+    A[a] = 99;
 }
 
 // sets every element in B
 for (int y=0; y<4; y++) { // we assume the first array is rows (y axis)
     for (int x=0; x<4; x++) { // columns (x axis)
-         B[y][x] = 99;
+        B[y][x] = 99;
     }
 }
 
