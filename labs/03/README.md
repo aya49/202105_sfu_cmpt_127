@@ -3,7 +3,7 @@
 Download lab files [here](./files.zip).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
-- [Guide 01](#guide) ([slides]()): dynamic memory allocation
+- [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1NLU_3KoaHFyOsP5TVGmMZI94JkNZPehPRTbaukc67Ao/edit?usp=sharing)): 2D arrays and dynamic memory allocation
 
 Try "Practice" problems; these will NOT be graded.
 - [Practice 01](#practice-01-fixing-the-bug-option-1)
@@ -309,14 +309,13 @@ Stack vs heap
 - Stack storage
     - Pro: everything is automatic! space for automatic variables are automatically allocated and freed up after reaching the end of a code block!
     - Con: Being automatic also means that automatic variables are freed when you go out of scope, meaning it can't be accessed once we go out of scope.
-    - Con: requires you to know how large of an array your function call will need at most, and it requires you to allocate that much memory in advance.
     - Con: there is limited space on a stack, generally a few MB, but anything more than a few KB should not go here; this is to avoid the stack from growing into the heap and corrupting both segments (this is called "smashing the stack").
     - Con: you don't know when a stack runs out of space, hence you can't cope with it gracefully or quit the program.
 - Heap storage
     - Pro: there is lots of space here!
     - Pro: If the heap is out of space, `malloc()` tells you so and you can either cope with it gracefully or quit your program.
-    - Pro: Unlike things on a stack, things stored in memory allocated on the heap is available to any function that knows its address, regardless of the current state of the stack.
-    - Con: you have to manually allocate things on the heap using `malloc()`.
+    - Pro: Unlike things on a stack, things stored in the heap is available to any function that knows its address, regardless of the current state of the stack.
+    - Con: you have to manually allocate and free things on the heap using `malloc()` and `free()` respectively.
 
 
 # Credit

@@ -1,5 +1,3 @@
-int A[3];
-int B[3][4];
-
-int C[3][4][5];
-int D[3][5][10][4];
+&img.pixels == (void*)&img + 0 // `(void*)` signifies "pointer of unspecified type"
+&img.cols == (void*)&img + sizeof(uint8_t*)
+&img.rows == (void*)&img + sizeof(uint8_t*) + sizeof(unsigned int)
