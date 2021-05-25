@@ -328,7 +328,7 @@ int main(void) {
     float k = 2.0;
     
     // ADD COMMENT HERE
-    printf("give me an integer: \n");
+    printf("give me an number: \n");
     scanf("%f", &i);
     
     // ADD COMMENT HERE
