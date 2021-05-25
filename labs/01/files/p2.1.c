@@ -12,7 +12,7 @@ int main(void) {
     printf("Enter an integer: ");
 
     scanf("%d", &i); // scanf(<"type of input">, <the memory address, i.e. pointer, where scanf should put the input value into>)
-    printf("Your integer was: %d\\n", i);
+    printf("Your integer was: %d\n", i);
 
     return 0;
 }
