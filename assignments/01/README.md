@@ -38,7 +38,7 @@ $ ./t1
 ## Task 02
 
 **REQUIREMENT**: you will write a program to file `t2.c`. 
-- INPUT: `t2.c` should `scanf` two integer values from standard input separated by a space, 
+- INPUT: `t2.c` should `scanf` two integer values from standard input separated by a line, 
 - OUTPUT: `t2.c` should `printf` the sum of these two integers.
 
 **REMINDER**:
@@ -87,7 +87,7 @@ $ ./t3
 
 **Example**: sample input and output:
 ```
-Provide floats separated by a space: 
+Provide floats separated by a line: 
 3.2 
 -1.6 
 9.5 
