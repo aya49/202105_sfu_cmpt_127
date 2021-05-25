@@ -438,7 +438,7 @@ while (/*condition*/) {
 
 For example this code
 
-```
+```C
 int i = 0;
 
 while (i < 6) { 
