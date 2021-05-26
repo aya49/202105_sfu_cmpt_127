@@ -2,9 +2,12 @@
 
 Download lab files [here](./files.zip).
 
-Lecture recording(s): [2021-05-18](https://youtu.be/LRRYe0YWVdk)
+Review "Guide"s, accompanying slides, and lectures.
 
-Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
+| 2021-05-18 | 2021-05-25 |
+|----|----|
+| <a href="https://youtu.be/LRRYe0YWVdk"><img src="./img/v20210518.png" width="200"/></a> | <a href="https://youtu.be/5dCUjdNFygc"><img src="./img/v20210525.png" width="200"/></a>  |
+
 - Course outline ([slides](https://docs.google.com/presentation/d/19MI7qZW5vdthKojCezivhSF3kx9NnZdOIc2e-Kr7E5Y/edit?usp=sharing))
 - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1zwLTZjPFa8Ff4Eq3Qk9nTL72QQyCl22rLGIVo0gGdvs/edit?usp=sharing)): introduction to C; C syntax, workflow, and compiling
 - [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/190OipgViJdy5Lr_GlBDHxRkRSY8iP_xixe3slwoyx58/edit?usp=sharing)): variables
