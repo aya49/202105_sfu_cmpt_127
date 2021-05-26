@@ -3,9 +3,9 @@
 Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100), [D200](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d200), [D300](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d300)
 # Announcements
 
-2021-05-25: the Makefiles for [lab 01](./labs/01) and [assignment 01](./assignments/01) have been updated and uploaded to their respective pages; please RE-DOWNLOAD the files or copy the contents over to your local files! 
+**2021-05-25**: the Makefiles for [lab 01](./labs/01) and [assignment 01](./assignments/01) have been updated and uploaded to their respective pages; please RE-DOWNLOAD the files or copy the contents over to your local files! 
 
-2021-05-20: Lecture recordings are posted to the top of the associated lab page! (i.e. the link to the recording of the first lecture is posted at https://github.com/aya49/202105_sfu_cmpt_127/tree/main/labs/01)
+**2021-05-20**: Lecture recordings are posted to the top of the associated lab page! (i.e. the link to the recording of the first lecture is posted at https://github.com/aya49/202105_sfu_cmpt_127/tree/main/labs/01)
 
 # Important links
 - [Lab and office hours](#lab-and-office-hours)
