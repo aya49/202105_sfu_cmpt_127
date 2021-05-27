@@ -580,7 +580,17 @@ $ make p4
 $ ./p4
 ```
 
-**HINT**: did you know that if `scanf`is looking for a series of integers separated by a space as input? You can directly input `1 3 5 6`, press enter, and `scanf` will help you loop through each integer. Try it out below!
+**HINT**: 
+- `scanf` is a function with the following input, behaviour, and output:
+    - **input** arguments: a data type (e.g. `"%d"` integer) and a pointer to a space in memory that holds the corresponding data type (e.g. `"&j"`).
+    - **behaviour**: it looks for a series of values (e.g. integers) separated by a white space (e.g. space, tab, line) as user input from the standard input e.g. you can directly input `1 3 5 6`, press enter, and `scanf` will help you loop through each integer.
+    - **output** return: 
+        - we may have said in class that `scanf` does not have any output returns; pardon me, that was a bit extreme, to rephrase it, `scanf` DOES have an output return, but it this return is not the user input as we would normally think. It directly puts the user intput into the space in memory pointed to by our pointer. 
+        - `scanf`'s output return is an integer that specifies how many user inputs it has successfully converted into our desired data type and saved into the space pointed to by our pointer. 
+        - In our example below, we process integer user inputs one at a time; so say `while` `scanf` has processed one user input successfully `== 1`, perform one iteration of our loop. After that iteration, we re-run `scanf` and ask the same question again.
+- If you put a statement into a loop condition `()`, that statement will still run as intended. For example, `scanf` runs below just like it would run outside of the loop condition in our class examples. The only benefit of putting a statement into `()` is that its output can be used as or as a part of the `while` condition statement.
+
+Try it out below!
 
 ```C
 #include <stdio.h>
@@ -593,7 +603,7 @@ int main(void) {
     printf("Enter integers separated by space and press enter:\n");
     
     // while the user does not end i.e. ctrl-d; print loop variable
-    while (scanf("%d", &j) == 1) { // remember, 1 means true, 0 means false! True here meaning that scanf is still reading user inputs :)
+    while (scanf("%d", &j) == 1) {
         printf("%d", j);
     }
     return 0;
