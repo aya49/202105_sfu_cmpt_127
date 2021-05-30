@@ -136,10 +136,10 @@ int main(int argc, char* argv[]) {
 
     // fill with random points
     for (size_t i=0; i<len; i++) {
-            wpts[i].x = rand() % 100;
-            wpts[i].y = rand() % 100;
-            wpts[i].z = rand() % 100;
-        }
+        wpts[i].x = rand() % 100;
+        wpts[i].y = rand() % 100;
+        wpts[i].z = rand() % 100;
+    }
 
     // write the struct to a file (error checks ommitted)
     FILE* f1 = fopen(argv[2], "w"); 
