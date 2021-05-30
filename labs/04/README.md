@@ -3,7 +3,7 @@
 Download lab files [here](./files.zip).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
-- [Guide 01](#guide) ([slides]()): composite data type `struct`, how to use it with `typedef` and `malloc()`, and deep copy-ing `struct`s.
+- [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1LWARzaCfCVkOSEEjEIEdZeLQ_alEE5w0hUSKfTr7qu4/edit?usp=sharing)): composite data type `struct`, how to use it with `typedef` and `malloc()`, and deep copy-ing `struct`s.
 
 Try "Practice" problems; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
 - [Practice 01-05](#practice-01-05)
