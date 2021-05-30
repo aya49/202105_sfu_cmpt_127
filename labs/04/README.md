@@ -118,7 +118,7 @@ There is one more bit of syntax to learn: how to access the fields of a structur
 1. `*`: we can "look inside" and get the value at where the pointer is point to using the normal '*' syntax (also known as 'dereferencing' a pointer), followed by the dot syntax to access the field (note: the breackets are necessary, since the `.` operator has precedence over the `*` operator --- meaning C evaluates `.`s before `*`s, kind of like in math where multiplication is evaluated before additions):
 
 ```C
-Cunsigned int width = (*imgptr).cols;
+Unsigned int width = (*imgptr).cols;
 ```
 
 2. `->`: we can use the **indirection arrow** syntax to "look through" the pointer (arguably neater and is preferred):
