@@ -24,7 +24,7 @@ Lectures will be recorded; the links to the recordings will be posted at the top
 | 01 | 2021-05-18 | [01](labs/01) | [Course outline, introduction to C](https://youtu.be/LRRYe0YWVdk)| | |
 | 02 | 2021-05-25 | [01](labs/01) | [Variables, conditions, and loops](https://youtu.be/5dCUjdNFygc) | | |
 | 03 | 2021-06-01 | [02](labs/02) | Functions, arrays, stream redirection | [01](assignments/01) (lab 01) | |
-| 04 | 2021-06-08 | | | | [01](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01) |
+| 04 | 2021-06-08 | [02](labs/02) | If we don't finish lab 02 | | [01](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01) |
 | 05 | 2021-06-15 | [03](labs/03) | More arrays, stack/heap storage | [02](assignments/02) (lab 02) | |
 | 06 | 2021-06-22 | | | | [02](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-03) |
 | 07 | 2021-06-29 | [04](labs/04) | `typedef struct`, shallow/deep copy | | |
