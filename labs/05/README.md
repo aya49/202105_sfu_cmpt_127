@@ -19,7 +19,7 @@ Recall: we talked about stream redirection, where we redirected text on the stan
 
 ### External data representation (XDR) using files
 
-**Memory**: data structores stored on a programs' working memory of stack and heap are temporary; they only exists while the program is running. To store data between runs, we use the **filesystem**. The filesystem is a service provided by the operating system (OS) that provides **files** to your programs. A file is like a named array of bytes which, once created, will exist until deleted, even when the computer is turned off.
+**Memory**: data structures stored on a programs' working memory of stack and heap are temporary; they only exists while the program is running. To store data between runs, we use the **filesystem**. The filesystem is a service provided by the operating system (OS) that provides **files** to your programs. A file is like a named array of bytes which, once created, will exist until deleted, even when the computer is turned off.
 
 **External Data Representation (XDR)**: XDR is the general problem of storing data outside a running program.
 
