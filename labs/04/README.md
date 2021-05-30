@@ -124,7 +124,7 @@ Unsigned int width = (*imgptr).cols;
 2. `->`: we can use the **indirection arrow** syntax to "look through" the pointer (arguably neater and is preferred):
 
 ```C
-Cunsigned int width = imgptr->cols;
+Unsigned int width = imgptr->cols;
 ```
 
 
