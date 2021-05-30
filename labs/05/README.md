@@ -154,7 +154,7 @@ int main(int argc, char* argv[]) {
     fread(rpts, sizeof(point3d_t), len, f2);
     fclose(f2);
 
-    if (memcmp(wpts, rpts, len * sizeof(rpts[0])) != 0) {
+    if (memcmp(wpts, rpts, len * sizeof(rpts[0])) != 0) { // look up memcmp ;)
         puts("Arrays differ");
     } else {
         puts("Arrays match");
