@@ -23,7 +23,7 @@ Recall: we talked about stream redirection, where we redirected text on the stan
 
 **External Data Representation (XDR)**: XDR is the general problem of storing data outside a running program.
 
-**Files** are a common special case of XDR. Other examples of XDR occur when using databases or networking. You are familiar with files: text files like C sourcecode; sound files like MP3s; executable files like your compiled programs. 
+**Files** are a common special case of XDR. Other examples of XDR occur when using databases or networking. You are familiar with files: text files like C source code; sound files like MP3s; executable files like your compiled programs. 
 - At the **filesystem abstraction** level, these files are all the same thing: just a contiguous sequence of bytes. 
 - The **interpretation** of these bytes is up to your program.
 
