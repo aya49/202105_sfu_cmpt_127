@@ -1,4 +1,4 @@
-# Lab 04: structures, composite Data Types
+# Lab 04: structures, composite data types
 
 Download lab files [here](./files.zip).
 
