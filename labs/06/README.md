@@ -1,4 +1,4 @@
-# Lab 05: testing memory allocation performance
+# Lab 06: testing memory allocation performance
 
 Download lab files [here](./files.zip).
 
