@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
 
-typedef struct point {
+typedef struct {
   double x, y, z;
 } point_t;
 
