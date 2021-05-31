@@ -20,7 +20,7 @@ Try "Practice" problems; these will NOT be graded. Note that the solutions given
 The supplied header file `point_array.h` defines the following structures to represent points in 3D space, and an array to contain them, similar to examples you have seen before:
 
 ```C
-typedef struct point {
+typedef struct {
   double x, y, z;    // a point location in 3D space
 } point_t;
 
