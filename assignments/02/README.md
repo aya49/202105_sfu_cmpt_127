@@ -97,7 +97,7 @@ Example runs:
 
 ```
 $ ./t3 "I have a really bad feeling about this" "had fling"
-true
+false
 $ ./t3 "To be or not to be" "to not be"
 true
 $ ./t3 "To be or not to be" "be to not"
