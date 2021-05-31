@@ -6,7 +6,7 @@ Today we are going to look at different strategies for resizing arrays (e.g. ins
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 - [Guide 01](#guide) ([slides]()): reallocation (inserting elements into arrays in O(n)) and unstable remove (removing elements from arrays in O(1))
-- [Guide 02](#guide-1) ([slides]()): Preallocation (inserting elements into arrays in Θ(1))
+- [Guide 02](#guide-1) ([slides]()): preallocation (inserting elements into arrays in Θ(1))
 
 Try "Practice" problems; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
 - [Practice 01](#practice-01)
