@@ -5,8 +5,9 @@ Download lab files [here](./files.zip).
 Today we are going to look at different strategies for resizing arrays (e.g. inserting elements, deleting elements). Recall: amortized analysis Θ() (average performance) and big O analysis O() (worst case performance).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
-- [Guide 01](#guide) ([slides]()): reallocation (inserting elements into arrays in O(n)) and unstable remove (removing elements from arrays in O(1))
-- [Guide 02](#guide-1) ([slides]()): preallocation (inserting elements into arrays in Θ(1))
+- [Guide 01](#guide), [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/1h2ZKlLFISqMK2WoaFSi9KLHdV4N2omUZAMuPTEdDz_A/edit?usp=sharing)): 
+    - reallocation (inserting elements into arrays in O(n)) and unstable remove (removing elements from arrays in O(1))
+    - preallocation (inserting elements into arrays in Θ(1))
 
 Try "Practice" problems; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
 - [Practice 01](#practice-01)
