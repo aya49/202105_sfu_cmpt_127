@@ -529,7 +529,7 @@ Recall that you can name your executable file with `-o` e.g. `gcc p3.c -o p3.o` 
 
 This is an [important problem in computer science](http://en.wikipedia.org/wiki/Substring), with wide applications from searching the internet, to understanding text, to finding DNA matches. It's easy to state and easy to code. It gets interesting when the strings are long and you want to do it very efficiently. For now you can be happy with a simple solution to practice managing `argv` array and char strings.
 
-**HINT**: you can find useful string functions like `strlen()` (length of a C string) in the header you imported, `#include <stdio.h>`, by looking up its [manual/documentation](https://www.tutorialspoint.com/c_standard_library/stdio_h.htm) online!
+**HINT**: you can find useful string functions like `strlen()` (length of a C string) in the header you included, `#include <stdio.h>`, by looking up its [manual/documentation](https://www.tutorialspoint.com/c_standard_library/stdio_h.htm) online!
 
 **TESTING**: you can test your program by running:
 ```
@@ -563,7 +563,7 @@ Notice that the strings do not have quote characters around them when delivered 
 
 Click [here](./files/solution/p3.c) for the solution code.
 
-Note: `#import <string.h>` contains function `strstr()` that solves the substring problem. The algorithm implemented in `strstr()` is not the most efficient, there are algorithms with better asymptotic runtimes; can you find more efficient implementations of a solution to the substring problem? 
+Note: `#include <string.h>` contains function `strstr()` that solves the substring problem. The algorithm implemented in `strstr()` is not the most efficient, there are algorithms with better asymptotic runtimes; can you find more efficient implementations of a solution to the substring problem? 
 
 You will learn the terms **algorithm** and **asymptotic runtime** in CMPT 125, come back to this after you've mastered them and read the note again ;)
 
@@ -692,7 +692,7 @@ DID YOU KNOW: there will be times when you need to store words you read in as C 
 int i = 0;
 char* str[100];
 char c;
-while ((c = getchar()) ch != EOF ) {
+while ((c = getchar()) c != EOF ) {
     if (i < nchars) {
         str[i++] = c;
     }

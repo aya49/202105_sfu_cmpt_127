@@ -2,11 +2,11 @@
 # -Werror treats warnings as if they were errors (stopping compilation)
 # -Wfatal-errors causes compilation to stop after the first error
 # -g adds debugging information to the file
-CFLAGS = -Wextra -Werror -Wfatal-errors -g
+CFLAGS := -Wextra -Werror -Wfatal-errors -g
 
 
-t1: t1.c
-	gcc $(CFLAGS) -o $@ t1.c
+t1: t1.c t1funcs.c
+	gcc $(CFLAGS) -o $@ t1.c t1funcs.c
 
 t2: t2.c t2mirror.c
 	gcc $(CFLAGS) -o $@ t2.c t2mirror.c

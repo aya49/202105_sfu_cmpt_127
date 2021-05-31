@@ -78,38 +78,12 @@ arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
 ## Task 03
 
 **REQUIREMENT**: you will write a program to file `t3.c`.
-- INPUT: `t3.c` takes two text strings as arguments.
+- INPUT: your `t3.c` program takes two text strings as arguments.
     - You can assume your strings are of length at least 1.
+    - You can assume that the second argument `len` is correct.
 - OUTPUT: `t3.c` prints "true" followed by a newline if the second string is entirely **in the same order but not necessarily continuously** contained within the first, or "false" followed by a newline otherwise.
 
 Recall that in lab 02 practice 03, you made a similar program; take caution not to confuse the requirements of the practice problem and this task!
-
-**HINT**:
-- use `strcmp()`, look it up!
-- to keep track of the words you are reading from standard input, initialize a C string with, e.g. 200, characters plus an integer keeping track of how long your C string currently is; for example:
-
-```C
-int i = 0; // keeps track of the length of the str + 1
-char* str[200]; // assuming a word doesn't exceed 200 characters
-char last = getchar();
-while (last != EOF) {
-    char current = getchar();
-
-    if (!isalpha(last) && isalpha(current)) {
-        str[i] = '\0';
-        for (j in /*ref_strings*/) {
-            if (strcmp(ref, str) == 0) {
-                /* add 1 to counter*/
-                break;
-            }
-        }
-        
-    } else {
-        str[i++] = current;
-    }
-    last = current;
-}
-```
 
 **TESTING**: you can test your program by running:
 ```
@@ -154,16 +128,44 @@ $ make t4
 $ ./t4 as to < t4prince.txt
 ```
 
+
+**HINT**:
+- use `strcmp()`, look it up!
+- to keep track of the words you are reading from standard input, initialize a C string with, e.g. 200, characters plus an integer keeping track of how long your C string currently is; for example:
+
+```C
+int i = 0; // keeps track of the length of the str + 1
+char* str[200]; // assuming a word doesn't exceed 200 characters
+char last = getchar();
+while (last != EOF) {
+    char current = getchar();
+
+    if (!isalpha(last) && isalpha(current)) {
+        str[i] = '\0';
+        for (j in /*ref_strings*/) {
+            if (strcmp(ref, str) == 0) {
+                /* add 1 to counter*/
+                break;
+            }
+        }
+        
+    } else {
+        str[i++] = current;
+    }
+    last = current;
+}
+```
+
 **EXAMPLE**
 
 Example outputs include:
 
 ```
-$ ./t4.o r in < p4beatles.txt
+$ ./t4.o r in < t4beatles.txt
 r : 2
 in : 1
 
-$ ./t4.o go ge < p4beatles.txt
+$ ./t4.o go ge < t4beatles.txt
 go : 1
 ge : 2
 ```
@@ -192,7 +194,7 @@ Upload `a.zip` to the appropriate assignment submission page on the [CMPT 127 D1
 | All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas). | 1 |
 |      | Source code is readable (i.e. student name and program description at the top of program files, variable names are self-descriptive and consistent, comments describing what code does is available where appropriate, indentatations are consistent). | 0.5 |
 | 01   | `t1funcs.h` contains the function declarations for the functions in `t1funcs.c`. | 0.5 |
-|      | `t1.c` contains an import statement for `t1funcs.h`. | 0.5 | 
+|      | `t1.c` contains an include statement for `t1funcs.h`. | 0.5 | 
 | 02   | Program works as intended (i.e. outputs false and true for the first and second half of the tests in `t2.c` respectively). | 2 |
 | 03   | Program works as intended.                    | 2      |
 | 04   | Program works as intended.                    | 2      |
