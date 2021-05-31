@@ -98,10 +98,10 @@ Example runs:
 ```
 $ ./t3 "I have a really bad feeling about this" "had fling"
 true
-$ ./t3 "To be or not to be" "to not be"
+$ ./t3 "To be or not to be" "To not be"
 true
 $ ./t3 "To be or not to be" "be to not"
-true
+false
 $ ./t3 "I am the walrus" "I am the walrus"
 true
 $ ./t3 "the walrus" "I am the walrus"
