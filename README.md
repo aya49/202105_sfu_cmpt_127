@@ -19,20 +19,20 @@ Lab hour Zoom link: https://sfu.zoom.us/j/7631796740/
 
 Lectures will be recorded; the links to the recordings will be posted at the top of the associated lab pages.
 
-| Wk | Date       | Lab           | Lab lecture recording | Assignments: due Mon | Quizzes: Tue |
-|----|------------|---------------|-----------------------|-------------|----------------------|
-| 01 | 2021-05-18 | [01](labs/01) | [Course outline, introduction to C](https://youtu.be/LRRYe0YWVdk)| | |
-| 02 | 2021-05-25 | [01](labs/01) | [Variables, conditions, and loops](https://youtu.be/5dCUjdNFygc) | | |
-| 03 | 2021-06-01 | [02](labs/02) | Functions, arrays, stream redirection | [01](assignments/01) (lab 01) | |
-| 04 | 2021-06-08 | [02](labs/02) | If we don't finish lab 02 | | [01](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01) |
-| 05 | 2021-06-15 | [03](labs/03) | More arrays, stack/heap storage | [02](assignments/02) (lab 02) | |
-| 06 | 2021-06-22 | | | | [02](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-03) |
-| 07 | 2021-06-29 | [04](labs/04) | `typedef struct`, shallow/deep copy | | |
-| 08 | 2021-07-06 | [05](labs/05) | File i/o: XDR | [03](assignments/03) (lab 04) | |
-| 09 | 2021-07-13 | | | [04](assignments/04) (lab 05) | [03](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-05) |
-| 10 | 2021-07-20 | [06](labs/06) | `realloc()`, unstable remove | | |
-| 11 | 2021-07-27 | [07](labs/07) | Linked lists | [05](assignments/05) (lab 06) | |
-| 12 | 2021-08-03 | | | [06](assignments/06) (lab 01-07) | [04](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-07) |
+| Wk | Date       | Lab          | Lab lecture recording | Assignments: due Mon | Quizzes: Tue |
+|----|------------|--------------|-----------------------|----------------------|--------------|
+| 1 | 2021-05-18 | [01](labs/01) | [Course outline, introduction to C](https://youtu.be/LRRYe0YWVdk) | | |
+| 2 | 2021-05-25 | [01](labs/01) | [Variables, conditions, and loops](https://youtu.be/5dCUjdNFygc) | | |
+| 3 | 2021-06-01 | [02](labs/02) | Functions, arrays | [01](assignments/01) (lab 01) | |
+| 4 | 2021-06-08 | | | | [01](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01) |
+| 5 | 2021-06-15 | [2](labs/02) | Program arguments, C string, stream redirection | | |
+| 6 | 2021-06-22 | [3](labs/03) | More arrays, stack/heap storage | [02](assignments/02) (lab 02) | |
+| 7 | 2021-06-29 | | | | [02](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-03) |
+| 8 | 2021-07-06 | [4](labs/04) | typedef struct, file i/o: XDR | | |
+| 9 | 2021-07-13 | [6](labs/06) | realloc(), unstable remove | [](assignments/03)[03](assignments/03) (lab 04) | |
+|10 | 2021-07-20 | | | [04](assignments/04) (lab 05) | [03](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-05) |
+|11 | 2021-07-27 | [7](labs/07) | Linked lists | [05](assignments/05) (lab 06) | |
+|12 | 2021-08-03 | | | [06](assignments/06) (lab 01-07) | [04](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-07) |
 
 ## Lab and office hours
 
