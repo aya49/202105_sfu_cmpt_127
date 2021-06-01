@@ -102,7 +102,7 @@ Running the resulting programs, you will see that every one passes the test in `
     - Preferably, print an explanatory error message on stdout describing the problem you discovered.
     - You may produce (a sensible amount) of other text output on stdout or stderr. Try to make the text output helpful for yourself or an instructor/TA/peer-tutor helping you.
 
-Try it yourself first; then verify your solution with your solution to the next practice problem :).
+Try it yourself first; then verify your solution with the solution to the next practice problem :).
 
 
 ## Practice 02
@@ -117,7 +117,7 @@ $ make p2list
 $ ./p2list
 ```
 
-Try it yourself first; then verify your solutions [here](./files/solution/p1list.c).
+Try it yourself first; then verify your solutions [here](./files/solution/p2list.c).
 
 # Credit
 
