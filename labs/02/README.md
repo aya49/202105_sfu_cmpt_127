@@ -94,7 +94,7 @@ Other important notes on functions:
 
 **Header files**
 
-When you start writing lots of functions, it is good practice to break up your bode into multiple source files.
+When you start writing lots of functions, it is good practice to break up your code into multiple source files.
 
 For example, in your working directory you have the source files `p1funcs.c`, containing useful function definitions, and `p1.c`, containing your `main()` program. To use all of these files together, you would have to give your compiler multiple source files. 
 
@@ -108,7 +108,7 @@ $ gcc p1funcs.c p1.c -o p1.o -Wall
 
 For this to work, you will need to do the following:
 
-1. Write a header file for `p1funcs.c`, `p1funcs.h`.
+1. Write a header file for `p1funcs.c`, called `p1funcs.h`.
     - **Header files** are files that contain the function declarations of your the functions you defined in the separate file(s).
     - A **function declaration** tells the compiler the name of the function, its arguments and return type by writing a function declaration. A function declaration is the same as its definition, but with the function body replaced by a semicolon. For example:
 ```C
@@ -522,7 +522,7 @@ For this practice, we'll go over how to implement a "substring" function in C.
 
 **REQUIREMENT**: you will write a program to file `p3.c`.
 - INPUT: `p3.c` takes two text strings as program arguments.
-    - You can ssume the two strings contain at least one character.
+    - You can assume the two strings contain at least one character.
 - OUTPUT: prints "true" followed by a newline if the second string is entirely contained within the first, or "false" followed by a newline otherwise.
 
 Recall that you can name your executable file with `-o` e.g. `gcc p3.c -o p3.o` and run it by `./p3.o`.

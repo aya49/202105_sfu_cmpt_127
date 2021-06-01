@@ -8,13 +8,13 @@ CFLAGS := -Wextra -Werror -Wfatal-errors -g
 p1: p1.c p1funcs.c
 	gcc $(CFLAGS) -o $@  p1.c p1funcs.c
 
-p2: 2.c p2identical.c
+p2: p2.c p2identical.c
 	gcc $(CFLAGS) -o $@ p2.c p2identical.c
 
 p3: p3.c
 	gcc $(CFLAGS) -o $@ p3.c
 
-p4: p4.2.c
+p4.2: p4.2.c
 	gcc $(CFLAGS) -o $@ p4.2.c
 
 clean:
