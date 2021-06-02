@@ -786,6 +786,8 @@ The three main differences are at the top:
 
 As a rule of thumb, pointers are great for when you need a null pointer (i.e. you want C to throw an error if it uses this variable with a null pointer) or if you want to do pointer arithmetics (e.g. `*(1+ia)`). For other situations, if you have access to C++, use a reference.
 
+Did you know: you can pass a pointer as a reference or a pointer i.e. you just treat your pointer as an integer variable, and pass the reference or pointer to that integer variable. We usually pass a reference for a pointer instead of a pointer for a pointer because pointers can change and if the two pointers overlap, uh oh.
+
 # Credit
 
 Last updated 2021-05 by Alice Yue. 
