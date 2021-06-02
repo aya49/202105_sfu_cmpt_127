@@ -752,7 +752,7 @@ z 0.0002
 Try it yourself first; then verify your solutions [here](./files/solution/p4.2.c).
 
 
-# Bonus material: C vs C++
+# Bonus material: C vs C++ (C strings vs `std::string`)
 
 C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analagous to each other in C and C++.
 
@@ -767,6 +767,24 @@ s += " World!";
 ```
 
 Always use `std::string` if you have C++ handy, they are a lot safer and easier to use, especially for the novices.
+
+# Bonus material: C vs C++ (pointer vs reference)
+
+You can think of a reference as a constant pointer (i.e. once initialized to a value/object, you cannot change the reference so that it points to something else). Let's look at their differences.
+
+The three main differences are at the top:
+
+| | pointer | reference |
+|-|---------|-----------|
+| can it store null? | yes | no |
+| how do you declare it? | `int\* r = &i;` (declaration is not necessary, pointers get atuomatically created for `int i;`, just do `&i\`) | `int& r = i;` (initialization/assignment is mandatory at declaration; not to be confused with pointer `&i`) |
+| can you re-assign another address to it after it is initialized to an address? | yes  | no |
+| | |
+| what is it? | the address in memory where a value is or can be stored | same as pointer |
+| where is it in memory? | stored exactly like an integer variable value on the stack and has its own memory address | has the same memory address as its value BUT also takes up additional space on the stack |
+| syntax to access its struct fields (see lab 04) | `->` | `.` |
+
+As a rule of thumb, pointers are great for when you need a null pointer (i.e. you want C to throw an error if it uses this variable with a null pointer) or if you want to do pointer arithmetics (e.g. `*(1+ia)`). For other situations, if you have access to C++, use a reference.
 
 # Credit
 
