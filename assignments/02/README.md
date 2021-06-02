@@ -29,7 +29,7 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 ```
 $ make t1
 $ ./t1
-The product of our numbers is 12.
+The sum of our numbers is 8.
 The quotient of our numbers is 3.
 ```
 
@@ -198,8 +198,8 @@ Upload `a.zip` to the appropriate assignment submission page on the [CMPT 127 D1
 | 01   | `t1funcs.h` contains the function declarations for the functions in `t1funcs.c`. | 0.5 |
 |      | `t1.c` contains an include statement for `t1funcs.h`. | 0.5 | 
 | 02   | Program works as intended (i.e. outputs false and true for the first and second half of the tests in `t2.c` respectively). | 2 |
-| 03   | Program works as intended.                    | 2      |
+| 03   | Program works as intended.                    | 2.5    |
 | 04   | Program works as intended.                    | 2      |
 |      | Program properly uses `scanf` to take as input, two C strings and a text file. | 0.5 |
-|      | Program properly initializes and uses arrays appropriately. | 0.5 |
+|      | Program properly initializes and uses arrays. | 0.5 |
 | Total|                                               | 10     |
