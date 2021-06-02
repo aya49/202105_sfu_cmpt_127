@@ -3,6 +3,13 @@
 Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100), [D200](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d200), [D300](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d300)
 # Announcements
 
+**2021-06-01**: Quiz 01 next Tuesday 2021-06-08 @ Canvas!
+- Duration: the quiz will be 1 continuous hour.
+- You can choose to do this 1 continuous hour whenever in the designated 24 hour period next Tuesday 08:30am to the next day next Wednesday 08:30am.
+- Content: the quiz will cover lab 01 and assignment 01.
+- Format: multiple answers and coding questions (make sure you leave ENOUGH TIME for the coding question, it can be long).
+
+
 **2021-05-25**: the Makefiles for [lab 01](./labs/01) and [assignment 01](./assignments/01) have been updated and uploaded to their respective pages; please RE-DOWNLOAD the files or copy the contents over to your local files! 
 
 **2021-05-20**: Lecture recordings are posted in the schedule below and to the top of the associated lab page!
@@ -22,8 +29,8 @@ Lectures will be recorded; the links to the recordings will be posted at the top
 | Wk | Date       | Lab          | Lab lecture recording | Assignments: due Mon | Quizzes: Tue |
 |----|------------|--------------|-----------------------|----------------------|--------------|
 | 1 | 2021-05-18 | [01](labs/01) | [Course outline, introduction to C](https://youtu.be/LRRYe0YWVdk) | | |
-| 2 | 2021-05-25 | [01](labs/01) | [Variables, conditions, and loops](https://youtu.be/5dCUjdNFygc) | | |
-| 3 | 2021-06-01 | [02](labs/02) | Functions, arrays | [01](assignments/01) (lab 01) | |
+| 2 | 2021-05-25 | [01](labs/01) | [Variables, conditions, loops](https://youtu.be/5dCUjdNFygc) | | |
+| 3 | 2021-06-01 | [02](labs/02) | [Functions, arrays](https://youtu.be/UCKyZum1Tdw) | [01](assignments/01) (lab 01) | |
 | 4 | 2021-06-08 | | | | [01](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01) |
 | 5 | 2021-06-15 | [02](labs/02) | Program arguments, C string, stream redirection | | |
 | 6 | 2021-06-22 | [03](labs/03) | More arrays, stack/heap storage | [02](assignments/02) (lab 02) | |

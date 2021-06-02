@@ -2,7 +2,12 @@
 
 Download lab files [here](./files.zip).
 
-Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
+Review "Guide"s, accompanying slides, and lectures.
+
+| 2021-06-01 | 2021-06-15 |
+|----|----|
+| <a href="https://youtu.be/UCKyZum1Tdw"><img src="../../covers/v20210601.png" width="200"/></a> | <a href=""><img src="../../covers/v20210615.png" width="200"/></a>  |
+
 - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1e5x62e1PLZV4hSXGmtKIsqWdjSpwY1aWi8lX-5QL4AI/edit?usp=sharing)): Function definitions, declarations, and header files
 - [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/1myUYQWCfbC6jIHIoT9gjfbKLfEuthosidxkpz3ajc74/edit?usp=sharing)): Arrays
 - [Guide 03](#guide-2); [Guide 04](#guide-3) ([slides](https://docs.google.com/presentation/d/1hxiZTsV0BkjZplmKtpoH7uvxjHwy7ufDymR-hCQUyyc/edit?usp=sharing)): Program arguments and C strings; stream redirection
