@@ -6,7 +6,7 @@ Review "Guide"s, accompanying slides, and lectures.
 
 | 2021-05-18 | 2021-05-25 |
 |----|----|
-| <a href="https://youtu.be/LRRYe0YWVdk"><img src="../../covers/v20210518.png" width="200"/></a> | <a href="https://youtu.be/5dCUjdNFygc"><img src="../../covers/v20210525.png" width="200"/></a>  |
+| <a href="http://www.youtube.com/watch?feature=player_embedded&v=LRRYe0YWVdk" target="_blank"><img src="http://img.youtube.com/vi/LRRYe0YWVdk/0.jpg" alt="" width="200" border="0"/></a> | <a href="http://www.youtube.com/watch?feature=player_embedded&v=5dCUjdNFygc" target="_blank"><img src="http://img.youtube.com/vi/5dCUjdNFygc/0.jpg" alt="" width="200" border="0"/></a> |
 
 - Course outline ([slides](https://docs.google.com/presentation/d/19MI7qZW5vdthKojCezivhSF3kx9NnZdOIc2e-Kr7E5Y/edit?usp=sharing))
 - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1zwLTZjPFa8Ff4Eq3Qk9nTL72QQyCl22rLGIVo0gGdvs/edit?usp=sharing)): introduction to C; C syntax, workflow, and compiling
