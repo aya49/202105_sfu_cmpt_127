@@ -6,7 +6,7 @@ Review "Guide"s, accompanying slides, and lectures.
 
 | 2021-06-01 | 2021-06-15 |
 |----|----|
-| <a href="https://youtu.be/UCKyZum1Tdw"><img src="../../covers/v20210601.png" width="200"/></a> | <a href=""><img src="../../covers/v20210615.png" width="200"/></a>  |
+| <a href="http://www.youtube.com/watch?feature=player_embedded&v=UCKyZum1Tdw" target="_blank"><img src="http://img.youtube.com/vi/UCKyZum1Tdw/0.jpg" alt="" width="200" border="0"/></a> | |
 
 - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1e5x62e1PLZV4hSXGmtKIsqWdjSpwY1aWi8lX-5QL4AI/edit?usp=sharing)): Function definitions, declarations, and header files
 - [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/1myUYQWCfbC6jIHIoT9gjfbKLfEuthosidxkpz3ajc74/edit?usp=sharing)): Arrays
