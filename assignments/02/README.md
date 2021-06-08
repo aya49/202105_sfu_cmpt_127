@@ -232,6 +232,7 @@ $ make submit
 ```
 
 i.e. you should have ONE file called `a.zip` containing the files listed above (you can open your `a.zip` file to verify you have the correct files in it) (diagram curtosy of Glory!):
+
 ![](./submission.png)
 
 Upload `a.zip` to the appropriate assignment submission page on the [CMPT 127 D100/D200/D300 Canvas assignments page](https://canvas.sfu.ca/courses/62984/assignments).
