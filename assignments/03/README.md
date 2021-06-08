@@ -61,9 +61,10 @@ typedef enum {
 
 **TESTING**: you can test your program by running:
 ```
-$ make p0
-$ ./p0
+$ make t0 # OR gcc -Werror -Wfatal-errors -g -o t0 t0.c t0img.c (see Makefile)
+$ ./t0
 ```
+(see? Makefiles saves your `gcc` command so you don't have to type this long thing over and over again, convenient huh :D)
 
 The following is a breakdown of the tasks.
 
@@ -147,6 +148,49 @@ img_t* img_copy_subarray(img_t* im, unsigned int first_row, unsigned int last_ro
     - Return a deep copy of a portion of `im` from index `first_row` and `first_col to index `last_row` and `last_col` inclusive. If successful, return a pointer to a newly-allocated `img_t` containing a copy of the specified section.  For example, if `first_row` = 3, `last_row` = 6, `first_col` = 2, `last_col` = 3, the resulting 2D array would be 4 rows and two cols in size.
     - If an error occurs, i.e. `im` is `NULL`, the row/col indices are out of bounds, 'last' < 'first', or memory allocation fails, return a null pointer.
 
+
+# Make sure your code is readable!
+
+Please make sure you follow good coding habits while you are coding:
+- indents: use consistent indenting conventions e.g. if you decide to use 2 spaces for an indent, do that across all your tasks.
+- readable variable names: the name of a variable explains why you made it if it is not obvious already (likely not ;). You can also add a comment explaining what it is!
+- comments at the top + inline: comments at the top is the block I give you to fill in your name, date, etc. Comments inline are comments explaining what your code does, e.g.
+
+```C
+// author: alice yue; aya43; 301196607
+// date:2021/5/29
+// input: void (from main (<<void>>))
+// output: int (from <<int>> main (void))
+// description: prints the product of multiple 
+//     user given integers to standard output.
+
+#include <stdio.h>
+
+int main(void) {
+    // declare a variable to hold user input
+    float i; 
+  
+    // declare a variable to hold the product
+    float prod;
+
+    // ask and scan for a user input
+    printf("Provide floats separated by a line:\n");
+    scanf("%f", &a);
+
+    // while the user input is not 0, calculate a cumulative product
+    while (a!=0) {
+        prod = prod*a;
+        scanf("%f", &a);
+    }
+
+    // print the product to standard output
+    printf("The product of your values is %0.2f\n", product);
+    
+    return 0;
+}
+```
+
+
 # Submission
 
 Make sure you have the following files ready for submission and that they are named appropriately, otherwise they won't be graded.
@@ -156,6 +200,8 @@ Compress these files into a zip file called `a.zip`; you can do this by using th
 ```
 $ make submit
 ```
+
+i.e. you should have ONE file called `a.zip` containing the files listed above (you can open your `a.zip` file to verify you have the correct files in it).
 
 Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments.
 

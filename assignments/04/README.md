@@ -48,10 +48,10 @@ img_t* img_load_binary(const char* filename);
 
 **TESTING**: you can test your program by running:
 ```
-$ make t1
+$ make t1 # OR gcc -Werror -Wfatal-errors -g -o t1 t1.c t1img.c (see Makefile)
 $ ./t1
 ```
-
+(see? Makefiles saves your `gcc` command so you don't have to type this long thing over and over again, convenient huh :D)
 
 ## Task 02
 
@@ -101,9 +101,10 @@ img_t* img_load_json(const char* filename);
 
 **TESTING**: you can test your program by running:
 ```
-$ make t2
+$ make t2 # OR gcc -Werror -Wfatal-errors -g -o t2 t2.c t2img.c (see Makefile)
 $ ./t2
 ```
+(see? Makefiles saves your `gcc` command so you don't have to type this long thing over and over again, convenient huh :D)
 
 ## Task 03
 
@@ -133,9 +134,52 @@ int img_save_ppm(img_t* im, const char* filename);
 
 **TESTING**: you can test your program by running:
 ```
-$ make t3
+$ make t3 # OR gcc -Werror -Wfatal-errors -g -o t3 t3.c t3img.c (see Makefile)
 $ ./t3
 ```
+(see? Makefiles saves your `gcc` command so you don't have to type this long thing over and over again, convenient huh :D)
+
+# Make sure your code is readable!
+
+Please make sure you follow good coding habits while you are coding:
+- indents: use consistent indenting conventions e.g. if you decide to use 2 spaces for an indent, do that across all your tasks.
+- readable variable names: the name of a variable explains why you made it if it is not obvious already (likely not ;). You can also add a comment explaining what it is!
+- comments at the top + inline: comments at the top is the block I give you to fill in your name, date, etc. Comments inline are comments explaining what your code does, e.g.
+
+```C
+// author: alice yue; aya43; 301196607
+// date:2021/5/29
+// input: void (from main (<<void>>))
+// output: int (from <<int>> main (void))
+// description: prints the product of multiple 
+//     user given integers to standard output.
+
+#include <stdio.h>
+
+int main(void) {
+    // declare a variable to hold user input
+    float i; 
+  
+    // declare a variable to hold the product
+    float prod;
+
+    // ask and scan for a user input
+    printf("Provide floats separated by a line:\n");
+    scanf("%f", &a);
+
+    // while the user input is not 0, calculate a cumulative product
+    while (a!=0) {
+        prod = prod*a;
+        scanf("%f", &a);
+    }
+
+    // print the product to standard output
+    printf("The product of your values is %0.2f\n", product);
+    
+    return 0;
+}
+```
+
 
 # Submission
 
@@ -148,6 +192,8 @@ Compress these files into a zip file called `a.zip`; you can do this by using th
 ```
 $ make submit
 ```
+
+i.e. you should have ONE file called `a.zip` containing the files listed above (you can open your `a.zip` file to verify you have the correct files in it).
 
 Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments.
 

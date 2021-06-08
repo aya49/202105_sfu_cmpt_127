@@ -27,11 +27,12 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 
 **TESTING**: the finished code must compile with this command with no errors or warnings:
 ```
-$ make t1
+$ make t1 # OR gcc -Werror -Wfatal-errors -g -o t1 t1.c t1funcs.c (see Makefile)
 $ ./t1
 The sum of our numbers is 8.
 The quotient of our numbers is 3.
 ```
+(see? Makefiles saves your `gcc` command so you don't have to type this long thing over and over again, convenient huh :D)
 
 **REMEMBER**: header files contain function declarations, these are the same as a function definition except the braces and everything in the braces are replaced by a `;`.
 
@@ -51,9 +52,10 @@ int mirror(int arr1[], int arr2[], unsigned int len);
 
 **TESTING**: use `t2.c` to test your function by editing the arrays `a1` and `a2` and by running:
 ```
-$ make t2
+$ make t2 # OR gcc -Werror -Wfatal-errors -g -o t2 t2.c t2mirror.c (see Makefile)
 $ ./t2
 ```
+(see? Makefiles saves your `gcc` command so you don't have to type this long thing over and over again, convenient huh :D)
 
 **EXAMPLE**
 
@@ -87,9 +89,10 @@ Recall that in lab 02 practice 03, you made a similar program; take caution not 
 
 **TESTING**: you can test your program by running:
 ```
-$ make t3
+$ make t3 # OR gcc -Werror -Wfatal-errors -g -o t3 t3.c (see Makefile)
 $ ./t3 "string1" "string2"
 ```
+(see? Makefiles saves your `gcc` command so you don't have to type this long thing over and over again, convenient huh :D)
 
 **EXAMPLE**
 
@@ -126,10 +129,10 @@ Recall escape characters --- may be helpful ;)
 
 **TESTING**: your program should work as follows:
 ```
-$ make t4
+$ make t4 # OR gcc -Werror -Wfatal-errors -g -o t4 t4.c (see Makefile)
 $ ./t4 as to < t4prince.txt
 ```
-
+(see? Makefiles saves your `gcc` command so you don't have to type this long thing over and over again, convenient huh :D)
 
 **HINT**:
 - use `strcmp()`, look it up!
@@ -173,6 +176,48 @@ ge : 2
 ```
 
 
+
+# Make sure your code is readable!
+
+Please make sure you follow good coding habits while you are coding:
+- indents: use consistent indenting conventions e.g. if you decide to use 2 spaces for an indent, do that across all your tasks.
+- readable variable names: the name of a variable explains why you made it if it is not obvious already (likely not ;). You can also add a comment explaining what it is!
+- comments at the top + inline: comments at the top is the block I give you to fill in your name, date, etc. Comments inline are comments explaining what your code does, e.g.
+
+```C
+// author: alice yue; aya43; 301196607
+// date:2021/5/29
+// input: void (from main (<<void>>))
+// output: int (from <<int>> main (void))
+// description: prints the product of multiple 
+//     user given integers to standard output.
+
+#include <stdio.h>
+
+int main(void) {
+    // declare a variable to hold user input
+    float i; 
+  
+    // declare a variable to hold the product
+    float prod;
+
+    // ask and scan for a user input
+    printf("Provide floats separated by a line:\n");
+    scanf("%f", &a);
+
+    // while the user input is not 0, calculate a cumulative product
+    while (a!=0) {
+        prod = prod*a;
+        scanf("%f", &a);
+    }
+
+    // print the product to standard output
+    printf("The product of your values is %0.2f\n", product);
+    
+    return 0;
+}
+```
+
 # Submission
 
 Make sure you have the following files ready for submission and that they are named appropriately, otherwise they won't be graded.
@@ -186,7 +231,10 @@ Compress these files into a zip file called `a.zip`; you can do this by using th
 $ make submit
 ```
 
-Upload `a.zip` to the appropriate assignment submission page on the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments.
+i.e. you should have ONE file called `a.zip` containing the files listed above (you can open your `a.zip` file to verify you have the correct files in it) (diagram curtosy of Glory!):
+![](./submission.png)
+
+Upload `a.zip` to the appropriate assignment submission page on the [CMPT 127 D100/D200/D300 Canvas assignments page](https://canvas.sfu.ca/courses/62984/assignments).
 
 # Marking rubric
 
