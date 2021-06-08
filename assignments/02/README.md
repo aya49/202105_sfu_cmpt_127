@@ -163,11 +163,11 @@ while (last != EOF) {
 Example outputs include:
 
 ```
-$ ./t4.o r in < t4beatles.txt
+$ ./t4 r in < t4beatles.txt
 r : 2
 in : 1
 
-$ ./t4.o go ge < t4beatles.txt
+$ ./t4 go ge < t4beatles.txt
 go : 1
 ge : 2
 ```
