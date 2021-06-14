@@ -51,7 +51,7 @@ Let's take a look at their memory layout.
 
 You can see that there is some overhead in using the 2+D arrays; for example, in the 2D array case, we require more memory space and a two-step lookup to find the integer of interest.
 
-For this course, we will be using row-oriented 2D arrays where the two index brackets `[][]` represents the row and the column respectively i.e. if we imaging our 2D array as a matrix, each element in the array of arrays points to an array that represents a row.
+For this course, we will be using row-oriented 2D arrays where the two index brackets `[][]` represents the row and the column respectively i.e. if we imagine our 2D array as a matrix, each element in the array of arrays points to an array that represents a row.
 
 In practice, arrays of more than 3 dimensions are rarely used.
 
@@ -73,7 +73,7 @@ Credit: this image is taken from an [excellent online description](http://duarte
 
 We have touched on "scope", let's look at it in more detail.
 
-**Automatic variables** or local variables are varaibles used inside the body of a code block; this code block is almost always a function. Automatic variables are called automatic because their storage space is allocated for them automatically e.g. when a function is called.
+**Automatic variables** or local variables are variables used inside the body of a code block; this code block is almost always a function. Automatic variables are called automatic because their storage space is allocated for them automatically e.g. when a function is called.
 
 C implements this very efficiently by allocating all the space for local variables in the stack frame for the function when the function is called (i.e. we get into scope).
 
@@ -167,11 +167,9 @@ Recall: this means that the compiler has to decide how large a function's stack 
 
 However, you won't always know how big of an array to expect. Also, if the amount of data you expect is usually very small, but might be very large at times, it would be wasteful to always allocate a huge array just in case.
 
-#### Fixing the bug: option 2, explicit memory allocation on the heap
+### Heap storage: fixing the bug! (option 2)
 
-To overcome these shortcomings, we allocate memory explicitly, using `malloc()` (memory allocation) from the heap.
-
-### Heap storage
+To overcome these shortcomings, we allocate memory on the heap explicitly, using `malloc()` (memory allocation).
 
 About `malloc()`: 
 - INPUT: the argument to `malloc()` is a size in bytes, so we almost always use `sizeof(/*some_type*/)` as a multiplier. 
