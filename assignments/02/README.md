@@ -112,7 +112,7 @@ $ ./t3 "kmjnhbvc45&^$bn" "."
 false
 ```
 
-To expand on the first example, it is true because: "I \[h\]ave a really b\[ad f\]ee\[ling\] about this" "had fling"
+To expand on the first example, it is true because: "I \[ha\]ve a really ba\[d f\]ee\[ling\] about this" "had fling"
 
 
 ## Task 04
