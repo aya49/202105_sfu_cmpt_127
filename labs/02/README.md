@@ -556,7 +556,7 @@ int main() {
         char current = getchar();
 
         // COMMENT HERE
-        if (isalpha(last) && !isalpha(current)) { # courtesy of danoosh :D
+        if (isalpha(last) && !isalpha(current)) { # courtesy of danoosh and brought forward by emmii :D
             wordcount++;
         }
 
