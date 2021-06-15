@@ -39,11 +39,11 @@ The quotient of our numbers is 3.
 
 ## Task 02
 
-**REQUIREMENT**: you will write in file `t2mirror.c`, a single function `mirror()` with the following function declaration:
+**REQUIREMENT**: you will write in file `t2mirror.c`, the definition of a single function `mirror()` associated with the following function declaration:
 ```C
 int mirror(int arr1[], int arr2[], unsigned int len);
 ```
-- INPUT: The `mirror()` function has the following declaration:
+- INPUT: The `mirror()` function has the following inputu arguments:
     - Arrays `arr1` and `arr2` are both of length `len`, and contain arbitrary integer values.
     - `len` can have any unsigned int value, including 0.
     - If `len` is 0 then `mirror()` should return 1 (since the arrays have the same - empty - contents).
