@@ -23,7 +23,7 @@ int main() {
         }
         c = getchar();
     }
-    for (unsigned int i = 0; i < sizeof(letters)/4; i++) {
+    for (unsigned int i = 0; i < 26; i++) {
         if (letters[i] != 0) {
             printf("%c %.4f\n", 'a'+i, letters[i]/count);
         }
