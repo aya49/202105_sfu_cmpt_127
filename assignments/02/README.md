@@ -59,7 +59,7 @@ $ ./t2
 
 **EXAMPLE**
 
-Examples of arrays for which `mirror` should return 1:
+Examples of arrays for which `mirror` should return 1 (i.e. the two arrays have reverse ordering):
 
 ```C
 arr1 = {10,15,20}, arr2 = {20,15,10}
@@ -68,7 +68,7 @@ arr1 = {5,2,2,3,4,5,5}, arr2 = {5,5,4,3,2,2,5}
 arr1 = {}, arr2 = {} (i.e. len = 0)
 ```
 
-Examples of arrays for which `mirror` should return 0:
+Examples of arrays for which `mirror` should return 0 (i.e. the two arrays do not contain the same elements and even if they do, they do not  reverse ordering):
 
 ```C
 arr1 = {1,1}, arr2 = {1,2}
