@@ -1,6 +1,9 @@
 #include <assert.h>
 #include "p2.h"
 
+// PUT INLINE COMMENTS BELOW as you read the code!
+// that will help you understand what is happening :)
+
 int point_array_init(point_array_t* pa) { 
     if (pa == NULL)
         return 1;

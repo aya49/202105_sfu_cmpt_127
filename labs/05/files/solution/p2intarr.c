@@ -3,6 +3,9 @@
 #include <ctype.h>
 #include "p2intarr.h"
 
+// PUT INLINE COMMENTS BELOW as you read the code!
+// that will help you understand what is happening :)
+
 int intarr_save_json( intarr_t* ia, const char* filename ) {
     if (ia == NULL || filename == NULL)
         return 2;

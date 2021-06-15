@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include "p1intarr.h"
 
+// PUT INLINE COMMENTS BELOW as you read the code!
+// that will help you understand what is happening :)
+
 int intarr_save_binary( intarr_t* ia, const char* filename ) {
     if (ia == NULL || filename == NULL)
         return 4;

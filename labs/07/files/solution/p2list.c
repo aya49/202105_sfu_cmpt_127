@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include "p1list.h"
 
+// PUT INLINE COMMENTS BELOW as you read the code!
+// that will help you understand what is happening :)
+
 list_t* list_create(void) {
     list_t * list = malloc(sizeof(list_t));
 

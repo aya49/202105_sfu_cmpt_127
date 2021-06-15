@@ -5,6 +5,9 @@
 
 #include "p0intarr.h"
 
+// PUT INLINE COMMENTS BELOW as you read the code!
+// that will help you understand what is happening :)
+
 /* practice 01 */
 
 // Create a new intarr_t with initial size len.  If successful
