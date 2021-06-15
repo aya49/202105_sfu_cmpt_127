@@ -118,11 +118,13 @@ To expand on the first example, it is true because: "I \[ha\]ve a really ba\[d f
 ## Task 04
 
 **REQUIREMENT**: you will write a program to `t4.c`.
-- INPUT: `t4.c` takes two program arguments of type C string: `str1` and `str2`. The program would also read from stdin, a text file. 
-    - Every byte read from stdin counts as a character.
+- INPUT: 
+  - `t4.c` takes two program arguments of type C string: `str1` and `str2`. 
     - Words are defined as contiguous sequences of letters (a through z, A through Z) and the apostrophe (', value 39 decimal) separated by any character outside these ranges.
     - You can assume your strings are of length at least 1.
-- OUTPUT: `t4.c` should output to console, the number of times the `str1` and `str2` occurs in the text document (continuously, like in practice 03) in two separate lines.
+  - `t4.c` would also read from stdin using `scanf`, a text file. 
+    - Every byte read from stdin counts as a character.
+- OUTPUT: `t4.c` should output to console, the number of times the `str1` and `str2` occured in the text document (continuously, like in practice 04) in two separate lines.
 
 Recall escape characters --- may be helpful ;)
 
