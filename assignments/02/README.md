@@ -82,7 +82,6 @@ arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
 **REQUIREMENT**: you will write a program to file `t3.c`.
 - INPUT: your `t3.c` program takes two text strings as arguments.
     - You can assume your strings are of length at least 1.
-    - You can assume that the second argument `len` is correct.
 - OUTPUT: `t3.c` prints "true" followed by a newline if the second string is entirely **in the same order but not necessarily continuously** contained within the first, or "false" followed by a newline otherwise.
 
 Recall that in lab 02 practice 03, you made a similar program; take caution not to confuse the requirements of the practice problem and this task!
