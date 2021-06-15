@@ -1,16 +1,22 @@
 int identical(int arr1[], int arr2[], unsigned int len) {
+    // if the length of both arrays is 0, return 1; sucess!
     if (len == 0) {
         return 1;
     }
+
+    // for each integer in the array, if they are not the same, return 0; fail!
     for (unsigned int i=0; i<len; i++) {
         if (arr1[i] != arr2[i]) {
             return 0;
         }
     }
+
+    // if all integers are the same, return 1; success!
     return 1;
 }
 
 int scrambled(unsigned int arr1[], unsigned int arr2[], unsigned int len) {
+    // if the length of both arrays is 0, return 1; sucess!
     if (len == 0) {
         return 1;
     }
@@ -21,6 +27,8 @@ int scrambled(unsigned int arr1[], unsigned int arr2[], unsigned int len) {
     for (unsigned int i=0; i<len; i++) {
         // you can create more than 1 variable with the same data type on one line!
         int tmp1 = 0, tmp2 = 0;
+
+        // can you figure out what this does? try drawing it out!
         tmp1 = arr1[i];
         tmp2 = arr2[i];
         arr[tmp1]++;
