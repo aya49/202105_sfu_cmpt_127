@@ -31,14 +31,14 @@ Always remember, the internet is your friend :) Search for documentation online 
 
 ## Guide
 
-**Functions** (not to be confused with functions in mathematics): C is a [structured, procedural programming language](http://en.wikipedia.org/wiki/Procedural_programming_language). This means that C supports functions: isolated, self-contained blocks of code that can be re-used as components of larger programs. Other languages may call functions **procedures, subroutines**, or **methods**.
+**Functions** (not to be confused with functions in mathematics): C is a [structured, procedural programming language](http://en.wikipedia.org/wiki/Procedural_programming_language). This means that C supports functions: isolated, self-contained blocks of code that can be re-used as components of larger programs. Other languages may call functions **procedures**, **subroutines**, or **methods**.
 
-**Encapsulation** is a trait of well-designed functions where you can often use it for what it does, and ignore the internal details of how it works. This makes it feasible for humans to write complex programs by breaking them down into small, more manageable pieces.
+**Encapsulation** is a trait of well-designed functions where you can often use it and ignore the internal details of how it works. This makes it feasible for humans to write complex programs by breaking them down into small, more manageable pieces.
 
 **Functions in a nutshell**:
 - You **pass** 0+ arguments into a function, 
 - the function creates a **copy** of your arguments (this is IMPORTANT! IT'S NOT USING THE ORIGINAL COPY!), 
-- does something with the copy of your arguments (encapsulation), 
+- does something with the copy of your arguments
 - then the function returns 0 (`void`) or 1 thing to you.
 
 You have already used several functions provided by the standard library, such as `printf`, without seeing how they were implemented.
@@ -53,24 +53,33 @@ type functionName(type arg_name1 <, type arg_name2, ...>) {
 
 Let's look at an example implementation of the function.
 
-File: `p1funcs.c`
+File: [`p1funcs.c`](./files/p1funcs.c)
 ```C
 // returns the larger of the two arguments
-int max(int int1, int int2) {
-
-    // let's assume int2 is the larger integer
-    int larger = int2;
+int max(int i1, int i2) {
     
     // if int2 isn't the larger integer, then int1 is the larger integer
-    if (int1 > int2) {
-        larger = int1;
+    if (i1 > i2) {
+        larger = i1;
     }
     return larger;
 }
+
+// returns the smaller of the two arguments
+int min( int i1, int i2) {
+  int smaller = i2;
+  if (i1 < i2) {
+    smaller = i1;
+  } 
+  return smaller;
+}
 ```
 
-File: `p1.c`
+File: [`p1.c`](./files/p1.c)
 ```C
+#include <stdio.h> // for printf()
+// complete and include p1funcs.h here!
+
 int main(void) {
     int num1 = 11;
     int num2 = 12;
@@ -82,9 +91,9 @@ int main(void) {
 ```
 
 Let's read our `max` function top-to-bottom, left-to-right: `int max(int int1, int int2)`:
-- `int` is the **return value** of running this function is of type `int`. If the return type is `void`, we can omit the `return` statement, The function will finish at the end of the code block and return nothing.
 - `max` is the name of the function.
-- arguments `int1` and `int2` are what the function takes as input; in this case, the input is two integer arguments called `int1` and `int2`; function definitions can specify an **arbitrary number of arguments**.
+- `int` is the type of the **return value** of running this function is of type `int`. If the return type is `void`, we can omit the `return` statement. The function will finish at the end of the code block and return nothing.
+- integer arguments `int1` and `int2` are what the function takes as input; in this case, the input is two integer arguments called `int1` and `int2`; function definitions can specify an **arbitrary number of arguments**.
 - The **body** of the function, i.e. the code that will execute when the function is called, is written between `{...}`.
 - `return` ..., or the value of the expression to the right of keyword `return` is the function's **return value**, or what the function outputs. Functions can only have **one return value**.
 
@@ -94,7 +103,7 @@ In `int main(void)`,
     - Output: `max` does its work and the return value is passed as the second argument to `printf()`.
 
 Other important notes on functions:
-- In general a function may call any including itself (e.g. `max` is called inside `main()`, both are functions).
+- In general a function may call any function in its body including itself (e.g. `max` is called inside `main()`, both are functions).
 - A function can only be called below its definition because the compiler reads the source file from top to bottom, it doesn't know what it hasn't seen!
 
 **Header files**
@@ -114,13 +123,13 @@ $ gcc p1funcs.c p1.c -o p1.o -Wall
 For this to work, you will need to do the following:
 
 1. Write a header file for `p1funcs.c`, called `p1funcs.h`.
-    - **Header files** are files that contain the function declarations of your the functions you defined in the separate file(s).
-    - A **function declaration** tells the compiler the name of the function, its arguments and return type by writing a function declaration. A function declaration is the same as its definition, but with the function body replaced by a semicolon. For example:
+    - **Header files** contain the function declarations of the functions you defined in the separate file(s).
+    - A **function declaration** tells the compiler the name of the function, its arguments and return type. A function declaration is the same as its definition, but with the function body replaced by a semicolon. For example:
 ```C
 int max(int int1, int int2);
 ```
-2. `#include` a copy of the the contents of the source file into your program `p1.c`. The contents of these source files are linked to your program at the last step of compilation.
-    - `<>`: specifying the name of the header file `<like this>` forces the compiler to look for the file in the directories where your compiler was installed; the impelmentations of the functions in these files are implementations of these functions were pre-compiled for you into code to save your time.
+2. `#include` your header file `p1funcs.h` into your program `p1.c`. The contents of `p1.c` and `p1funcs.c` are linked to your program at the last step of compilation.
+    - `<>`: specifying the name of the header file `<like this>` forces the compiler to look for the file in the directories where your compiler was installed; the implementations of the functions in these files are implementations of these functions were pre-compiled for you into code to save your time.
         - These functions were pre-compiled for you into code **libraries** and shipped with your compiler to save you time. The required libraries are **linked** into your program at the last step of compilation. 
         - The library `<stdio.h>` containing `printf()` is used so often it is linked by default (so you actually didn't need to add the line `#include <stdio.h>`).
     - `""`: specifying the name of the header file `"like this"` copies the contents of a file you wrote. This quoted version understands paths relative to the current directory, and absolute paths (paths starting from root):
@@ -190,9 +199,9 @@ Add the following line to the top of file: `p1.c`
 ## Guide
 
 There are 3 things that define an array: 
-1. a **data type** of the value of the values inside the array, and 
+1. a **data type** of the values inside the array, and
 2. a **variable name** == **pointer** or an address indicating where in memory the array's first element is stored, and
-4. the **elements** == **values** stored inside the array.
+3. the **elements** == **values** stored inside the array.
 
 In C, we can create variables that hold a single value or an **array** of values of the same type.
 
@@ -209,7 +218,7 @@ int i_array3[3] = {10, 15, 20}; // you can also initialize an array with values!
 Array elements are accessed by index, starting from 0:
 ```C
 i_array[0] = 99; // set the first element of i_array to 99
-int i1 = i_array[0]
+int i1 = i_array[0];
 ```
 
 Be careful not to access something not in the array:
@@ -223,12 +232,14 @@ int i2 = i_array[100]; // ERROR! the 101st element doesn't exist in a 100-elemen
 3. The value of array elements is not initialized;
 4. Access to elements is not bounds checked (i.e. lookups are not checked to make sure (0 <= index < array size)).
 5. Therefore C arrays must be used carefully.
+6. In addition, arrays do not store its length, so its length must be stored somewhere else (e.g. another integer variable).
+
 
 **Pros** of C arrays: they are **very very fast**! Arrays have an incredibly simple and efficient design. There is a trivial overhead in accessing data from an array; there is also very little cost to creating arrays. For these reasons C programmers use arrays a lot despite the limitations.
 
 Array vs memory:
 - In memory: arrays are allocated as contiguous chunk of memory, of size `array-length * sizeof(type)` bytes.
-- Like variable, the memory allocated to the array is automatically freed when the array variable goes out of scope i.e. if you initialize an array in a function, after exiting the function, your array will be automatically freed from memory.
+- Like a variable, the memory allocated to the array is automatically freed when the array variable goes out of scope e.g. if you initialize an array in a function, after exiting the function, your array will be automatically freed from memory.
 - **IMPORTANT**: The variable of an array does **NOT** have a separate pointer, the variable name itself is passed as a pointer that points to the first byte of the first element in the array so the following are true:
 
 ```C
@@ -258,7 +269,7 @@ Since array variables can be used like pointers, you can pass them into function
 
 // note: data type `unsigned int` is like int, but unsigned; because negative-length arrays can not exist
 
-// PREFERED WAY
+// PREFERED WAY: this syntax is specific to arrays.
 // return the largest int in the array
 // `[]` says: "this argument is an array!"; 
 // arr[] is an unsized array; specifying the size is optional but more restrictive e.g. arr[10]
@@ -303,17 +314,17 @@ int main(void) {
 ```
 
 Some notes:
-- The two versions of the `array_max` function passes a pointer and the name of the array respectively. To the compiler, these are the same because the name of your array is passed as a pointer.
+- The two versions of the `array_max` function pass a pointer and the name of the array respectively, in addition to the length of the array. To the compiler, these are the same because the name of your array is passed as a pointer.
 - You should almost always use the array-bracket syntax version (`int arr[]`) since it tells the human reader that an array is expected.
 - We had to pass the length of the array into both versions. C arrays do not know how long they are.
 
 ### Passing pointers/arrays to functions vs passing variables to functions
 
-**Pointer vs value**: passing a pointer/array is essentially different from passing a variable (by default, the variable value) to a function.
-- **Value**: If you pass a variable (and hence it's value), you make a COPY of the value inside your function, so your function CANNOT MODIFY your original variable value.
+**Pointer vs value**: passing a pointer value to a function.
+- **Value**: If you pass by value, you make a COPY of the value inside your function, so your function CANNOT MODIFY your original variable value.
 - **Pointer**: if you pass a pointer (which is the case for arrays), you make a COPY of the pointer (address) to the SAME value, so your function CAN MODIFY your original values (i.e. array).
 
-Knowing this, if your functions' intent is to modify your array, your function does not need to give a return value, because it will access and modifying the same array via the pointer you passed to it. Let's take a look at the `reverse` function below, a function that reverses the order of your array (e.g. `{0,2,6,3}` > `{3,6,2,0}`).
+Knowing this, if your functions' intent is to modify your array, your function does not need to give a return value, because it will access and modify the same array via the pointer you passed to it. Let's take a look at the `reverse` function below, a function that reverses the order of your array (e.g. `{0,2,6,3}` -> `{3,6,2,0}`).
 
 ```C
 #include <stdio.h>
@@ -321,7 +332,7 @@ Knowing this, if your functions' intent is to modify your array, your function d
 // a function that reverses the elements in arr;
 // note that it has no return
 void reverse(int arr[], unsigned int len) {
-    for (int i = 0, j = len-1; i < len/2; i++, j--) {
+    for (int i = 0, j = len-1; i < len/2; i++, j--) { // yes, you can iterate more than one variable, handy eh?
         int tmp = 0;
         tmp = arr[i];
         arr[i] = arr[j];
@@ -344,7 +355,7 @@ int main(void) {
 }
 ```
 
-Note that your array values do not go out of scope (is not removed) once you finish executing the function, the pointer that the function created a copy of does.
+Note that your array values does not go out of scope (is not removed) once you finish executing the function, the pointer that the function created a copy of does.
 
 
 ## Practice 02.1
@@ -376,7 +387,7 @@ Examples of arrays for which `identical` should return 1:
 arr1 = {10,15,20}, arr2 = {10,15,20}
 arr1 = {100}, arr2 = {100}
 arr1 = {5,2,2,3,4,5,5}, arr2 = {5,2,2,3,4,5,5}
-arr1 = {}, arr2 = {} (i.e. len = 0)
+arr1 = {}, arr2 = {}; // (i.e. len = 0)
 ```
 
 Examples of arrays for which `identical` should return 0:
@@ -483,7 +494,7 @@ ringo
 ```
 
 ```
-$ ./sort < p3beatles.txt
+$ sort < p3beatles.txt
 george
 john
 paul
@@ -513,10 +524,10 @@ Here is a terse but good introduction to [BASH shell programming](http://tldp.or
 Here is a program that would have been very tedious to run without stream redirection. `p3.1.c` counts the number of characters, words and lines read from standard input until `ctrl-d` (`EOF`, if interested, see extra materials in [lab 01](../01/README.md#EOF-the-end-of-the-file)).
 - Every byte read from stdin counts as a character.
 - Words are defined as contiguous sequences of letters (a through z, A through Z) and the apostrophe (', value 39 decimal) separated by any character outside these ranges.
-- Lines are defined as contiguous sequences of characters separated by newline characters ('\n').
+- Lines are represented by newline characters ('\n').
 - Characters beyond the final newline character will not be included in the line count.
 
-There are new functions `getchar()` and `isalpha()` here which we haven't seen before. Check it out online or read its manual. There's a handy standard program called `wc` that does a similar job as `getchar()`, but it does not match the requirements exactly (it is a little more clever about word boundaries and will sometimes count fewer words than our simple program).
+There are new functions `getchar()` and `isalpha()` here which we haven't seen before. Check it out online or read its manual.
 
 **Escape characters**: This [Q&A on StackOverflow](http://stackoverflow.com/questions/2414478/c-escaping-an-apostrophe-in-a-string) gives advice on representing the apostrophe character using an **escape sequence**. StackOverflow is very useful indeed.
 
@@ -568,6 +579,7 @@ DID YOU KNOW: there will be times when you need to store words you read in as C 
 ```C
 int i = 0;
 char* str[100];
+int nchars = 100;
 char c;
 while ((c = getchar()) c != EOF ) {
     if (i < nchars) {
@@ -581,11 +593,11 @@ str[i] = '\0';
 
 **REQUIREMENT**: you will write a program to file `p3.2.c`. 
 - INPUT: `p3.2.c` should read ASCII text from stdin.
-- BEHAVIOUR: `p3.2.c` will count the occurence frequency of each letter in the input.
+- BEHAVIOUR: `p3.2.c` will count the occurrence frequency of each letter in the input.
     - Letters that occur zero times should not appear in the output.
     - Characters other than lower and upper case letters should be ignored.
     - Lower and upper case instances count as the same letter, e.g. 'a' and 'A' are both reported for the letter 'a' on the output.
-- OUTPUT: `p3.2.c` will print the normalized frequencies for each letter a-z to stdout upon reaching EOF (end of file / `ctrl-d` in shell). 
+- OUTPUT: `p3.2.c` will print the normalized frequencies (see example outputs below) for each letter a-z to stdout upon reaching EOF (end of file / `ctrl-d` in shell). 
     - The frequencies reported should sum to approximately 1 (with a little slack for accumulation of `printf` rounding errors).
     - The results should be printed as one letter per line, in alphabetical order using the format produced by:
 
@@ -593,7 +605,7 @@ str[i] = '\0';
 printf("%c %.4f\n", letter, freq);
 ```
 
-By the way, you cannot implement this function by writing 26 "if" statements (1 for each letter). Hint: Each letter has a numerical [ASCII](https://en.wikipedia.org/wiki/ASCII) value. Can this numerical value be used at all?
+By the way, you cannot implement this function by writing 26 "if" (or "switch") statements (1 for each letter). Hint: Each letter has a numerical [ASCII](https://en.wikipedia.org/wiki/ASCII) value. Can this numerical value be used at all?
 
 **TESTING**: you can test your program by running:
 ```
@@ -632,7 +644,7 @@ Try it yourself first; then verify your solutions [here](./files/solution/p3.2.c
 
 ## Guide
 
-So far you have written programs that read their input from stdin using `scanf`. Another way to get data into a program is with program arguments. For example when we compile our progrmas, we use:
+So far you have written programs that read their input from stdin using `scanf`. Another way to get data into a program is with program arguments. For example when we compile our programs, we use:
 
 ```
 $ gcc main.c
@@ -654,12 +666,12 @@ int main(int argc, char* argv[]) {...}
 These two arguments, `argc` and `argv`, work for all possible arguments to your program and it works by using arrays and pointers. The arguments are interpreted as follows:
 - `int argc` is the number of arguments passed into `main`, plus one (e.g. for `gcc main.c`, this is 2).
 - `char* argv[]` is an array of char pointers. The `argv` array is `argc` pointers long. 
-    - The 0th entry in `argv` is always the program's own name (e.g. `gcc`). The subsequent entries are the program arguments in order. For our cp example the contents of the array are:
+    - The 0th entry in `argv` is always the program's own name (e.g. `gcc`). The subsequent entries are the program arguments in order. For our example, the contents of the array are:
 ```
 argv[0] : "gcc"
 argv[1] : "main.c"
 ```
-**C string**: a string in C is just a character array containing a special NULL character (a null terminator: '\0' or value 0) to mark the end of its text. Each pointer in the `argv` array points to the first character in a character array: `argv` is an array of arrays!
+**C string**: a string in C is just a character array containing a special NULL character (a null terminator: '\0') to mark the end of its text. Each pointer in the `argv` array points to the first character in a character array: `argv` is an array of arrays!
 
 We can sketch an implementation of `gcc` like this:
 
@@ -690,7 +702,7 @@ int main(int argc, char* argv[]) {
     }
 
     int i_int = atoi(argv[1]); // converts a string into an "i" integer
-    float j_float = atof(argv[2]); // converts a string into a "f" float
+    float j_float = atof(argv[2]); // converts a string into an "f" float
     // ...
 }
 ```
@@ -760,7 +772,7 @@ Response to note: Theoretically there are more efficient implementations, but us
 
 # Bonus material: C vs C++ (C strings vs `std::string`)
 
-C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analagous to each other in C and C++.
+C is a subset of C++; all C functions/keywords/code will work with a C++ compiler. In this section, we go over some functions/keywords that are analogous to each other in C and C++.
 
 Let's look at the difference between C string and string in C++.
 
@@ -783,16 +795,15 @@ The three main differences are at the top:
 | | pointer | reference |
 |-|---------|-----------|
 | can it store null? | yes | no |
-| how do you declare it? | `int* r = &i;` (declaration is not necessary, pointers get atuomatically created for `int i;`, just do `&i`) | `int& r = i;` (initialization/assignment is mandatory at declaration; not to be confused with pointer `&i`) |
+| how do you declare it? | `int* r = &i;` (declaration is not necessary, pointers get automatically created for `int i;`, just do `&i`) | `int& r = i;` (initialization/assignment is mandatory at declaration; not to be confused with pointer `&i`) |
 | can you re-assign another address to it after it is initialized to an address? | yes  | no |
 | | |
 | what is it? | the address in memory where a value is or can be stored | same as pointer |
 | where is it in memory? | stored exactly like an integer variable value on the stack and has its own memory address | has the same memory address as its value BUT may take up additional space on the stack |
 | syntax to access its struct fields (see lab 04) | `->` | `.` |
 
-As a rule of thumb, pointers are great for when you need a null pointer (i.e. you want C to throw an error if it uses this variable with a null pointer) or if you want to do pointer arithmetics (e.g. `*(1+ia)`). For other situations, if you have access to C++, use a reference. At the end of the day, use whichever one you are used to using :).
+At the end of the day, use whichever one is best for the application at hand :).
 
-Did you know: you can pass a pointer as a reference or a pointer i.e. you just treat your pointer as an integer variable, and pass the reference or pointer to that integer variable. We usually pass a reference for a pointer instead of a pointer for a pointer because pointers can change and if the two pointers overlap, uh oh.
 
 # Credit
 

@@ -5,6 +5,7 @@
 // description: 
 
 #include <stdio.h> // for printf()
+// complete and include p1funcs.h here!
 
 int main(void) {
   int num1 = 11;
