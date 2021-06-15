@@ -10,15 +10,15 @@ Review "Guide"s, accompanying slides, and lectures.
 
 - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1e5x62e1PLZV4hSXGmtKIsqWdjSpwY1aWi8lX-5QL4AI/edit?usp=sharing)): Function definitions, declarations, and header files
 - [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/1myUYQWCfbC6jIHIoT9gjfbKLfEuthosidxkpz3ajc74/edit?usp=sharing)): Arrays
-- [Guide 03](#guide-2); [Guide 04](#guide-3) ([slides](https://docs.google.com/presentation/d/1hxiZTsV0BkjZplmKtpoH7uvxjHwy7ufDymR-hCQUyyc/edit?usp=sharing)): Program arguments and C strings; stream redirection
+- [Guide 03](#guide-2); [Guide 04](#guide-3) ([slides](https://docs.google.com/presentation/d/1hxiZTsV0BkjZplmKtpoH7uvxjHwy7ufDymR-hCQUyyc/edit?usp=sharing)): Stream redirection; program arguments and C strings
 
 
 Try "Practice" problems; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
 - [Practice 01](#practice-01)
 - [Practice 02](#practice-021)
-- [Practice 03](#practice-03)
-- [Practice 04.1](#practice-041)
-- [Practice 04.2](#practice-042)
+- [Practice 03.1](#practice-031)
+- [Practice 03.2](#practice-032)
+- [Practice 04](#practice-04)
 
 Do [Assignment 02](../../assignments/02).
 
@@ -448,6 +448,186 @@ arr1 = {1,2,3,4,5}, arr2 = {5,3,4,2,2}
 Try it yourself first; then verify your solutions [here](./files/solution/p2identical.c).
 
 
+
+# Stream redirection: redirecting stdin and stdout (`scanf` and `printf`)
+
+## Guide
+
+You will find it tedious to type lots of text into your program's stdin. The shell has a powerful tool to help with this: **stream redirection**. 
+
+**stream redirection** allows you to route the stdin and stdout for a program away from the console and into a file. 
+
+**stream redirection**; stdout: If we have a program called `p3hello` that prints "Hello world!\n" on stdout, we can redirect this output to `p3.txt`:
+
+```
+$ gcc p3hello.c -o p3hello
+$ ./p3hello > p3.txt
+```
+
+To confirm this, inspect the contents of the file with `cat`:
+
+```
+$ cat p3.txt
+Hello world!
+```
+
+**stream redirection**; stdin: Similarly, we can take the contents of a file, and stream it into the standard input of our program. So if we have a program `sort` that reads lines from stdin, sorts them into lexical order then writes them on stdout, we can do this:
+
+Contents of file `p3beatles.txt`:
+
+```
+john
+paul
+george
+ringo
+```
+
+```
+$ ./sort < p3beatles.txt
+george
+john
+paul
+ringo
+```
+
+**stream redirection**; stdin and stdout: Input and output redirection can be used together:
+
+```
+$ ./sort < p3beatles.txt > sorted.txt
+$ cat sorted.txt
+george
+john
+paul
+ringo
+```
+
+This is a very powerful mechanism that is great for testing with lots of different inputs. It's much more convenient to redirect a file into stdin than to type many lines followed by `ctrl-d` over and over. Make sure you understand file redirection!
+
+Here is a terse but good introduction to [BASH shell programming](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html), including a section on [redirection](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html).
+
+
+## Practice 03.1
+
+**REQUIREMENT**: add comments on file `p3.1.c` explaining what each line(s) is doing; do you understand the rationale behind these lines?
+
+Here is a program that would have been very tedious to run without stream redirection. `p3.1.c` counts the number of characters, words and lines read from standard input until `ctrl-d` (`EOF`, if interested, see extra materials in [lab 01](../01/README.md#EOF-the-end-of-the-file)).
+- Every byte read from stdin counts as a character.
+- Words are defined as contiguous sequences of letters (a through z, A through Z) and the apostrophe (', value 39 decimal) separated by any character outside these ranges.
+- Lines are defined as contiguous sequences of characters separated by newline characters ('\n').
+- Characters beyond the final newline character will not be included in the line count.
+
+There are new functions `getchar()` and `isalpha()` here which we haven't seen before. Check it out online or read its manual. There's a handy standard program called `wc` that does a similar job as `getchar()`, but it does not match the requirements exactly (it is a little more clever about word boundaries and will sometimes count fewer words than our simple program).
+
+**Escape characters**: This [Q&A on StackOverflow](http://stackoverflow.com/questions/2414478/c-escaping-an-apostrophe-in-a-string) gives advice on representing the apostrophe character using an **escape sequence**. StackOverflow is very useful indeed.
+
+```C
+#include <stdio.h> // getchar, EOF constant
+#include <ctype.h> // isalpha
+
+// main() is the same as main(int argc, char* argv[])
+// main(int argc, char* argv[]) is used so much that it was made the default!
+int main() {
+    // unsigned long int is a data type, search it up!
+    unsigned long int charcount = 0;
+    unsigned long int wordcount = 0; 
+    unsigned long int linecount = 0;
+    unsigned long int space = 0;
+
+    // COMMENT HERE
+    char last = getchar(); // getchar reads a character from stream, kind of like scanf
+    
+    // while not the end of file / ctrl-d
+    while (last != EOF) { 
+        // COMMENT HERE
+        charcount++;
+
+        // COMMENT HERE
+        char current = getchar();
+
+        // COMMENT HERE
+        if (!isalpha(last) && isalpha(current)) { 
+            wordcount++;
+        }
+
+        // COMMENT HERE
+        if (current == '\n') {
+            linecount++;
+        }
+        last = current;
+    }
+    printf("%lu %lu %lu\n", charcount, wordcount, linecount);
+
+    return 0;
+}
+```
+
+Solution? I'm sure you can do this one on your own ( \*u\*)b
+
+DID YOU KNOW: there will be times when you need to store words you read in as C strings (perhaps in your assignment). Here is a piece of code that allows you to do that, do you understand what it is doing?
+
+```C
+int i = 0;
+char* str[100];
+char c;
+while ((c = getchar()) c != EOF ) {
+    if (i < nchars) {
+        str[i++] = c;
+    }
+}
+str[i] = '\0';
+```
+
+## Practice 03.2
+
+**REQUIREMENT**: you will write a program to file `p3.2.c`. 
+- INPUT: `p3.2.c` should read ASCII text from stdin.
+- BEHAVIOUR: `p3.2.c` will count the occurence frequency of each letter in the input.
+    - Letters that occur zero times should not appear in the output.
+    - Characters other than lower and upper case letters should be ignored.
+    - Lower and upper case instances count as the same letter, e.g. 'a' and 'A' are both reported for the letter 'a' on the output.
+- OUTPUT: `p3.2.c` will print the normalized frequencies for each letter a-z to stdout upon reaching EOF (end of file / `ctrl-d` in shell). 
+    - The frequencies reported should sum to approximately 1 (with a little slack for accumulation of `printf` rounding errors).
+    - The results should be printed as one letter per line, in alphabetical order using the format produced by:
+
+```C
+printf("%c %.4f\n", letter, freq);
+```
+
+By the way, you cannot implement this function by writing 26 "if" statements (1 for each letter). Hint: Each letter has a numerical [ASCII](https://en.wikipedia.org/wiki/ASCII) value. Can this numerical value be used at all?
+
+**TESTING**: you can test your program by running:
+```
+$ make p3.2
+$ ./p3.2
+```
+
+**EXAMPLE**: Assume you have named your executable `p3.2`. The first two example runs show the user entering the text manually in the terminal. The third and fourth runs have text piped in from a file (and the middle of the alphabet is omitted from the output for brevity). A text file `happy_prince.txt` containing a classic story in English is provided for testing.
+
+```
+$ ./p3.2
+aaab
+a 0.7500
+b 0.2500
+```
+
+```
+$ ./p3.2
+q
+q 1.0000
+```
+
+```
+./p3.2 < p3.2prince.txt
+a 0.0841
+b 0.0140
+c 0.0206
+...
+y 0.0240
+z 0.0002
+```
+
+Try it yourself first; then verify your solutions [here](./files/solution/p3.2.c).
+
 # Program arguments and C strings
 
 ## Guide
@@ -521,16 +701,16 @@ The program can be run like so and work as expected (we use `a.out` as the progr
 $ ./a.out 5 3.14
 ```
 
-## Practice 03
+## Practice 04
 
 For this practice, we'll go over how to implement a "substring" function in C.
 
-**REQUIREMENT**: you will write a program to file `p3.c`.
-- INPUT: `p3.c` takes two text strings as program arguments.
+**REQUIREMENT**: you will write a program to file `p4.c`.
+- INPUT: `p4.c` takes two text strings as program arguments.
     - You can assume the two strings contain at least one character.
 - OUTPUT: prints "true" followed by a newline if the second string is entirely contained within the first, or "false" followed by a newline otherwise.
 
-Recall that you can name your executable file with `-o` e.g. `gcc p3.c -o p3.o` and run it by `./p3.o`.
+Recall that you can name your executable file with `-o` e.g. `gcc p4.c -o p4.o` and run it by `./p4.o`.
 
 This is an [important problem in computer science](http://en.wikipedia.org/wiki/Substring), with wide applications from searching the internet, to understanding text, to finding DNA matches. It's easy to state and easy to code. It gets interesting when the strings are long and you want to do it very efficiently. For now you can be happy with a simple solution to practice managing `argv` array and char strings.
 
@@ -538,8 +718,8 @@ This is an [important problem in computer science](http://en.wikipedia.org/wiki/
 
 **TESTING**: you can test your program by running:
 ```
-$ make p3
-$ ./p3
+$ make p4
+$ ./p4
 ```
 
 **EXAMPLE**
@@ -547,15 +727,15 @@ $ ./p3
 Example runs:
 
 ```
-$ ./p3 "I have a really bad feeling about this" "bad feeling"
+$ ./p4 "I have a really bad feeling about this" "bad feeling"
 true
-$ ./p3 "To be or not to be" "That is the question"
+$ ./p4 "To be or not to be" "That is the question"
 false
-$ ./p3 "I am the walrus" "I am the walrus"
+$ ./p4 "I am the walrus" "I am the walrus"
 true
-$ ./p3 "the walrus" "I am the walrus"
+$ ./p4 "the walrus" "I am the walrus"
 false
-$ ./p3 "kmjnhbvc45&^$bn" "."
+$ ./p4 "kmjnhbvc45&^$bn" "."
 false
 ```
 
@@ -566,7 +746,7 @@ Notice that the strings do not have quote characters around them when delivered 
 <summary style="margin-left: 25px;">Try it yourself first; then verify your solutions here.</summary>
 <div style="margin-left: 25px;">
 
-Click [here](./files/solution/p3.c) for the solution code.
+Click [here](./files/solution/p4.c) for the solution code.
 
 Note: `#include <string.h>` contains function `strstr()` that solves the substring problem. The algorithm implemented in `strstr()` is not the most efficient, there are algorithms with better asymptotic runtimes; can you find more efficient implementations of a solution to the substring problem? 
 
@@ -576,185 +756,6 @@ Response to note: Theoretically there are more efficient implementations, but us
 
 </div>
 </details>
-
-# Stream redirection: redirecting stdin and stdout (`scanf` and `printf`)
-
-## Guide
-
-You will find it tedious to type lots of text into your program's stdin. The shell has a powerful tool to help with this: **stream redirection**. 
-
-**stream redirection** allows you to route the stdin and stdout for a program away from the console and into a file. 
-
-**stream redirection**; stdout: If we have a program called `p4hello` that prints "Hello world!\n" on stdout, we can redirect this output to `p4.txt`:
-
-```
-$ gcc p4hello.c -o p4hello
-$ ./p4hello > p4.txt
-```
-
-To confirm this, inspect the contents of the file with `cat`:
-
-```
-$ cat p4.txt
-Hello world!
-```
-
-**stream redirection**; stdin: Similarly, we can take the contents of a file, and stream it into the standard input of our program. So if we have a program `sort` that reads lines from stdin, sorts them into lexical order then writes them on stdout, we can do this:
-
-Contents of file `p4beatles.txt`:
-
-```
-john
-paul
-george
-ringo
-```
-
-```
-$ ./sort < p4beatles.txt
-george
-john
-paul
-ringo
-```
-
-**stream redirection**; stdin and stdout: Input and output redirection can be used together:
-
-```
-$ ./sort < p4beatles.txt > sorted.txt
-$ cat sorted.txt
-george
-john
-paul
-ringo
-```
-
-This is a very powerful mechanism that is great for testing with lots of different inputs. It's much more convenient to redirect a file into stdin than to type many lines followed by `ctrl-d` over and over. Make sure you understand file redirection!
-
-Here is a terse but good introduction to [BASH shell programming](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html), including a section on [redirection](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html).
-
-
-## Practice 04.1
-
-**REQUIREMENT**: add comments on file `p4.1.c` explaining what each line(s) is doing; do you understand the rationale behind these lines?
-
-Here is a program that would have been very tedious to run without stream redirection. `p4.1.c` counts the number of characters, words and lines read from standard input until `ctrl-d` (`EOF`, if interested, see extra materials in [lab 01](../01/README.md#EOF-the-end-of-the-file)).
-- Every byte read from stdin counts as a character.
-- Words are defined as contiguous sequences of letters (a through z, A through Z) and the apostrophe (', value 39 decimal) separated by any character outside these ranges.
-- Lines are defined as contiguous sequences of characters separated by newline characters ('\n').
-- Characters beyond the final newline character will not be included in the line count.
-
-There are new functions `getchar()` and `isalpha()` here which we haven't seen before. Check it out online or read its manual. There's a handy standard program called `wc` that does a similar job as `getchar()`, but it does not match the requirements exactly (it is a little more clever about word boundaries and will sometimes count fewer words than our simple program).
-
-**Escape characters**: This [Q&A on StackOverflow](http://stackoverflow.com/questions/2414478/c-escaping-an-apostrophe-in-a-string) gives advice on representing the apostrophe character using an **escape sequence**. StackOverflow is very useful indeed.
-
-```C
-#include <stdio.h> // getchar, EOF constant
-#include <ctype.h> // isalpha
-
-// main() is the same as main(int argc, char* argv[])
-// main(int argc, char* argv[]) is used so much that it was made the default!
-int main() {
-    // unsigned long int is a data type, search it up!
-    unsigned long int charcount = 0;
-    unsigned long int wordcount = 0; 
-    unsigned long int linecount = 0;
-    unsigned long int space = 0;
-
-    // COMMENT HERE
-    char last = getchar(); // getchar reads a character from stream, kind of like scanf
-    
-    // while not the end of file / ctrl-d
-    while (last != EOF) { 
-        // COMMENT HERE
-        charcount++;
-
-        // COMMENT HERE
-        char current = getchar();
-
-        // COMMENT HERE
-        if (!isalpha(last) && isalpha(current)) { 
-            wordcount++;
-        }
-
-        // COMMENT HERE
-        if (current == '\n') {
-            linecount++;
-        }
-        last = current;
-    }
-    printf("%lu %lu %lu\n", charcount, wordcount, linecount);
-
-    return 0;
-}
-```
-
-Solution? I'm sure you can do this one on your own ( \*u\*)b
-
-DID YOU KNOW: there will be times when you need to store words you read in as C strings (perhaps in your assignment). Here is a piece of code that allows you to do that, do you understand what it is doing?
-
-```C
-int i = 0;
-char* str[100];
-char c;
-while ((c = getchar()) c != EOF ) {
-    if (i < nchars) {
-        str[i++] = c;
-    }
-}
-str[i] = '\0';
-```
-
-## Practice 04.2
-
-**REQUIREMENT**: you will write a program to file `p4.2.c`. 
-- INPUT: `p4.2.c` should read ASCII text from stdin.
-- BEHAVIOUR: `p4.2.c` will count the occurence frequency of each letter in the input.
-    - Letters that occur zero times should not appear in the output.
-    - Characters other than lower and upper case letters should be ignored.
-    - Lower and upper case instances count as the same letter, e.g. 'a' and 'A' are both reported for the letter 'a' on the output.
-- OUTPUT: `p4.2.c` will print the normalized frequencies for each letter a-z to stdout upon reaching EOF (end of file / `ctrl-d` in shell). 
-    - The frequencies reported should sum to approximately 1 (with a little slack for accumulation of `printf` rounding errors).
-    - The results should be printed as one letter per line, in alphabetical order using the format produced by:
-
-```C
-printf("%c %.4f\n", letter, freq);
-```
-
-By the way, you cannot implement this function by writing 26 "if" statements (1 for each letter). Hint: Each letter has a numerical [ASCII](https://en.wikipedia.org/wiki/ASCII) value. Can this numerical value be used at all?
-
-**TESTING**: you can test your program by running:
-```
-$ make p4.2
-$ ./p4.2
-```
-
-**EXAMPLE**: Assume you have named your executable `p4.2`. The first two example runs show the user entering the text manually in the terminal. The third and fourth runs have text piped in from a file (and the middle of the alphabet is omitted from the output for brevity). A text file `happy_prince.txt` containing a classic story in English is provided for testing.
-
-```
-$ ./p4.2
-aaab
-a 0.7500
-b 0.2500
-```
-
-```
-$ ./p4.2
-q
-q 1.0000
-```
-
-```
-./p4.2 < p4.2prince.txt
-a 0.0841
-b 0.0140
-c 0.0206
-...
-y 0.0240
-z 0.0002
-```
-
-Try it yourself first; then verify your solutions [here](./files/solution/p4.2.c).
 
 
 # Bonus material: C vs C++ (C strings vs `std::string`)
@@ -782,14 +783,14 @@ The three main differences are at the top:
 | | pointer | reference |
 |-|---------|-----------|
 | can it store null? | yes | no |
-| how do you declare it? | `int\* r = &i;` (declaration is not necessary, pointers get atuomatically created for `int i;`, just do `&i\`) | `int& r = i;` (initialization/assignment is mandatory at declaration; not to be confused with pointer `&i`) |
+| how do you declare it? | `int* r = &i;` (declaration is not necessary, pointers get atuomatically created for `int i;`, just do `&i`) | `int& r = i;` (initialization/assignment is mandatory at declaration; not to be confused with pointer `&i`) |
 | can you re-assign another address to it after it is initialized to an address? | yes  | no |
 | | |
 | what is it? | the address in memory where a value is or can be stored | same as pointer |
-| where is it in memory? | stored exactly like an integer variable value on the stack and has its own memory address | has the same memory address as its value BUT also takes up additional space on the stack |
+| where is it in memory? | stored exactly like an integer variable value on the stack and has its own memory address | has the same memory address as its value BUT may take up additional space on the stack |
 | syntax to access its struct fields (see lab 04) | `->` | `.` |
 
-As a rule of thumb, pointers are great for when you need a null pointer (i.e. you want C to throw an error if it uses this variable with a null pointer) or if you want to do pointer arithmetics (e.g. `*(1+ia)`). For other situations, if you have access to C++, use a reference.
+As a rule of thumb, pointers are great for when you need a null pointer (i.e. you want C to throw an error if it uses this variable with a null pointer) or if you want to do pointer arithmetics (e.g. `*(1+ia)`). For other situations, if you have access to C++, use a reference. At the end of the day, use whichever one you are used to using :).
 
 Did you know: you can pass a pointer as a reference or a pointer i.e. you just treat your pointer as an integer variable, and pass the reference or pointer to that integer variable. We usually pass a reference for a pointer instead of a pointer for a pointer because pointers can change and if the two pointers overlap, uh oh.
 

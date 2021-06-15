@@ -11,11 +11,11 @@ p1: p1.c p1funcs.c
 p2: p2.c p2identical.c
 	gcc $(CFLAGS) -o $@ p2.c p2identical.c
 
-p3: p3.c
-	gcc $(CFLAGS) -o $@ p3.c
+p3.2: p3.2.c
+	gcc $(CFLAGS) -o $@ p3.2.c
 
-p4.2: p4.2.c
-	gcc $(CFLAGS) -o $@ p4.2.c
+p4: p4.c
+	gcc $(CFLAGS) -o $@ p4.c
 
 clean:
-	rm -f p1 p2 p3 p4.2 *.o
+	rm -f p1 p2 p3.2 p4 *.o
