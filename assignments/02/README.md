@@ -46,9 +46,9 @@ int mirror(int arr1[], int arr2[], unsigned int len);
 - INPUT: The `mirror()` function has the following inputu arguments:
     - Arrays `arr1` and `arr2` are both of length `len`, and contain arbitrary integer values.
     - `len` can have any unsigned int value, including 0.
-    - If `len` is 0 then `mirror()` should return 1 (since the arrays have the same - empty - contents).
-    - You must not change the contents of the arrays.
 - OUTPUT: `mirror()` should return 1 iff arrays `arr1` and `arr2` contain the same values in the reverse order, or 0 otherwise. 
+    - If `len` is 0 then `mirror()` should return 1 (since the arrays have the same - empty - contents).
+- You must not change the contents of the arrays.
 
 **TESTING**: use `t2.c` to test your function by editing the arrays `a1` and `a2` and by running:
 ```
