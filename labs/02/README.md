@@ -592,7 +592,7 @@ str[i] = '\0';
 ## Practice 03.2
 
 **REQUIREMENT**: you will write a program to file `p3.2.c`. 
-- INPUT: `p3.2.c` should read ASCII text from stdin.
+- INPUT: `p3.2.c` should read [ASCII](http://www.asciitable.com/) text from stdin.
 - BEHAVIOUR: `p3.2.c` will count the occurrence frequency of each letter in the input.
     - Letters that occur zero times should not appear in the output.
     - Characters other than lower and upper case letters should be ignored.
@@ -605,7 +605,7 @@ str[i] = '\0';
 printf("%c %.4f\n", letter, freq);
 ```
 
-By the way, you cannot implement this function by writing 26 "if" (or "switch") statements (1 for each letter). Hint: Each letter has a numerical [ASCII](https://en.wikipedia.org/wiki/ASCII) value. Can this numerical value be used at all?
+By the way, you cannot implement this function by writing 26 "if" (or "switch") statements (1 for each letter). Hint: Each letter has a numerical [ASCII](http://www.asciitable.com/) value (better link courtesy of Michael!). Can this numerical value be used at all?
 
 **TESTING**: you can test your program by running:
 ```
