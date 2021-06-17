@@ -136,7 +136,7 @@ $ ./t4 as to < t4prince.txt
 (see? Makefiles saves your `gcc` command so you don't have to type this long thing over and over again, convenient huh :D)
 
 **HINT**:
-- use `strcmp()`, look it up!
+- perhaps you can make use of `strcmp()`, look it up!
 - to keep track of the words you are reading from standard input, initialize a C string with, e.g. 200, characters plus an integer keeping track of how long your C string currently is; for example:
 
 ```C
