@@ -19,7 +19,7 @@ Download the files for this assignment [here](./files.zip) (or from the [CMPT 12
 
 Your assignment will be graded according to this [**marking rubric**](#marking-rubric).
 
-**REQUIREMENT**: All of your solutions should not be case-sensitive i.e. your program should handle both upper and lower case letters, 'a' and 'A' should be considered the same.
+**REQUIREMENT**: All of your solutions should not be case-sensitive i.e. your program should handle both upper and lower case letters, 'a' and 'A' should be considered the same. Hint: google the function `tolower()`; another method is shown to you in lab 02 practice problem 03.
 
 ## Task 01
 
