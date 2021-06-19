@@ -19,6 +19,8 @@ Download the files for this assignment [here](./files.zip) (or from the [CMPT 12
 
 Your assignment will be graded according to this [**marking rubric**](#marking-rubric).
 
+**REQUIREMENT**: All of your solutions should not be case-sensitive i.e. your program should handle both upper and lower case letters, 'a' and 'A' should be considered the same.
+
 ## Task 01
 
 **REQUIREMENT**: You will write to file `t1funcs.h` and edit file `t1.c`.
