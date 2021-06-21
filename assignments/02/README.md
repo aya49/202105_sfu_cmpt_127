@@ -252,6 +252,6 @@ Upload `a.zip` to the appropriate assignment submission page on the [CMPT 127 D1
 | 02   | Program works as intended (i.e. outputs false and true for the first and second half of the tests in `t2.c` respectively). | 2 |
 | 03   | Program works as intended.                    | 2.5    |
 | 04   | Program works as intended.                    | 2      |
-|      | Program properly uses `scanf` to take as input, two C strings and a text file. | 0.5 |
+|      | Program properly uses `scanf` or `getchar` or some function that takes advantage of stream redirection to take as input, two C strings and a text file. | 0.5 |
 |      | Program properly initializes and uses arrays. | 0.5 |
 | Total|                                               | 10     |
