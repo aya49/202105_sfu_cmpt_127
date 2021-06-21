@@ -120,49 +120,10 @@ img_result_t imgr_remove(imgr_t* im, unsigned int i, unsigned int j);
     - if you went to index `[i][j]` but there was nothing there, return `IMGR_EMPTY`.
 
 
-# Make sure your code is readable!
-
-Please make sure you follow good coding habits while you are coding:
-- indents: use consistent indenting conventions e.g. if you decide to use 2 spaces for an indent, do that across all your tasks.
-- readable variable names: the name of a variable explains why you made it if it is not obvious already (likely not ;). You can also add a comment explaining what it is!
-- comments at the top + inline: comments at the top is the block I give you to fill in your name, date, etc. Comments inline are comments explaining what your code does, e.g.
-
-```C
-// author: alice yue; aya43; 301196607
-// date:2021/5/29
-// input: void (from main (<<void>>))
-// output: int (from <<int>> main (void))
-// description: prints the product of multiple 
-//     user given integers to standard output.
-
-#include <stdio.h>
-
-int main(void) {
-    // declare a variable to hold user input
-    float i; 
-  
-    // declare a variable to hold the product
-    float prod;
-
-    // ask and scan for a user input
-    printf("Provide floats separated by a line:\n");
-    scanf("%f", &a);
-
-    // while the user input is not 0, calculate a cumulative product
-    while (a!=0) {
-        prod = prod*a;
-        scanf("%f", &a);
-    }
-
-    // print the product to standard output
-    printf("The product of your values is %0.2f\n", product);
-    
-    return 0;
-}
-```
-
 
 # Submission
+
+First, make sure your code is readable, see instructions [here](../../readability.md).
 
 Make sure you have the following files ready for submission and that they are named appropriately, otherwise they won't be graded.
 - Task 00-03: `t0imgr.c`, `t0.c`
@@ -183,7 +144,7 @@ Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 1
 | Task | Criteria                                      | Points |
 |------|-----------------------------------------------|--------|
 | All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas). | 1 |
-|      | Source code is readable (i.e. student name and program description at the top of program files, variable names are self-descriptive and consistent, comments describing what code does is available where appropriate, indentatations are consistent). | 0.5 |
+|      | Source code is readable (i.e. student name and program description at the top of program files, variable names are self-descriptive and consistent, comments describing what code does is available where appropriate, indentatations are consistent), see instructions [here](../../readability.md). | 0.5 |
 | 00   | `t0.c` tests are created for each of the 4 functions x 0.5 (+0.5 because `expand_row` has two test cases, when `expand_row = 0` and `expand_row != 0`); each test either works appropriately (0.5) or they don't (0). | 2.5 |
 | 01   | `imgr_create` works as intended.               | 0.5    |
 |      | `imgr_destroy` works as intended.              | 0.5    |
