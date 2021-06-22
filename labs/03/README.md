@@ -271,6 +271,7 @@ int main(void) {
     
     // de-allocate the memory allocated by malloc
     free(array);
+    // array = NULL; // this is good practice, but since we're done the program, we don't have to anymore.
 
     return 0;
 }
@@ -314,6 +315,20 @@ Stack vs heap
     - Pro: If the heap is out of space, `malloc()` tells you so and you can either cope with it gracefully or quit your program.
     - Pro: Unlike things on a stack, things stored in the heap is available to any function that knows its address, regardless of the current state of the stack.
     - Con: you have to manually allocate and free things on the heap using `malloc()` and `free()` respectively.
+
+# Bonus material: more on `malloc()` and `free()`
+
+When you use `malloc()`, it allocates the amount of memory you requested plus a bit more memory usually right before where its returned pointer points to, to store things like:
+- the size of allocated memory
+- a "terminator" (like a C string null terminator) that protects against writing across different sections of reserved memory.
+- paddding, or extra unused space; most of the time, malloc will round up your requested size (e.g. 63 bytes) to a multiple of (e.g. 8 bytes --- so malloc will allocate 64 bytes instead). This depends on how your CPU is designed. For example, 64-byte systems have CPU(s) that access your memory most efficiently at 8-bit intervals.
+
+`free()` finds these information and frees up the entire block of memory `malloc()` allocated.
+
+Some basics on how space in memory is "labelled" (on top of having an "addrewss" every element in memory also has a "label" indicating what can or cannot be done to it):
+- memory allocation marks space in memory as "reserved" --- this is reserved for my variable, don't come and allocate it to another variable!
+- freeing up memory marks space in memory as "ok to overwrite" --- the values stored here aren't going to be used anymore, you can allocate it to another variable if you need to. THIS IS WHAT GETS RECOVERED when hackers in television shows recover data from computers.
+- assignment overwrites data in memory --- once data has been overwritten, it cannot be recovered.
 
 
 # Credit
