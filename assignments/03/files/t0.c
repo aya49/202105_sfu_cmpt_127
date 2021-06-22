@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "p0img.h"
+#include "t0img.h"
 
 // helper function that prints the content of the img
 void print_img(img_t* im) {
@@ -16,12 +16,12 @@ void print_img(img_t* im) {
         return;
     }
 
-    printf("Printing img of length %d:\n", im->len);
-    for (unsigned int i=0; i<im->row; i++) {
-        for unsigned int j=0; j<im->col; j++) {
+    printf("Printing img of row length %d and col length %d:\n", im->rows, im->cols);
+    for (unsigned int i=0; i<im->rows; i++) {
+        for (unsigned int j=0; j<im->cols; j++) {
             printf("%d ", im->pixels[i][j]);
         }
-        printf("\n")
+        printf("\n");
     }
     printf("\n");
 }
@@ -41,8 +41,8 @@ int main() {
     }
 
     printf("Populating test_im by calling 'img_set(test_im, i, j, random)'\n");
-    for (unsigned int i=0; i<test_im->row; i++) {
-        for (unsigned int j=0; i<test_im->col; j++) {
+    for (unsigned int i=0; i<test_im->rows; i++) {
+        for (unsigned int j=0; i<test_im->cols; j++) {
             if (img_set(test_im, i, j, (rand()%100)) != IMG_OK) {
                 printf("Cannot set value at index %d\n", i);
                 return 1; //exit with a non-zero value

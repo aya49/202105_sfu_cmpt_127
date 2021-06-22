@@ -28,6 +28,8 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 - In `t0img.c`, implement the integer array functions declared and specified in the supplied header file `t0img.h`.
 - Create a test driver program in file `t0.c` with a main function from which each of the functions in `t0img.c` are called (tested). Compile and execute your `t0img.c` (with stubs) and your test driver.
 
+A more verbose requirement for your test cases: for your tests, read the output requirement of each function in this document. For every situation, your function will need to return whatever is requested. Your test should be a series of mock input arguments representing the different possible inputs. Then you will have condition statements testing whether the returns are as requested. 
+
 These functions would work around the following two user defined data structures (see `t0img.h`):
 
 ```C
@@ -108,7 +110,7 @@ img_result_t img_get(const img_t* im, unsigned int row, unsigned int col, int* v
 ```
 - INPUT: the pointer of a `img_t` variable `im` (`const` means that you cannot modify `im`), a `row` and `col` index, and the pointer to a value.
 - OUTPUT:
-    - If the `row` and `col index is valid and `val` is non-`NULL`, set `*val` to `im->data[row][col]` and return `IMG_OK`. 
+    - If the `row` and `col` index is valid and `val` is non-`NULL`, set `*val` to `im->data[row][col]` and return `IMG_OK`. 
     - Otherwise do not modify `*val` and return `IMG_BADROW` if `row` doesn't exist, otherwise `IMG_BADCOL` if `col` doesn't exist. 
     - If `im` is `NULL`, return `IMG_BADARRAY`.
 
@@ -116,13 +118,12 @@ img_result_t img_get(const img_t* im, unsigned int row, unsigned int col, int* v
 
 **REQUIREMENT**: write a function in `t0img.c` with the following declaration:
 ```C
-img_result_t img_find(img_t* im, int target, int* i, int* j);
+img_t* img_copy(const img_t* im);
 ```
-- INPUT: the pointer of a `img_t` variable `im`, a `target` value, and pointers to integers `i` and `j`.
+- INPUT: the pointer of a `img_t` variable `im`.
 - OUTPUT:
-    - If `im` is `NULL`, return `IMG_BADARRAY`.
-    - if the `target` value is found in the array in `im` and `i` is non-`NULL`, set `*i` and `*j` to the `row` and `col` index respectively, of where `target` first occured and return `IMG_OK`. The order of search is done left to right, top to bottom i.e. search the entire first row in order, then search the second row.
-    - If `target` does not occur in the array, leave `*i` unmodified and return `IMG_NOTFOUND`.
+    - If `im` is `NULL` or if function fails to make a deep copy of `im`, return a `NULL` pointer (e.g. `p` is a `NULL` pointer: `int* p = NULL;`).
+    - Otherwise, return a deep copy of `im` (hint: you will have to be able to access this deep copy of `im` outside the function; think about how to allocate memory such that this condition is fulfilled).
 
 ### Task 04
 
@@ -134,7 +135,7 @@ img_result_t img_find(img_t* im, int target, int* i, int* j);
 - OUTPUT:
     - If `im` is `NULL`, return `IMG_BADARRAY`.
     - if the `target` value is found in the array in `im` and `i` is non-`NULL`, set `*i` and `*j` to the `row` and `col` index respectively, of where `target` first occured and return `IMG_OK`. The order of search is done left to right, top to bottom i.e. search the entire first row in order, then search the second row.
-    - If `target` does not occur in the array, leave `*i` unmodified and return `IMG_NOTFOUND`.
+    - If `target` does not occur in the array, leave `*i` and `*j` unmodified (i.e. the **value** pointed to by `i` and `j`) and return `IMG_NOTFOUND`.
 
 ### Task 05
 
@@ -145,7 +146,7 @@ img_t* img_copy_subarray(img_t* im, unsigned int first_row, unsigned int last_ro
 ```
 - INPUT: the pointer of a `img_t` variable `im`, index `row_first`, `row_last`, `col_first`, and `col_last`.
 - OUTPUT:
-    - Return a deep copy of a portion of `im` from index `first_row` and `first_col to index `last_row` and `last_col` inclusive. If successful, return a pointer to a newly-allocated `img_t` containing a copy of the specified section.  For example, if `first_row` = 3, `last_row` = 6, `first_col` = 2, `last_col` = 3, the resulting 2D array would be 4 rows and two cols in size.
+    - Return a deep copy of a portion of `im` from index `first_row` and `first_col` to index `last_row` and `last_col` inclusive. If successful, return a pointer to a newly-allocated `img_t` containing a copy of the specified section.  For example, if `first_row` = 3, `last_row` = 6, `first_col` = 2, `last_col` = 3, the resulting 2D array would be 4 rows and two cols in size.
     - If an error occurs, i.e. `im` is `NULL`, the row/col indices are out of bounds, 'last' < 'first', or memory allocation fails, return a null pointer.
 
 
