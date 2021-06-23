@@ -209,7 +209,7 @@ Upload `a.zip` to the appropriate assignment submission page on the [CMPT 127 D1
 |      | Source code is readable (i.e. student name and program description at the top of program files, variable names are self-descriptive and consistent, comments describing what code does is available where appropriate, indentatations are consistent), see instructions [here](../../readability.md). | 0.5 |
 | 01   | `t1funcs.h` contains the function declarations for the functions in `t1funcs.c`. | 0.5 |
 |      | `t1.c` contains an include statement for `t1funcs.h`. | 0.5 | 
-| 02   | Program works as intended (i.e. outputs false and true for the first and second half of the tests in `t2.c` respectively). | 2 |
+| 02   | Program works as intended (i.e. outputs true and false for the first and second half of the tests in `t2.c` respectively). | 2 |
 | 03   | Program works as intended.                    | 2.5    |
 | 04   | Program works as intended.                    | 2      |
 |      | Program properly uses `scanf` or `getchar` or some function that takes advantage of stream redirection to take as input, two C strings and a text file. | 0.5 |
