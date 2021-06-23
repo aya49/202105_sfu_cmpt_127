@@ -8,6 +8,9 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 Try "Practice" problems; these will NOT be graded.
 - [Practice 01](#practice-01-fixing-the-bug-option-1)
 
+| 2021-06-22 |
+|----|
+| <a href="http://www.youtube.com/watch?feature=player_embedded&v=2py2AC_SqaM" target="_blank"><img src="http://img.youtube.com/vi/2py2AC_SqaM/0.jpg" alt="" width="200" border="0"/></a> |
 
 # Multidimensional arrays
 

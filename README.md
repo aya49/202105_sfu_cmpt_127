@@ -33,7 +33,7 @@ Lectures will be recorded; the links to the recordings will be posted at the top
 | 3 | 2021-06-01 | [02](labs/02) | [Functions, arrays](https://youtu.be/UCKyZum1Tdw) | [01](assignments/01) (lab 01) | |
 | 4 | 2021-06-08 | | | | [01](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01) |
 | 5 | 2021-06-15 | [02](labs/02) | [Stream redirection, program arguments, C strings](https://youtu.be/q4Bg4S4p9gg) | | |
-| 6 | 2021-06-22 | [03](labs/03) | More arrays, stack/heap storage | [02](assignments/02) (lab 02) | |
+| 6 | 2021-06-22 | [03](labs/03) | [More arrays, stack/heap storage](https://youtu.be/2py2AC_SqaM) | [02](assignments/02) (lab 02) | |
 | 7 | 2021-06-29 | | | | [02](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-03) |
 | 8 | 2021-07-06 | [04](labs/04), [05](labs/05) | typedef struct, file i/o: XDR | | |
 | 9 | 2021-07-13 | [06](labs/06) | realloc(), unstable remove | [03](assignments/03) (lab 04) | |
