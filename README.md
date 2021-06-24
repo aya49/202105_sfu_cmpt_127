@@ -2,7 +2,7 @@
 
 Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100), [D200](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d200), [D300](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d300)
 
-# Announcements: https://canvas.sfu.ca/courses/62984/announcements
+Announcements: https://canvas.sfu.ca/courses/62984/announcements
 
 # Important links
 - [Lab and office hours](#lab-and-office-hours)
