@@ -6,9 +6,9 @@ Announcements: https://canvas.sfu.ca/courses/62984/announcements
 
 # Important links
 - [Lab and office hours](#lab-and-office-hours)
-- Assignment & quiz @ [Canvas](https://canvas.sfu.ca/courses/62984)
+- [Assignment & quiz submission @ Canvas](https://canvas.sfu.ca/courses/62984)
 - [Canvas discussion board](https://canvas.sfu.ca/courses/62984/discussion_topics)
-- Peer tutoring session [schedule](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (starts 2021-05-24)
+- [Peer tutoring session schedule](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (starts 2021-05-24)
 
 # Schedule
 
