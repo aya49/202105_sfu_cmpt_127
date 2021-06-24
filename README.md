@@ -1,18 +1,8 @@
 # CMPT 127 - computing laboratory (summer 2021)
 
 Course outline: [D100](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d100), [D200](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d200), [D300](http://www.sfu.ca/outlines.html?2021/summer/cmpt/127/d300)
-# Announcements
 
-**2021-06-01**: Quiz 01 next Tuesday 2021-06-08 @ Canvas!
-- Duration: the quiz will be 1 continuous hour.
-- You can choose to do this 1 continuous hour whenever in the designated 24 hour period next Tuesday 08:30am to the next day next Wednesday 08:30am.
-- Content: the quiz will cover lab 01 and assignment 01.
-- Format: multiple answers and coding questions (make sure you leave ENOUGH TIME for the coding question, it can be long).
-
-
-**2021-05-25**: the Makefiles for [lab 01](./labs/01) and [assignment 01](./assignments/01) have been updated and uploaded to their respective pages; please RE-DOWNLOAD the files or copy the contents over to your local files! 
-
-**2021-05-20**: Lecture recordings are posted in the schedule below and to the top of the associated lab page!
+# Announcements: https://canvas.sfu.ca/courses/62984/announcements
 
 # Important links
 - [Lab and office hours](#lab-and-office-hours)
