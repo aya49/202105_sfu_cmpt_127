@@ -30,7 +30,7 @@ Overall, an image can be described by a width, a height, and an array (whose ele
 
 ```C
 struct { 
-    uint8_t* pixels;
+    uint8_t* pixels; // #include <stdint.h> includes the data type uint8_t!!!
     unsigned int cols;
     unsigned int rows;
 } img;
@@ -45,7 +45,7 @@ So we can initialize our image like so:
 ```C
 img.cols = 640;
 img.rows = 480;
-img.pixels = malloc(img.rows * img.cols * sizeof(uint8_t*));
+img.pixels = malloc(img.rows * img.cols * sizeof(uint8_t));
 ```
 
 The structure is implemented as a chunk of memory with space for all its fields. The "dot" syntax is interpreted at compile time as a number of bytes offset from the structure's base address, so these things are true:
