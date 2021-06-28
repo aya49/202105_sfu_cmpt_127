@@ -26,6 +26,8 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 
 In this assignment, we are going to write functions for the `img` structure, except this time, unlike in your labs, you are going to implement the `pixels` in this structure as a 2D **array**.
 
+BE CAREFUL! 2D arrays have more than just the one pointer, whatever you do for that first pointer, now you'll have to also do for the other pointers.
+
 **REQUIREMENT**: you will write your program to two files: `t0img.c`, `t0.c`.
 - In `t0img.c`, implement the integer array functions declared and specified in the supplied header file `t0img.h`.
 - Create a test driver program in file `t0.c` with a main function from which each of the functions in `t0img.c` are called (tested). Compile and execute your `t0img.c` (with stubs) and your test driver.
