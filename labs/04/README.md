@@ -38,7 +38,7 @@ struct {
 
 IMPORTANT: in this lab, we are going to implement  `pixels` as a 1D array, you will implement it as a 2D array in your assignment.
 
-This declaration creates a new variable called `img`, that contains the variables we need for one image. These variables the `image` holdes is called **fields** or **members** of the structure. Each field can be accessed using the "dot" syntax.
+This declaration creates a new variable called `img`, that contains the variables we need for one image. These variables `img` holds are called **fields** or **members** of the structure. Each field can be accessed using the "dot" syntax.
 
 So we can initialize our image like so:
 
@@ -191,7 +191,7 @@ This is called **Deep copy**.
 img_t original;
 original.cols = 32;
 original.rows = 32;
-unsigned int numbytes = original.cols * original.rows * sizeof(uint8_t)
+unsigned int numbytes = original.cols * original.rows * sizeof(uint8_t);
 original.pixels = malloc(numbytes); // malloc some space on heap
 
 img_t duplicate = original; // start with a shallow copy
@@ -239,7 +239,7 @@ Deciding when to create a new structured type is an important part of program de
 Note: structures can be defined in header files.
 
 **REQUIREMENT**: you will write your program to two files: `p0intarr.c` `p0.c`.
-- n `p0intarr.c`, implement the integer array functions declared and specified in the supplied header file `p0intarr.h`.
+- In `p0intarr.c`, implement the integer array functions declared and specified in the supplied header file `p0intarr.h`.
 - Create a test driver program in file `p0.c` with a main function from which each of the functions in `p0intarr.c` are called (tested). Compile and execute your `p0intarr.c` (with stubs) and your test driver.
 
 These functions would work around the following two user defined data structures (see `p0intarr.h`):
@@ -263,7 +263,7 @@ typedef enum {
 
 **HINTS**
 - Don't forget to keep adding appropriate function calls to your test driver as you go along.
-- An example of **stubing** is to replace the body with `return 0` if your function is supposed to return an `int`. This way, your program compiles even if your function body is incomplete.
+- An example of **stubbing** is to replace the body with `return 0` if your function is supposed to return an `int`. This way, your program compiles even if your function body is incomplete.
     - If your code compiles, then implement the two functions of practice 01.1.
     - Compile and execute your test driver. Note that this time, your test driver is testing the functions you have implemented for practice 01.1. Are these functions working as expected?.
     - Repeat the above two steps until all functions have been designed, implemented and tested.
