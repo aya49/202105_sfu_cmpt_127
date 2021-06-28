@@ -172,7 +172,7 @@ This example shows the use of a simple file format that uses a short "header" to
 Make sure you understand this example in detail. It combines elements from the examples above into a simple but realistic implementation of a file format.
 
 ```C
-/* saves an image to the filesytem using the file format:
+/* saves an image (see previous lab for the typedef struct!) to the filesytem using the file format:
      [ cols | rows | pixels ]
      where:
          cols is a uint32_t indicating image width
