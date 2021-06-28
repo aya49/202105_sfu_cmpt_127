@@ -30,11 +30,13 @@ Overall, an image can be described by a width, a height, and an array (whose ele
 
 ```C
 struct { 
-    uint8_t** pixels;
+    uint8_t* pixels;
     unsigned int cols;
     unsigned int rows;
 } img;
 ```
+
+IMPORTANT: in this lab, we are going to implement  `pixels` as a 1D array, you will implement it as a 2D array in your assignment.
 
 This declaration creates a new variable called `img`, that contains the variables we need for one image. These variables the `image` holdes is called **fields** or **members** of the structure. Each field can be accessed using the "dot" syntax.
 
@@ -43,7 +45,7 @@ So we can initialize our image like so:
 ```C
 img.cols = 640;
 img.rows = 480;
-img.pixels = malloc(img.cols * img.rows * sizeof(uint8_t));
+img.pixels = malloc(img.rows * img.cols * sizeof(uint8_t*));
 ```
 
 The structure is implemented as a chunk of memory with space for all its fields. The "dot" syntax is interpreted at compile time as a number of bytes offset from the structure's base address, so these things are true:
@@ -52,7 +54,7 @@ The structure is implemented as a chunk of memory with space for all its fields.
 // 8-byte pointer (assuming a 64bit OS) + 2 * 4-byte unsigned integers
 sizeof(img) == sizeof(uint8_t*) + sizeof(unsigned int) + sizeof(unsigned int)
 
-&img.pixels == (void*)&img + 0 // `(void*)` signifies "pointer of unspecified type"
+img.pixels == img + 0 // `(void*)` signifies "pointer of unspecified type"
 &img.cols == (void*)&img + sizeof(uint8_t*)
 &img.rows == (void*)&img + sizeof(uint8_t*) + sizeof(unsigned int)
 ```
@@ -73,7 +75,7 @@ A type is like the primitive version of the template class you are learning abou
 
 ```C
 typedef struct { 
-    uint8_t** pixels;
+    uint8_t* pixels;
     unsigned int cols;
     unsigned int rows;
 } img_t;
