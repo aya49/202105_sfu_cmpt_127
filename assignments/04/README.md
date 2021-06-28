@@ -20,7 +20,7 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 
 ## Task 01
 
-You will extend the functionality of your integer array from the previous assignment, task 01-05 to support saving and loading arrays from the filesystem in a binary format. 
+You will extend the functionality of your integer array from the previous assignment, task 01-05 to support saving and loading of 2D arrays from the filesystem in a binary format. 
 
 **REQUIREMENT**:
 - you will create a C source file called "t1img.c" containing implementations of the two functions declared in `t1img.h`.
