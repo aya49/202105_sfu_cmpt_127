@@ -36,8 +36,8 @@ These functions would work around the following user defined data structures (se
  * the cols represent the indices of the arrays pointed to by the pointers 
  * in the elements of the main array.
 */
-struct { 
-    uint8_t* pixels;
+typedef struct { 
+    uint8_t** pixels;
     unsigned int rows;
     unsigned int cols;
     unsigned int reserved_rows;
