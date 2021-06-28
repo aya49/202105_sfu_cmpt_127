@@ -7,7 +7,7 @@
  * in the elements of the main array.
 */
 typedef struct { 
-    uint8_t* pixels;
+    uint8_t** pixels;
     unsigned int rows;
     unsigned int cols;
 } img_t;
