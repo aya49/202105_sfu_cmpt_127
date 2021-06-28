@@ -38,8 +38,8 @@ These functions would work around the following two user defined data structures
  * the cols represent the indices of the arrays pointed to by the pointers 
  * in the elements of the main array.
 */
-struct { 
-    uint8_t* pixels;
+typedef struct { 
+    uint8_t** pixels;
     unsigned int rows;
     unsigned int cols;
 } img_t;
