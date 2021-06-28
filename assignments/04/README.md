@@ -69,7 +69,9 @@ The C standard library has two functions that can be very helpful for rendering 
 
 Notice from those manual pages that functions `snprintf()` and `sscanf()` can also print and scan from C strings. (`sprintf()` exists, but the lack of array length checking means this is not safe or secure to use. Always use `snprintf()`).
 
-You will extend the functionality of your integer array from the previous assignment, task 01-05, to support saving and loading arrays from the filesystem in JSON. 
+You will extend the functionality of your integer array from the previous assignment, task 01-05, to support saving and loading arrays from the filesystem in JSON. You know how to do it for 1D arrays, now can you do it for 2D arrays?
+
+HINT: for 1D arrays you saved each element as `[ ... ]`; for 2D arrays, it is just `[[...] [...] [...]]`
 
 **REQUIREMENT**: 
 - you will create a C source file called `t2img.c` containing implementations of the two functions declared in `t2img.h`.
