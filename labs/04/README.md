@@ -30,7 +30,7 @@ Overall, an image can be described by a width, a height, and an array (whose ele
 
 ```C
 struct { 
-    uint8_t* pixels;
+    uint8_t** pixels;
     unsigned int cols;
     unsigned int rows;
 } img;
@@ -73,7 +73,7 @@ A type is like the primitive version of the template class you are learning abou
 
 ```C
 typedef struct { 
-    uint8_t* pixels;
+    uint8_t** pixels;
     unsigned int cols;
     unsigned int rows;
 } img_t;
