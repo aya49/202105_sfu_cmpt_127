@@ -171,6 +171,7 @@ Recall: this means that the compiler has to decide how large a function's stack 
 However, you won't always know how big of an array to expect. Also, if the amount of data you expect is usually very small, but might be very large at times, it would be wasteful to always allocate a huge array just in case.
 
 ### Heap storage: fixing the bug! (option 2)
+(see if you can use the knowledge in this section to create another solution for the bug in practice problem 01! No solutions are given but HINT: at minimum, you only need to change one line of the code, of course you can add more :D)
 
 To overcome these shortcomings, we allocate memory on the heap explicitly, using `malloc()` (memory allocation).
 
