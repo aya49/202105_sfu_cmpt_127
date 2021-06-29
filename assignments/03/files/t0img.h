@@ -15,6 +15,7 @@ typedef struct {
 /* A type for returning status codes */
 typedef enum {
     IMG_OK,
+    IMG_BADVAL,
     IMG_BADARRAY,
     IMG_BADCOL,
     IMG_BADROW,
@@ -47,6 +48,7 @@ img_result_t img_set(img_t* im, unsigned int row, unsigned int col, int val);
 // If row and col is valid and val is non-null, set *val to im->pixels[row][col] and return
 // IMG_OK. Otherwise do not modify *val and return
 // IMG_BADCOL if the col is invalid and return IMG_BADROW if the row is invalid. 
+// Otherwise if val is null, return BADVAL.
 // If im is null, return IMG_BADARRAY.
 img_result_t img_get(const img_t* im, unsigned int row, unsigned int col, int* val);
 
