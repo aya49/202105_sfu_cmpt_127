@@ -114,7 +114,7 @@ img_result_t img_get(const img_t* im, unsigned int row, unsigned int col, int* v
 ```
 - INPUT: the pointer of a `img_t` variable `im` (`const` means that you cannot modify `im`), a `row` and `col` index, and the pointer to a value.
 - OUTPUT:
-    - If the `row` and `col` index is valid and `val` is non-`NULL`, set `*val` to `im->data[row][col]` and return `IMG_OK`. If `cal` is `NULL`, return `BADVAL`.
+    - If the `row` and `col` index is valid and `val` is non-`NULL`, set `*val` to `im->data[row][col]` and return `IMG_OK`. If `cal` is `NULL`, return `IMG_BADINPUT`.
     - Otherwise do not modify `*val` and return `IMG_BADROW` if `row` doesn't exist, otherwise `IMG_BADCOL` if `col` doesn't exist. 
     - If `im` is `NULL`, return `IMG_BADARRAY`.
 
@@ -138,6 +138,7 @@ img_result_t img_find(img_t* im, int target, int* i, int* j);
 - INPUT: the pointer of a `img_t` variable `im`, a `target` value, and a pointer to an integer `i`.
 - OUTPUT:
     - If `im` is `NULL`, return `IMG_BADARRAY`.
+    - If any of the input index pointers are `NULL`, return `IMG_BADINPUT`.
     - if the `target` value is found in the array in `im`, set `*i` and `*j` to the `row` and `col` index respectively, of where `target` first occured and return `IMG_OK`. The order of search is done left to right, top to bottom i.e. search the entire first row in order, then search the second row.
     - If `target` does not occur in the array, leave `*i` and `*j` unmodified (i.e. the **value** pointed to by `i` and `j`) and return `IMG_NOTFOUND`.
 
