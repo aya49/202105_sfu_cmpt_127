@@ -42,7 +42,7 @@ int main() {
 
     printf("Populating test_im by calling 'img_set(test_im, i, j, random)'\n");
     for (unsigned int i=0; i<test_im->rows; i++) {
-        for (unsigned int j=0; i<test_im->cols; j++) {
+        for (unsigned int j=0; j<test_im->cols; j++) {
             if (img_set(test_im, i, j, (rand()%100)) != IMG_OK) {
                 printf("Cannot set value at index %d\n", i);
                 return 1; //exit with a non-zero value
