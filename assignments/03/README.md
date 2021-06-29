@@ -138,7 +138,7 @@ img_result_t img_find(img_t* im, int target, int* i, int* j);
 - INPUT: the pointer of a `img_t` variable `im`, a `target` value, and a pointer to an integer `i`.
 - OUTPUT:
     - If `im` is `NULL`, return `IMG_BADARRAY`.
-    - if the `target` value is found in the array in `im` and `i` is non-`NULL`, set `*i` and `*j` to the `row` and `col` index respectively, of where `target` first occured and return `IMG_OK`. The order of search is done left to right, top to bottom i.e. search the entire first row in order, then search the second row.
+    - if the `target` value is found in the array in `im`, set `*i` and `*j` to the `row` and `col` index respectively, of where `target` first occured and return `IMG_OK`. The order of search is done left to right, top to bottom i.e. search the entire first row in order, then search the second row.
     - If `target` does not occur in the array, leave `*i` and `*j` unmodified (i.e. the **value** pointed to by `i` and `j`) and return `IMG_NOTFOUND`.
 
 ### Task 05
