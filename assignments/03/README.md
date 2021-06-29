@@ -114,7 +114,7 @@ img_result_t img_get(const img_t* im, unsigned int row, unsigned int col, int* v
 ```
 - INPUT: the pointer of a `img_t` variable `im` (`const` means that you cannot modify `im`), a `row` and `col` index, and the pointer to a value.
 - OUTPUT:
-    - If the `row` and `col` index is valid and `val` is non-`NULL`, set `*val` to `im->data[row][col]` and return `IMG_OK`. 
+    - If the `row` and `col` index is valid and `val` is non-`NULL`, set `*val` to `im->data[row][col]` and return `IMG_OK`. If `cal` is `NULL`, return `BADVAL`.
     - Otherwise do not modify `*val` and return `IMG_BADROW` if `row` doesn't exist, otherwise `IMG_BADCOL` if `col` doesn't exist. 
     - If `im` is `NULL`, return `IMG_BADARRAY`.
 
