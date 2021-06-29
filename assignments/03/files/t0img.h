@@ -15,11 +15,10 @@ typedef struct {
 /* A type for returning status codes */
 typedef enum {
     IMG_OK,
-    IMG_BADVAL,
+    IMG_BADINPUT,
     IMG_BADARRAY,
     IMG_BADCOL,
     IMG_BADROW,
-    IMG_BADALLOC,
     IMG_NOTFOUND
 } img_result_t;
 
@@ -48,7 +47,7 @@ img_result_t img_set(img_t* im, unsigned int row, unsigned int col, int val);
 // If row and col is valid and val is non-null, set *val to im->pixels[row][col] and return
 // IMG_OK. Otherwise do not modify *val and return
 // IMG_BADCOL if the col is invalid and return IMG_BADROW if the row is invalid. 
-// Otherwise if val is null, return BADVAL.
+// Otherwise if val is null, return IMG_BADINPUT.
 // If im is null, return IMG_BADARRAY.
 img_result_t img_get(const img_t* im, unsigned int row, unsigned int col, int* val);
 
@@ -66,7 +65,8 @@ img_t* img_copy(const img_t* im);
 // Find the first occurrence of the target in the array, searching from
 // left to right, top to bottom (e.g. search the entire first row, 
 // then seach the entire second row, etc.). 
-// If the target is found and i is non-null, set *i to the
+// If any of i and j is null, return IMG_BADINPUT.
+// If the target is found, set *i to the
 // location row and set *j to the location col
 // and return IMG_OK. If target does not occur in
 // the array, leave *i and *j unmodified and return IMG_NOTFOUND. If im is
