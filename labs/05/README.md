@@ -19,7 +19,7 @@ Recall: we talked about stream redirection, where we redirected text on the stan
 
 ### External data representation (XDR) using files
 
-**Memory**: data structures stored on a programs' working memory of stack and heap are temporary; they only exists while the program is running. To store data between runs, we use the **filesystem**. The filesystem is a service provided by the operating system (OS) that provides **files** to your programs. A file is like a named array of bytes which, once created, will exist until deleted, even when the computer is turned off.
+**Memory**: data structures stored on a programs' working memory of stack and heap are temporary; they only exist while the program is running. To store data between runs, we use the **filesystem**. The filesystem is a service provided by the operating system (OS) that provides **files** to your programs. A file is like a named array of bytes which, once created, will exist until deleted, even when the computer is turned off.
 
 **External Data Representation (XDR)**: XDR is the general problem of storing data outside a running program.
 
@@ -27,10 +27,41 @@ Recall: we talked about stream redirection, where we redirected text on the stan
 - At the **filesystem abstraction** level, these files are all the same thing: just a contiguous sequence of bytes. 
 - The **interpretation** of these bytes is up to your program.
 
-Files are identified by a [**path**](http://en.wikipedia.org/wiki/Path_(computing)), which is a generalization of a [**filename**](http://en.wikipedia.org/wiki/Filename) and can be any of:
-- a **filename**, e.g. `p1.c`. This is often used when we are manipulating a file located in the **current directory**, e.g. compiling `$ gcc p1.c -o p1.o`, executing `$ ./p1.o`.
-- a **relative path** that specifies the path (location) to a file starting from or **relative to the current working directory**, e.g. `./students/bsimpson/reportcard.pdf`. This is commonly used when, for example, the desired file is in a "parent" directory, e.g., `../reportcard.pdf`, or in a "child" directory, e.g. `./students/bsimpson/reportcard.pdf`.
-- an **absolute path** begins with a '/' (the "root" directory) and fully specifies a location in the directory structure, e.g. `/home/vader/projects/deathstar.dxf`. This is used when the path to a file (location of a file) cannot be specified using the first two ways.
+Files are identified by a [**path**](http://en.wikipedia.org/wiki/Path_(computing)), which is a generalization of a [**filename**](http://en.wikipedia.org/wiki/Filename).
+
+A path can be any ofthe following:
+
+- an **absolute path** begins with a '/' (the "root" directory) and fully specifies the location of a file e.g. `/home/vader/projects/deathstar.dxf`. This is used when the path to a file cannot be specified using the next two ways. This is example of an absolute path to a file called `reportcard.pdf`:
+
+```
+# current working directory: ANY! :D
+# accessing file: reportcard.pdf
+/home/school/students/bsimpson/reportcard.pdf
+```
+
+- a **relative path** specifies the location of a file relative to the current working directory. This is commonly used when, for example, the desired file is in a "child" directory, e.g. `./students/bsimpson/reportcard.pdf` or in a "parent" directory, e.g. `../`.
+
+```
+# current working directory: school
+# accessing file: reportcard.pdf
+./students/bsimpson/reportcard.pdf
+```
+
+```
+# current working directory: school
+# accessing file: /README.md
+../../README.md
+```
+
+- a **filename**. This can be used when we are manipulating a file located in the **current directory**.
+
+```
+# current working directory: bsimpson
+# accessing file: reportcard.pdf
+./reportcard.pdf
+reportcard.pdf
+```
+
 
 The programmer's interface to the filesystem is quite basic. We can do most of our work on files with four abstract operations:
 - OPEN(path, mode): opens a file in "path" in one of the "mode" reading and/or writing. If the file doesn't exist, we could possibly use OPEN to create a new file in the path.
@@ -65,11 +96,10 @@ size_t fread(void * ptr, size_t size, size_t nitems, FILE * stream);
 ```C
 int fclose(FILE *stream);
 ```
-```C
-// int fseek(FILE *stream, long int offset, int whence);
-```
 
 Note: `fread` and `fwrite` have the same interface to opposite functionality; they also have a convenient extension that makes it easy to work with structs.
+
+Note: directly using these functions write and read from files that are binaries i.e. these files are purely for storing C variables and are NOT human read-able.
 
 Below are some examples of using the file API.
 
@@ -172,6 +202,11 @@ This example shows the use of a simple file format that uses a short "header" to
 Make sure you understand this example in detail. It combines elements from the examples above into a simple but realistic implementation of a file format.
 
 ```C
+#include <stdio.h> // for printf/scanf if you need it
+#include <stdint.h> // for type uint32_t
+#include <inttypes.h> // for type uint32_t if above doesn’t work
+#include <stdlib.h> // for malloc()
+
 /* saves an image (see previous lab for the typedef struct! We're using a 1D array here!) to the filesytem using the file format:
      [ cols | rows | pixels ]
      where:
@@ -278,7 +313,7 @@ img_save(&img, "after.img");
 
 ## Practice 01
 
-you will extend the functionality of your integer array from the previous lab, practice 01-05 to support saving and loading arrays from the filesystem in a binary format.
+You will extend the functionality of your integer array from the previous lab, practice 01-05 to support saving and loading arrays from the filesystem in a binary format.
 
 **REQUIREMENT**:
 - you will create a C source file called "p1intarr.c" containing implementations of the two functions declared in `p1intarr.h`.
@@ -328,11 +363,12 @@ The C standard library has two functions that can be very helpful for rendering 
 
 Notice from those manual pages that functions `snprintf()` and `sscanf()` can also print and scan from C strings. (`sprintf()` exists, but the lack of array length checking means this is not safe or secure to use. Always use `snprintf()`).
 
-You will extend the functionality of your integer array from the previous lab, practice 01-05, to support saving and loading arrays from the filesystem in JSON.
+You will extend the functionality of your integer array from the previous lab, practice 01-05, to support saving arrays to the filesystem in JSON.
 
 **REQUIREMENT**:  
-- you will create a C source file called `p2intarr.c` containing implementations of the two functions declared in `p2intarr.h`.
-- you will create your own `p2.c` to test your functions.
+- you will create a C source file called `p2intarr.c` containing implementations of the declared in `p2intarr.h`.
+- you will create your own `p2.c` to test your function.
+- you do NOT need to implement the function for reading your JSON files --- you will need to first learn lab 06 and how `fseek()` works before you can understand the solution to this. This function is implemented and tested in teh solution for completeness purpose only.
 
 Your code may call any other functions declared in "p2intarr.h" and implemented as part of the previous lab, practice 01-05 by copying these files over and changing their names to `p2intarr.c` and `p2intarr.h` and importing them, if you haven't already for practice 01 (DON'T re-implement these).
 
@@ -350,14 +386,6 @@ int intarr_save_json(intarr_t* ia, const char* filename);
     - Make sure you validate the parameters before you use them.
     - The JSON output should be human-readable.
 
-```C
-intarr_t* intarr_load_json(const char* filename);
-```
-- INPUT: a filename.
-- OUTPUT: returns a pointer to a newly-allocated `intarr_t` on success (even if that array has length 0), or `NULL` on failure.
-- BEHAVIOUR: loads a new array from the file called 'filename', that was previously saved using `intarr_save_json()`. 
-    - Make sure you validate the parameter before you use it.
-
 **TESTING**: you can test your program by running:
 ```
 $ make p2
@@ -365,6 +393,15 @@ $ ./p2
 ```
 
 Try it yourself first; then verify your solutions [here](./files/solution/p2intarr.c).
+
+Again, you do NOT need to implement the second function, it is here for completeness sake only, see comment in the **requirements** section:
+```C
+intarr_t* intarr_load_json(const char* filename);
+```
+- INPUT: a filename.
+- OUTPUT: returns a pointer to a newly-allocated `intarr_t` on success (even if that array has length 0), or `NULL` on failure.
+- BEHAVIOUR: loads a new array from the file called 'filename', that was previously saved using `intarr_save_json()`. 
+    - Make sure you validate the parameter before you use it.
 
 # Bonus material
 

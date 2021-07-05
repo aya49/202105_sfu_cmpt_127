@@ -16,6 +16,7 @@ typedef struct {
 /* A type for returning status codes */
 typedef enum {
   INTARR_OK,
+  INTARR_BADINPUT,
   INTARR_BADARRAY,
   INTARR_BADINDEX,
   INTARR_BADALLOC,

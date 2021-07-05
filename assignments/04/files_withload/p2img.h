@@ -49,3 +49,12 @@ typedef struct {
 int img_save_json(img_t* im, const char* filename);
 
 
+/*
+  Load a new 2D array from the file called 'filename', that was
+  previously saved using img_save_json(). The file may contain an array
+  of length 0. Returns a pointer to a newly-allocated img_t on
+  success (even if that array has length 0), or NULL on failure.
+
+  Make sure you validate the parameter before you use it.
+*/
+img_t* img_load_json(const char* filename);

@@ -16,6 +16,7 @@ typedef struct {
 /* A type for returning status codes */
 typedef enum {
   INTARR_OK,
+  INTARR_BADINPUT,
   INTARR_BADARRAY,
   INTARR_BADINDEX,
   INTARR_BADALLOC,
@@ -51,6 +52,11 @@ typedef enum {
 int intarr_save_json(intarr_t* ia, const char* filename);
 
 
+// ---------------------------------------------------------
+// you do NOT need to implement this;
+// come back after lab 06 and looking up fseek(),
+// then see if if you can understand the solution to this :)
+// ---------------------------------------------------------
 /*
   Load a new array from the file called 'filename', that was
   previously saved using intarr_save_json(). The file may contain an array

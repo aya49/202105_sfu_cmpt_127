@@ -69,9 +69,9 @@ The C standard library has two functions that can be very helpful for rendering 
 
 Notice from those manual pages that functions `snprintf()` and `sscanf()` can also print and scan from C strings. (`sprintf()` exists, but the lack of array length checking means this is not safe or secure to use. Always use `snprintf()`).
 
-You will extend the functionality of your integer array from the previous assignment, task 01-05, to support saving arrays to the filesystem in JSON. You know how to do it for 1D arrays, now can you do it for 2D arrays?
+You will extend the functionality of your integer array from the previous assignment, task 01-05, to support saving and loading arrays from the filesystem in JSON. You know how to do it for 1D arrays, now can you do it for 2D arrays?
 
-HINT: for 1D arrays you saved each element as `[ ... ]`; for 2D arrays, you will save it as `[[...], [...], [...]]`
+HINT: for 1D arrays you saved each element as `[ ... ]`; for 2D arrays, it is just `[[...] [...] [...]]`
 
 **REQUIREMENT**: 
 - you will create a C source file called `t2img.c` containing implementations of the two functions declared in `t2img.h`.
@@ -93,6 +93,14 @@ int img_save_json(img_t* im, const char* filename);
     - Make sure you validate the parameters before you use them.
     - The JSON output should be human-readable.
 
+```C
+img_t* img_load_json(const char* filename);
+```
+- INPUT: a filename.
+- OUTPUT: returns a pointer to a newly-allocated `img_t` on success (even if that array has length 0), or `NULL` on failure.
+- BEHAVIOUR: loads a new array from the file called 'filename', that was previously saved using `img_save_json()`. 
+    - Make sure you validate the parameter before you use it.
+
 **TESTING**: you can test your program by running:
 ```
 $ make t2 # OR gcc -Werror -Wfatal-errors -g -o t2 t2.c t2img.c (see Makefile)
@@ -104,32 +112,11 @@ $ ./t2
 
 Since our data type `img_t` stores an image, let's save it as an image!
 
-In this task, we will save out pixels as a .ppm (portable pixmap) file; this is a text file format that can be opened using image viewer applications.
-
-A .ppm file has the following components:
-The portable pixmap format is a lowest common denominator color image file format. The definition is as follows:
-
-- A number identifying the file type as .ppm i.e. the characters: `P3`.
-- A width, whitespace, a height.
-- The maximum colour-component value, which in our case we will use 255.
-- Width * height * pixels, each value is between 0 and the maximum colour-component value starting at the top-left corner of the pixmap, proceeding in normal English reading order. The three values for each pixel represent red, green, and blue, respectively; a value of 0 means that color is off, and the maximum value means that color is maxxed out.
-- No line should be longer than 70 characters.
-
-Here is an example of a small pixmap in this format:
-
-```
-P3
-5 4
-255
- 0  0    0    0  0  0    0  0  0   15  0 15   0  0  0
- 0  0    0    0 15  7    0  0  0    0  0  0   0  0  0
- 0  0    0    0  0  0    0 15  7    0  0  0   0  0  0
-15  0   15    0  0  0    0  0  0    0  0  0   0  0  0
-```
+In this task, we will save out pixels as a .ppm file; this is a text file format that can be opened using image viewer applications. 
 
 Currently, we have one value in each cell of our 2D matrix. This means that our image is greyscale. Image formats usually save their images in colour format. This means that in each cell, their 2D matrix would have three values: red, green, blue. 
 
-Fortunately, it is simple to convert between our single value and the regular triple value RGB format. For each cell, we just have to replicate our value three times and ensure that our value is less than or equal to 225 and greater than or equal to 0.
+Fortunately, it is simple to convert between our single value and the regular triple value RGB format. For each cell, we just have to replicate our value three times and ensure that our value is less than or equal to 225.
 
 **REQUIREMENT**: 
 - you will finish the function code started for you in file `t3img.c` containing the implementation of a function declared in `t3img.h`.
