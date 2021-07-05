@@ -112,24 +112,25 @@ The portable pixmap format is a lowest common denominator color image file forma
 - A number identifying the file type as .ppm i.e. the characters: `P3`.
 - A width, whitespace, a height.
 - The maximum colour-component value, which in our case we will use 255.
-- Width * height * pixels, each value is between 0 and the maximum colour-component value starting at the top-left corner of the pixmap, proceeding in normal English reading order. The three values for each pixel represent red, green, and blue, respectively; a value of 0 means that color is off, and the maximum value means that color is maxxed out.
-- No line should be longer than 70 characters.
+- Width * height * pixels, each value is between 0 and the maximum colour-component value. Values start at the top-left corner of the file and reads from left to right. Every three values represent the red, blue, green, and blue for each pixel.
 
-Here is an example of a small pixmap in this format:
+
+Currently, we have one value in each cell of our 2D matrix. This means that our image is greyscale. Image formats usually save their images in colour format. This means that in each cell, their 2D matrix would have three values: red, green, blue. 
+
+Fortunately, it is simple to convert between our single value and the regular triple value RGB format. For each cell, we just have to replicate our value three times and ensure that our value is less than or equal to 255 and greater than or equal to 0.
+
+Below is an example of a width 5 by height 4 .ppm greyscale image:
 
 ```
 P3
 5 4
 255
- 0  0    0    0  0  0    0  0  0   15  0 15   0  0  0
- 0  0    0    0 15  7    0  0  0    0  0  0   0  0  0
- 0  0    0    0  0  0    0 15  7    0  0  0   0  0  0
-15  0   15    0  0  0    0  0  0    0  0  0   0  0  0
+ 0  0    0    0  0  0    0  0  0   15 15 15   0  0  0
+ 0  0    0    7  7  7    0  0  0    0  0  0   0  0  0
+ 0  0    0    0  0  0   15 15 15    0  0  0   0  0  0
+255 255 255   0  0  0    0  0  0    0  0  0   0  0  0
 ```
 
-Currently, we have one value in each cell of our 2D matrix. This means that our image is greyscale. Image formats usually save their images in colour format. This means that in each cell, their 2D matrix would have three values: red, green, blue. 
-
-Fortunately, it is simple to convert between our single value and the regular triple value RGB format. For each cell, we just have to replicate our value three times and ensure that our value is less than or equal to 225 and greater than or equal to 0.
 
 **REQUIREMENT**: 
 - you will finish the function code started for you in file `t3img.c` containing the implementation of a function declared in `t3img.h`.
