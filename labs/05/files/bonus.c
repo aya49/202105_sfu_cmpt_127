@@ -1,4 +1,4 @@
-/* Lab 05; practice 04 */
+/* Lab 05; bonus function: sorting */
 
 // Sort ia by value smallest-to-largest, so that data[i] < data[i+1]
 // for all valid i, then return INTARR_OK. Works in-place: contents of
@@ -22,9 +22,8 @@ intarr_result_t intarr_sort(intarr_t* ia) {
     return INTARR_OK;
 }
 
-/* Lab 05; practice 07 */
+/* Lab 05; bonus function: resize array */
 
-// HINT: Do this practice before doing practice 06.
 // Resize ia to contain newlen values. If newlen is less than the
 // original array length, the end of the array is discarded. 
 // If newlen is greater than the original array length, the values 
@@ -57,10 +56,8 @@ intarr_result_t intarr_resize(intarr_t* ia, unsigned int newlen) {
 }
 
 
-/* Lab 05; practice 06 */
+/* Lab 05; bonus function: add and retrieve values from array */
 
-// HINT: First, do practice 07, since you will need to resize your array
-//       by +1 in order to successfully push val.
 // Append val to the end of ia (allocating space for it). If
 // successful, return INTARR_OK, otherwise return
 // INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.

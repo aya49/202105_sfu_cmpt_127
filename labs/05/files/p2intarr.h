@@ -53,10 +53,18 @@ int intarr_save_json(intarr_t* ia, const char* filename);
 
 
 // ---------------------------------------------------------
-// you do NOT need to implement this;
-// come back after lab 06 and looking up fseek(),
-// then see if if you can understand the solution to this :)
+// you do NOT need to implement the functions below this line;
+// come back after lab 06 and looking up fseek()!
 // ---------------------------------------------------------
+
+/*
+  Append val to the end of ia (allocating space for it). If
+  successful, return INTARR_OK, otherwise return
+  INTARR_BADALLOC. If ia is null, return INTARR_BADARRAY.
+  Take a look at TASK 7 below and see if it might be helpful
+*/
+intarr_result_t intarr_push( intarr_t* ia, int val );
+
 /*
   Load a new array from the file called 'filename', that was
   previously saved using intarr_save_json(). The file may contain an array

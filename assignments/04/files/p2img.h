@@ -48,4 +48,3 @@ typedef struct {
 */
 int img_save_json(img_t* im, const char* filename);
 
-

@@ -368,13 +368,13 @@ You will extend the functionality of your integer array from the previous lab, p
 **REQUIREMENT**:  
 - you will create a C source file called `p2intarr.c` containing implementations of the declared in `p2intarr.h`.
 - you will create your own `p2.c` to test your function.
-- you do NOT need to implement the function for reading your JSON files --- you will need to first learn lab 06 and how `fseek()` works before you can understand the solution to this. This function is implemented and tested in teh solution for completeness purpose only.
+- you do NOT need to implement the `intarr_load_json()` function for reading your JSON files --- you will need to first learn lab 06 and how `fseek()`; we will revisit this in lab 06 :).
 
 Your code may call any other functions declared in "p2intarr.h" and implemented as part of the previous lab, practice 01-05 by copying these files over and changing their names to `p2intarr.c` and `p2intarr.h` and importing them, if you haven't already for practice 01 (DON'T re-implement these).
 
 You should NOT create a single huge string in memory and write it out in one call to `fwrite()`. The string could require a huge amount of memory when your array is large. Since you chose an inefficient text format, you're not optimizing for speed so don't worry about using many calls to `fwrite()`.
 
-The header file `p2intarr.h` contains these new function declarations:
+The header file `p2intarr.h` contains this new function declaration:
 
 ```C
 int intarr_save_json(intarr_t* ia, const char* filename);
@@ -393,15 +393,6 @@ $ ./p2
 ```
 
 Try it yourself first; then verify your solutions [here](./files/solution/p2intarr.c).
-
-Again, you do NOT need to implement the second function, it is here for completeness sake only, see comment in the **requirements** section:
-```C
-intarr_t* intarr_load_json(const char* filename);
-```
-- INPUT: a filename.
-- OUTPUT: returns a pointer to a newly-allocated `intarr_t` on success (even if that array has length 0), or `NULL` on failure.
-- BEHAVIOUR: loads a new array from the file called 'filename', that was previously saved using `intarr_save_json()`. 
-    - Make sure you validate the parameter before you use it.
 
 # Bonus material
 

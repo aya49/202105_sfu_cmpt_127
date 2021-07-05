@@ -168,6 +168,24 @@ $ ./p2
 Try it yourself first; then verify your solutions [here](./files/solution/p2point.c).
 
 
+# Practice 03
+
+In this practice problem, we are going to practice reading code and adding functionality to our old code :).
+
+Going back to [lab 05](../05) practice problem 02, we saved an array as a JSON file.
+
+**REQUIREMENT**:
+- go back and complete the implementation of function `intarr_load_json()` in [lab 05](../05) > [files](../05/files) > `[p2intarr.c](../05/files/p2intarr.c)` declared in [p2intarr.h](../05/intarr.h).
+- you will complete your [lab 05](../05) > [files](../05/files) > `[p2.c](../05/files/p2.c)` to test your function.
+
+There are two things you need to do before starting:
+- make sure you search up the function `fseek()` and understand what it does.
+- there are useful functions in `[p2.c](../05/files/bonus.c)` that will help you with this practice problem. 
+    - before you can use this file though, you will need to add their function declarations to a header file and include that in your program.
+    - which one function in this file do you think will help you solve this practice problem?
+
+Try it yourself first; then verify your solutions [here](../05/files/solution/p2intarr.c).
+
 # Bonus material: why is preallocation amortized constant time?
 
 ## Big O analaysis
