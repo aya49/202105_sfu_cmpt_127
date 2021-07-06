@@ -92,6 +92,8 @@ void imgr_destroy(imgr_t* im);
 
 ### Task 02
 
+Lab 06 practice problem 03 may help you with this task.
+
 **REQUIREMENT**: write a function in `t0img.c` with the following declaration:
 ```C
 img_result_t imgr_append(imgr_t* im, int expand_row = 0, int val);
@@ -119,6 +121,29 @@ img_result_t imgr_remove(imgr_t* im, unsigned int i, unsigned int j);
     - If unsuccessful, return `IMGR_BADROW` if you couldn't find row `i`, otherwise return `IMGR_BADCOL` if you couldn't find row `j`.
     - if you went to index `[i][j]` but there was nothing there, return `IMGR_EMPTY`.
 
+### Task 04
+
+```C
+int imgr_save_json(imgr_t* im, const char* filename);
+```
+- INPUT: the pointer of a `imgr_t` variable `im` and a filename.
+- OUTPUT: returns `0` on success, or a non-`0` error code on failure.
+- BEHAVIOUR: saves the `im` array into a file `filename` in a JSON file format that can be loaded by `imgr_load_json()`.
+    - Arrays of length 0 should produce an output file containing an empty array.
+    - Make sure you validate the parameters before you use them.
+    - The JSON output should be human-readable.
+    - Only write to file, the elements within columns `cols` and rows `rows`, NOT `reserved_rows` and `reserved_cols`.
+    - See the header file for an example of an output JSON file for a 2D array (recall, we implemented the same function in a previous assignment, feel free to adapt that here!).
+
+```C
+imgr_t* imgr_load_json(const char* filename);
+```
+- INPUT: a filename.
+- OUTPUT: returns a pointer to a newly-allocated `imgr_t` on success (even if that array has length 0), or `NULL` on failure.
+- BEHAVIOUR: loads a new array from the file called 'filename', that was previously saved using `imgr_save_json()`. 
+    - Make sure you validate the parameter before you use it.
+    - Since you are newly initializing an `imgr_t`, you may set your `cols` and `rows` to be the same as `reserved_rows` and `reserved_cols` respectively.
+    - If you need help, see lab 06 practice problem 03 for how to implement this ;).
 
 
 # Submission
@@ -148,8 +173,10 @@ Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 1
 | 00   | `t0.c` tests are created for each of the 4 functions x 0.5 (+0.5 because `expand_row` has two test cases, when `expand_row = 0` and `expand_row != 0`); each test either works appropriately (0.5) or they don't (0). | 2.5 |
 | 01   | `imgr_create` works as intended.               | 0.5    |
 |      | `imgr_destroy` works as intended.              | 0.5    |
-| 02   | `imgr_append` works as intended when preallocation does not need to occur. | 1|
+| 02   | `imgr_append` works as intended when preallocation does not need to occur. | 1 |
 | 02   | `imgr_append` works as intended when `expand_row = 0`. | 1 |
 |      | `imgr_append` works as intended when `expand_row !=0`. | 1 |
-| 03   | `imgr_remove` works as intended (i.e. the value at the designated index is replaced with the last element of the array in the designated row and the space where the end element used to be is now null). | 2 |
+| 03   | `imgr_remove` works as intended (i.e. the value at the designated index is replaced with the last element of the array in the designated row and the space where the end element used to be is now null). | 1 |
+| 04   | `imgr_save_json` works as intended (i.e. output JSON file is in the format specified in the comments of the header file). | 0.5 |
+|      | `imgr_load_json` works as intended.           | 0.5    |
 | Total|                                               | 10     |

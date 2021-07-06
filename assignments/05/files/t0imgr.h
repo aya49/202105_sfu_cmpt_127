@@ -61,4 +61,46 @@ img_result_t imgr_append(imgr_t* im, int expand_row = 0, int val);
 // or IMGR_BADCOL if you could find row i but couldn't find col j. 
 img_result_t imgr_remove(imgr_t* im, unsigned int i, unsigned int j);
 
+/* task 04 */
+
+// Save the 2D entire array im into a file called 'filename' in a JSON
+// text file array file format that can be loaded by
+// img_load_json(). Returns zero on success, or a non-zero error
+// code on failure. Arrays of length 0 should produce an output file
+// containing an empty array.
+// 
+// Make sure you validate the parameters before you use them.
+// 
+// The JSON output should be human-readable.
+// 
+// Examples:
+// 
+// The following line is a valid JSON 2D array:
+// [ [ 100, 200, 300 ],
+//   [  10,  20,  15 ] ]
+// 
+// The following lines are a valid JSON array:
+// [ 
+//   [ 
+//     100, 
+//     200, 
+//     300 
+//   ],
+//   [  
+//     10,  
+//     20,  
+//     15 
+//   ]
+// ]
+int imgr_save_json(imgr_t* im, const char* filename);
+
+
+// Load a new 2D array from the file called 'filename', that was
+// previously saved using img_save_json(). The file may contain an array
+// of length 0. Returns a pointer to a newly-allocated img_t on
+// success (even if that array has length 0), or NULL on failure.
+// 
+// Make sure you validate the parameter before you use it.
+imgr_t* imgr_load_json(const char* filename);
+
 
