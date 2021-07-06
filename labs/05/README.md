@@ -3,7 +3,7 @@
 Download lab files [here](./files.zip).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
-- [Guide 01](#guide) ([slides]()): external data representation (XDR) using files in C
+- [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1wkmX7JdNUmSCyPIbIVlkIzfYvdUl7CvapqJz56fFF1Y/edit?usp=sharing)): external data representation (XDR) using files in C
 
 Try "Practice" problems; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
 - [Practice 01](#practice-01)
