@@ -107,11 +107,11 @@ Since our data type `img_t` stores an image, let's save it as an image!
 In this task, we will save out pixels as a .ppm (portable pixmap) file; this is a text file format that can be opened using image viewer applications.
 
 A .ppm file has the following components:
-The portable pixmap format is a lowest common denominator color image file format. The definition is as follows:
+The portable pixmap format is a lowest common denominator color image file format. The definition is as follows (i.e. print the following on separate lines, see example below!):
 
 - A number identifying the file type as .ppm i.e. the characters: `P3`.
-- A width, whitespace, a height.
-- The maximum colour-component value, which in our case we will use 255.
+- A width and a height, separated by a space, as shown in the example below.
+- The maximum colour-component value, which in our case, we will use 255.
 - Width * height * pixels, each value is between 0 and the maximum colour-component value. Values start at the top-left corner of the file and reads from left to right. Every three values represent the red, blue, green, and blue for each pixel.
 
 
@@ -131,12 +131,16 @@ P3
 255 255 255   0  0  0    0  0  0    0  0  0   0  0  0
 ```
 
+The .ppm image associated with the example above is shown below (each square block is a pixel):
+
+![](ppm.png)
+
 
 **REQUIREMENT**: 
 - you will finish the function code started for you in file `t3img.c` containing the implementation of a function declared in `t3img.h`.
 - you will create your own `t3.c` to test your functions.
 
-The header file `p3img.h` contains this new function declaration:
+The header file `t3img.h` contains this new function declaration:
 
 ```C
 int img_save_ppm(img_t* im, const char* filename);
