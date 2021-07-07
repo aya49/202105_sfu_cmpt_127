@@ -30,7 +30,7 @@ BE CAREFUL! 2D arrays have more than just the one pointer, whatever you do for t
 
 **REQUIREMENT**: you will write your program to two files: `t0img.c`, `t0.c`.
 - In `t0img.c`, implement the integer array functions declared and specified in the supplied header file `t0img.h`.
-- Create a test program in file `t0.c` with a main function from which each of the functions in `t0img.c` are called (tested). Compile and execute your `t0img.c` (with stubs) and your test. Some test cases have already been completed for you, use those as examples :).
+- Finish the test program in file `t0.c` with a main function from which each of the functions in `t0img.c` are called (tested). Compile and execute your `t0img.c` (with stubs) and your test. Some test cases have already been completed for you, use those as examples :). You do NOT need to implement the test cases for tasks 01 and 02.
 
 A more verbose requirement for your test cases: for your tests, read the input and output requirements of each function in this document. For every input, your function will need to return whatever is requested. Your test should be a series of mock input arguments representing the different possible inputs. Then you will have condition statements testing whether the returns are as requested. You may also use `assert()` if you are comfortable with that.
 
