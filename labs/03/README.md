@@ -3,14 +3,15 @@
 Download lab files [here](./files.zip).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
-- [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1NLU_3KoaHFyOsP5TVGmMZI94JkNZPehPRTbaukc67Ao/edit?usp=sharing)): 2D arrays and dynamic memory allocation
-
-Try "Practice" problems; these will NOT be graded.
-- [Practice 01](#practice-01-fixing-the-bug-option-1)
 
 | 2021-06-22 |
 |----|
 | <a href="http://www.youtube.com/watch?feature=player_embedded&v=2py2AC_SqaM" target="_blank"><img src="http://img.youtube.com/vi/2py2AC_SqaM/0.jpg" alt="" width="200" border="0"/></a> |
+
+- [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1NLU_3KoaHFyOsP5TVGmMZI94JkNZPehPRTbaukc67Ao/edit?usp=sharing)): 2D arrays and dynamic memory allocation
+
+Try "Practice" problems; these will NOT be graded.
+- [Practice 01](#practice-01-fixing-the-bug-option-1)
 
 # Multidimensional arrays
 
