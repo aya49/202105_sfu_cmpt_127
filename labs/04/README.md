@@ -5,6 +5,11 @@ Download lab files [here](./files.zip).
 Review [value vs pointer in memory](https://docs.google.com/presentation/d/1YXf_4yQZ0Oitj0SCFYaMHdNA1utjGWvsfJY54k0sZPM/edit?usp=sharing).
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
+
+| 2021-07-06 |
+|----|
+| <a href="http://www.youtube.com/watch?feature=player_embedded&v=br8hocXKJOE" target="_blank"><img src="http://img.youtube.com/vi/br8hocXKJOE/0.jpg" alt="" width="200" border="0"/></a> |
+
 - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1LWARzaCfCVkOSEEjEIEdZeLQ_alEE5w0hUSKfTr7qu4/edit?usp=sharing)): composite data type `struct`, how to use it with `typedef` and `malloc()`, and deep copy-ing `struct`s.
 
 Try "Practice" problems; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
