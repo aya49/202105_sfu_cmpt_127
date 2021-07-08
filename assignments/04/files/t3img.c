@@ -5,6 +5,12 @@ int img_save_ppm(img_t* im, const char* filename) {
     fprintf(f, "P6\n%d %d\n255\n", im->cols, im->rows);
 
     static unsigned char color[3];
+    //
+    // USE THE COMMENTS BELOW TO HELP YOU WRITE YOUR CODE!
+    // These are called "pseudocode" and are code written in english
+    // writing pseudocode before starting to code is one strategy to help organize your thoughts!
+    // Of course, you can write your own pseudocode too ;)
+    //
     // loop over rows i
         // loop over cols j
             // val = pixel value at row i col j 
