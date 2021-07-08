@@ -81,7 +81,7 @@ The following is a breakdown of the tasks.
 img_t* img_create(unsigned int rows, unsigned int cols);
 ```
 - INPUT: the numer of `rows` and `cols` of the desired array.
-- OUTPUT: `img_create()` returns the POINTER to a new instance of data structure `img_t`. You may initialize the values in your array to `0`.
+- OUTPUT: `img_create()` returns the POINTER to a new instance of data structure `img_t`. You may initialize the values in your `pixels` to `0`.
 - BEHAVIOUR: if `malloc()` fails (i.e. returns `NULL`), `img_create()` returns `NULL`.
 
 ### Task 01.2
