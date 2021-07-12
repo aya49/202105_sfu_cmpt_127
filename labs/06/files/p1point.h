@@ -13,8 +13,7 @@ typedef struct {
   // There is space for 'reserved' point_t structs, 
   // but 'len' point_t structs have been used so far.
   point_t* points;
-  
-  // size_t reserved;
+ 
   
 } point_array_t;
 
