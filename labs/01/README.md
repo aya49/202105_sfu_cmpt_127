@@ -801,4 +801,4 @@ We can use the combination of conditional loops and EOF indicator to make the ro
 
 Last updated 2021-05 by Alice Yue. 
 
-Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergn, Victor Cheung, and others.
+Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergne, Victor Cheung, and others.
