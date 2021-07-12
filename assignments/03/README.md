@@ -19,6 +19,7 @@ Download the files for this assignment [here](./files.zip) (or from the [CMPT 12
 - [Task 02.2](#task-022)
 - [Task 03](#task-03)
 - [Task 04](#task-04)
+- [Task 05](#task-05)
 
 Your assignment will be graded according to this [**marking rubric**](#marking-rubric).
 
