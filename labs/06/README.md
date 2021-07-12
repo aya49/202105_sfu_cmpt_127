@@ -18,7 +18,7 @@ Try "Practice" problems; these will NOT be graded. Note that the solutions given
 
 ## Guide
 
-The supplied header file `point_array.h` defines the following structures to represent points in 3D space, and an array to contain them, similar to examples you have seen before:
+The supplied header files `p1point.h` and `p2point.h` define the following structures to represent points in 3D space, and an array to contain them, similar to examples you have seen before:
 
 ```C
 typedef struct point {
@@ -33,7 +33,7 @@ typedef struct {
 
 It also declares four functions for manipulating `point_array_t` arrays. Each takes a pointer to an array structure as their first argument. Notice that the `init` and `reset` functions do a similar job to the `create` and `destroy` functions we have seen before, but with a slightly different interface. This style allows us to use structs allocated on the stack, which can be useful. 
 
-Therefore, `init` must NOT call `malloc()` nor must it call `realloc()` since the memory for the struct has already been allocated (automatically, on the stack) and the memory allocation call to obtain the memory for the array is done in `append()`.
+Therefore, the `init` function may NOT call `malloc()` nor should it call `realloc()` to declare the structure (not the array inside the structure) since the memory for the struct has already been allocated (automatically, on the stack) and the memory allocation call to obtain the memory for the array is done in `append()`.
 
 ```C
 // Safely initalize an empty array structure.
