@@ -175,12 +175,12 @@ In this practice problem, we are going to practice reading code and adding funct
 Going back to [lab 05](../05) practice problem 02, we saved an array as a JSON file.
 
 **REQUIREMENT**:
-- go back and complete the implementation of function `intarr_load_json()` in [lab 05](../05) > [files](../05/files) > `[p2intarr.c](../05/files/p2intarr.c)` declared in [p2intarr.h](../05/intarr.h).
-- you will complete your [lab 05](../05) > [files](../05/files) > `[p2.c](../05/files/p2.c)` to test your function.
+- go back and complete the implementation of function `intarr_load_json()` in [lab 05](../05) > [files](../05/files) > [`p2intarr.c`](../05/files/p2intarr.c) declared in [p2intarr.h](../05/intarr.h).
+- you will complete your [lab 05](../05) > [files](../05/files) > [`p2.c`](../05/files/p2.c) to test your function.
 
 There are two things you need to do before starting:
 - make sure you search up the function `fseek()` and understand what it does.
-- there are useful functions in `[p2.c](../05/files/bonus.c)` that will help you with this practice problem. 
+- there are useful functions in [`p2.c`](../05/files/bonus.c) that will help you with this practice problem. 
     - before you can use this file though, you will need to add their function declarations to a header file and include that in your program.
     - which one function in this file do you think will help you solve this practice problem?
 
@@ -243,7 +243,7 @@ Let's look at the difference between C functions (`malloc()`, `realloc()`, `free
 - The C++ version is type safe
 - ALWAYS use `malloc()` and `free()` together, and `new` and `delete` together. If you initialized an object using a constructor, you need to remove it using its destructor
 
-As a rule of thumb, unless you must use C, alays use `new` and `delete`.
+As a rule of thumb, unless you must use C, use `new` and `delete`, because they work well with classes and C++ uses classes ;).
 
 Below are examples of using these functions and operators to create and remove 1D and 2D arrays.
 
