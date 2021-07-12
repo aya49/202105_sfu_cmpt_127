@@ -340,4 +340,4 @@ Some basics on how space in memory is "labelled" (on top of having an "addrewss"
 
 Last updated 2021-05 by Alice Yue. 
 
-Course material designed, developed, and initially taught by [Prof. Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergne, Victor Cheung, and others.
+Course material designed, developed, and initially taught by [Richard Vaughan](https://rtv.github.io/); this material has since been taught and adapted by Anne Lavergne, Victor Cheung, and others.
