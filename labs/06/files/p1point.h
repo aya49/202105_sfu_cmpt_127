@@ -23,7 +23,7 @@ typedef struct {
 
 /* practice 01.1 */
 
-// Safely initalize an empty array inside the structure pointed to by the given pointer pa.
+// Safely initalize len to 0 and initialize an empty array points inside the structure pointed to by the given pointer pa.
 int point_array_init(point_array_t* pa);
 
 /* practice 01.2 */
