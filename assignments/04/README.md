@@ -165,9 +165,9 @@ $ ./t3
 First, make sure your code is readable, see instructions [here](../../readability.md).
 
 Make sure you have the following files ready for submission and that they are named appropriately, otherwise they won't be graded.
-- Task 01: `t1img.c`, `t1.c`
-- Task 02: `t2img.c`, `t2.c`
-- Task 03: `t3img.c`, `t3.c`
+- Task 01: `t1img.c`, `t1.c`, `t1img.h`
+- Task 02: `t2img.c`, `t2.c`, `t2img.h`
+- Task 03: `t3img.c`, `t3.c`, `t3img.h`
 
 Compress these files into a zip file called `a.zip`; you can do this by using the following command from console:
 ```
