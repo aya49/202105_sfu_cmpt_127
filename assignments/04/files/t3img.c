@@ -1,4 +1,4 @@
-#include "p3img.h"
+#include "t3img.h"
 
 int img_save_ppm(img_t* im, const char* filename) {
     // fopen file f
