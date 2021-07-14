@@ -6,7 +6,9 @@ Today we are going to look at different strategies for resizing arrays (e.g. ins
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 
-https://youtu.be/c6bUxQ4wpGw
+| 2021-07-13 |
+|----|
+| <a href="http://www.youtube.com/watch?feature=player_embedded&v=c6bUxQ4wpGw" target="_blank"><img src="http://img.youtube.com/vi/c6bUxQ4wpGw/0.jpg" alt="" width="200" border="0"/></a> |
 
 - [Guide 01](#guide), [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/1h2ZKlLFISqMK2WoaFSi9KLHdV4N2omUZAMuPTEdDz_A/edit?usp=sharing)): 
     - reallocation (inserting elements into arrays in O(n)) and unstable remove (removing elements from arrays in O(1))
