@@ -8,7 +8,7 @@ Review "Guide"s and accompanying slides (we will go over these during the lab le
 
 | 2021-07-13 |
 |----|
-| <a href="http://www.youtube.com/watch?feature=player_embedded&v=c6bUxQ4wpGw" target="_blank"><img src="http://img.youtube.com/vi/c6bUxQ4wpGw/0.jpg" alt="" width="200" border="0"/></a> |
+| <a href="http://www.youtube.com/watch?feature=player_embedded&v=O76174c1_9M" target="_blank"><img src="http://img.youtube.com/vi/O76174c1_9M
 
 - [Guide 01](#guide), [Guide 02](#guide-1) ([slides](https://docs.google.com/presentation/d/1h2ZKlLFISqMK2WoaFSi9KLHdV4N2omUZAMuPTEdDz_A/edit?usp=sharing)): 
     - reallocation (inserting elements into arrays in O(n)) and unstable remove (removing elements from arrays in O(1))
