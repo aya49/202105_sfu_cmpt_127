@@ -74,7 +74,7 @@ You will extend the functionality of your integer array from the previous assign
 HINT: for 1D arrays you saved each element as `[ ... ]`; for 2D arrays, you will save it as `[[...], [...], [...]]`
 
 **REQUIREMENT**: 
-- you will create a C source file called `t2img.c` containing implementations of the two functions declared in `t2img.h`.
+- you will create a C source file called `t2img.c` containing implementations of the function(s) declared in `t2img.h`.
 - you will create your own `t2.c` to test your functions.
 
 Your code may call any other functions declared in "t2img.h" and implemented as part of the previous assignment, task 01-05 by copying these files over and changing their names to `t2img.c` and `t2img.h` and importing them, if you haven't already for task 01 (DON'T re-implement these).
@@ -137,7 +137,7 @@ The .ppm image associated with the example above is shown below (each square blo
 
 
 **REQUIREMENT**: 
-- you will finish the function code started for you in file `t3img.c` containing the implementation of a function declared in `t3img.h`.
+- you will finish the function code started for you in file `t3img.c` containing the implementation of the function(s) declared in `t3img.h`.
 - you will create your own `t3.c` to test your functions.
 
 The header file `t3img.h` contains this new function declaration:
