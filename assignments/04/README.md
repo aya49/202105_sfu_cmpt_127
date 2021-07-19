@@ -188,7 +188,7 @@ Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 1
 | 01   | `t1.c` tests are created for each of the 2 functions x 0.5; each test either works appropriately (0.5) or they don't (0). | 1 |
 |      | `img_save_binary` works as intended.          | 1      |
 |      | `img_load_binary` works as intended.          | 1      |
-| 02   | `t2.c` tests are created for each of the 2 functions x 0.5; each test either works appropriately (0.5) or they don't (0). | 1 |
+| 02   | `t2.c` tests are created for each of the 1 functions x 0.5; each test either works appropriately (0.5) or they don't (0). | 1 |
 |      | `img_save_json` works as intended.            | 2      |
 | 03   | `t3.c` tests are created for each of the function in `t3img.c`; each test either works appropriately (0.5) or they don't (0). | 0.5 |
 |      | `img_save_ppm` works as intended.             | 2      |
