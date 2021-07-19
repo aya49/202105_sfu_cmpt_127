@@ -2,7 +2,7 @@
 
 int img_save_ppm(img_t* im, const char* filename) {
     // fopen file f
-    fprintf(f, "P6\n%d %d\n255\n", im->cols, im->rows);
+    fprintf(f, "T3\n%d %d\n255\n", im->cols, im->rows);
 
     static unsigned char color[3];
     //
