@@ -21,7 +21,7 @@ int img_save_ppm(img_t* im, const char* filename) {
             color[1] = val;  /* green */
             color[2] = val;  /* blue */
 
-            fwrite(color, 1, 3, f);
+            write_to_file(color, 1, 3, f);
 
     // fclose file f
 }
