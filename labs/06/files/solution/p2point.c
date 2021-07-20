@@ -1,5 +1,5 @@
 #include <assert.h>
-#include "p2.h"
+#include "p2point.h"
 
 // PUT INLINE COMMENTS BELOW as you read the code!
 // that will help you understand what is happening :)
