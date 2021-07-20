@@ -22,11 +22,15 @@ Your assignment will be graded according to this [**marking rubric**](#marking-r
 
 ## Task 00-03
 
+In this assignment, we will implement **preallocation**.
+
 You may copy over, modify, and use the functions you created in the previous two assignments. You may also create however many new functions to assist you with this assignment.
 
 **REQUIREMENT**: you will write your program to two files: `t0imgr.c`, `t0.c`.
 - In `t0imgr.c`, implement the integer array functions declared and specified in the supplied header file `t0imgr.h`.
 - Create a test driver program in file `t0.c` with a main function from which each of the functions in `t0imgr.c` are called (tested). Compile and execute your `t0imgr.c` (with stubs) and your test driver.
+
+**REMEMBER**: you may assign the value `0` to the elements in your array to initialize the elements --- whether you are creating the array or appending to the array. `0` will indicate an "empty" element.
 
 These functions would work around the following user defined data structures (see `t0imgr.h`):
 
@@ -49,8 +53,9 @@ typedef enum {
     IMGR_OK,
     IMGR_BADCOL,
     IMGR_BADROW,
-    IMGR_BADALLOC
-} img_result_t;
+    IMGR_BADALLOC,
+    IMGR_EMPTY
+} imgr_result_t;
 ```
 
 **HINTS**
@@ -75,11 +80,12 @@ The following is a breakdown of the tasks.
 
 **REQUIREMENT**: write a function in `t0imgr.c` with the following declaration:
 ```C
-img_t* imgr_create(unsigned int rows, unsigned int cols);
+imgr_t* imgr_create(unsigned int rows, unsigned int cols);
 ```
-- INPUT: the numer of `rows` and `cols` of the desired array.
-- OUTPUT: `img_create()` returns the POINTER to a new instance of data structure `imgr_t`.
+- INPUT: the number of `rows` and `cols` of the desired array.
+- OUTPUT: `imgr_create()` returns the POINTER to a new instance of data structure `imgr_t`.
 - BEHAVIOUR: if `malloc()` fails (i.e. returns `NULL`), `imgr_create()` returns `NULL`.
+  - The `reserved_rows` and `reserved_cols` should be initialized to be the same as `rows` and `cols` respectively. These fields represent the **capacity** or the available space in your 2D array. In the front end, the user should not have to deal with this. You use them in your functions to perform preallocation.
 
 ### Task 01.2
 
@@ -96,14 +102,14 @@ Lab 06 practice problem 03 may help you with this task.
 
 **REQUIREMENT**: write a function in `t0img.c` with the following declaration:
 ```C
-img_result_t imgr_append(imgr_t* im, int expand_row = 0, int val);
+imgr_result_t imgr_append(imgr_t* im, int expand_row, int val);
 ```
-- INPUT: the pointer of a `img_t` variable `im`, a boolean `expand_row`, and an integer `val`.
+- INPUT: the pointer of a `imgr_t` variable `im`, a boolean `expand_row`, and an integer `val`.
 - OUTPUT: 
     - Return `IMGR_OK` if successful.
     - Return `IMGR_BADALLOC` if `realloc()` failed.
 - BEHAVIOUR: use preallocation!
-    - Append `val` to the end of the 2D array `pixels` in `im` to the index with the smallest `row`, and then the smallest `col` e.g. if both indices `[3][15]` and `[5][1]` are empty, we append the value to `[3][15]`, since it has the smaller `row` index. A very simple search will allow you get this behaviour.
+    - Append `val` to the end of the 2D array `pixels` in `im` to the index with the smallest row index, and then the smallest col index e.g. if both indices `[3][15]` and `[5][1]` are empty, we append the value to `[3][15]`, since it has the smaller `row` index. A very simple search will allow you get this behaviour.
     - If there is no more room left and if
         - `expand_row != 0`, double the size of the rows.
         - `expand_row = 0`, double the size of the cols.
@@ -113,7 +119,7 @@ img_result_t imgr_append(imgr_t* im, int expand_row = 0, int val);
 
 **REQUIREMENT**: write a function in `t0img.c` with the following declaration:
 ```C
-img_result_t imgr_remove(imgr_t* im, unsigned int i, unsigned int j);
+imgr_result_t imgr_remove(imgr_t* im, unsigned int i, unsigned int j);
 ```
 - INPUT: the pointer of a `imgr_t` variable `im` and index `i`, `j`.
 - OUTPUT: 

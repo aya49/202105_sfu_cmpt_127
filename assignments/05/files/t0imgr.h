@@ -21,7 +21,7 @@ typedef enum {
     IMGR_BADROW,
     IMGR_BADALLOC,
     IMGR_EMPTY
-} img_result_t;
+} imgr_result_t;
 
 /* ALL THESE FUNCTIONS REQUIRE A VALID IMGR_T POINTER AS THEIR
    FIRST PARAMETER. THEY SHOULD FAIL ON ASSERTION IF THIS POINTER IS NULL */
@@ -33,23 +33,23 @@ typedef enum {
 // to be the same, and cols and reserved_cols to be the same). 
 // If successful (i.e. memory allocation succeeds), returns a pointer to a
 // newly-allocated imgr_t.  If unsuccessful, returns a null pointer.
-imgr_t* img_create(unsigned int rows, unsigned int cols);
+imgr_t* imgr_create(unsigned int rows, unsigned int cols);
 
 // Frees all memory allocated for im. If the pointer is null, do
 // nothing. If the im->pixels is null, do not attempt to free it.
-void imgr_destroy(img_t* im);
+void imgr_destroy(imgr_t* im);
 
 /* task 02 */
 
-// Append val to the end the 2D array pixels. If successful, return 0, else return 1.
-// Use preallocation where if there is not enough space reserved in the 2D array
+// Append val to the end of the 2D array pixels. If successful, return 0, else return 1.
+// Use preallocation if there is not enough space reserved in the 2D array
 // i.e. if all reserved_rows x reserved_cols elements are filled up,
 // - double the size of rows if expand_row != 0
 // - double the size of cols if expand_row = 0
 // both options need to be tested in your t0.c.
 // return IMGR_OK if successful.
 // return IMGR_BADALLOC if `realloc()` failed.
-img_result_t imgr_append(imgr_t* im, int expand_row = 0, int val);
+imgr_result_t imgr_append(imgr_t* im, int expand_row, int val);
 
 /* task 03 */
 
@@ -59,13 +59,13 @@ img_result_t imgr_append(imgr_t* im, int expand_row = 0, int val);
 // Use unstable remove.
 // If successful, return IMGR_OK, else return IMGR_BADROW if you cannot find the row i
 // or IMGR_BADCOL if you could find row i but couldn't find col j. 
-img_result_t imgr_remove(imgr_t* im, unsigned int i, unsigned int j);
+imgr_result_t imgr_remove(imgr_t* im, unsigned int i, unsigned int j);
 
 /* task 04 */
 
 // Save the 2D entire array im into a file called 'filename' in a JSON
 // text file array file format that can be loaded by
-// img_load_json(). Returns zero on success, or a non-zero error
+// imgr_load_json(). Returns zero on success, or a non-zero error
 // code on failure. Arrays of length 0 should produce an output file
 // containing an empty array.
 // 
@@ -96,8 +96,8 @@ int imgr_save_json(imgr_t* im, const char* filename);
 
 
 // Load a new 2D array from the file called 'filename', that was
-// previously saved using img_save_json(). The file may contain an array
-// of length 0. Returns a pointer to a newly-allocated img_t on
+// previously saved using imgr_save_json(). The file may contain an array
+// of length 0. Returns a pointer to a newly-allocated imgr_t on
 // success (even if that array has length 0), or NULL on failure.
 // 
 // Make sure you validate the parameter before you use it.

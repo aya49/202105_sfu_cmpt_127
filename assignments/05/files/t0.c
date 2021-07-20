@@ -11,7 +11,7 @@
 #include <time.h>
 #include <stdint.h>
 
-#include "p1imgr.h"
+#include "t1imgr.h"
 
 
 // helper function that prints the content of the img
