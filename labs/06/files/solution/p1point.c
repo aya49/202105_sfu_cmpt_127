@@ -1,5 +1,5 @@
 #include <assert.h>
-#include "p1.h"
+#include "p1point.h"
 
 // PUT INLINE COMMENTS BELOW as you read the code!
 // that will help you understand what is happening :)
@@ -20,6 +20,7 @@ void point_array_reset(point_array_t* pa) {
     assert(pa != NULL); // shows and error if condition is true
     point_array_init(pa);
     free(pa->points);
+    pa->points = NULL;
 }
 
 int point_array_append(point_array_t* pa, point_t* p) {
