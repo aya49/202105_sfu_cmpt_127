@@ -18,8 +18,8 @@ t4: t4.c
 	gcc $(CFLAGS) -o $@ t4.c
 
 submit:
-	rm -f a.zip
-	zip a.zip t1.c t1funcs.h t2mirror.c t3.c t4.c
+	rm -f b.zip
+	zip b.zip t1.c t1funcs.h t2mirror.c t3.c t4.c
 
 clean:
 	rm -f t1 t2 t3 t4 *.o

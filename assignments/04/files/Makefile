@@ -15,8 +15,8 @@ t3: t3.c t3img.c
 	gcc $(CFLAGS) -o $@ t3.c t3img.c
 
 submit:
-	rm -f a.zip
-	zip a.zip t1.c t1img.c t1img.h t2.c t2img.c t2img.h t3.c t3img.c t3img.h
+	rm -f d.zip
+	zip d.zip t1.c t1img.c t1img.h t2.c t2img.c t2img.h t3.c t3img.c t3img.h
 
 clean:
 	rm -f t1 t2 t3 *.o

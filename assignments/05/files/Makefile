@@ -9,8 +9,8 @@ t0: t0.c t0imgr.c
 	gcc $(CFLAGS) -o $@ t0.c t0imgr.c
 
 submit:
-	rm -f a.zip
-	zip a.zip t0.c t0imgr.c
+	rm -f e.zip
+	zip e.zip t0.c t0imgr.c
 
 clean:
 	rm -f t0 *.o

@@ -153,14 +153,14 @@ First, make sure your code is readable, see instructions [here](../../readabilit
 Make sure you have the following files ready for submission and that they are named appropriately, otherwise they won't be graded.
 - Task 00-03: `t0imgr.c`, `t0.c`
 
-Compress these files into a zip file called `a.zip`; you can do this by using the following command from console:
+Compress these files into a zip file called `e.zip`; you can do this by using the following command from console:
 ```
 $ make submit
 ```
 
-i.e. you should have ONE file called `a.zip` containing the files listed above (you can open your `a.zip` file to verify you have the correct files in it).
+i.e. you should have ONE file called `e.zip` containing the files listed above (you can open your `e.zip` file to verify you have the correct files in it).
 
-Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments.
+Upload `e.zip` onto to the appropriate assignment submission page on the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments.
 
 
 # Marking rubric

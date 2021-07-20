@@ -189,16 +189,16 @@ Make sure you have the following files ready for submission and that they are na
 - Task 03: `t3.c`
 - Task 04: `t4.c`
 
-Compress these files into a zip file called `a.zip`; you can do this by using the following command from console:
+Compress these files into a zip file called `b.zip`; you can do this by using the following command from console:
 ```
 $ make submit
 ```
 
-i.e. you should have ONE file called `a.zip` containing the files listed above (you can open your `a.zip` file to verify you have the correct files in it) (diagram curtosy of Glory!):
+i.e. you should have ONE file called `b.zip` containing the files listed above (you can open your `b.zip` file to verify you have the correct files in it) (diagram curtosy of Glory!):
 
 ![](./submission.png)
 
-Upload `a.zip` to the appropriate assignment submission page on the [CMPT 127 D100/D200/D300 Canvas assignments page](https://canvas.sfu.ca/courses/62984/assignments).
+Upload `b.zip` to the appropriate assignment submission page on the [CMPT 127 D100/D200/D300 Canvas assignments page](https://canvas.sfu.ca/courses/62984/assignments).
 
 # Marking rubric
 
