@@ -17,10 +17,11 @@ Download the files for this assignment [here](./files.zip) (or from the [CMPT 12
 - [Task 01.2](#task-012)
 - [Task 02](#task-02)
 - [Task 03](#task-03)
+- [Task 04](#task-04)
 
 Your assignment will be graded according to this [**marking rubric**](#marking-rubric).
 
-## Task 00-03
+## Task 00-04
 
 In this assignment, we will implement **preallocation**.
 
@@ -30,7 +31,11 @@ You may copy over, modify, and use the functions you created in the previous two
 - In `t0imgr.c`, implement the integer array functions declared and specified in the supplied header file `t0imgr.h`.
 - Create a test driver program in file `t0.c` with a main function from which each of the functions in `t0imgr.c` are called (tested). Compile and execute your `t0imgr.c` (with stubs) and your test driver.
 
-**REMEMBER**: you may assign the value `0` to the elements in your array to initialize the elements --- whether you are creating the array or appending to the array. `0` will indicate an "empty" element.
+**IMPORTANT NOTES**:
+- You may assign the value `0` to the elements in your array to initialize the elements --- whether you are creating the array or appending to the array. `0` will indicate an "empty" element.
+- Recall, in pre-allocation, we allocate more space in memory than what is requested by the user.
+    - `rows` and `cols` are the number of rows and columns the user has requested for in their 2D matrix. For example, if `rows` is 10 and `cols` is 10, and the user appends a value such that the number of rows increase by one, then you increase `rows` to 11.
+    - `reserved_rows` and `reserved_cols` are the number of rows and columns that are reserved for the user i.e. this is the capacity of your 2D array. For example, currently, the `rows` and `reserved_rows` are 10 and `cols` and `reserved_cols` are 10. If the user appends a value such that the number of rows should increase, then you increase `rows` to 11 and double the size of `reserved_rows` to 20 along with the number of rows allocated in memory for your 2D array. Review preallocation for more details.
 
 These functions would work around the following user defined data structures (see `t0imgr.h`):
 
@@ -135,7 +140,7 @@ int imgr_save_json(imgr_t* im, const char* filename);
 - INPUT: the pointer of a `imgr_t` variable `im` and a filename.
 - OUTPUT: returns `0` on success, or a non-`0` error code on failure.
 - BEHAVIOUR: saves the `im` array into a file `filename` in a JSON file format that can be loaded by `imgr_load_json()`.
-    - Arrays of length 0 should produce an output file containing an empty array.
+    - Arrays with 0 rows and cols should produce an output file containing an empty array e.g. `[]`.
     - Make sure you validate the parameters before you use them.
     - The JSON output should be human-readable.
     - Only write to file, the elements within columns `cols` and rows `rows`, NOT `reserved_rows` and `reserved_cols`.
@@ -145,7 +150,7 @@ int imgr_save_json(imgr_t* im, const char* filename);
 imgr_t* imgr_load_json(const char* filename);
 ```
 - INPUT: a filename.
-- OUTPUT: returns a pointer to a newly-allocated `imgr_t` on success (even if that array has length 0), or `NULL` on failure.
+- OUTPUT: returns a pointer to a newly-allocated `imgr_t` on success (even if that array has rows and cols of 0), or `NULL` on failure.
 - BEHAVIOUR: loads a new array from the file called 'filename', that was previously saved using `imgr_save_json()`. 
     - Make sure you validate the parameter before you use it.
     - Since you are newly initializing an `imgr_t`, you may set your `cols` and `rows` to be the same as `reserved_rows` and `reserved_cols` respectively.
