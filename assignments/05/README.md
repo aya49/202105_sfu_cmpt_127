@@ -4,6 +4,8 @@ Due: 2021-07-26 11:59pm.
 
 Download the files for this assignment [here](./files.zip) (or from the [CMPT 127 D100/D200/D300 Canvas page](https://canvas.sfu.ca/courses/62984) > Assignments).
 
+Read this file for how to create test cases: [test_case_02.c](./test_case_02.c)
+
 **REMEMBER**:
 - Reference [lab 06](../../labs/06) for help!
 - DO THE PRACTICE problems! They **directly** help you do the assignment tasks!
