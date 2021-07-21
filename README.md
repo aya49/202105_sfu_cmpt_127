@@ -28,7 +28,7 @@ Lectures will be recorded; the links to the recordings will be posted at the top
 | | | | [Review: value vs pointer in memory](https://docs.google.com/presentation/d/1YXf_4yQZ0Oitj0SCFYaMHdNA1utjGWvsfJY54k0sZPM/edit?usp=sharing) | | |
 | 8 | 2021-07-06 | [04](labs/04), [05](labs/05) | [typedef struct, file i/o: XDR](https://youtu.be/br8hocXKJOE) | | |
 | 9 | 2021-07-13 | [06](labs/06) | [realloc(), unstable remove](https://youtu.be/O76174c1_9M) | [03](assignments/03) (lab 04) | |
-|10 | 2021-07-20 | | | [04](assignments/04) (lab 05) | [03](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-05) |
+|10 | 2021-07-20 | | [Help with test cases (assignment 05)](./assignments/05/test_case_02.c)) | [04](assignments/04) (lab 05) | [03](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-05) |
 |11 | 2021-07-27 | [07](labs/07) | Linked lists | [05](assignments/05) (lab 06) | |
 |12 | 2021-08-03 | | | [06](assignments/06) (lab 01-07) | [04](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-07) |
 
