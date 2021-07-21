@@ -182,7 +182,7 @@ Upload `a.zip` onto to the appropriate assignment submission page on the [CMPT 1
 |------|-----------------------------------------------|--------|
 | All  | The assigment is submitted in the appropriate format (i.e. the submitted files are named as specified and they are compressed into .zip format and uploaded onto canvas). | 1 |
 |      | Source code is readable (i.e. student name and program description at the top of program files, variable names are self-descriptive and consistent, comments describing what code does is available where appropriate, indentatations are consistent), see instructions [here](../../readability.md). | 0.5 |
-| 00   | `t0.c` tests are created for each of the 4 functions (`imgr_create`, `imgr_append`, `imgr_remove`, `imgr_save_json` (use `imgr_load_json` to help with test)) x 0.5 (+0.5 because `expand_row` has two test cases, when `expand_row = 0` and `expand_row != 0`); each test either works appropriately (0.5) or they don't (0). | 2.5 |
+| 00   | `t0.c` tests are created for each of the 4 functions (`imgr_append`, `imgr_remove`, `imgr_save_json`, `imgr_load_json`) x 0.5 (+0.5 because `expand_row` has two test cases, when `expand_row = 0` and `expand_row != 0`); each test either works appropriately (0.5) or they don't (0). | 2.5 |
 | 01   | `imgr_create` works as intended.               | 0.5    |
 |      | `imgr_destroy` works as intended.              | 0.5    |
 | 02   | `imgr_append` works as intended when preallocation does not need to occur. | 1 |
