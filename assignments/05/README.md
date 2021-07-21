@@ -145,7 +145,6 @@ int imgr_save_json(imgr_t* im, const char* filename);
     - The JSON output should be human-readable.
     - Only write to file, the elements within columns `cols` and rows `rows`, NOT `reserved_rows` and `reserved_cols`.
     - See the header file for an example of an output JSON file for a 2D array (recall, we implemented the same function in a previous assignment, feel free to adapt that here!).
-- On top of testing the outputs for this function, add an additional test case to ensure that the JSON file is saved properly. To do this, use `imgr_load_json` to load the JSON file and validate that the values in the fields (including the values inside of the array) of the structure you saved and loaded are the same.
 
 ```C
 imgr_t* imgr_load_json(const char* filename);
@@ -156,7 +155,7 @@ imgr_t* imgr_load_json(const char* filename);
     - Make sure you validate the parameter before you use it.
     - Since you are newly initializing an `imgr_t`, you may set your `cols` and `rows` to be the same as `reserved_rows` and `reserved_cols` respectively.
     - If you need help, see lab 06 practice problem 03 for how to implement this ;).
-
+- On top of testing the outputs for this function, add an additional test case to ensure that the JSON file is saved properly. To do this, load the JSON file and validate that the values in the fields (including the values inside of the array) of the structure you saved and loaded are the same.
 
 # Submission
 
