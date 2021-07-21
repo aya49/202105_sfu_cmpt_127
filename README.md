@@ -9,6 +9,7 @@ Announcements: https://canvas.sfu.ca/courses/62984/announcements
 - [Assignment & quiz submission @ Canvas](https://canvas.sfu.ca/courses/62984)
 - [Canvas discussion board](https://canvas.sfu.ca/courses/62984/discussion_topics)
 - [Peer tutoring session schedule](http://www.sfu.ca/computing/current-students/undergraduate-students/student-resources/cs_peer_tutoring.html) (starts 2021-05-24)
+- [MySSP](https://www.sfu.ca/students/health/resources/my-ssp.html): **free, 24/7, anonymous informal chats and councelling** if you need any --- and of course, me and the TA's will always be available during labs and office hours :)
 
 # Schedule
 
