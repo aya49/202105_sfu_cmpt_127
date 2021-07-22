@@ -4,6 +4,9 @@
 
 // PUT INLINE COMMENTS BELOW as you read the code!
 // that will help you understand what is happening :)
+//
+// the example solutions given below are minimal.
+// try to improve on them! e.g. check if the given argument is a null pointer
 
 list_t* list_create(void) {
     list_t * list = malloc(sizeof(list_t));
