@@ -70,7 +70,7 @@ Arrays and vectors are therefore, the most efficient data structure(s).
 ## Practice 01
 
 **DESCRIPTION**:
-- `p1list.h` contains an interface specification for a linked-list-of-integers data structure.
+- `p1list.h` contains an interface specification for a linked-list-of-integers data structure. Notice that instead of just defining `element_t` by writing `typedef struct {...} element_t;`, we write `typedef struct element {...} element_t;`. Adding `element` in here provides us a **structure tag** that we can use within our structure type before completing our type definition. We call it a "tag" and not a "name" because the "name" of this structure would be `struct element` not just `element` alone --- this is jargon.
 - 5 slightly different implementations are provided, in files `p1.N.c` where N = [1,...,5].
 - `p1.c` contains a very weak test program for the linked list code.
 
