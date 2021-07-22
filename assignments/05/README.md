@@ -131,6 +131,7 @@ imgr_result_t imgr_remove(imgr_t* im, unsigned int i, unsigned int j);
 - INPUT: the pointer of a `imgr_t` variable `im` and index `i`, `j`.
 - OUTPUT: 
     - If you were able to remove the element at `[i][j]`, replace it with the last element in row `i` (this is called unstable remove), and remove that last element from the end by setting it to null, return `IMGR_OK`.
+    - If removing the element causes an entire row and/or column to be empty, decrement the field rows and/or cols as necessary.
     - If unsuccessful, return `IMGR_BADROW` if you couldn't find row `i`, otherwise return `IMGR_BADCOL` if you couldn't find row `j`.
     - if you went to index `[i][j]` but there was nothing there, return `IMGR_EMPTY`.
 

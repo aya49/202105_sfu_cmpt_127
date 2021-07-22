@@ -53,10 +53,12 @@ imgr_result_t imgr_append(imgr_t* im, int expand_row, int val);
 
 /* task 03 */
 
-// Remove the point at index (i,j) (row, col) from the 2D array pixels, 
+// Remove the element at index (i,j) (row, col) from the 2D array pixels, 
 // reducing the number of elements
 // stored in the 2D array by one. The order of points in the array may change.
 // Use unstable remove.
+// If removing the element causes an entire row and/or column to be empty, 
+// decrement the field rows and/or cols as necessary.
 // If successful, return IMGR_OK, else return IMGR_BADROW if you cannot find the row i
 // or IMGR_BADCOL if you could find row i but couldn't find col j. 
 imgr_result_t imgr_remove(imgr_t* im, unsigned int i, unsigned int j);
