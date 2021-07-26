@@ -41,7 +41,7 @@ void imgr_destroy(imgr_t* im);
 
 /* task 02 */
 
-// Append val to the end of the 2D array pixels. If successful, return 0, else return 1.
+// Append val to the end of the 2D array pixels.
 // Use preallocation if there is not enough space reserved in the 2D array
 // i.e. if all reserved_rows x reserved_cols elements are filled up,
 // - double the size of rows if expand_row != 0
