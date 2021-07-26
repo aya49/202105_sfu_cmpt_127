@@ -68,7 +68,7 @@ int main(void) {
     }
 
     printf("02 => test case 01.2 behaviour: ");
-    if (im_test->pixels[1][1]==1) {
+    if (im_test->pixels[0][0]==1) {
         printf("successful, appends value\n");
     } else {
         printf("unsuccessful, value not appended appropriately\n");
@@ -98,7 +98,7 @@ int main(void) {
         }
 
         printf("02 => test case 02.4 behaviour: ");
-        if (im_test->pixels[1][2]==2) {
+        if (im_test->pixels[0][1]==2) {
             printf("successful, appends value\n");
         } else {
             printf("unsuccessful, value not appended appropriately\n");
