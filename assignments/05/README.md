@@ -116,7 +116,7 @@ imgr_result_t imgr_append(imgr_t* im, int expand_row, int val);
     - Return `IMGR_OK` if successful.
     - Return `IMGR_BADALLOC` if `realloc()` failed.
 - BEHAVIOUR: use preallocation!
-    - Append `val` to the end of the 2D array `pixels` in `im` to the index with the smallest row index, and then the smallest col index e.g. if both indices `[3][15]` and `[5][1]` are empty, we append the value to `[3][15]`, since it has the smaller `row` index. A very simple search will allow you get this behaviour.
+    - Append `val` to the end of the 2D array `pixels` in `im` to the index with the smallest row index, and then the smallest col index e.g. if both indices `[3][15]` and `[5][1]` are empty, we append the value to `[3][15]`, since it has the smaller `row` index. A very simple search will allow you get this behaviour e.g. search for the smallest row index associated with the row that has an empty element, and then in that row, find the first element that is empty, and that would be your column index.
     - If there is no more room left and if
         - `expand_row != 0`, double the size of the rows.
         - `expand_row = 0`, double the size of the cols.
