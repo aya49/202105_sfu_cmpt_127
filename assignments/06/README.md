@@ -1,6 +1,6 @@
 # Assignment 06: make your own C cheatsheet
 
-Due: 2021-08-02 11:59pm.
+Due: 2021-08-03 11:59pm.
 
 **REMEMBER**:
 - Reference ALL the [labs](../../labs), their practice problems, and the [assignments](../) for content!
