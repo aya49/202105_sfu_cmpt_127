@@ -19,19 +19,19 @@ Lectures will be recorded; the links to the recordings will be posted at the top
 
 | Wk | Date       | Lab          | Lab lecture recording | Assignments: due Mon | Quizzes: Tue |
 |----|------------|--------------|-----------------------|----------------------|--------------|
-| 1 | 2021-05-18 | [01](labs/01) | [Course outline, introduction to C](https://youtu.be/LRRYe0YWVdk) | | |
-| 2 | 2021-05-25 | [01](labs/01) | [Variables, conditions, loops](https://youtu.be/5dCUjdNFygc) | | |
-| 3 | 2021-06-01 | [02](labs/02) | [Functions, arrays](https://youtu.be/UCKyZum1Tdw) | [01](assignments/01) (lab 01) | |
-| 4 | 2021-06-08 | | | | [01](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01) |
-| 5 | 2021-06-15 | [02](labs/02) | [Stream redirection, program arguments, C strings](https://youtu.be/q4Bg4S4p9gg) | | |
-| 6 | 2021-06-22 | [03](labs/03) | [More arrays, stack/heap storage](https://youtu.be/2py2AC_SqaM) | [02](assignments/02) (lab 02) | |
-| 7 | 2021-06-29 | | | | [02](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-03) |
+| 01 | 2021-05-18 | [01](labs/01) | [Course outline, introduction to C](https://youtu.be/LRRYe0YWVdk) | | |
+| 02 | 2021-05-25 | [01](labs/01) | [Variables, conditions, loops](https://youtu.be/5dCUjdNFygc) | | |
+| 03 | 2021-06-01 | [02](labs/02) | [Functions, arrays](https://youtu.be/UCKyZum1Tdw) | [01](assignments/01) (lab 01) | |
+| 04 | 2021-06-08 | | | | [01](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01) |
+| 05 | 2021-06-15 | [02](labs/02) | [Stream redirection, program arguments, C strings](https://youtu.be/q4Bg4S4p9gg) | | |
+| 06 | 2021-06-22 | [03](labs/03) | [More arrays, stack/heap storage](https://youtu.be/2py2AC_SqaM) | [02](assignments/02) (lab 02) | |
+| 07 | 2021-06-29 | | | | [02](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-03) |
 | | | | [Review: value vs pointer in memory](https://docs.google.com/presentation/d/1YXf_4yQZ0Oitj0SCFYaMHdNA1utjGWvsfJY54k0sZPM/edit?usp=sharing) | | |
-| 8 | 2021-07-06 | [04](labs/04), [05](labs/05) | [typedef struct, file i/o: XDR](https://youtu.be/br8hocXKJOE) | | |
-| 9 | 2021-07-13 | [06](labs/06) | [realloc(), unstable remove](https://youtu.be/O76174c1_9M) | [03](assignments/03) (lab 04) | |
-|10 | 2021-07-20 | | [Help with test cases (assignment 05)](./assignments/05/test_case_02.c) | [04](assignments/04) (lab 05) | [03](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-05) |
-|11 | 2021-07-27 | [07](labs/07) | Linked lists | [05](assignments/05) (lab 06) | |
-|12 | 2021-08-03 | | | [06](assignments/06) (lab 01-07) **Due Tues NOT Mon** | [04](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-07) |
+| 08 | 2021-07-06 | [04](labs/04), [05](labs/05) | [typedef struct, file i/o: XDR](https://youtu.be/br8hocXKJOE) | | |
+| 09 | 2021-07-13 | [06](labs/06) | [realloc(), unstable remove](https://youtu.be/O76174c1_9M) | [03](assignments/03) (lab 04) | |
+| 10 | 2021-07-20 | | [Help with test cases (assignment 05)](./assignments/05/test_case_02.c) | [04](assignments/04) (lab 05) | [03](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-05) |
+| 11 | 2021-07-27 | [07](labs/07) | Linked lists | [05](assignments/05) (lab 06) | |
+| 12 | 2021-08-03 | | | [06](assignments/06) (lab 01-07) **Due Tues NOT Mon** | [04](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-07) |
 
 ## Lab and office hours
 
