@@ -31,7 +31,7 @@ Lectures will be recorded; the links to the recordings will be posted at the top
 | 9 | 2021-07-13 | [06](labs/06) | [realloc(), unstable remove](https://youtu.be/O76174c1_9M) | [03](assignments/03) (lab 04) | |
 |10 | 2021-07-20 | | [Help with test cases (assignment 05)](./assignments/05/test_case_02.c) | [04](assignments/04) (lab 05) | [03](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-05) |
 |11 | 2021-07-27 | [07](labs/07) | Linked lists | [05](assignments/05) (lab 06) | |
-|12 | 2021-08-03 | | | [06](assignments/06) (lab 01-07) | [04](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-07) |
+|12 | 2021-08-03 | | | [06](assignments/06) (lab 01-07) **Due Tues NOT Mon** | [04](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-07) |
 
 ## Lab and office hours
 
