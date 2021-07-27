@@ -119,6 +119,12 @@ $ ./p2list
 
 Try it yourself first; then verify your solutions [here](./files/solution/p2list.c).
 
+## Practice 03
+
+Try it yourself!
+
+**REQUIREMENT**: declare and define a function in `p1list.h` and `p2list.c` respectively. Your function should take a pointer to a list `list_t* list` as input and return `void`. Your function should remove the second element from the given list. You may assume the given list has 3 or more elements and that it is well-formed.
+
 # Credit
 
 Last updated 2021-05 by Alice Yue. 
