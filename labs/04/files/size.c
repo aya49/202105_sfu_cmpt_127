@@ -1,6 +1,3 @@
-
-// Online IDE - Code Editor, Compiler, Interpreter
-
 #include<stdio.h>
 #include<inttypes.h>
 #include<stdlib.h>
