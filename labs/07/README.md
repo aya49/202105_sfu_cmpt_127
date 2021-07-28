@@ -5,6 +5,11 @@ Download lab files [here](./files.zip).
 Linked lists have been described in CMPT 125, but it doesn't hurt to see them again.
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
+
+| 2021-07-13 |
+|----|
+| <a href="http://www.youtube.com/watch?feature=player_embedded&v=LB3-cP8yevQ" target="_blank"><img src="http://img.youtube.com/vi/LB3-cP8yevQ/0.jpg" alt="" width="200" border="0"/></a> |
+
 - [Guide 01](#guide) ([slides](https://docs.google.com/presentation/d/1vnvehN4mntZ2GOt0aA_seKMoLQxhZ9HcNeEPOD2gdGU/edit?usp=sharing)): linked lists
 
 Try "Practice" problems; these will NOT be graded. Note that the solutions given for Practices is just one of many possible solutions, better ones may exist.
