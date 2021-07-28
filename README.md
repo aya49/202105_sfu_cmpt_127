@@ -29,7 +29,7 @@ Lectures will be recorded; the links to the recordings will be posted at the top
 | 08 | 2021-07-06 | [04](labs/04), [05](labs/05) | [typedef struct, file i/o: XDR](https://youtu.be/br8hocXKJOE) | | |
 | 09 | 2021-07-13 | [06](labs/06) | [realloc(), unstable remove](https://youtu.be/O76174c1_9M) | [03](assignments/03) (lab 04) | |
 | 10 | 2021-07-20 | | [Help with test cases (assignment 05)](./assignments/05/test_case_02.c) | [04](assignments/04) (lab 05) | [03](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-05) |
-| 11 | 2021-07-27 | [07](labs/07) | Linked lists | [05](assignments/05) (lab 06) | |
+| 11 | 2021-07-27 | [07](labs/07) | [Linked lists](https://youtu.be/LB3-cP8yevQ) | [05](assignments/05) (lab 06) | |
 | 12 | 2021-08-03 | | Assigment **due Tues NOT Mon** | [06](assignments/06) (lab 01-07) | [04](https://canvas.sfu.ca/courses/62984/quizzes) (lab 01-07) |
 
 ## Lab and office hours
