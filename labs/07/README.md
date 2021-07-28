@@ -6,7 +6,7 @@ Linked lists have been described in CMPT 125, but it doesn't hurt to see them ag
 
 Review "Guide"s and accompanying slides (we will go over these during the lab lecture).
 
-| 2021-07-13 |
+| 2021-07-27 |
 |----|
 | <a href="http://www.youtube.com/watch?feature=player_embedded&v=LB3-cP8yevQ" target="_blank"><img src="http://img.youtube.com/vi/LB3-cP8yevQ/0.jpg" alt="" width="200" border="0"/></a> |
 
